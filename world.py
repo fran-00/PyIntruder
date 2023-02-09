@@ -15,7 +15,7 @@ class MapTile:
         self.inventory = []
         self.world_check = []
         n = random.randint(1, 4)
-        if n in [1, 2]:
+        if n in {1, 2}:
             pass
         elif n == 3:
             for i in range (random.randint(1,2)):
