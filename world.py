@@ -19,9 +19,9 @@ class MapTile:
             pass
         elif n == 3:
             for i in range (random.randint(1,2)):
-                self.inventory .append(random.choice(items_data.consumables_list))
+                self.inventory.append(random.choice(items_data.consumables_list))
         elif n == 4:
-            self.inventory .append(random.choice(items_data.mrs_list))
+            self.inventory.append(random.choice(items_data.mrs_list))
 
     def modify_player(self, player):
         if self.enemy is not None and self.enemy.alive is True:
