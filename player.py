@@ -622,7 +622,7 @@ class Player:
             if room.env_obj.inventory:
                 print(f"> You open the {room.env_obj}.")
                 for i, item in enumerate(room.env_obj.inventory, 1):
-                    print("{}. {}".format(i, item))
+                    print(f"{i}. {item}")
                 user_input = input("> Choose what you want to get or type (Q) to exit.\n>>>> ").lower()
                 while True:
                     if user_input == 'q':
