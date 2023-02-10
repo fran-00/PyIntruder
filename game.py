@@ -360,28 +360,7 @@ def get_available_actions(room, player):
     actions = OrderedDict()
 
     if room.enemy is None or room.enemy.alive is False:
-        if world.tile_at(room.x, room.y - 1) and not room.name in ['Tavern']:
-            action_adder(actions, 'n', player.move_north, "north")
-        if world.tile_at(room.x, room.y - 1) and room.name in ['Tavern']:
-            if player.tavern_room_paid is False:
-                action_adder(actions, 'n', player.tavern_room_closed, "north")
-            else:
-                action_adder(actions, 'n', player.move_north, "north")
-        if world.tile_at(room.x, room.y + 1):
-            action_adder(actions, 's', player.move_south, "south")
-        if world.tile_at(room.x + 1, room.y):
-            action_adder(actions, 'e', player.move_east, "east")
-        if world.tile_at(room.x - 1, room.y):
-            action_adder(actions, 'w', player.move_west, "west")
-        if world.tile_at(room.x - 1, room.y - 1):
-            action_adder(actions, 'nw', player.move_northwest, "northwest")
-        if world.tile_at(room.x + 1, room.y - 1):
-            action_adder(actions, 'ne', player.move_northeast, "northeast")
-        if world.tile_at(room.x - 1, room.y + 1):
-            action_adder(actions, 'sw', player.move_southwest, "southwest")
-        if world.tile_at(room.x + 1, room.y + 1):
-            action_adder(actions, 'se', player.move_southeast, "southeast")
-
+        available_directions(room, actions, player)
     if room.enemy is not None and room.enemy.alive is True:
         action_adder(actions, 'a', player.attack, "attack")
 #       print("\n| A = attack | H = heal |\n| C = spell  | R = run  |\n")
@@ -394,6 +373,30 @@ def get_available_actions(room, player):
     if player.hp < player.max_hp:
         action_adder(actions, 'h', player.heal, "heal")
     return actions
+
+
+def available_directions(room, actions, player):
+    if world.tile_at(room.x, room.y - 1) and room.name not in ['Tavern']:
+        action_adder(actions, 'n', player.move_north, "north")
+    if world.tile_at(room.x, room.y - 1) and room.name in ['Tavern']:
+        if player.tavern_room_paid is False:
+            action_adder(actions, 'n', player.tavern_room_closed, "north")
+        else:
+            action_adder(actions, 'n', player.move_north, "north")
+    if world.tile_at(room.x, room.y + 1):
+        action_adder(actions, 's', player.move_south, "south")
+    if world.tile_at(room.x + 1, room.y):
+        action_adder(actions, 'e', player.move_east, "east")
+    if world.tile_at(room.x - 1, room.y):
+        action_adder(actions, 'w', player.move_west, "west")
+    if world.tile_at(room.x - 1, room.y - 1):
+        action_adder(actions, 'nw', player.move_northwest, "northwest")
+    if world.tile_at(room.x + 1, room.y - 1):
+        action_adder(actions, 'ne', player.move_northeast, "northeast")
+    if world.tile_at(room.x - 1, room.y + 1):
+        action_adder(actions, 'sw', player.move_southwest, "southwest")
+    if world.tile_at(room.x + 1, room.y + 1):
+        action_adder(actions, 'se', player.move_southeast, "southeast")
 
 def action_adder(action_dict, hotkey, action, name):
     action_dict[hotkey.lower()] = action
