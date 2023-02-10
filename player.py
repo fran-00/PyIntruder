@@ -620,7 +620,7 @@ class Player:
         room = world.tile_at(self.x, self.y)
         if room.env_obj.can_be_open:
             if room.env_obj.inventory:
-                print("> You open the {}.".format(room.env_obj))
+                print(f"> You open the {room.env_obj}.")
                 for i, item in enumerate(room.env_obj.inventory, 1):
                     print("{}. {}".format(i, item))
                 user_input = input("> Choose what you want to get or type (Q) to exit.\n>>>> ").lower()
