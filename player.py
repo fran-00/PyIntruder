@@ -450,7 +450,7 @@ class Player:
                     try:
                         if choice <= n and choice != 0 and index > 0:
                             to_read = right_order_list[choice - 1]
-                            print("> {}: {}".format(to_read.name, to_read.description))
+                            print(f"> {to_read.name}: {to_read.description}")
                             continue
                         else:
                             print("> Number out of range, try again or type 'Q' to quit.")
