@@ -649,10 +649,9 @@ class Player:
         # If the list is not empty, it puts them in order of recharge power
         elif mrs:
             sorted_mrs = sorted(mrs, key=lambda item: item.mr, reverse=True)
-            print("> Your mana is {}/{}. Choose or type (Q) to exit:"
-                  .format(self.mana, self.max_mana))
+            print(f"> Your mana is {self.mana}/{self.max_mana}. Choose or type (Q) to exit:")
             for i, item in enumerate(sorted_mrs, 1):
-                print("{}. {}".format(i, item))
+                print(f"{i}. {item}")
 
         # Allows to choose which one to consume
         valid = False
