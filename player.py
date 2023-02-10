@@ -331,7 +331,7 @@ class Player:
             sorted_consumables = sorted(consumables, key=lambda item: item.heal)
             print(f"> Your health is {self.hp}/{self.max_hp}. Choose what you want to cure yourself with or type (Q) to exit:")
             for i, item in enumerate(sorted_consumables, 1):
-                print("{}. {}".format(i, item))
+                print(f"{i}. {item}")
 
         if bottle_list and self.bottle_full:
             print("> Your bottle is full. If you want to drink the water it contains, type (Drink).")
