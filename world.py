@@ -177,12 +177,12 @@ class ChestTile(MapTile):
                         print(f"> {ico}! Medium Enemy!\n")
                         self.enemy = enemies.Helicopter()
                         self.closed = False
-                        print("{}".format(self.enemy.intro_alive))
+                        print(f"{self.enemy.intro_alive}")
                     elif ico == 0:                       # se esce 0
                         print(f"> {ico}! Hard Enemy!")
                         self.enemy = enemies.MushroomHunter()
                         self.closed = False
-                        print("{}".format(self.enemy.intro_alive))
+                        print(f"{self.enemy.intro_alive}")
                 else:
                     return
             else:
