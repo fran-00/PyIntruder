@@ -329,8 +329,7 @@ class Player:
             return
         elif consumables:
             sorted_consumables = sorted(consumables, key=lambda item: item.heal)
-            print("> Your health is {}/{}. Choose what you want to cure yourself with or type (Q) to exit:"
-                  .format(self.hp, self.max_hp))
+            print(f"> Your health is {self.hp}/{self.max_hp}. Choose what you want to cure yourself with or type (Q) to exit:")
             for i, item in enumerate(sorted_consumables, 1):
                 print("{}. {}".format(i, item))
 
