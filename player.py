@@ -704,7 +704,6 @@ class Player:
             print("> You flee.")
             self.x = self.previous_x
             self.y = self.previous_y
-            pass
         else:
             print("> You can't escape!")
             return
