@@ -851,8 +851,6 @@ class TavernRoomTile(MapTile):
                     if player.base_defence > 0:
                         print("> You removed your armor for the night so you are more vulnerable.")
                         player.base_defence = 0
-                    else:
-                        pass
                     break
                 self.seen = True
                 print(f"\n\n\n> You stay the night at the Tavern and restore your health.\n>> You now have {player.gold} Cash and {player.hp} HP.\n")
@@ -862,7 +860,6 @@ class TavernRoomTile(MapTile):
                 break
         elif user_input in ['no', 'q']:
             print("> As you wish. You shall sleep later.")
-            pass
         else:
             print("> I beg you pardon?")
 
