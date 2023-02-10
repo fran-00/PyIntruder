@@ -217,8 +217,9 @@ class Player:
 
 # CALL *** DIAGNOSE ***
     def diagnose(self):
-        print("> You have {}/{} HP and {}/{} Mana remaining. This is turn number {}."
-              .format(self.hp, self.max_hp, self.mana, self.max_mana, self.turn))
+        print(
+            f"> You have {self.hp}/{self.max_hp} HP and {self.mana}/{self.max_mana} Mana remaining. This is turn number {self.turn}."
+        )
 
 # CALL *** DROP ALL / PICK UP ALL ***
     def drop_all_get_all(self, receiver, giver):
