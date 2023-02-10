@@ -335,7 +335,7 @@ class Player:
 
         if bottle_list and self.bottle_full:
             print("> Your bottle is full. If you want to drink the water it contains, type (Drink).")
-        elif bottle_list and not self.bottle_full:
+        elif bottle_list:
             print("> You have your bottle, but is empty.")
 
         valid = False
