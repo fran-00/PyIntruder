@@ -411,7 +411,7 @@ class Player:
             sorted_consumables = sorted(consumables, key=lambda item: item.name.lower())
             print(">> CONSUMABLES:")
             for i, item in enumerate(sorted_consumables, index):
-                print("> {}. {}".format(index, item))
+                print(f"> {index}. {item}")
                 index += 1
                 right_order_list.append(item)
         if mrs:
