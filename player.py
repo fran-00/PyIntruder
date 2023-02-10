@@ -626,7 +626,7 @@ class Player:
                 user_input = input("> Choose what you want to get or type (Q) to exit.\n>>>> ").lower()
                 while True:
                     if user_input == 'q':
-                        print("> You close the {}.".format(room.env_obj))
+                        print(f"> You close the {room.env_obj}.")
                         return
                     else:
                         try:
