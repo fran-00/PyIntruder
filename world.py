@@ -345,31 +345,22 @@ class Little_oTile(MapTile):
             choice_slogan = random.randint(1,9)
             if choice_slogan == 1:
                 print(line1)
-                pass
             elif choice_slogan == 2:
                 print(line2)
-                pass
             elif choice_slogan == 3:
                 print(line3)
-                pass
             elif choice_slogan == 4:
                 print(line4)
-                pass
             elif choice_slogan == 5:
                 print(line5)
-                pass
             elif choice_slogan == 6:
                 print(line6)
-                pass
             elif choice_slogan == 7:
                 print(line7)
-                pass
             elif choice_slogan == 8:
                 print(line8)
-                pass
             elif choice_slogan == 9:
                 print(line9)
-                pass
             user_input = input("<< You are at Little(o)! (B)uy, (S)ell or (Q)uit? >>\n>>>> ")
             if user_input in ['Q', 'q']:
                 if not self.talker.inventory:
