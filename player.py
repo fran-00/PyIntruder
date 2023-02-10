@@ -922,8 +922,7 @@ class Player:
                 if buyer == room.talker:
                     print(f"> {i}. {item.damage} DMG - {item.name} - {item.if_sold} §")
                 else:
-                    print("> {}. {} DMG - {} - {} §"
-                          .format(i, item.damage, item.name, item.value,))
+                    print(f"> {i}. {item.damage} DMG - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
         if curses and (room.talker.name == 'Little(o)' or room.talker.name == 'Merchant'):
