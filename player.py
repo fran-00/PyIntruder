@@ -397,7 +397,7 @@ class Player:
             sorted_weapons = sorted(weapons, key=lambda item: item.name.lower())
             print(">> WEAPONS:")
             for i, item in enumerate(sorted_weapons, index):
-                print(f"> {i}. {item}")
+                print(f"> {index}. {item}")
                 index += 1
                 right_order_list.append(item)
         if curses:
