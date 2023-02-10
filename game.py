@@ -119,7 +119,7 @@ def choose_action(room, player):
 # *** EXAMINE (GENERAL) *** TODO incorporalo a quello dopo
         elif action_input in ['examine all', 'observe']:
             if room.examine is not None:
-                print("> {}".format(room.examine))
+                print(f"> {room.examine}")
             else:
                 print("> CONCENTRATE ON THE ENEMY! Your own life is at stake!!")
                 return
