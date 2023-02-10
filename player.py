@@ -432,7 +432,7 @@ class Player:
             sorted_missions = sorted(specials, key=lambda item: item.name.lower())
             print(">> SPECIAL ITEMS:")
             for i, item in enumerate(sorted_missions, index):
-                print("> {}. {}".format(index, item))
+                print(f"> {index}. {item}")
                 index += 1
                 right_order_list.append(item)
         print("> Your wealth: {} §".format(self.gold))
