@@ -20,28 +20,23 @@ def play():
     while player.is_alive() and not player.victory:
         room = world.tile_at(player.x, player.y)
 
-        if player.verbose:
-            if room.enemy is None:
-                print("\n***{}***".format(room.name))
-                print("> {}".format(room.description))
-            elif room.enemy is not None and room.enemy.alive is True:
-                print("> {}".format(room.enemy.intro_alive))
-            elif room.enemy is not None and room.enemy.alive is False:
-                print("\n***{}***".format(room.name))
-                print("> {}".format(room.enemy.intro_dead))
-            else:
-                pass
-        else:
-            if room.enemy is None:
-                print("\n***{}***".format(room.name))
-            elif room.enemy is not None and room.enemy.alive is True:
-                print("> {}".format(room.enemy.intro_alive))
-                pass
-            elif room.enemy is not None and room.enemy.alive is False:
-                pass
-                #print("\n***{}***".format(room.name))
-            else:
-                pass
+        if player.verbose and room.enemy is None:
+            print(f"\n***{room.name}***")
+            print(f"> {room.description}")
+        elif (
+            player.verbose
+            and room.enemy.alive is True
+            or not player.verbose
+            and room.enemy is not None
+            and room.enemy.alive is True
+        ):
+            print(f"> {room.enemy.intro_alive}")
+        elif player.verbose and room.enemy.alive is False:
+            print(f"\n***{room.name}***")
+            print(f"> {room.enemy.intro_dead}")
+        elif not player.verbose and room.enemy is None:
+            print(f"\n***{room.name}***")
+            
         player.turn += 1
         room.modify_player(player)
 
