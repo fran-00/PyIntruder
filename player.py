@@ -71,7 +71,7 @@ class Player:
         if armors:
             print("> Choose an armor to wear:")
             for i, item in enumerate(armors, 1):
-                print("{}. {}".format(i, item))
+                print(f"{i}. {item}")
 
         valid = False
         while not valid:
