@@ -937,11 +937,9 @@ class Player:
             sorted_consumables = sorted(consumables, key=lambda item: item.heal, reverse=True)
             for i, item in enumerate(sorted_consumables, index):
                 if buyer == room.talker:
-                    print("> {}. +{} HP - {} - {} §"
-                          .format(i, item.heal, item.name, item.if_sold,))
+                    print(f"> {i}. +{item.heal} HP - {item.name} - {item.if_sold} §")
                 else:
-                    print("> {}. +{} HP - {} - {} §"
-                          .format(i, item.heal, item.name, item.value,))
+                    print(f"> {i}. +{item.heal} HP - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
         if mrs and (room.talker.name == 'Monk' or room.talker.name == 'Merchant'):
