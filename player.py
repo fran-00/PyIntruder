@@ -682,7 +682,7 @@ class Player:
                 else:
                     self.mana = self.max_mana
                 self.inventory.remove(to_consume)
-                print("> You now have {} Mana.".format(self.mana))
+                print(f"> You now have {self.mana} Mana.")
                 valid = True
             except (ValueError, IndexError):
                 print("> Invalid choice, try again.")
