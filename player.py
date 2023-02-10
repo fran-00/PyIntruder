@@ -230,7 +230,7 @@ class Player:
             if receiver is self:
                 print(f"> {item.name}: taken.")
             if receiver is room:
-                print("> {}: dropped.".format(item.name))
+                print(f"> {item.name}: dropped.")
 
 # CALL *** DROP/PICK UP/GIVE LIST***
     def dpg(self, receiver, giver):
