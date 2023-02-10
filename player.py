@@ -1006,11 +1006,9 @@ class Player:
             return
         if buyer == room.talker:
             seller.gold += item.if_sold
-            #  buyer.gold -= item.if_sold
-            seller.inventory.remove(item)
-            buyer.inventory.append(item)
         else:
             seller.gold += item.value
             buyer.gold -= item.value
-            seller.inventory.remove(item)
-            buyer.inventory.append(item)
+        #  buyer.gold -= item.if_sold
+        seller.inventory.remove(item)
+        buyer.inventory.append(item)
