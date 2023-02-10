@@ -36,7 +36,7 @@ def play():
             print(f"> {room.enemy.intro_dead}")
         elif not player.verbose and room.enemy is None:
             print(f"\n***{room.name}***")
-            
+
         player.turn += 1
         room.modify_player(player)
 
@@ -60,8 +60,6 @@ def play():
                         continue
                 else:
                     play()
-    else:
-        pass
 
 def choose_action(room, player):
     action = None
