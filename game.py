@@ -398,6 +398,6 @@ def get_available_actions(room, player):
 def action_adder(action_dict, hotkey, action, name):
     action_dict[hotkey.lower()] = action
     action_dict[hotkey.upper()] = action
-    print("| {}: {}".format(hotkey, name))
+    print(f"| {hotkey}: {name}")
 
 play()
