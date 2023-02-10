@@ -550,7 +550,7 @@ class Player:
             row = []
             dsl_cells = dsl_row.split("|")
             dsl_cells = [c for c in dsl_cells if c]
-            for x, dsl_cell in enumerate(dsl_cells):
+            for dsl_cell in dsl_cells:
                 map_tile_type = tile_type_dict[dsl_cell]
                 row.append(map_tile_type)
                 if dsl_cell in ["  ", ""]:
