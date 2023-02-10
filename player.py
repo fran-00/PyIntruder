@@ -435,7 +435,7 @@ class Player:
                 print(f"> {index}. {item}")
                 index += 1
                 right_order_list.append(item)
-        print("> Your wealth: {} §".format(self.gold))
+        print(f"> Your wealth: {self.gold} §")
 
         # Allows to view the description of the items
         while True:
