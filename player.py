@@ -847,9 +847,7 @@ class Player:
         # Check if a list of rooms with no gaps has already been created to avoid duplicates
         if self.rooms_list == []:
             self.room_list_creator()
-        else:
-            pass
-
+        
         rooms_with_enemies = []
         rooms_with_npcs = []
         rooms_with_env_objs = []
