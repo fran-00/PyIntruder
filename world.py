@@ -870,8 +870,6 @@ class TavernRoomTile(MapTile):
             player.tavern_room_paid = False
             self.enemy = None
             return
-        else:
-            pass
 
 # |TM| *** Temple ***
 class TempleTile(MapTile):
