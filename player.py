@@ -571,47 +571,36 @@ class Player:
         self.y += dy
 
     def move_north(self):
-        self.previous_x = self.x
-        self.previous_y = self.y
-        self.move(dx=0, dy=-1)
+        self.get_coordinates(0, -1)
 
     def move_south(self):
-        self.previous_x = self.x
-        self.previous_y = self.y
-        self.move(dx=0, dy=1)
+        self.get_coordinates(0, 1)
 
     def move_east(self):
-        self.previous_x = self.x
-        self.previous_y = self.y
-        self.move(dx=1, dy=0)
+        self.get_coordinates(1, 0)
 
     def move_west(self):
-        self.previous_x = self.x
-        self.previous_y = self.y
-        self.move(dx=-1, dy=0)
+        self.get_coordinates(-1, 0)
 
     def stand_still(self):
-        self.move(dx=0, dy=0)
+        self.get_coordinates(dx=0, dy=0)
 
     def move_northwest(self):
-        self.previous_x = self.x
-        self.previous_y = self.y
-        self.move(dx=-1, dy=-1)
+        self.get_coordinates(-1, -1)
 
     def move_northeast(self):
-        self.previous_x = self.x
-        self.previous_y = self.y
-        self.move(dx=1, dy=-1)
+        self.get_coordinates(1, -1)
 
     def move_southwest(self):
-        self.previous_x = self.x
-        self.previous_y = self.y
-        self.move(dx=-1, dy=1)
+        self.get_coordinates(-1, 1)
 
     def move_southeast(self):
+        self.get_coordinates(1, 1)
+
+    def get_coordinates(self, dx, dy):
         self.previous_x = self.x
         self.previous_y = self.y
-        self.move(dx=1, dy=1)
+        self.move(dx=dx, dy=dy)
 
 # CALL *** OPEN ***
     def open_obj(self):
