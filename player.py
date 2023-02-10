@@ -719,7 +719,7 @@ class Player:
         for tile in world.world_map_caller():
             rooms_list_with_empty_spaces.extend(tile)
 
-        for i, room in enumerate(rooms_list_with_empty_spaces):
+        for room in rooms_list_with_empty_spaces:
             if isinstance(room, world.MapTile):
                 self.rooms_list.append(room)
 
