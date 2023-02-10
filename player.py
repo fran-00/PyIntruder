@@ -425,7 +425,7 @@ class Player:
             sorted_armors = sorted(armors, key=lambda item: item.name.lower())
             print(">> ARMORS:")
             for i, item in enumerate(sorted_armors, index):
-                print("> {}. {}".format(index, item))
+                print(f"> {index}. {item}")
                 index += 1
                 right_order_list.append(item)
         if specials:
