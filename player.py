@@ -946,11 +946,9 @@ class Player:
             sorted_mrs = sorted(mrs, key=lambda item: item.mr, reverse=True)
             for i, item in enumerate(sorted_mrs, index):
                 if buyer == room.talker:
-                    print("> {}. +{} Mana - {} - {} §"
-                          .format(i, item.mr, item.name, item.if_sold,))
+                    print(f"> {i}. +{item.mr} Mana - {item.name} - {item.value} §")
                 else:
-                    print("> {}. +{} Mana - {} - {} §"
-                          .format(i, item.mr, item.name, item.value,))
+                    print(f"> {i}. +{item.mr} Mana - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
         if armors and (room.talker.name == 'Blacksmith' or room.talker.name == 'Merchant'):
