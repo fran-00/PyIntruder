@@ -367,7 +367,7 @@ class Player:
                 else:
                     self.hp = self.max_hp
                 self.inventory.remove(to_eat)
-                print("> You have {} HP remaining.".format(self.hp))
+                print(f"> You have {self.hp} HP remaining.")
                 valid = True
             except (ValueError, IndexError):
                 print("> Invalid choice, try again.")
