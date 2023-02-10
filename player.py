@@ -933,7 +933,7 @@ class Player:
                     print(f"> {i}. {item.damage} DMG - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
-        if consumables and (room.talker.name == 'Innkeeper' or room.talker.name == 'Merchant'):
+        if consumables and room.talker.name in ['Innkeeper', 'Merchant']:
             sorted_consumables = sorted(consumables, key=lambda item: item.heal, reverse=True)
             for i, item in enumerate(sorted_consumables, index):
                 if buyer == room.talker:
