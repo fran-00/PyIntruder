@@ -915,7 +915,7 @@ class Player:
         # exclusively trades that particular kind of item (Merchant trades 
         # them all). Two different prices are displayed because the items sold 
         # by the player are worth less money.
-        if weapons and (room.talker.name == 'Blacksmith' or room.talker.name == 'Merchant'):
+        if weapons and room.talker.name in ['Blacksmith', 'Merchant']:
             sorted_weapons = sorted(weapons, key=lambda item: item.damage, reverse=True)
             for i, item in enumerate(sorted_weapons, index):
                 if buyer == room.talker:
@@ -951,7 +951,7 @@ class Player:
                     print(f"> {i}. +{item.mr} Mana - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
-        if armors and (room.talker.name == 'Blacksmith' or room.talker.name == 'Merchant'):
+        if armors and room.talker.name in ['Blacksmith', 'Merchant']:
             sorted_armors = sorted(armors, key=lambda item: item.defence, reverse=True)
             for i, item in enumerate(sorted_armors, index):
                 if buyer == room.talker:
