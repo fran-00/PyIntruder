@@ -126,7 +126,7 @@ def choose_action(room, player):
             if room.enemy is None and room.inventory:                                # Stampa una lista di cose che ci sono per terra, se ce ne sono.
                 print("\n> P.S.: I know you love gathering things. There's something you can collect:")
                 for i, item in enumerate(room.inventory, 1):
-                    print(">>> {}. It's {}. Instructions say: {}".format(i, item.name, item.description))
+                    print(f">>> {i}. It's {item.name}. Instructions say: {item.description}")
                 return True
             else:
                 pass
