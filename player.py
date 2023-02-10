@@ -348,8 +348,7 @@ class Player:
                 print("> You don't have any bottle with you.")
                 break
             elif choice == 'drink' and self.bottle_full:
-                print("> You drink the water from the bottle. The water restores your HP by {}."
-                      .format(items.Bottle().heal))
+                print(f"> You drink the water from the bottle. The water restores your HP by {items.Bottle().heal}.")
                 if self.max_hp >= self.hp + items.Bottle().heal:
                     self.hp += items.Bottle().heal
                 else:
