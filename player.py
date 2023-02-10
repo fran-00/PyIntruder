@@ -79,7 +79,7 @@ class Player:
             try:
                 armor_chosen = armors[int(choice) - 1]
                 self.base_defence = armor_chosen.defence
-                print("> Your defence is now {}.".format(self.base_defence))
+                print(f"> Your defence is now {self.base_defence}.")
                 valid = True
             except (ValueError, IndexError):
                 print("> Invalid choice, try again.")
