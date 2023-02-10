@@ -894,22 +894,16 @@ class TempleTile(MapTile):
         choice_slogan = random.randint(1,6)
         if choice_slogan == 1:
             print(line1)
-            pass
         elif choice_slogan == 2:
             print(line2)
-            pass
         elif choice_slogan == 3:
             print(line3)
-            pass
         elif choice_slogan == 4:
             print(line4)
-            pass
         elif choice_slogan == 5:
             print(line5)
-            pass
         elif choice_slogan == 6:
             print(line6)
-            pass
         while True:
             user_input = input("<< (B)uy, (S)ell or (Q)uit, child? I can also (H)eal you and Recharge your (M)ana, but every service will cost you 100 §. >>\n>>>> ").lower()
             if user_input in ['Q', 'q']:
