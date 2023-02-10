@@ -481,7 +481,7 @@ class Player:
         room = world.tile_at(self.x, self.y)
         loc_x = str(self.x)
         loc_y = str(self.y)
-        print('> You are here: ({},{})'.format(loc_x, loc_y))
+        print(f'> You are here: ({loc_x},{loc_y})')
         dsl_lines = world.world_dsl.splitlines()
         dsl_lines = [x for x in dsl_lines if x]
 
