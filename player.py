@@ -404,7 +404,7 @@ class Player:
             sorted_curses = sorted(curses, key=lambda item: item.name.lower())
             print(">> CURSES:")
             for i, item in enumerate(sorted_curses, index):
-                print("> {}. {}".format(index, item))
+                print(f"> {index}. {item}")
                 index += 1
                 right_order_list.append(item)
         if consumables:
