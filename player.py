@@ -970,7 +970,7 @@ class Player:
 
         # If there are items in the list, it allows you to decide 
         # which to sell or buy by calling the "swap" function
-        if right_order_list == []:
+        if not right_order_list:
             print("\n> The merchant examines the things you have to offer...\n")
             print("<< You have nothing that interests me. >>")
             return
