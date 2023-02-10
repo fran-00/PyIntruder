@@ -237,7 +237,7 @@ class Player:
         room = world.tile_at(self.x, self.y)
         sorted_inventory = sorted(giver.inventory, key=lambda item: item.name.lower())
         for i, item in enumerate(sorted_inventory, 1):
-            print(" | {}. {}".format(i, item))
+            print(f" | {i}. {item}")
         while True:
             if giver is self and receiver is room:
                 print("> What do you want to drop? Choose an item or type 'Q' to quit.")
