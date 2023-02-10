@@ -228,7 +228,7 @@ class Player:
             receiver.inventory.extend(giver.inventory)
             giver.inventory = []
             if receiver is self:
-                print("> {}: taken.".format(item.name))
+                print(f"> {item.name}: taken.")
             if receiver is room:
                 print("> {}: dropped.".format(item.name))
 
