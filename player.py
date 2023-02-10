@@ -964,11 +964,9 @@ class Player:
             sorted_armors = sorted(armors, key=lambda item: item.defence, reverse=True)
             for i, item in enumerate(sorted_armors, index):
                 if buyer == room.talker:
-                    print("> {}. +{} DEF - {} - {} §"
-                          .format(i, item.defence, item.name, item.if_sold,))
+                    print(f"> {i}. +{item.defence} DEF - {item.name} - {item.if_sold} §")
                 else:
-                    print("> {}. +{} DEF - {} - {} §"
-                          .format(i, item.defence, item.name, item.value))
+                    print(f"> {i}. +{item.defence} DEF - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
 
