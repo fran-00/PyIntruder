@@ -920,8 +920,7 @@ class Player:
             sorted_weapons = sorted(weapons, key=lambda item: item.damage, reverse=True)
             for i, item in enumerate(sorted_weapons, index):
                 if buyer == room.talker:
-                    print("> {}. {} DMG - {} - {} §"
-                          .format(i, item.damage, item.name, item.if_sold,))
+                    print(f"> {i}. {item.damage} DMG - {item.name} - {item.if_sold} §")
                 else:
                     print("> {}. {} DMG - {} - {} §"
                           .format(i, item.damage, item.name, item.value,))
