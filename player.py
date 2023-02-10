@@ -773,7 +773,7 @@ class Player:
         world_enemies = []
         world_npcs = []
         world_env_objs = []
-        for i, room in enumerate(self.rooms_list):
+        for room in self.rooms_list:
             rooms_inventories.append(room.inventory)
             if room.enemy:
                 world_enemies.append(room.enemy)
