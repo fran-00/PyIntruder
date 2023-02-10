@@ -928,11 +928,9 @@ class Player:
             sorted_curses = sorted(curses, key=lambda item: item.damage, reverse=True)
             for i, item in enumerate(sorted_curses, index):
                 if buyer == room.talker:
-                    print("> {}. {} DMG - {} - {} §"
-                          .format(i, item.damage, item.name, item.if_sold,))
+                    print(f"> {i}. {item.damage} DMG - {item.name} - {item.if_sold} §")
                 else:
-                    print("> {}. {} DMG - {} - {} §"
-                          .format(i, item.damage, item.name, item.value,))
+                    print(f"> {i}. {item.damage} DMG - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
         if consumables and (room.talker.name == 'Innkeeper' or room.talker.name == 'Merchant'):
