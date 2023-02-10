@@ -941,7 +941,7 @@ class Player:
                     print(f"> {i}. +{item.heal} HP - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
-        if mrs and (room.talker.name == 'Monk' or room.talker.name == 'Merchant'):
+        if mrs and room.talker.name in ['Monk', 'Merchant']:
             sorted_mrs = sorted(mrs, key=lambda item: item.mr, reverse=True)
             for i, item in enumerate(sorted_mrs, index):
                 if buyer == room.talker:
