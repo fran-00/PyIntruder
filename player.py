@@ -418,7 +418,7 @@ class Player:
             sorted_mrs = sorted(mrs, key=lambda item: item.name.lower())
             print(">> MANA RECHARGERS:")
             for i, item in enumerate(sorted_mrs, index):
-                print("> {}. {}".format(index, item))
+                print(f"> {index}. {item}")
                 index += 1
                 right_order_list.append(item)
         if armors:
