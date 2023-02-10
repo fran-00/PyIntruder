@@ -991,7 +991,7 @@ class Player:
                             if seller is room.talker and chosen_item.value <= buyer.gold:
                                 print(f"<< Here's your brand new {chosen_item.name}, customer. >>")
                                 return
-                            elif seller is room.talker and chosen_item.value > buyer.gold:
+                            elif seller is room.talker:
                                 pass
                             elif seller is self:
                                 print(f"<< Thanks for your {chosen_item.name}. >>")
