@@ -68,10 +68,9 @@ class Player:
         if not armors:
             print("> You've got no armor.")
             return
-        if armors:
-            print("> Choose an armor to wear:")
-            for i, item in enumerate(armors, 1):
-                print(f"{i}. {item}")
+        print("> Choose an armor to wear:")
+        for i, item in enumerate(armors, 1):
+            print(f"{i}. {item}")
 
         valid = False
         while not valid:
