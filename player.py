@@ -1,3 +1,4 @@
+import contextlib
 import os
 import pickle
 import random
@@ -131,16 +132,14 @@ class Player:
     def best_weapon(self):
         max_damage = 0
         best_weapon = None
-        weapons = [item for item in self.inventory
-                       if isinstance(item, items.Weapon)]
-        if weapons:
+        if weapons := [
+            item for item in self.inventory if isinstance(item, items.Weapon)
+        ]:
             for i, item in enumerate(weapons, 1):
-                try:
+                with contextlib.suppress(AttributeError):
                     if item.damage > max_damage:
                         best_weapon = item
                         max_damage = item.damage
-                except AttributeError:
-                    pass
             return best_weapon
         else:
             return None
