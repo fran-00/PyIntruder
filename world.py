@@ -580,22 +580,16 @@ class SquareTile(MapTile):
         print("> You approach the stall to ask the merchant to show you his wares.")
         if choice_slogan == 1:
             print("<< Trinkets, odds and ends, that sort of thing. >>")
-            pass
         elif choice_slogan == 2:
             print("<<  >>")
-            pass
         elif choice_slogan == 3:
             print("<< Oh, a bit of this and a bit of that. >>")
-            pass
         elif choice_slogan == 4:
             print("<< Just what you see here. >>")
-            pass
         elif choice_slogan == 5:
             print("<< See for yourself. >>")
-            pass
         elif choice_slogan == 6:
             print("<< Beautiful things for beautiful people. >>")
-            pass
         
         while True:
             user_input = input("> (B)uy, (S)ell, (Q)uit.\n>>>> ")
