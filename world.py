@@ -842,25 +842,20 @@ class TempleTile(MapTile):
         super().__init__(x, y)
 
     def dialogue(self, player):
-        line1 = "<< Give your bodies to Atom, my friends. Release yourself to his power, feel his Glow and be Divided. >>"
-        line2 = "<< Come forth and drink the waters of the Glow, for this ancient weapon of war is our salvation, it is the very symbol of Atom's glory! >>"
-        line3 = "<< Behold! He's coming with the clouds! And every eye shall be blind with his glory! Every ear shall be stricken deaf to hear the thunder of his voice! >>"
-        line4 = "<< Yea, your suffering shall exist no longer; it shall be washed away in Atom's Glow, burned from you in the fire of his brilliance. >>"
-        line5 = "<< Each of us shall give birth to a billion stars formed from the mass of our wretched and filthy bodies. >>"
-        line6 = "<< Atom reached out and touched this world, bringing his Glow to us. It remains to this day, a reminder of his promise. Infinite worlds through divisions. >>"
         choice_slogan = random.randint(1,6)
         if choice_slogan == 1:
-            print(line1)
+            print("<< Give your bodies to Atom, my friends. Release yourself to his power, feel his Glow and be Divided. >>")
         elif choice_slogan == 2:
-            print(line2)
+            print("<< Come forth and drink the waters of the Glow, for this ancient weapon of war is our salvation, it is the very symbol of Atom's glory! >>")
         elif choice_slogan == 3:
-            print(line3)
+            print("<< Behold! He's coming with the clouds! And every eye shall be blind with his glory! Every ear shall be stricken deaf to hear the thunder of his voice! >>")
         elif choice_slogan == 4:
-            print(line4)
+            print("<< Yea, your suffering shall exist no longer; it shall be washed away in Atom's Glow, burned from you in the fire of his brilliance. >>")
         elif choice_slogan == 5:
-            print(line5)
+            print("<< Each of us shall give birth to a billion stars formed from the mass of our wretched and filthy bodies. >>")
         elif choice_slogan == 6:
-            print(line6)
+            print("<< Atom reached out and touched this world, bringing his Glow to us. It remains to this day, a reminder of his promise. Infinite worlds through divisions. >>")
+            
         while True:
             user_input = input("<< (B)uy, (S)ell or (Q)uit, child? I can also (H)eal you and Recharge your (M)ana, but every service will cost you 100 §. >>\n>>>> ").lower()
             if user_input in ['Q', 'q']:
