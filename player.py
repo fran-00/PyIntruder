@@ -356,7 +356,7 @@ class Player:
                 self.bottle_full = False
                 print("> Your bottle is now empty.")
                 break
-            elif choice == 'drink' and not self.bottle_full:
+            elif choice == 'drink':
                 print("> Your bottle is empty.")
                 break
             try:
