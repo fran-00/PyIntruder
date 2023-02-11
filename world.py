@@ -18,7 +18,7 @@ class MapTile:
         if n in {1, 2}:
             pass
         elif n == 3:
-            for i in range (random.randint(1,2)):
+            for _ in range (random.randint(1,2)):
                 self.inventory.append(random.choice(items_data.consumables_list))
         elif n == 4:
             self.inventory.append(random.choice(items_data.mrs_list))
