@@ -66,31 +66,26 @@ class BlacksmithTile(MapTile):
         super().__init__(x, y)
 
     def dialogue(self, player):
-        line1 = "<< Stock up here before your next kill. >>"
-        line2 = "<< Now in stock: goods acquired through questionable means. >>"
-        line3 = "<< Get your raiding supplies here. Or don't, I don't care. >>"
-        line4 = "<< Have a hard day of killing and looting? Don't want to haul it all back yourself? Sell it here. >>"
-        line5 = "<< It's dangerous to go alone. It's dangerous to go in groups. It's just dangerous out there, so stock up here. >>"
-        line6 = "<< Reminder: Any attempted five finger discounts will be reclaimed and paid for with said fingers. >>"
         choice_slogan = random.randint(1,6)
         if choice_slogan == 1:
-            print(line1)
+            print("<< Stock up here before your next kill. >>")
             pass
         elif choice_slogan == 2:
-            print(line2)
+            print("<< Now in stock: goods acquired through questionable means. >>")
             pass
         elif choice_slogan == 3:
-            print(line3)
+            print("<< Get your raiding supplies here. Or don't, I don't care. >>")
             pass
         elif choice_slogan == 4:
-            print(line4)
+            print("<< Have a hard day of killing and looting? Don't want to haul it all back yourself? Sell it here. >>")
             pass
         elif choice_slogan == 5:
-            print(line5)
+            print("<< It's dangerous to go alone. It's dangerous to go in groups. It's just dangerous out there, so stock up here. >>")
             pass
         elif choice_slogan == 6:
-            print(line6)
+            print("<< Reminder: Any attempted five finger discounts will be reclaimed and paid for with said fingers. >>")
             pass
+        
         while True:
             user_input = input("> (B)uy, (S)ell, (Q)uit.\n>>>> ")
             if user_input in ['Q', 'q']:
