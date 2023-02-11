@@ -31,8 +31,8 @@ class MapTile:
                 print(f"> {self.enemy.name} is confused!")
                 print(f"> It hurts itself in its confusion! (Deals {self.enemy.damage} DMG and has {self.enemy.hp} HP remaining.)")
             elif confusion_chance in [17, 18]:
-                print("> {} is confused!".format(self.enemy.name))
-                print("> {} misses the shot!".format(self.enemy.name))
+                print(f"> {self.enemy.name} is confused!")
+                print(f"> {self.enemy.name} misses the shot!")
             elif player.base_defence == 0:
                 player.hp = player.hp - self.enemy.damage
                 if player.hp > 0:
