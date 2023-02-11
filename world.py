@@ -44,11 +44,9 @@ class MapTile:
                 if damage_reduction < self.enemy.damage:
                     player.hp = player.hp - (self.enemy.damage - damage_reduction)
                     if player.hp > 0:
-                        print("> {} inflicts {} DMG to you, but your armor reduce the damage by {}, so you have {} HP remaining..."
-                              .format(self.enemy.name, self.enemy.damage, damage_reduction, player.hp))
+                        print(f"> {self.enemy.name} inflicts {self.enemy.damage} DMG to you, but your armor reduce the damage by {damage_reduction}, so you have {player.hp} HP remaining...")
                     elif player.hp <= 0:
-                        print("> {} inflicts {} DMG to you, your armor reduce the damage by {} but you died anyway..."
-                              .format(self.enemy.name, self.enemy.damage, damage_reduction))
+                        print(f"> {self.enemy.name} inflicts {self.enemy.damage} DMG to you, your armor reduce the damage by {damage_reduction} but you died anyway...")
                 else:
                     print("> {} tries to inflict {} DMG to you, but your armor absorbes {} DMG, so it did nothing to you and you still have {} HP remaining..."
                           .format(self.enemy.name, self.enemy.damage, damage_reduction, player.hp))
