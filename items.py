@@ -683,7 +683,7 @@ class ManaRechargers:
         raise NotImplementedError("Create a subclass instead!")
 
     def __str__(self):
-        return "{} (+{} Mana)".format(self.name, self.mr)
+        return f"{self.name} (+{self.mr} Mana)"
 
 # >>>>> *** MANA RECHARGERS *** probabilmente conviene costruire una classe separata
 class Ginseng(ManaRechargers):
