@@ -542,7 +542,7 @@ class Consumable:
         raise NotImplementedError("Do not create raw Consumable objects.")
 
     def __str__(self):
-        return "{} (+{} HP)".format(self.name, self.heal)
+        return f"{self.name} (+{self.heal} HP)"
 
 # >>>>> *** HEALTH RECHARGERS ***
 class Modification(Consumable):
