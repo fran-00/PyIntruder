@@ -28,9 +28,8 @@ class MapTile:
             confusion_chance = random.randint(1, 20)
             if confusion_chance >= 19 and self.enemy.damage < self.enemy.hp:                       #in questo modo non può uccidersi da solo
                 self.enemy.hp -= self.enemy.damage
-                print("> {} is confused!".format(self.enemy.name))
-                print("> It hurts itself in its confusion! (Deals {} DMG and has {} HP remaining.)"
-                      .format(self.enemy.damage, self.enemy.hp))
+                print(f"> {self.enemy.name} is confused!")
+                print(f"> It hurts itself in its confusion! (Deals {self.enemy.damage} DMG and has {self.enemy.hp} HP remaining.)")
             elif confusion_chance in [17, 18]:
                 print("> {} is confused!".format(self.enemy.name))
                 print("> {} misses the shot!".format(self.enemy.name))
