@@ -691,16 +691,13 @@ class TavernTile(MapTile):
         choice_slogan = random.randint(1,4)
         if choice_slogan == 1:
             print("<< Come on in. Let me know if you need anything, or take a seat by the fire and I'll send someone over. >>")
-            pass
         elif choice_slogan == 2:
             print("<< Come on in. Just stoked the fire. Take a seat and get the cold out. >>")
-            pass
         elif choice_slogan == 3:
             print("<< Welcome. Let me know if you want anything... think I got a clean mug around here somewhere. >>")
-            pass
         elif choice_slogan == 4:
             print("<< Come on in. We got warm food, warm drinks, and warm beds. >>")
-            pass
+
         while True:
             if player.tavern_room_paid == False:
                 user_input = input("> You may (T)alk, (B)uy or (S)ell. You may also rent a (R)oom for the night: it will cost you 30 Cash. Press (Q) to go away.>>\n>>>> ")
