@@ -767,7 +767,7 @@ class Armor:
         raise NotImplementedError("Do not create raw Armor objects")
 
     def __str__(self):
-        return "{} ({} DEF)".format(self.name, self.defence)
+        return f"{self.name} ({self.defence} DEF)"
 
 class RinaArmor(Armor):
     def __init__(self):
