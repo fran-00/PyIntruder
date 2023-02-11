@@ -69,22 +69,16 @@ class BlacksmithTile(MapTile):
         choice_slogan = random.randint(1,6)
         if choice_slogan == 1:
             print("<< Stock up here before your next kill. >>")
-            pass
         elif choice_slogan == 2:
             print("<< Now in stock: goods acquired through questionable means. >>")
-            pass
         elif choice_slogan == 3:
             print("<< Get your raiding supplies here. Or don't, I don't care. >>")
-            pass
         elif choice_slogan == 4:
             print("<< Have a hard day of killing and looting? Don't want to haul it all back yourself? Sell it here. >>")
-            pass
         elif choice_slogan == 5:
             print("<< It's dangerous to go alone. It's dangerous to go in groups. It's just dangerous out there, so stock up here. >>")
-            pass
         elif choice_slogan == 6:
             print("<< Reminder: Any attempted five finger discounts will be reclaimed and paid for with said fingers. >>")
-            pass
         
         while True:
             user_input = input("> (B)uy, (S)ell, (Q)uit.\n>>>> ")
