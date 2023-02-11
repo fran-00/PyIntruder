@@ -36,11 +36,9 @@ class MapTile:
             elif player.base_defence == 0:
                 player.hp = player.hp - self.enemy.damage
                 if player.hp > 0:
-                    print("> {} inflicts {} DMG to you. Oh shit, you have {} HP remaining..."
-                          .format(self.enemy.name, self.enemy.damage, player.hp))
+                    print(f"> {self.enemy.name} inflicts {self.enemy.damage} DMG to you. Oh shit, you have {player.hp} HP remaining...")
                 elif player.hp <= 0:
-                    print("> {} inflicts {} DMG to you. Oh shit, you died..."
-                          .format(self.enemy.name, self.enemy.damage))
+                    print(f"> {self.enemy.name} inflicts {self.enemy.damage} DMG to you. Oh shit, you died...")
             elif player.base_defence > 0:
                 damage_reduction = 5 * player.base_defence
                 if damage_reduction < self.enemy.damage:
