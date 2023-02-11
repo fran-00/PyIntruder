@@ -6,7 +6,7 @@ class Weapon:
         raise NotImplementedError("Do not create raw Weapon objects")
 
     def __str__(self):
-        return "{} ({} DMG)".format(self.name, self.damage)
+        return f"{self.name} ({self.damage} DMG)"
 
 # due in meno della metà, due in più della meta del danno. aggiungi la possibilità che le armi si rompano
 class Manuport(Weapon):
