@@ -246,7 +246,7 @@ class Curse:
         raise NotImplementedError("Do not create raw Curses objects")
 
     def __str__(self):
-        return "{} ({} DMG)".format(self.name, self.damage)
+        return f"{self.name} ({self.damage} DMG)"
 
 # il prezzo è più alto rispetto alle armi. dmg +- 3
 class SelfLuminousRed(Curse):
