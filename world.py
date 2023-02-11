@@ -314,36 +314,28 @@ class Little_oTile(MapTile):
         super().__init__(x, y)
 
     def dialogue(self, player):
-        line1 = "<< You will find Little(o) at dawn the day after tomorrow evening. >>"
-        line2 = "<< You will find Little(o) only this Monday from 9:00 am to 9:02 am. >>"
-        line3 = "<< You will find Little(o) only after closing. >>"
-        line4 = "<< You will find Little(o) every third Monday of the odd month >>."
-        line5 = "<< You will find Little(o) sooner or later. >>"
-        line6 = "<< You would have found Little(o) yesterday at 4:0 pm. >>"
-        line7 = "<< You will find Little(o) only this century. >>"
-        line8 = "<< You would have found Little(o) in the last millennium bug. >>"
-        line9 = "<< Little(o) is infinitesimal and asintotical at once. >>"
         print("<< Little(o)! >>")
         while True:
             choice_slogan = random.randint(1,9)
             if choice_slogan == 1:
-                print(line1)
+                print("<< You will find Little(o) at dawn the day after tomorrow evening. >>")
             elif choice_slogan == 2:
-                print(line2)
+                print("<< You will find Little(o) only this Monday from 9:00 am to 9:02 am. >>")
             elif choice_slogan == 3:
-                print(line3)
+                print("<< You will find Little(o) only after closing. >>")
             elif choice_slogan == 4:
-                print(line4)
+                print("<< You will find Little(o) every third Monday of the odd month >>.")
             elif choice_slogan == 5:
-                print(line5)
+                print("<< You will find Little(o) sooner or later. >>")
             elif choice_slogan == 6:
-                print(line6)
+                print("<< You would have found Little(o) yesterday at 4:0 pm. >>")
             elif choice_slogan == 7:
-                print(line7)
+                print("<< You will find Little(o) only this century. >>")
             elif choice_slogan == 8:
-                print(line8)
+                print("<< You would have found Little(o) in the last millennium bug. >>")
             elif choice_slogan == 9:
-                print(line9)
+                print("<< Little(o) is infinitesimal and asintotical at once. >>")
+                
             user_input = input("<< You are at Little(o)! (B)uy, (S)ell or (Q)uit? >>\n>>>> ")
             if user_input in ['Q', 'q']:
                 if not self.talker.inventory:
