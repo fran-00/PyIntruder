@@ -848,7 +848,7 @@ class MissionItem:
         raise NotImplementedError("Do not create raw MissionItem objects.")
 
     def __str__(self):
-        return "{} ".format(self.name)
+        return f"{self.name} "
 
 class Specimen(MissionItem):
     def __init__(self):
