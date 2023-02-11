@@ -688,22 +688,18 @@ class TavernTile(MapTile):
         super().__init__(x, y)
 
     def dialogue(self, player):
-        line1 = "<< Come on in. Let me know if you need anything, or take a seat by the fire and I'll send someone over. >>"
-        line2 = "<< Come on in. Just stoked the fire. Take a seat and get the cold out. >>"
-        line3 = "<< Welcome. Let me know if you want anything... think I got a clean mug around here somewhere. >>"
-        line4 = "<< Come on in. We got warm food, warm drinks, and warm beds. >>"
         choice_slogan = random.randint(1,4)
         if choice_slogan == 1:
-            print(line1)
+            print("<< Come on in. Let me know if you need anything, or take a seat by the fire and I'll send someone over. >>")
             pass
         elif choice_slogan == 2:
-            print(line2)
+            print("<< Come on in. Just stoked the fire. Take a seat and get the cold out. >>")
             pass
         elif choice_slogan == 3:
-            print(line3)
+            print("<< Welcome. Let me know if you want anything... think I got a clean mug around here somewhere. >>")
             pass
         elif choice_slogan == 4:
-            print(line4)
+            print("<< Come on in. We got warm food, warm drinks, and warm beds. >>")
             pass
         while True:
             if player.tavern_room_paid == False:
