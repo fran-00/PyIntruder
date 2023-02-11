@@ -576,32 +576,27 @@ class SquareTile(MapTile):
         super().__init__(x, y)
 
     def dialogue(self, player):
-        line1 = "<< Trinkets, odds and ends, that sort of thing. >>"
-        line2 = "<<  >>"
-        line3 = "<< Oh, a bit of this and a bit of that. >>"
-        line4 = "<< Just what you see here. >>"
-        line5 = "<< See for yourself. >>"
-        line6 = "<< Beautiful things for beautiful people. >>"
         choice_slogan = random.randint(1,6)
         print("> You approach the stall to ask the merchant to show you his wares.")
         if choice_slogan == 1:
-            print(line1)
+            print("<< Trinkets, odds and ends, that sort of thing. >>")
             pass
         elif choice_slogan == 2:
-            print(line2)
+            print("<<  >>")
             pass
         elif choice_slogan == 3:
-            print(line3)
+            print("<< Oh, a bit of this and a bit of that. >>")
             pass
         elif choice_slogan == 4:
-            print(line4)
+            print("<< Just what you see here. >>")
             pass
         elif choice_slogan == 5:
-            print(line5)
+            print("<< See for yourself. >>")
             pass
         elif choice_slogan == 6:
-            print(line6)
+            print("<< Beautiful things for beautiful people. >>")
             pass
+        
         while True:
             user_input = input("> (B)uy, (S)ell, (Q)uit.\n>>>> ")
             if user_input in ['Q', 'q']:
