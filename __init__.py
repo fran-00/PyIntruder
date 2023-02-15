@@ -10,9 +10,9 @@ from game_controller import GameController
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
-    game = Game()
+    # game = Game()
     game_view = GameView()
-    game_controller = GameController(game_view, game)
+    game_controller = GameController(game_view)
     game_view.show()
 
     sys.exit(app.exec_())
