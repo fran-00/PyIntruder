@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton
 
 
 class GameView(QWidget):
@@ -62,4 +62,4 @@ if __name__ == '__main__':
     game_window = GameView()
     game_window.show()
 
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
