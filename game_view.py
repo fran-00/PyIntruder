@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QTe
 from PyQt6.QtCore import pyqtSignal, pyqtSlot
 
 class GameView(QWidget):
-    user_input_signal = pyqtSignal(str)
+    view_signal = pyqtSignal(str)
     
     def __init__(self):
         super().__init__()
@@ -42,7 +42,7 @@ class GameView(QWidget):
         user_input = self.input_box.text().strip()
         
         # Emette il segnale che contiene l'input dell'utente
-        self.user_input_signal.emit(user_input)
+        self.view_signal.emit(user_input)
 
         if user_input.lower() == "quit":
             # Chiude la finestra se l'utente ha inserito "quit"
