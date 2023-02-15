@@ -15,5 +15,5 @@ if __name__ == '__main__':
     game_controller = GameController(game_view)
     game_view.show()
 
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
