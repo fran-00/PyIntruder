@@ -1,9 +1,24 @@
-class GameController:
-    def __init__(self, view, game):
-        self.view = view
-        self.game = game
-        self.view.input_submitted.connect(self.handle_input)
+from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
 
-    def handle_input(self, user_input):
-        response = self.game.choose_action(user_input)
-        self.view.display_output(response)
+class GameController(QObject):
+    model_signal = pyqtSignal(str)
+    view_signal = pyqtSignal(str)
+
+    def __init__(self):
+        super().__init__()
+
+    @pyqtSlot(str)
+    def on_model_signal(self, data):
+        # Process data received from the model
+        # ...
+
+        # Send data to the view
+        self.view_signal.emit(data)
+
+    @pyqtSlot(str)
+    def on_view_signal(self, data):
+        # Process data received from the view
+        # ...
+
+        # Send data to the model
+        self.model_signal.emit(data)
