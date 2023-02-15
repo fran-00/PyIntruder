@@ -10,48 +10,48 @@ class GameView(QWidget):
         self.setWindowTitle("Game Window")
         self.resize(600, 400)
 
-        # Widget per la visualizzazione di input e output
+        # Widget for displaying inputs and outputs
         self.log_view = QTextEdit()
         self.log_view.setReadOnly(True)
         self.log_view.ensureCursorVisible()
 
-        # Widget per l'input
+        # Input widgets
         self.input_box = QLineEdit()
         self.input_box.returnPressed.connect(self.handle_input)
 
-        # Bottone per inviare l'input
+        # Button to submit input
         self.send_button = QPushButton("Enter")
         self.send_button.clicked.connect(self.handle_input)
 
-        # Layout orizzontale per input box e bottone
+        # Horizontal layout for input box and button
         input_layout = QHBoxLayout()
         input_layout.addWidget(self.input_box)
         input_layout.addWidget(self.send_button)
 
-        # Layout verticale per la finestra
+        # Vertical layout for the window
         layout = QVBoxLayout()
         layout.addWidget(self.log_view)
         layout.addLayout(input_layout)
         self.setLayout(layout)
         
-        # Foglio di stile
+        # Modify Style Sheet
         self.setStyleSheet("color: white; background-color: black;")
 
     def handle_input(self):
-        # Ottiene l'input dell'utente
+        # Gets user input
         user_input = self.input_box.text().strip()
         
-        # Emette il segnale che contiene l'input dell'utente
+        # Emits the signal that contains user input
         self.controller_signal.emit(user_input)
 
-        # Mostra l'input dell'utente
+        # Append user input to log view window
         self.log_view.append(f"Input: {user_input}")
 
-        # Risponde all'utente
+        # Responds to the user
         response = "I beg your pardon?"
         self.log_view.append(f"Output: {response}")
 
-        # Resetta l'input box
+        # Resets the input box
         self.input_box.clear()
         self.input_box.setFocus()
 
