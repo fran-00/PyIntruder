@@ -1,9 +1,8 @@
-from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton
+
 
 class GameView(QWidget):
-    input_submitted = pyqtSignal(str)
-
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Game Window")
@@ -16,9 +15,11 @@ class GameView(QWidget):
 
         # Widget per l'input
         self.input_box = QLineEdit()
+        self.input_box.returnPressed.connect(self.handle_input)
 
         # Bottone per inviare l'input
         self.send_button = QPushButton("Enter")
+        self.send_button.clicked.connect(self.handle_input)
 
         # Layout orizzontale per input box e bottone
         input_layout = QHBoxLayout()
@@ -31,12 +32,8 @@ class GameView(QWidget):
         layout.addLayout(input_layout)
         self.setLayout(layout)
         
-        # Foglio di stile con i colori
+        # Foglio di stile
         self.setStyleSheet("color: white; background-color: black;")
-
-        # Connessioni ai segnali
-        self.input_box.returnPressed.connect(self.handle_input)
-        self.send_button.clicked.connect(self.handle_input)
 
     def handle_input(self):
         # Ottiene l'input dell'utente
@@ -47,14 +44,22 @@ class GameView(QWidget):
             self.close()
             return
 
-        # Invia il segnale con l'input dell'utente
-        self.input_submitted.emit(user_input)
+        # Mostra l'input dell'utente
+        self.log_view.append(f"Input: {user_input}")
+
+        # Risponde all'utente
+        response = "I beg your pardon?"
+        self.log_view.append(f"Output: {response}")
 
         # Resetta l'input box
         self.input_box.clear()
         self.input_box.setFocus()
 
-    def display_output(self, output):
-        # Mostra l'output nel log view
-        self.log_view.append(f"Output: {output}")
 
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+
+    game_window = GameView()
+    game_window.show()
+
+    sys.exit(app.exec_())
