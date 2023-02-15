@@ -3,6 +3,8 @@ from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QTe
 from PyQt6.QtCore import pyqtSignal, pyqtSlot
 
 class GameView(QWidget):
+    user_input_signal = pyqtSignal(str)
+    
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Game Window")
@@ -63,3 +65,5 @@ if __name__ == '__main__':
     game_window.show()
 
     sys.exit(app.exec())
+    
+    
