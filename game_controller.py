@@ -1,5 +1,6 @@
 from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
 
+
 class GameController(QObject):
     model_signal = pyqtSignal(str)
     view_signal = pyqtSignal(str)
@@ -28,3 +29,4 @@ class GameController(QObject):
 
         # Send data to the model
         self.model_signal.emit(data)
+
