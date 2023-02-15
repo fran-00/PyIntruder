@@ -232,13 +232,13 @@ class Game:
     # *** LOOK ***
             elif action_input in ['l', 'look', 'see']:
                 if room.enemy is None or room.enemy.alive is False:
-                    print(f"> {room.description}\n")
+                    game_output = f"> {room.description}\n"
                 if room.enemy is not None and room.enemy.alive is True:
-                    print(f"> {room.enemy.look_alive}")
+                    game_output = f"> {room.enemy.look_alive}"
                 elif room.enemy is not None and room.enemy.alive is False:
-                    print(f"> {room.enemy.look_dead}")
+                    game_output = f"> {room.enemy.look_dead}"
                 if room.talker is not None:
-                    print(f"> {room.talker.name} is here and looks at you.")
+                    game_output = f"> {room.talker.name} is here and looks at you."
 
     # *** MAP ***
             elif action_input in ['m', 'map']:
