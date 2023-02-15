@@ -232,11 +232,11 @@ class Game:
     # *** LOOK ***
             elif action_input in ['l', 'look', 'see']:
                 if room.enemy is None or room.enemy.alive is False:
-                    print("> {}\n".format(room.description))
+                    print(f"> {room.description}\n")
                 if room.enemy is not None and room.enemy.alive is True:
-                    print("> {}".format(room.enemy.look_alive))
+                    print(f"> {room.enemy.look_alive}")
                 elif room.enemy is not None and room.enemy.alive is False:
-                    print("> {}".format(room.enemy.look_dead))
+                    print(f"> {room.enemy.look_dead}")
                 if room.talker is not None:
                     print(f"> {room.talker.name} is here and looks at you.")
 
