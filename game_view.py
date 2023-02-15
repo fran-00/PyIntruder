@@ -1,4 +1,4 @@
-import sys
+import sys, random
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton
 from PyQt6.QtCore import pyqtSignal, pyqtSlot
 
@@ -48,13 +48,19 @@ class GameView(QWidget):
         # Append user input to log view window
         self.log_view.append(f"Input: {user_input}")
 
-        # Responds to the user
-        response = "I beg your pardon?"
-        self.log_view.append(f"Output: {response}")
-
         # Resets the input box
         self.input_box.clear()
         self.input_box.setFocus()
+    
+    def handle_output(self):
+        # Responds to the user
+        response = str(random.randint(1, 100000))
+        
+        # Append game output to log view window
+        self.log_view.append(f"Output: {response}")
+    
+        # Emits the signal that contains game response
+        self.controller_signal.emit(response)
 
 
 if __name__ == '__main__':
