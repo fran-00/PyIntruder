@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication
 
 from game import Game
 from game_view import GameView
@@ -16,3 +16,4 @@ if __name__ == '__main__':
     game_view.show()
 
     sys.exit(app.exec_())
+
