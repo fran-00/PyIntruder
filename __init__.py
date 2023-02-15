@@ -1,5 +1,18 @@
-from game import Game
+import sys
 
-if __name__ == "__main__":
+from PyQt5.QtWidgets import QApplication
+
+from game import Game
+from game_view import GameView
+from game_controller import GameController
     
+    
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+
     game = Game()
+    game_view = GameView()
+    game_controller = GameController(game_view, game)
+    game_view.show()
+
+    sys.exit(app.exec_())
