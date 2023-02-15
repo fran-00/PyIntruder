@@ -44,11 +44,6 @@ class GameView(QWidget):
         # Emette il segnale che contiene l'input dell'utente
         self.controller_signal.emit(user_input)
 
-        if user_input.lower() == "quit":
-            # Chiude la finestra se l'utente ha inserito "quit"
-            self.close()
-            return
-
         # Mostra l'input dell'utente
         self.log_view.append(f"Input: {user_input}")
 
