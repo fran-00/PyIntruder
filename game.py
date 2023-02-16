@@ -366,6 +366,8 @@ class Game(QObject):
 
     def handle_signal(self, output):
         ''' Takes a string an send it to controller as a signal '''
+        print("I'm MODEL and I'm sending a signal to CONTROLLER!")
+        print(f"The signal says: {output}")
         self.model_signal_to_controller.emit(output)
 
     # CHIAMA SOLO FUNZIONI
