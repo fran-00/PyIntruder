@@ -11,6 +11,7 @@ class Game(QObject):
     model_signal_to_controller = pyqtSignal(str)
     
     def __init__(self):
+        super().__init__()
         self.play()
 
     def play(self):
