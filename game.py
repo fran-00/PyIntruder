@@ -367,13 +367,13 @@ class Game(QObject):
     @pyqtSlot(str)
     def handle_inbound_signal(self, input):
         ''' Takes a string an send it to controller as a signal '''
-        print("I'm MODEL and I got a signal from CONTROLLER!")
-        print(f"The signal says: {input}")
+        
+        print(f"I'm MODEL and I got a signal from CONTROLLER: {input}")
 
     def handle_outbound_signal(self, output):
         ''' Takes a string an send it to controller as a signal '''
-        print("I'm MODEL and I'm sending a signal to CONTROLLER!")
-        print(f"The signal says: {output}")
+        
+        print(f"I'm MODEL and I'm sending a signal to CONTROLLER: {output}")
         self.model_signal_to_controller.emit(output)
 
     # CHIAMA SOLO FUNZIONI
