@@ -1,5 +1,5 @@
 from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
-
+import random
 
 class GameController(QObject):
     controller_signal_to_model = pyqtSignal(str)
@@ -24,9 +24,14 @@ class GameController(QObject):
     @pyqtSlot(str)
     def on_view_signal(self, data):
         # Process data received from the view
-        print("My name is CONTROLLER and I'm receiving a signal from VIEW!")
-        print(data)
+        print("I'm CONTROLLER and I got a signal from VIEW!")
+        print(f"The signal says: {data}")
+        print("Now I add some numbers and send the signal back to VIEW...")
+        x = str(random.randint(0, 1000))
+        data_changed = data + x
 
         # Send data to the model
-        self.controller_signal_to_model.emit(data)
+        # self.controller_signal_to_model.emit(data)
+        
+        self.controller_signal_to_view.emit(data_changed)
 
