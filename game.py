@@ -1,6 +1,7 @@
 from collections import OrderedDict
 import os
 import random
+from PyQt6.QtCore import pyqtSignal, pyqtSlot
 
 import world
 import items
