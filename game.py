@@ -364,6 +364,12 @@ class Game(QObject):
             else:
                 print("> I beg you pardon?")
 
+    @pyqtSlot(str)
+    def handle_inbound_signal(self, input):
+        ''' Takes a string an send it to controller as a signal '''
+        print("I'm MODEL and I got a signal from CONTROLLER!")
+        print(f"The signal says: {input}")
+
     def handle_outbound_signal(self, output):
         ''' Takes a string an send it to controller as a signal '''
         print("I'm MODEL and I'm sending a signal to CONTROLLER!")
