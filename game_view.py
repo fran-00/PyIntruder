@@ -63,12 +63,3 @@ class GameView(QWidget):
         self.view_signal_to_controller.emit(response)
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-
-    game_window = GameView()
-    game_window.show()
-
-    sys.exit(app.exec())
-    
-    
