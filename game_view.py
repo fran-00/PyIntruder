@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QTe
 from PyQt6.QtCore import pyqtSignal, pyqtSlot
 
 class GameView(QWidget):
-    controller_signal = pyqtSignal(str)
+    view_signal_to_controller = pyqtSignal(str)
     
     def __init__(self):
         super().__init__()
@@ -43,7 +43,7 @@ class GameView(QWidget):
         user_input = self.input_box.text().strip()
         
         # Emits the signal that contains user input
-        self.controller_signal.emit(user_input)
+        self.view_signal_to_controller.emit(user_input)
 
         # Append user input to log view window
         self.log_view.append(f"Input: {user_input}")
@@ -60,7 +60,7 @@ class GameView(QWidget):
         self.log_view.append(f"Output: {response}")
     
         # Emits the signal that contains game response
-        self.controller_signal.emit(response)
+        self.view_signal_to_controller.emit(response)
 
 
 if __name__ == '__main__':
