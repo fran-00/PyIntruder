@@ -13,14 +13,16 @@ class Game(QObject):
     def __init__(self):
         super().__init__()
         self.play()
+        self.output = None
 
     def play(self):
         world.parse_world_dsl()
         player = Player()
     #    player.name = input("> What's your name?\n")
 
-        output = "\n***** THE MAJESTIC REPOSITIONING OF INTRUDERS *****\n"
-        self.handle_signal(output)
+        self.output = "\n***** THE MAJESTIC REPOSITIONING OF INTRUDERS *****\n"
+        self.handle_signal(self.output)
+
         print("")
         print("> Not so freely inspired by several true stories.\n")
         print("> Ever since you learned about Fattuzu, you know you need to prevent The End Of The World As We Know It.")
