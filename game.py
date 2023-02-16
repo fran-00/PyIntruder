@@ -1,13 +1,13 @@
 from collections import OrderedDict
 import os
 import random
-from PyQt6.QtCore import pyqtSignal, pyqtSlot
+from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
 
 import world
 import items
 from player import Player
 
-class Game:
+class Game(QObject):
     model_signal_to_controller = pyqtSignal(str)
     
     def __init__(self):
