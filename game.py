@@ -8,6 +8,8 @@ import items
 from player import Player
 
 class Game:
+    model_signal_to_controller = pyqtSignal(str)
+    
     def __init__(self):
         self.play()
 
