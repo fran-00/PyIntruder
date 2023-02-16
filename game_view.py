@@ -54,7 +54,7 @@ class GameView(QWidget):
     
     def handle_output(self):
         # Responds to the user
-        response = str(random.randint(1, 100000))
+        response = "Hi, this is a generic signal from VIEW!"
         
         # Append game output to log view window
         self.log_view.append(f"Output: {response}")
