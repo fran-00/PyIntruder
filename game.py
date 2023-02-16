@@ -360,6 +360,9 @@ class Game:
             else:
                 print("> I beg you pardon?")
 
+    def handle_signal(self, output):
+        ''' Takes a string an send it to controller as a signal '''
+        self.model_signal_to_controller.emit(output)
 
     # CHIAMA SOLO FUNZIONI
     def get_available_actions(self, room, player):
