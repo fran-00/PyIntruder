@@ -5,11 +5,11 @@ class GameController(QObject):
     controller_signal_to_model = pyqtSignal(str)
     controller_signal_to_view = pyqtSignal(str)
 
-    def __init__(self, game_view, game_model):
+    def __init__(self, game_view):
         super().__init__()
         
         # Connect model signals to controller slots
-        game_model.model_signal_to_controller.connect(self.on_model_signal)
+        # game_model.model_signal_to_controller.connect(self.on_model_signal)
 
         # Connect view signals to controller slots
         game_view.view_signal_to_controller.connect(self.on_view_signal)
