@@ -21,7 +21,7 @@ class Game(QObject):
     #    player.name = input("> What's your name?\n")
 
         self.output = "\n***** THE MAJESTIC REPOSITIONING OF INTRUDERS *****\n"
-        self.handle_signal(self.output)
+        self.handle_outbound_signal(self.output)
 
         print("")
         print("> Not so freely inspired by several true stories.\n")
@@ -364,7 +364,7 @@ class Game(QObject):
             else:
                 print("> I beg you pardon?")
 
-    def handle_signal(self, output):
+    def handle_outbound_signal(self, output):
         ''' Takes a string an send it to controller as a signal '''
         print("I'm MODEL and I'm sending a signal to CONTROLLER!")
         print(f"The signal says: {output}")
