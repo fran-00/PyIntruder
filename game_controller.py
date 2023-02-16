@@ -24,9 +24,8 @@ class GameController(QObject):
     @pyqtSlot(str)
     def on_view_signal(self, data):
         # Process data received from the view
-        print("I'm CONTROLLER and I got a signal from VIEW!")
-        print(f"The signal says: {data}")
-        print("Now I add some numbers and send the signal to MODEL...")
+        print(f"I'm CONTROLLER and I got a signal from VIEW that says: {data}")
+        # print("Now I add some numbers and send the signal to MODEL...")
         x = str(random.randint(0, 1000))
         data_changed = data + x
 
