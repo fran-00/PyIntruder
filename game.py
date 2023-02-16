@@ -18,7 +18,8 @@ class Game:
         player = Player()
     #    player.name = input("> What's your name?\n")
 
-        print("\n***** THE MAJESTIC REPOSITIONING OF INTRUDERS *****\n")
+        output = "\n***** THE MAJESTIC REPOSITIONING OF INTRUDERS *****\n"
+        self.handle_signal(output)
         print("")
         print("> Not so freely inspired by several true stories.\n")
         print("> Ever since you learned about Fattuzu, you know you need to prevent The End Of The World As We Know It.")
