@@ -41,6 +41,7 @@ class GameView(QWidget):
         # Gets user input
         user_input = self.input_box.text().strip()
         
+        print("I'm VIEW and I'm sending a signal to CONTROLLER!")
         # Emits the signal that contains user input
         self.view_signal_to_controller.emit(user_input)
 
