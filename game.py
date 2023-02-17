@@ -20,7 +20,7 @@ class Game(QObject):
         player = Player()
     #    player.name = input("> What's your name?\n")
 
-        self.output = "\n***** THE MAJESTIC REPOSITIONING OF INTRUDERS *****\n"
+        self.output = "***** THE MAJESTIC REPOSITIONING OF INTRUDERS *****"
         self.handle_outbound_signal(self.output)
 
         print("")
