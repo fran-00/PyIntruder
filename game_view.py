@@ -18,7 +18,6 @@ class GameView(QWidget):
         # Input widgets
         self.input_box = QLineEdit()
         self.input_box.returnPressed.connect(self.handle_input)
-        self.input_box.returnPressed.connect(self.handle_output)
 
         # Button to submit input
         self.send_button = QPushButton("Enter")
