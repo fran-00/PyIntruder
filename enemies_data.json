@@ -1,0 +1,24 @@
+{
+    "enemies" :[
+    {
+        "name": "Gelatinous Cube",
+        "intro_alive": "A jelly-like cube wants to encompass you!",
+        "intro_dead": "Now the jelly is just a bunch of wet goo.",
+        "look_alive": "He is big and jelly.",
+        "look_dead": "Of him remaains only a bunch of slime.",
+        "talk_alive": "<< BLBLBLBLBLBLBLBLBLBLBLBLBL >>",
+        "talk_dead": "A dead cube has nothing to say."
+    },
+    {
+        "name": "Ravenous Squirrel",
+        "intro_alive": "An angry squirrel wants to bite your carotid artery!",
+        "intro_dead": "You defeated a squirrel! That's something to be proud of.",
+        "look_alive": "He's scary.",
+        "look_dead": "It's horrible and dead.",
+        "talk_alive": "<< GRRRRRRRRRRRRR >>",
+        "talk_dead": "<<...>>"
+    }
+
+    ]
+
+}
