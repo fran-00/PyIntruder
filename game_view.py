@@ -51,14 +51,13 @@ class GameView(QWidget):
         self.input_box.clear()
         self.input_box.setFocus()
     
-    def handle_output(self):
-        # Responds to the user
-        response = "Hi, this is a generic signal from VIEW!"
-        
+    @pyqtSlot(str)
+    def handle_output(self, output):
+
+        print("My name is VIEW and I'm receiving a signal from CONTROLLER!")
+
         # Append game output to log view window
-        self.log_view.append(f"Output: {response}")
+        self.log_view.append(f"Output: {output}")
     
         # Emits the signal that contains game response
-        self.view_signal_to_controller.emit(response)
-
-
+        self.view_signal_to_controller.emit(output)
