@@ -27,12 +27,8 @@ class GameController(QObject):
     def on_view_signal(self, data):
         # Process data received from the view
         print(f"I'm CONTROLLER and I got a signal from VIEW that says: {data}")
-        # print("Now I add some numbers and send the signal to MODEL...")
-        x = str(random.randint(0, 1000))
-        data_changed = data + x
 
         # Send data to the model
-        # self.controller_signal_to_model.emit(data)
-        
-        self.controller_signal_to_model.emit(data_changed)
+        self.controller_signal_to_model.emit(data)
+
 
