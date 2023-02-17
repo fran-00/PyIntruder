@@ -25,6 +25,9 @@ class Weapon(Item):
     def __init__(self, name, description, value, damage):
         super().__init__(name, description, value, damage)
         self.damage = damage
+        
+    def __str__(self):
+        return self.name, self.damage
 
 
 class Curse(Item):
@@ -33,6 +36,9 @@ class Curse(Item):
         super().__init__(name, description, value, damage)
         self.damage = damage
         self.mana_cost = mana_cost
+    
+    def __str__(self):
+        return self.name, self.damage
 
 
 class Consumable(Item):
