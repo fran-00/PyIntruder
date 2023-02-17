@@ -55,7 +55,7 @@ class GameView(QWidget):
     @pyqtSlot(str)
     def handle_output(self, output):
 
-        print("My name is VIEW and I'm receiving a signal from CONTROLLER!")
+        print("I'm VIEW and I'm receiving a signal from CONTROLLER!")
 
         # Append game output to log view window
         self.log_view.append(f"Output: {output}")
