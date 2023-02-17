@@ -76,7 +76,7 @@ class Game(QObject):
         action = None
         while not action:
             available_actions = self.get_available_actions(room, player)
-            action_input = input(">>>> ")
+            action_input = self.handle_inbound_signal(action)
             print("")
             action = available_actions.get(action_input)
 
