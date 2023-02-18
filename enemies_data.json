@@ -26,6 +26,15 @@
         "look_dead": "Ewww... gross.",
         "talk_alive": "<< BZZZZZZZZZZZZZZZZZZZZZZ >>",
         "talk_dead": "Were the buzzes you've heard so far not enough for you?"
+    },
+    {
+        "name": "Mushroom Hunter",
+        "intro_alive": "A mushroom hunter walking around with a wicker basket looks at you in a puzzled way, could he have understood that you are on drugs?",
+        "intro_dead": "The mushroom hunter returns to focus on mushrooms.",
+        "look_alive": "Yes, he sure knows you are on drugs.",
+        "look_dead": "Everyone knows that a mushroom hunter should be concerned with finding mushrooms and not disturbing people ON mushrooms.",
+        "talk_alive": "<< Hi! >>",
+        "talk_dead": "He is too focused on identifying a mushroom."
     }
 
     ]
