@@ -44,6 +44,15 @@
         "look_dead": "We will be rostoring normality as long as we are sure of what is normal anyway. Thank you.",
         "talk_alive": "<< You didn't put a bracket right there!!! >>",
         "talk_dead": "There are no more bugs around here."
+    },
+    {
+        "name": "Backward Facing Eyes",
+        "intro_alive": "A swarm of floating eyes surrounds you and judges you severely.",
+        "intro_dead": "And now all eyes are closed.",
+        "look_alive": "They judge you without mercy.",
+        "look_dead": "An eye never dies, but it closes and goes to bed.",
+        "talk_alive": "<< We see everything. >>",
+        "talk_dead": "<< We are closed. Try again later. >>"
     }
 
     ]
