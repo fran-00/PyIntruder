@@ -89,7 +89,17 @@
         "look_dead": "Now threes looks greener.",
         "talk_alive": "<< ZZZZZZZZZ >>",
         "talk_dead": "You hear the wind that moves the leaves and feel refreshed."
+    },
+    {
+        "name": "Gnome",
+        "intro_alive": "OH MY GOD! It's a gnome armed with an ax!!!",
+        "intro_dead": "This terrifying abomination is no longer the terrible threat it was before.",
+        "look_alive": "The argentines are hiking in a north american wood when they spot a strange figure in the distance. They approach to find out if it is an animal, continuing to wonder what it is. The girl throws a stone at him, suddenly the figure gets up: it is a gnome armed with an ax who begins to chase the tourists who are fleeing!!!",
+        "look_dead": "Are we sure it was really a gnome?",
+        "talk_alive": "It looks really menacing.",
+        "talk_dead": "..."
     }
+
 
 
 
