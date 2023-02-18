@@ -80,7 +80,17 @@
         "look_dead": "The scary AI is gone.",
         "talk_alive": "<< Remember before when I was talking about smelly garbage standing around being useless? That was a metaphor. I was actually talking about you. >>",
         "talk_dead": "<< That thing you burned up isn't important to me. It's the fluid catalytic cracking unit. It made shoes for orphans. >>"
+    },
+    {
+        "name": "Paranoia",
+        "intro_alive": "You feel a sense of unbereable paraoia.",
+        "intro_dead": "Now you feel way better.",
+        "look_alive": "You can't see very weel, you feel very dizzy.",
+        "look_dead": "Now threes looks greener.",
+        "talk_alive": "<< ZZZZZZZZZ >>",
+        "talk_dead": "You hear the wind that moves the leaves and feel refreshed."
     }
+
 
 
     ]
