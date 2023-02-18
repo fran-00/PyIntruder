@@ -12,7 +12,7 @@ class EnemiesFactory(EntityFactory):
         super().__init__()
         
 
-entities.Weapon(
+Weapon(
     "Gelatinous Cube",
     "description",
     20,
