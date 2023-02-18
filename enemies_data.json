@@ -17,6 +17,15 @@
         "look_dead": "It's horrible and dead.",
         "talk_alive": "<< GRRRRRRRRRRRRR >>",
         "talk_dead": "<<...>>"
+    },
+    {
+        "name": "Helicopter",
+        "intro_alive": "A helicopter flies at you at full throttle.",
+        "intro_dead": "The helicopter, now silent, is revealed to have been a mountain gadfly.",
+        "look_alive": "EWWWWWWWWWWWW... GROSS.",
+        "look_dead": "Ewww... gross.",
+        "talk_alive": "<< BZZZZZZZZZZZZZZZZZZZZZZ >>",
+        "talk_dead": "Were the buzzes you've heard so far not enough for you?"
     }
 
     ]
