@@ -1,0 +1,64 @@
+{
+    "weapons": [
+        {
+            "name": "potential manuport",
+            "description": "It looks like this rock wants a passage. As long as you keep it with you, it will protect you."
+        },
+        {
+            "name": "polarized sheet",
+            "description": "It's a polarized sheet. It shows Fattuzu in light."
+        },
+        {
+            "name": "sharp polyhedron",
+            "description": "You should never leave your house without a sharp polyhedron in your pocket."
+        },
+        {
+            "name": "armored manuport",
+            "description": "<< I'm a hitchhiker, can you give me a lift... please? >>"
+        },
+        {
+            "name": "transparent polygon",
+            "description": "Splits light into colored beams that blind enemies. Polarized sunglasses recommended."
+        },
+        {
+            "name": "wireless wire",
+            "description": "Hmmm..."
+        },
+        {
+            "name": "armored brench",
+            "description": "It looks the same as any armored branch you've seen before. It hurts a lot when used with dexterity."
+        },
+        {
+            "name": "n-dimensional polytope",
+            "description": "Hummm..."
+        },
+        {
+            "name": "chainsaw (with no fuel)",
+            "description": "Way too heavy."
+        },
+        {
+            "name": "Aperture Science Handheld Portal Device",
+            "description": "It looks like the Zero Point Energy Field Manipulator but besides lifting things it opens portals... Of course it doesn't work, but you can effectively slam it into things."
+        },
+        {
+            "name": "Deliverance by Tediore (Shotgun)",
+            "description": "Allow me to deliver my bullet to your head."
+        },
+        {
+            "name": "tesseract",
+            "description": "Is an Optical Character Recognition tool. That is, it will recognize and read the text embedded in images. Did you think it was a deadly weapon like in The Cube?"
+        },
+        {
+            "name": "Chuck the plant",
+            "description": "red harring since 1987"
+        },
+        {
+            "name": "great attractor",
+            "description": "It's a gravitational anomaly in intergalactic space and the apparent central gravitational point of the Laniakea Supercluster."
+        },
+        {
+            "name": "The Soul Cube",
+            "description": "Is an ancient Martian artifact and the most powerful weapon in Doom 3."
+        }
+    ]
+}
