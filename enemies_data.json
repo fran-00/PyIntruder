@@ -62,6 +62,15 @@
         "look_dead": "Eww... gross.",
         "talk_alive": "<< WE ARE LEGION. Resisting is useless. >>",
         "talk_dead": "<< We'll be back. >>"
+    },
+    {
+        "name": "Trog",
+        "intro_alive": "A dog comes out from behind a tree and attacks you! Wait, so it's not just a dog... it's a Trog!",
+        "intro_dead": "The dog ran away. It can be said that the trog is no more.",
+        "look_alive": "This Trog looks very pissed off. Is it hungry?",
+        "look_dead": "There are no more trogs here!",
+        "talk_alive": "<< GRRRRRRRRRRRRRRR! >>",
+        "talk_dead": "..."
     }
 
     ]
