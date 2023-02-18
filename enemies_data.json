@@ -35,6 +35,15 @@
         "look_dead": "Everyone knows that a mushroom hunter should be concerned with finding mushrooms and not disturbing people ON mushrooms.",
         "talk_alive": "<< Hi! >>",
         "talk_dead": "He is too focused on identifying a mushroom."
+    },
+    {
+        "name": "Bug in the Code",
+        "intro_alive": "A mighty bug in the program threatens to stop the game so you don t win.",
+        "intro_dead": "The code runs smoothly.",
+        "look_alive": "It looks like Missingno.",
+        "look_dead": "We will be rostoring normality as long as we are sure of what is normal anyway. Thank you.",
+        "talk_alive": "<< You didn't put a bracket right there!!! >>",
+        "talk_dead": "There are no more bugs around here."
     }
 
     ]
