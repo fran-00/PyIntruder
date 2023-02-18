@@ -98,11 +98,16 @@
         "look_dead": "Are we sure it was really a gnome?",
         "talk_alive": "It looks really menacing.",
         "talk_dead": "..."
+    },
+    {
+        "name": "Armillaria Ostoyae",
+        "intro_alive": "An immanent manifestation of the transcendent Armillaria ostoyae blocks your path.",
+        "intro_dead": "Armillaria ostoyae stares silently at you from the Underground.",
+        "look_alive": "Oh my God, she's HUGE.",
+        "look_dead": "Even if you have defeated her, she still scares you.",
+        "talk_alive": "<< I THINK, THEREFORE I AM >>",
+        "talk_dead": "<< I'M STILL HERE, TRAVELER. >>"
     }
-
-
-
-
     ]
-
 }
+
