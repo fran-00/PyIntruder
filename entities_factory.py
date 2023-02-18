@@ -1,4 +1,4 @@
-import entities
+from entities import Entity, Item, Weapon, Curse, Consumable, ManaRechargers, Armor, NonPlayableCharacter, Enemy
 import random
 
 
