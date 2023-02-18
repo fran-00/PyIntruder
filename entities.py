@@ -53,8 +53,15 @@ class ManaRechargers(Item):
     def __init__(self, name, description, value, mr):
         super().__init__(name, description, value)
         self.mr = mr
-     
-   
+
+
+class Armor(Item):
+    
+    def __init__(self, name, description, value, defence):
+        super().__init__(name, description, value)
+        self.defence = defence
+
+
 class NonPlayableCharacter(Entity):
     
     def __init__(self, name, description, gold, inventory):
