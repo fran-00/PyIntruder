@@ -71,7 +71,17 @@
         "look_dead": "There are no more trogs here!",
         "talk_alive": "<< GRRRRRRRRRRRRRRR! >>",
         "talk_dead": "..."
+    },
+    {
+        "name": "Uncanny Valley",
+        "intro_alive": "A robot which is almost, but not quite, entirely unlike humans confronts you!",
+        "intro_dead": "There are leaky cables everywhere.",
+        "look_alive": "Something about it reminds you of GLaDOS...",
+        "look_dead": "The scary AI is gone.",
+        "talk_alive": "<< Remember before when I was talking about smelly garbage standing around being useless? That was a metaphor. I was actually talking about you. >>",
+        "talk_dead": "<< That thing you burned up isn't important to me. It's the fluid catalytic cracking unit. It made shoes for orphans. >>"
     }
+
 
     ]
 
