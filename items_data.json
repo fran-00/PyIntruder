@@ -49,22 +49,10 @@
         "panna cotta": "The panna cotta IS the message.",
         "strudel": "Wooow"
     },
-    "mana rechargers": [
-        {
-            "name": "ginseng",
-            "description": "Sweet and dense."
-        },
-        {
-            "name": "Campari Soda",
-            "description": "Red passion."
-        },
-        {
-            "name": "minor Fern potion",
-            "description": "Please, consume in moderation."
-        },
-        {
-            "name": "major Fern potion",
-            "description": "Seriously, this stuff is tough. Please consume in moderation."
-        }
-    ]
+    "mana rechargers": {
+        "ginseng": "Sweet and dense.",
+        "Campari Soda": "Red passion.",
+        "minor Fern potion": "Please, consume in moderation.",
+        "major Fern potion": "Seriously, this stuff is tough. Please consume in moderation."
+    }
 }
