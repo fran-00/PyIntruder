@@ -12,8 +12,8 @@ with open('enemies_data.json') as ef:
 class ItemsFactory:
     def __init__(self):
         self.ats = Consumable(
-            "ATS",
-            items_data["consumables"]["Advanced Tea Substitute"],
+            "Advanced Tea Substitute",
+            items_data["consumables"]["ats"],
             random.randint(310, 340),
             70
         )
