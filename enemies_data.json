@@ -1,5 +1,5 @@
 {
-    "Gelatinous Cube": {
+    "gel cube": {
         "intro_alive": "A jelly-like cube wants to encompass you!",
         "intro_dead": "Now the jelly is just a bunch of wet goo.",
         "look_alive": "He is big and jelly.",
@@ -7,7 +7,7 @@
         "talk_alive": "<< BLBLBLBLBLBLBLBLBLBLBLBLBL >>",
         "talk_dead": "A dead cube has nothing to say."
     },
-    "Ravenous Squirrel": {
+    "squirrel": {
         "intro_alive": "An angry squirrel wants to bite your carotid artery!",
         "intro_dead": "You defeated a squirrel! That's something to be proud of.",
         "look_alive": "He's scary.",
@@ -15,7 +15,7 @@
         "talk_alive": "<< GRRRRRRRRRRRRR >>",
         "talk_dead": "<<...>>"
     },
-    "Helicopter": {
+    "helicopter": {
         "name": "Helicopter",
         "intro_alive": "A helicopter flies at you at full throttle.",
         "intro_dead": "The helicopter, now silent, is revealed to have been a mountain gadfly.",
@@ -24,7 +24,7 @@
         "talk_alive": "<< BZZZZZZZZZZZZZZZZZZZZZZ >>",
         "talk_dead": "Were the buzzes you've heard so far not enough for you?"
     },
-    "Mushroom Hunter": {
+    "hunter": {
         "intro_alive": "A mushroom hunter walking around with a wicker basket looks at you in a puzzled way, could he have understood that you are on drugs?",
         "intro_dead": "The mushroom hunter returns to focus on mushrooms.",
         "look_alive": "Yes, he sure knows you are on drugs.",
@@ -32,7 +32,7 @@
         "talk_alive": "<< Hi! >>",
         "talk_dead": "He is too focused on identifying a mushroom."
     },
-    "Bug in the Code": {
+    "bug": {
         "intro_alive": "A mighty bug in the program threatens to stop the game so you don t win.",
         "intro_dead": "The code runs smoothly.",
         "look_alive": "It looks like Missingno.",
@@ -40,7 +40,7 @@
         "talk_alive": "<< You didn't put a bracket right there!!! >>",
         "talk_dead": "There are no more bugs around here."
     },
-    "Backward Facing Eyes": {
+    "eyes": {
         "name": "Backward Facing Eyes",
         "intro_alive": "A swarm of floating eyes surrounds you and judges you severely.",
         "intro_dead": "And now all eyes are closed.",
@@ -49,7 +49,7 @@
         "talk_alive": "<< We see everything. >>",
         "talk_dead": "<< We are closed. Try again later. >>"
     },
-    "Ants infected by a fungus": {
+    "ants": {
         "name": "Ants infected by a fungus",
         "intro_alive": "Ophiocordyceps unilateralis suddenly attacks you riding on a herd of ants of the species Camponotus leonardi.",
         "intro_dead": "Eww... gross.",
@@ -58,7 +58,7 @@
         "talk_alive": "<< WE ARE LEGION. Resisting is useless. >>",
         "talk_dead": "<< We'll be back. >>"
     },
-    "Trog": {
+    "trog": {
         "name": "Trog",
         "intro_alive": "A dog comes out from behind a tree and attacks you! Wait, so it's not just a dog... it's a Trog!",
         "intro_dead": "The dog ran away. It can be said that the trog is no more.",
@@ -67,7 +67,7 @@
         "talk_alive": "<< GRRRRRRRRRRRRRRR! >>",
         "talk_dead": "..."
     },
-    "Uncanny Valley": {
+    "uncanny": {
         "name": "Uncanny Valley",
         "intro_alive": "A robot which is almost, but not quite, entirely unlike humans confronts you!",
         "intro_dead": "There are leaky cables everywhere.",
@@ -76,7 +76,7 @@
         "talk_alive": "<< Remember before when I was talking about smelly garbage standing around being useless? That was a metaphor. I was actually talking about you. >>",
         "talk_dead": "<< That thing you burned up isn't important to me. It's the fluid catalytic cracking unit. It made shoes for orphans. >>"
     },
-    "Paranoia": {
+    "paranoia": {
         "name": "Paranoia",
         "intro_alive": "You feel a sense of unbereable paraoia.",
         "intro_dead": "Now you feel way better.",
@@ -85,7 +85,7 @@
         "talk_alive": "<< ZZZZZZZZZ >>",
         "talk_dead": "You hear the wind that moves the leaves and feel refreshed."
     },
-    "Gnome": {
+    "gnome": {
         "name": "Gnome",
         "intro_alive": "OH MY GOD! It's a gnome armed with an ax!!!",
         "intro_dead": "This terrifying abomination is no longer the terrible threat it was before.",
@@ -94,7 +94,7 @@
         "talk_alive": "It looks really menacing.",
         "talk_dead": "..."
     },
-    "Armillaria Ostoyae": {
+    "ostoyae": {
         "name": "Armillaria Ostoyae",
         "intro_alive": "An immanent manifestation of the transcendent Armillaria ostoyae blocks your path.",
         "intro_dead": "Armillaria ostoyae stares silently at you from the Underground.",
