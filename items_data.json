@@ -145,8 +145,7 @@
         }
     ],
 
-    "consumables": [
-        {
+    "consumables": {
             "modification": "You could never live without it in a situation like this.",
             "bag with red gummy bears": "They are full of glucose, perfect for synthesizing ATP.",
             "homemade cookies": "homemade With chocolate or jelly.",
@@ -156,8 +155,7 @@
             "suspicious mushrooms": "These seemingly delicious mushrooms have a rather sus appearance...",
             "panna cotta": "The panna cotta IS the message.",
             "strudel": "Wooow"
-        }
-    ],
+        },
 
     "mana rechargers": [
         {
