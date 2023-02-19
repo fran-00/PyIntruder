@@ -33,6 +33,7 @@ class EnemiesFactory:
             10
         )
 
+
 class NPCsFactory:
     
     def __init__(self):
@@ -45,5 +46,5 @@ class NPCsFactory:
 
 print(ItemsFactory().ats.description)
 print(EnemiesFactory().gel_cube.description)
-
+print(NPCsFactory().littleo.description)
 
