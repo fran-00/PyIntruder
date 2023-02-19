@@ -10,11 +10,17 @@ class EntityFactory:
 class EnemiesFactory(EntityFactory):
     def __init__(self):
         super().__init__()
-        
+
+
+with open('items_data.json') as f:
+    items_data = json.load(f)
+
 
 ats = Consumable(
     "ATS",
-    "A liquid which is almost, but not quite, entirely unlike tea.",
+    items_data["consumables"]["Advanced Tea Substitute"],
     random.randint(310, 340),
     70
 )
+
+
