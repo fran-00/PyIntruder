@@ -31,6 +31,6 @@ class EnemiesFactory:
         
 
 print(ItemsFactory().ats.description)
-print(EnemiesFactory.gel_cube.description)
+print(EnemiesFactory().gel_cube.description)
 
 
