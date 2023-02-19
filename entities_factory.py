@@ -24,7 +24,7 @@ class EnemiesFactory:
     def __init__(self):
         self.gel_cube = Enemy(
             "Gelatinous Cube",
-            items_data["gel cube"]["intro_alive"],
+            enemies_data["gel cube"]["intro_alive"],
             20,
             10
         )
