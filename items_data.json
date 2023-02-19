@@ -16,88 +16,28 @@
         "great attractor": "It's a gravitational anomaly in intergalactic space and the apparent central gravitational point of the Laniakea Supercluster.",
         "The Soul Cube": "Is an ancient Martian artifact and the most powerful weapon in Doom 3."
     },
-    "curses": [
-        {
-            "name": "self-luminous red",
-            "description": "It's the impossible version of red."
-        },
-        {
-            "name": "hyperbolic orange",
-            "description": "It's the impossible version of orange."
-        },
-        {
-            "name": "stygian blue",
-            "description": "It's the impossible version of blue."
-        },
-        {
-            "name": "Discourse on the Method of Rightly Conducting One's Reason and of Seeking Truth in the Sciences",
-            "description": "<< Car ce n'est pas assez d'avoir l'esprit bon, mais le principal est de l'appliquer bien.>>"
-        },
-        {
-            "name": "falsidical paradox",
-            "description": "Packs a surprise, but it is seen as a false alarm when we solve the underlying fallacy. Good for Easy Enemies."
-        },
-        {
-            "name": "cluster point",
-            "description": "A Cluster point of a set S in a topological space X is a point x that can be approximated by points of S: every neighbourhood of x also contains a point of S other than x itself. A limit point of a set S does not itself have to be an element of S."
-        },
-        {
-            "name": "Gödel's completeness theorem for first-order predicate calculus",
-            "description": "Every syntactically consistent, countable first-order theory has a finite or countable model. This establishes a correspondence between semantic truth and syntactic provability in first-order logic: Gödel proved that first order logic is semantically complete but it is not syntactically complete, since there are sentences expressible in the language of first order logic that can be neither proved nor disproved from the axioms of logic alone."
-        },
-        {
-            "name": "Aleph Naught",
-            "description": "Cardinality of Reals. You see, the cartesian product of a countable number of countable set is uncountable."
-        },
-        {
-            "name": "Logistic Map",
-            "description": "Is a polynomial mapping of degree 2, often cited as an archetypal example of how complex, chaotic behaviour can arise from very simple non-linear dynamical equations."
-        },
-        {
-            "name": "integral of a real multivariate function",
-            "description": "A function of several real variables is a function with more than one argument, the input variables take real values, while the output may be real or complex."
-        },
-        {
-            "name": "veridical paradox",
-            "description": "Packs a surprise, but the surprise quickly dissipates itself as we ponder the proof. Good for Medium enemies."
-        },
-        {
-            "name": "Comic Sans",
-            "description": "If you love it, you don't know much about typography. If you hate it, you really don't know much about typography either, and you should get another hobby."
-        },
-        {
-            "name": "Somebody Else's Problem Field",
-            "description": "A SEP is something we can't see, or don't see, or our brain doesn't let us see, because we think that it's Somebody Else's Problem. The brain just edits it out, it's like a blind spot."
-        },
-        {
-            "name": "not in my back yard",
-            "description": "Anywhere, but not in my back yard."
-        },
-        {
-            "name": "Axiom of Choice",
-            "description": "The cartesian product of non-empty sets is non-empty. Caution: may raise paradoxes."
-        },
-        {
-            "name": "antinomy",
-            "description": "Packs a surprise that can be accomodated by nothing less than a repudiation of part of our conceptual heritage. This is tough."
-        },
-        {
-            "name": "continuum hypothesis",
-            "description": "There is no set whose cardinality is strictly between that of the integers and the real numbers."
-        },
-        {
-            "name": "Ultimate Insult",
-            "description": "Capable of crippling even the toughest pirate's ego."
-        },
-        {
-            "name": "Marcellus Wallace's briefcase",
-            "description": "<What's in the case?> <My boss's dirty laundry.> <Your boss makes you do his laundry?> <When he wants it cleaned.> <Sounds like a shit job.> <I was thinking the same thing.>"
-        },
-        {
-            "name": "Riemann zeta function",
-            "description": "Full of trivial zeroes."
-        }
-    ],
+    "curses": {
+        "self-luminous red": "It's the impossible version of red.",
+        "hyperbolic orange": "It's the impossible version of orange.",
+        "stygian blue": "It's the impossible version of blue.",
+        "Discourse on the Method": "<< Car ce n'est pas assez d'avoir l'esprit bon, mais le principal est de l'appliquer bien.>>",
+        "falsidical paradox": "Packs a surprise, but it is seen as a false alarm when we solve the underlying fallacy. Good for Easy Enemies.",
+        "cluster point": "A Cluster point of a set S in a topological space X is a point x that can be approximated by points of S: every neighbourhood of x also contains a point of S other than x itself. A limit point of a set S does not itself have to be an element of S.",
+        "Gödel's completeness theorem": "Every syntactically consistent, countable first-order theory has a finite or countable model. This establishes a correspondence between semantic truth and syntactic provability in first-order logic: Gödel proved that first order logic is semantically complete but it is not syntactically complete, since there are sentences expressible in the language of first order logic that can be neither proved nor disproved from the axioms of logic alone.",
+        "Aleph Naught": "Cardinality of Reals. You see, the cartesian product of a countable number of countable set is uncountable.",
+        "Logistic Map": "Is a polynomial mapping of degree 2, often cited as an archetypal example of how complex, chaotic behaviour can arise from very simple non-linear dynamical equations.",
+        "integral of a real multivariate function": "A function of several real variables is a function with more than one argument, the input variables take real values, while the output may be real or complex.",
+        "veridical paradox": "Packs a surprise, but the surprise quickly dissipates itself as we ponder the proof. Good for Medium enemies.",
+        "Comic Sans": "If you love it, you don't know much about typography. If you hate it, you really don't know much about typography either, and you should get another hobby.",
+        "Somebody Else's Problem Field": "A SEP is something we can't see, or don't see, or our brain doesn't let us see, because we think that it's Somebody Else's Problem. The brain just edits it out, it's like a blind spot.",
+        "not in my back yard": "Anywhere, but not in my back yard.",
+        "Axiom of Choice": "The cartesian product of non-empty sets is non-empty. Caution: may raise paradoxes.",
+        "antinomy": "Packs a surprise that can be accomodated by nothing less than a repudiation of part of our conceptual heritage. This is tough.",
+        "continuum hypothesis": "There is no set whose cardinality is strictly between that of the integers and the real numbers.",
+        "Ultimate Insult": "Capable of crippling even the toughest pirate's ego.",
+        "Marcellus Wallace's briefcase": "<What's in the case?> <My boss's dirty laundry.> <Your boss makes you do his laundry?> <When he wants it cleaned.> <Sounds like a shit job.> <I was thinking the same thing.>",
+        "Riemann zeta function": "Full of trivial zeroes."
+    },
     "consumables": {
         "modification": "You could never live without it in a situation like this.",
         "bag with red gummy bears": "They are full of glucose, perfect for synthesizing ATP.",
