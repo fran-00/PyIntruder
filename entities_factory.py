@@ -1,4 +1,4 @@
-from entities import Entity, Item, Weapon, Curse, Consumable, ManaRechargers, Armor, NonPlayableCharacter, Enemy
+from entities import Entity, Item, Weapon, Enemy, Curse, Consumable, ManaRechargers, Armor, NonPlayableCharacter
 import random, json
   
 
@@ -16,10 +16,18 @@ class ItemsFactory:
         )
 
 
-class EnemiesFactory():
+class EnemiesFactory:
+    
     def __init__(self):
-        pass
+        self.gel_cube = Enemy(
+            "Gelatinous Cube",
+            items_data["gel cube"]["intro_alive"],
+            20,
+            10
+        )
         
 
 print(ItemsFactory().ats.description)
+print(EnemiesFactory.gel_cube.description)
+
 
