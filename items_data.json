@@ -1,22 +1,21 @@
 {
     "weapons": {
-            "potential manuport": "It looks like this rock wants a passage. As long as you keep it with you, it will protect you.",
-            "polarized sheet": "It's a polarized sheet. It shows Fattuzu in light.",
-            "sharp polyhedron": "You should never leave your house without a sharp polyhedron in your pocket.",
-            "armored manuport": "<< I'm a hitchhiker, can you give me a lift... please? >>",
-            "transparent polygon": "Splits light into colored beams that blind enemies. Polarized sunglasses recommended.",
-            "wireless wire": "Hmmm...",
-            "armored brench": "It looks the same as any armored branch you've seen before. It hurts a lot when used with dexterity.",
-            "n-dimensional polytope": "Hummm...",
-            "chainsaw (with no fuel)": "Way too heavy.",
-            "Aperture Science Handheld Portal Device": "It looks like the Zero Point Energy Field Manipulator but besides lifting things it opens portals... Of course it doesn't work, but you can effectively slam it into things.",
-            "Deliverance by Tediore (Shotgun)": "Allow me to deliver my bullet to your head.",
-            "tesseract": "Is an Optical Character Recognition tool. That is, it will recognize and read the text embedded in images. Did you think it was a deadly weapon like in The Cube?",
-            "Chuck the plant": "red harring since 1987",
-            "great attractor": "It's a gravitational anomaly in intergalactic space and the apparent central gravitational point of the Laniakea Supercluster.",
-            "The Soul Cube": "Is an ancient Martian artifact and the most powerful weapon in Doom 3."
-        },
-
+        "potential manuport": "It looks like this rock wants a passage. As long as you keep it with you, it will protect you.",
+        "polarized sheet": "It's a polarized sheet. It shows Fattuzu in light.",
+        "sharp polyhedron": "You should never leave your house without a sharp polyhedron in your pocket.",
+        "armored manuport": "<< I'm a hitchhiker, can you give me a lift... please? >>",
+        "transparent polygon": "Splits light into colored beams that blind enemies. Polarized sunglasses recommended.",
+        "wireless wire": "Hmmm...",
+        "armored brench": "It looks the same as any armored branch you've seen before. It hurts a lot when used with dexterity.",
+        "n-dimensional polytope": "Hummm...",
+        "chainsaw (with no fuel)": "Way too heavy.",
+        "Aperture Science Handheld Portal Device": "It looks like the Zero Point Energy Field Manipulator but besides lifting things it opens portals... Of course it doesn't work, but you can effectively slam it into things.",
+        "Deliverance by Tediore (Shotgun)": "Allow me to deliver my bullet to your head.",
+        "tesseract": "Is an Optical Character Recognition tool. That is, it will recognize and read the text embedded in images. Did you think it was a deadly weapon like in The Cube?",
+        "Chuck the plant": "red harring since 1987",
+        "great attractor": "It's a gravitational anomaly in intergalactic space and the apparent central gravitational point of the Laniakea Supercluster.",
+        "The Soul Cube": "Is an ancient Martian artifact and the most powerful weapon in Doom 3."
+    },
     "curses": [
         {
             "name": "self-luminous red",
@@ -99,36 +98,33 @@
             "description": "Full of trivial zeroes."
         }
     ],
-
     "consumables": {
-            "modification": "You could never live without it in a situation like this.",
-            "bag with red gummy bears": "They are full of glucose, perfect for synthesizing ATP.",
-            "homemade cookies": "homemade With chocolate or jelly.",
-            "cappuccino": "Creamy and dense.",
-            "gommo": "<< What are these atrocious grimaces?> << What grimaces? >> << These!>> << Which ones? >> << The ones you are doing with your crippled mouth! >>",
-            "Advanced Tea Substitute": "A liquid which is almost, but not quite, entirely unlike tea.",
-            "suspicious mushrooms": "These seemingly delicious mushrooms have a rather sus appearance...",
-            "panna cotta": "The panna cotta IS the message.",
-            "strudel": "Wooow"
-        },
-
+        "modification": "You could never live without it in a situation like this.",
+        "bag with red gummy bears": "They are full of glucose, perfect for synthesizing ATP.",
+        "homemade cookies": "homemade With chocolate or jelly.",
+        "cappuccino": "Creamy and dense.",
+        "gommo": "<< What are these atrocious grimaces?> << What grimaces? >> << These!>> << Which ones? >> << The ones you are doing with your crippled mouth! >>",
+        "Advanced Tea Substitute": "A liquid which is almost, but not quite, entirely unlike tea.",
+        "suspicious mushrooms": "These seemingly delicious mushrooms have a rather sus appearance...",
+        "panna cotta": "The panna cotta IS the message.",
+        "strudel": "Wooow"
+    },
     "mana rechargers": [
         {
             "name": "ginseng",
-            "description": "Sweet and dense." 
+            "description": "Sweet and dense."
         },
         {
             "name": "Campari Soda",
-            "description": "Red passion." 
+            "description": "Red passion."
         },
         {
             "name": "minor Fern potion",
-            "description": "Please, consume in moderation." 
+            "description": "Please, consume in moderation."
         },
         {
             "name": "major Fern potion",
-            "description": "Seriously, this stuff is tough. Please consume in moderation." 
+            "description": "Seriously, this stuff is tough. Please consume in moderation."
         }
     ]
-
 }
