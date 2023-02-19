@@ -147,40 +147,31 @@
 
     "consumables": [
         {
-            "name": "modification",
-            "description": "You could never live without it in a situation like this." 
+            "modification": "You could never live without it in a situation like this." 
         },
         {
-            "name": "bag with red gummy bears",
-            "description": "They are full of glucose, perfect for synthesizing ATP." 
+            "bag with red gummy bears": "They are full of glucose, perfect for synthesizing ATP."
         },
         {
-            "name": "homemade cookies",
-            "description": "With chocolate or jelly." 
+            "homemade cookies": "homemade With chocolate or jelly."
         },
         {
-            "name": "Cappuccino",
-            "description": "Creamy and dense." 
+            "cappuccino": "Creamy and dense."
         },
         {
-            "name": "gommo",
-            "description": "<< What are these atrocious grimaces?> << What grimaces? >> << These!>> << Which ones? >> << The ones you are doing with your crippled mouth! >>" 
+            "gommo": "<< What are these atrocious grimaces?> << What grimaces? >> << These!>> << Which ones? >> << The ones you are doing with your crippled mouth! >>"
         },
         {
-            "name": "Advanced Tea Substitute",
-            "description": "A liquid which is almost, but not quite, entirely unlike tea." 
+            "Advanced Tea Substitute": "A liquid which is almost, but not quite, entirely unlike tea." 
         },
         {
-            "name": "Suspicious mushrooms",
-            "description": "These seemingly delicious mushrooms have a rather sus appearance..." 
+            "suspicious mushrooms": "These seemingly delicious mushrooms have a rather sus appearance..." 
         },
         {
-            "name": "panna cotta",
-            "description": "The panna cotta IS the message." 
+            "panna cotta": "The panna cotta IS the message." 
         },
         {
-            "name": "Strudel",
-            "description": "Wooow" 
+            "strudel": "Wooow" 
         }
     ],
 
