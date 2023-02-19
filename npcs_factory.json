@@ -1,0 +1,80 @@
+{
+    "littleo": {
+        "description": "Cool",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    },
+    "innkeeper": {
+        "description": "Cool",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    },
+    "blacksmith": {
+        "description": "Chad",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    },
+    "merchant": {
+        "description": "Cool",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    },
+    "monk": {
+        "description": "Cool",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    },
+    "ferns": {
+        "description": "Cool",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    },
+    "rina": {
+        "description": "Cool",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    },
+    "intruder": {
+        "description": "Cool",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    },
+    "oak": {
+        "description": "Cool",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    },
+    "enzopaolo": {
+        "description": "Cool",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    },
+    "priamo": {
+        "description": "Cool",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    },
+    "effrafax": {
+        "description": "Cool",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    },
+    "stylite": {
+        "description": "Cool",
+        "dialogues": {
+            "1": "dialogue here"
+        }
+    }
+}
