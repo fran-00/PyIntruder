@@ -5,6 +5,9 @@ import random, json
 with open('items_data.json') as f:
     items_data = json.load(f)
 
+with open('enemies_data.json') as ef:
+    enemies_data = json.load(ef)
+
 
 class ItemsFactory:
     def __init__(self):
