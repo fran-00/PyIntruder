@@ -1,13 +1,8 @@
 from entities import Entity, Item, Weapon, Curse, Consumable, ManaRechargers, Armor, NonPlayableCharacter, Enemy
 import random, json
+  
 
-
-class EntityFactory:
-    def __init__(self):
-        pass
-    
-
-class EnemiesFactory(EntityFactory):
+class EnemiesFactory():
     def __init__(self):
         super().__init__()
 
