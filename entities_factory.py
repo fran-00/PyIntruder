@@ -8,8 +8,12 @@ with open('items_data.json') as f:
 with open('enemies_data.json') as ef:
     enemies_data = json.load(ef)
 
+with open('npcs_data.json') as nf:
+    npcs_data = json.load(nf)
+
 
 class ItemsFactory:
+    
     def __init__(self):
         self.ats = Consumable(
             "Advanced Tea Substitute",
