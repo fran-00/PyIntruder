@@ -12,9 +12,9 @@ class EnemiesFactory(EntityFactory):
         super().__init__()
         
 
-Weapon(
-    "Gelatinous Cube",
-    "description",
-    20,
-    10
+ats = Consumable(
+    "ATS",
+    "A liquid which is almost, but not quite, entirely unlike tea.",
+    random.randint(310, 340),
+    70
 )
