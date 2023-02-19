@@ -2,11 +2,6 @@ from entities import Entity, Item, Weapon, Curse, Consumable, ManaRechargers, Ar
 import random, json
   
 
-class EnemiesFactory():
-    def __init__(self):
-        super().__init__()
-
-
 with open('items_data.json') as f:
     items_data = json.load(f)
 
@@ -21,4 +16,10 @@ class ItemsFactory:
         )
 
 
+class EnemiesFactory():
+    def __init__(self):
+        pass
+        
+
 print(ItemsFactory().ats.description)
+
