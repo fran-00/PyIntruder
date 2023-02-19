@@ -16,7 +16,6 @@
         "talk_dead": "<<...>>"
     },
     "helicopter": {
-        "name": "Helicopter",
         "intro_alive": "A helicopter flies at you at full throttle.",
         "intro_dead": "The helicopter, now silent, is revealed to have been a mountain gadfly.",
         "look_alive": "EWWWWWWWWWWWW... GROSS.",
@@ -41,7 +40,6 @@
         "talk_dead": "There are no more bugs around here."
     },
     "eyes": {
-        "name": "Backward Facing Eyes",
         "intro_alive": "A swarm of floating eyes surrounds you and judges you severely.",
         "intro_dead": "And now all eyes are closed.",
         "look_alive": "They judge you without mercy.",
@@ -50,7 +48,6 @@
         "talk_dead": "<< We are closed. Try again later. >>"
     },
     "ants": {
-        "name": "Ants infected by a fungus",
         "intro_alive": "Ophiocordyceps unilateralis suddenly attacks you riding on a herd of ants of the species Camponotus leonardi.",
         "intro_dead": "Eww... gross.",
         "look_alive": "Eww... gross.",
@@ -59,7 +56,6 @@
         "talk_dead": "<< We'll be back. >>"
     },
     "trog": {
-        "name": "Trog",
         "intro_alive": "A dog comes out from behind a tree and attacks you! Wait, so it's not just a dog... it's a Trog!",
         "intro_dead": "The dog ran away. It can be said that the trog is no more.",
         "look_alive": "This Trog looks very pissed off. Is it hungry?",
@@ -68,7 +64,6 @@
         "talk_dead": "..."
     },
     "uncanny": {
-        "name": "Uncanny Valley",
         "intro_alive": "A robot which is almost, but not quite, entirely unlike humans confronts you!",
         "intro_dead": "There are leaky cables everywhere.",
         "look_alive": "Something about it reminds you of GLaDOS...",
@@ -77,7 +72,6 @@
         "talk_dead": "<< That thing you burned up isn't important to me. It's the fluid catalytic cracking unit. It made shoes for orphans. >>"
     },
     "paranoia": {
-        "name": "Paranoia",
         "intro_alive": "You feel a sense of unbereable paraoia.",
         "intro_dead": "Now you feel way better.",
         "look_alive": "You can't see very weel, you feel very dizzy.",
@@ -86,7 +80,6 @@
         "talk_dead": "You hear the wind that moves the leaves and feel refreshed."
     },
     "gnome": {
-        "name": "Gnome",
         "intro_alive": "OH MY GOD! It's a gnome armed with an ax!!!",
         "intro_dead": "This terrifying abomination is no longer the terrible threat it was before.",
         "look_alive": "The argentines are hiking in a north american wood when they spot a strange figure in the distance. They approach to find out if it is an animal, continuing to wonder what it is. The girl throws a stone at him, suddenly the figure gets up: it is a gnome armed with an ax who begins to chase the tourists who are fleeing!!!",
@@ -95,7 +88,6 @@
         "talk_dead": "..."
     },
     "ostoyae": {
-        "name": "Armillaria Ostoyae",
         "intro_alive": "An immanent manifestation of the transcendent Armillaria ostoyae blocks your path.",
         "intro_dead": "Armillaria ostoyae stares silently at you from the Underground.",
         "look_alive": "Oh my God, she's HUGE.",
