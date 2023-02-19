@@ -32,7 +32,16 @@ class EnemiesFactory:
             20,
             10
         )
-        
+
+class NPCsFactory:
+    
+    def __init__(self):
+        self.littleo = NonPlayableCharacter(
+            "Little(o)",
+            npcs_data["littleo"]["description"],
+            1000,
+            [ItemsFactory().ats]
+        )
 
 print(ItemsFactory().ats.description)
 print(EnemiesFactory().gel_cube.description)
