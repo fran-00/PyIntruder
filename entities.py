@@ -1,12 +1,10 @@
-
-
 class Entity:
     
-    def __init__(self, name, description):
+    def __init__(self, name, description, level):
         self.name = name
         self.description = description
-        
-        # importa la description da un json
+        self.level = level
+
     
     def __str__(self):
         return self.name
