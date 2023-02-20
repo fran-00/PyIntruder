@@ -61,8 +61,8 @@ class Armor(Item):
 
 class NonPlayableCharacter(Entity):
     
-    def __init__(self, name, description, gold, inventory):
-        super().__init__(name, description)
+    def __init__(self, name, description, level, gold, inventory):
+        super().__init__(name, description, level)
         self.gold = gold
         self.inventory = inventory
 
