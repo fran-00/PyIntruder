@@ -30,8 +30,8 @@ class Weapon(Item):
 
 class Curse(Item):
     
-    def __init__(self, name, description, value, damage, mana_cost):
-        super().__init__(name, description, value, damage)
+    def __init__(self, name, description, level, value, damage, mana_cost):
+        super().__init__(name, description, level, value, damage)
         self.damage = damage
         self.mana_cost = mana_cost
     
