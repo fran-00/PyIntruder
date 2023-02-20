@@ -42,6 +42,7 @@ class NPCsFactory:
         self.littleo = NonPlayableCharacter(
             "Little(o)",
             npcs_data["littleo"]["description"],
+            None,
             1000,
             [ItemsFactory().ats]
         )
