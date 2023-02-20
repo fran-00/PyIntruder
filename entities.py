@@ -55,8 +55,8 @@ class ManaRecharger(Item):
 
 class Armor(Item):
     
-    def __init__(self, name, description, value, defence):
-        super().__init__(name, description, value)
+    def __init__(self, name, description, level, value, defence):
+        super().__init__(name, description, level, value)
         self.defence = defence
 
 
