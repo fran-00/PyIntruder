@@ -41,8 +41,8 @@ class Curse(Item):
 
 class Consumable(Item):
     
-    def __init__(self, name, description, value, heal):
-        super().__init__(name, description, value)
+    def __init__(self, name, description, level, value, heal):
+        super().__init__(name, description, level, value)
         self.heal = heal
 
 
