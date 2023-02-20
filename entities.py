@@ -46,7 +46,7 @@ class Consumable(Item):
         self.heal = heal
 
 
-class ManaRechargers(Item):
+class ManaRecharger(Item):
     
     def __init__(self, name, description, value, mr):
         super().__init__(name, description, value)
