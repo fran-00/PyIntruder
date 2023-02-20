@@ -12,8 +12,8 @@ class Entity:
 
 class Item(Entity):
     
-    def __init__(self, name, description, value):
-        super().__init__(name, description)
+    def __init__(self, name, description, level, value):
+        super().__init__(name, description, level)
         self.value = value
         self.value_if_sold = self.value // 10
 
