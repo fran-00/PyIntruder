@@ -5,7 +5,6 @@ class Entity:
         self.description = description
         self.level = level
 
-    
     def __str__(self):
         return self.name
 
@@ -70,8 +69,8 @@ class NonPlayableCharacter(Entity):
 
 class Enemy(Entity):
 
-    def __init__(self, name, description, hp, damage):
-        super().__init__(name, description)
+    def __init__(self, name, description, level, hp, damage):
+        super().__init__(name, description, level)
         self.hp = hp
         self.damage = damage
 
@@ -81,5 +80,4 @@ class Enemy(Entity):
     def is_alive(self):
         return self.hp > 0
 
-        # import intro_alive, intro_dead, talk_alive_talk_dead
-        # from a .json
+
