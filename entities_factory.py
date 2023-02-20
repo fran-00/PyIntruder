@@ -1,4 +1,4 @@
-from entities import Entity, Item, Weapon, Enemy, Curse, Consumable, ManaRechargers, Armor, NonPlayableCharacter
+from entities import Entity, Item, Weapon, Enemy, Curse, Consumable, ManaRecharger, Armor, NonPlayableCharacter
 import random, json
   
 
@@ -47,6 +47,6 @@ class NPCsFactory:
         )
 
 print(ItemsFactory().ats.description)
-print(EnemiesFactory().gel_cube.description)
+print(EnemiesFactory().gel_cube.level)
 print(NPCsFactory().littleo.description)
 
