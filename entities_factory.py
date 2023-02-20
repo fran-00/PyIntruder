@@ -18,6 +18,7 @@ class ItemsFactory:
         self.ats = Consumable(
             "Advanced Tea Substitute",
             items_data["consumables"]["ats"],
+            1,
             random.randint(310, 340),
             70
         )
@@ -29,6 +30,7 @@ class EnemiesFactory:
         self.gel_cube = Enemy(
             "Gelatinous Cube",
             enemies_data["gel cube"]["intro_alive"],
+            1,
             20,
             10
         )
