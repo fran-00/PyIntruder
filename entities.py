@@ -48,8 +48,8 @@ class Consumable(Item):
 
 class ManaRecharger(Item):
     
-    def __init__(self, name, description, value, mr):
-        super().__init__(name, description, value)
+    def __init__(self, name, description, level, value, mr):
+        super().__init__(name, description, level, value)
         self.mr = mr
 
 
