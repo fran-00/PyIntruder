@@ -47,6 +47,20 @@ class NPCsFactory:
             [ItemsFactory().ats]
         )
 
+
+class WeaponFactory:
+    
+    def __init__(self):
+        self.wireless_wire = Weapon(
+            "Wireless Wire",
+            npcs_data["wireless wire"]["description"],
+            1,
+            15,
+            20,
+        )
+
+
+
 print(ItemsFactory().ats.description)
 print(EnemiesFactory().gel_cube.level)
 print(NPCsFactory().littleo.description)
