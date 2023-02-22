@@ -18,16 +18,10 @@ class Game(QObject):
     def play(self):
         world.parse_world_dsl()
         player = Player()
-    #    player.name = input("> What's your name?\n")
 
-        self.output = "***** THE MAJESTIC REPOSITIONING OF INTRUDERS *****"
+        self.output = "***** INTRUDER *****"
         self.handle_outbound_signal(self.output)
 
-        print("")
-        print("> Not so freely inspired by several true stories.\n")
-        print("> Ever since you learned about Fattuzu, you know you need to prevent The End Of The World As We Know It.")
-        print("> In this game, melee weapons may fail while curses cannot, but they cost mana. During a fight the best weapon you have in your inventory is automatically selected, while you will have to choose which curse to cast, evaluating (in addition to the damage inflicted) also how much mana you have left to invest. Type 'diagnose' to know your health and mana.")
-        print("> Anyway, you came from west. There's a path to the east.")
         while player.is_alive() and not player.victory:
             room = world.tile_at(player.x, player.y)
 
