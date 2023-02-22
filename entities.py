@@ -20,7 +20,7 @@ class Item(Entity):
 class Weapon(Item):
     
     def __init__(self, name, description, level, value, damage):
-        super().__init__(name, description, level, value, damage)
+        super().__init__(name, description, level, value)
         self.damage = damage
         
     def __str__(self):
