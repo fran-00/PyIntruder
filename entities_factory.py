@@ -48,7 +48,7 @@ class NPCsFactory:
         )
 
 
-class WeaponFactory:
+class WeaponsFactory:
     
     def __init__(self):
         self.wireless_wire = Weapon(
@@ -76,6 +76,6 @@ class CursesFactory:
 print(ItemsFactory().ats.description)
 print(EnemiesFactory().gel_cube.level)
 print(NPCsFactory().littleo.description)
-print(WeaponFactory().wireless_wire.description)
+print(WeaponsFactory().wireless_wire.description)
 print(CursesFactory().sep_field.description)
 
