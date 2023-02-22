@@ -60,7 +60,7 @@ class WeaponFactory:
         )
 
 
-class CurseFactory:
+class CursesFactory:
     
     def __init__(self):
         self.sep_field = Curse(
@@ -77,5 +77,5 @@ print(ItemsFactory().ats.description)
 print(EnemiesFactory().gel_cube.level)
 print(NPCsFactory().littleo.description)
 print(WeaponFactory().wireless_wire.description)
-print(CurseFactory().sep_field.description)
+print(CursesFactory().sep_field.description)
 
