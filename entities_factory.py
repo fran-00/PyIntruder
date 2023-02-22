@@ -23,6 +23,14 @@ class ItemsFactory:
             70
         )
 
+        self.potion1 = ManaRecharger(
+            "Minor Ferns Potion",
+            items_data["mana rechargers"]["potion1"],
+            1,
+            10,
+            10
+        )
+
 
 class EnemiesFactory:
     
