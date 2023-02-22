@@ -77,4 +77,5 @@ print(ItemsFactory().ats.description)
 print(EnemiesFactory().gel_cube.level)
 print(NPCsFactory().littleo.description)
 print(WeaponFactory().wireless_wire.description)
+print(CurseFactory().sep_field.description)
 
