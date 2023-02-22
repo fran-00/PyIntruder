@@ -60,6 +60,18 @@ class WeaponFactory:
         )
 
 
+class CurseFactory:
+    
+    def __init__(self):
+        self.sep_field = Curse(
+            "Somebody Else's Problem Field",
+            items_data["curses"]["sep field"],
+            2,
+            1050,
+            60,
+            10,            
+        )
+
 
 print(ItemsFactory().ats.description)
 print(EnemiesFactory().gel_cube.level)
