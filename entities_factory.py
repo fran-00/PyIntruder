@@ -53,7 +53,7 @@ class WeaponFactory:
     def __init__(self):
         self.wireless_wire = Weapon(
             "Wireless Wire",
-            npcs_data["wireless wire"]["description"],
+            items_data["weapons"]["wireless wire"],
             1,
             15,
             20,
