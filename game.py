@@ -1,28 +1,21 @@
 from collections import OrderedDict
 import os
 import random
-from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
 
 import world
 import items
 from player import Player
 
-class Game(QObject):
-    model_signal_to_controller = pyqtSignal(str)
-    
+class Game:
     def __init__(self):
-        super().__init__()
         self.play()
-        self.output = None
 
     def play(self):
         world.parse_world_dsl()
         player = Player()
     #    player.name = input("> What's your name?\n")
 
-        self.output = "***** THE MAJESTIC REPOSITIONING OF INTRUDERS *****"
-        self.handle_outbound_signal(self.output)
-
+        print("\n***** THE MAJESTIC REPOSITIONING OF INTRUDERS *****\n")
         print("")
         print("> Not so freely inspired by several true stories.\n")
         print("> Ever since you learned about Fattuzu, you know you need to prevent The End Of The World As We Know It.")
@@ -76,7 +69,7 @@ class Game(QObject):
         action = None
         while not action:
             available_actions = self.get_available_actions(room, player)
-            action_input = self.handle_inbound_signal(action)
+            action_input = input(">>>> ")
             print("")
             action = available_actions.get(action_input)
 
@@ -364,17 +357,6 @@ class Game(QObject):
             else:
                 print("> I beg you pardon?")
 
-    @pyqtSlot(str)
-    def handle_inbound_signal(self, input):
-        ''' Takes a string an send it to controller as a signal '''
-        
-        print(f"I'm MODEL and I got a signal from CONTROLLER: {input}")
-
-    def handle_outbound_signal(self, output):
-        ''' Takes a string an send it to controller as a signal '''
-        
-        print(f"I'm MODEL and I'm sending a signal to CONTROLLER: {output}")
-        self.model_signal_to_controller.emit(output)
 
     # CHIAMA SOLO FUNZIONI
     def get_available_actions(self, room, player):
