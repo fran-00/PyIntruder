@@ -1,10 +1,6 @@
-from collections import OrderedDict
-import os
-import random
 from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
 
 import world
-import items
 from player import Player
 
 class Game(QObject):
