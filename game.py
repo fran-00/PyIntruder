@@ -12,6 +12,13 @@ class Game(QObject):
         self.output = None
 
     def play(self):
+        """
+        - Send outbound signal with instructions to controller
+        - Wait for controller response
+        - Get inbound signal with response from controller
+        - Parse response to select instruction to send as signal
+            
+        """
         world.parse_world_dsl()
         player = Player()
 
