@@ -10,6 +10,7 @@ class Game(QObject):
         super().__init__()
         self.play()
         self.output = None
+        self.action = None
 
     def play(self):
         """
@@ -25,6 +26,13 @@ class Game(QObject):
         self.output = "***** INTRUDER *****"
         self.handle_outbound_signal(self.output)
 
+        self.action = self.model_signal_to_controller
+        if self.action in ["Talk"]:
+            self.output = "HI!"
+            self.handle_outbound_signal(self.output)
+        else:
+            self.output = "I beg you pardon?!"
+            self.handle_outbound_signal(self.output)
 
     @pyqtSlot(str)
     def handle_inbound_signal(self, input):
