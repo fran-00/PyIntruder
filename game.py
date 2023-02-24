@@ -27,12 +27,15 @@ class Game(QObject):
         self.handle_outbound_signal(self.output)
 
         self.action = self.model_signal_to_controller
-        if self.action in ["Talk"]:
-            self.output = "HI!"
-            self.handle_outbound_signal(self.output)
-        else:
-            self.output = "I beg you pardon?!"
-            self.handle_outbound_signal(self.output)
+        
+        while not self.action:
+            if self.action in ["Talk"]:
+                self.output = "HI!"
+                self.handle_outbound_signal(self.output)
+            else:
+                self.output = "I beg you pardon?!"
+                self.handle_outbound_signal(self.output)
+        self.action = None
 
     @pyqtSlot(str)
     def handle_inbound_signal(self, input):
