@@ -21,7 +21,7 @@ class GameController(QObject):
     @pyqtSlot(str)
     def on_model_signal(self, data):
         # Process data received from the model
-        print("I'm is CONTROLLER and I'm receiving a signal from MODEL!")
+        print(f"I'm is CONTROLLER and I'm receiving a signal from MODEL that says {data}!")
         # Send data to the view
         self.controller_signal_to_view.emit(data)
 
