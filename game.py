@@ -9,8 +9,6 @@ class Game(QObject):
     def __init__(self):
         super().__init__()
         self.play()
-        self.output = None
-        self.action = None
 
     def play(self):
         """
