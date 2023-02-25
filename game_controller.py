@@ -10,10 +10,11 @@ class GameController(QObject):
         
         # Connect model signals to controller slots
         game_model.model_signal_to_controller.connect(self.on_model_signal)
+        # Connect controller signals to model slots
         self.controller_signal_to_model.connect(game_model.handle_inbound_signal)
-        
         # Connect view signals to controller slots
         game_view.view_signal_to_controller.connect(self.on_view_signal)
+        # Connect controller signals to view slots
         self.controller_signal_to_view.connect(game_view.handle_output)
 
 
