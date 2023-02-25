@@ -36,6 +36,7 @@ class Game(QObject):
         ''' Slot that receives a string from controller as a signal '''
         
         print(f"I'm MODEL and I got a signal from CONTROLLER: {input}")
+        self.action = input.lower()
 
     def handle_outbound_signal(self, output):
         ''' Takes a string an send it to controller as a signal '''
