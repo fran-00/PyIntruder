@@ -1,7 +1,5 @@
 from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot, QEventLoop
 
-import world
-from player import Player
 
 class Game(QObject):
     model_signal_to_controller = pyqtSignal(str)
@@ -18,8 +16,6 @@ class Game(QObject):
         - Parse response to select instruction to send as signal
             
         """
-        world.parse_world_dsl()
-        player = Player()
 
         self.output = "***** INTRUDER *****"
         self.handle_outbound_signal(self.output)
