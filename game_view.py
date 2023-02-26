@@ -1,5 +1,4 @@
-import sys, random
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton
 from PyQt6.QtCore import pyqtSignal, pyqtSlot
 
 class GameView(QWidget):
