@@ -1,5 +1,7 @@
 from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot, QEventLoop
 
+import world
+from player import Player
 
 class Game(QObject):
     model_signal_to_controller = pyqtSignal(str)
@@ -15,9 +17,12 @@ class Game(QObject):
         - Get inbound signal with response from controller
         - Parse response to select instruction to send as signal
         """
+        world.parse_world_dsl()
+        player = Player()
+        
         self.response = "***** INTRUDER *****"
         self.handle_outbound_signal(self.response)
-
+ 
 
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
