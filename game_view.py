@@ -61,4 +61,4 @@ class GameView(QWidget):
     
         # FIXME: the slot shouldn't emit any signal, it should just show the response
         # Emits the signal that contains game response
-        self.view_signal_to_controller.emit(response)
+        # self.view_signal_to_controller.emit(response)
