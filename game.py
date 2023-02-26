@@ -15,8 +15,8 @@ class Game(QObject):
         - Get inbound signal with response from controller
         - Parse response to select instruction to send as signal
         """
-        self.output = "***** INTRUDER *****"
-        self.handle_outbound_signal(self.output)
+        self.response = "***** INTRUDER *****"
+        self.handle_outbound_signal(self.response)
 
 
     @pyqtSlot(str)
