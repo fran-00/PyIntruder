@@ -36,28 +36,28 @@ class GameView(QWidget):
         # Modify Style Sheet
         self.setStyleSheet("color: white; background-color: black;")
 
-    def handle_input(self):
+    def handle_user_action(self):
         # Gets user input
-        user_input = self.input_box.text().strip()
+        action = self.input_box.text().strip()
         
-        print(f"I'm VIEW and I'm sending a signal to CONTROLLER that says: {user_input}")
+        print(f"I'm VIEW and I'm sending a signal to CONTROLLER that says: {action}")
         # Emits the signal that contains user input
-        self.view_signal_to_controller.emit(user_input)
+        self.view_signal_to_controller.emit(action)
 
         # Append user input to log view window
-        self.log_view.append(f"Input: {user_input}")
+        self.log_view.append(f"Input: {action}")
 
         # Resets the input box
         self.input_box.clear()
         self.input_box.setFocus()
     
     @pyqtSlot(str)
-    def handle_output(self, output):
+    def handle_game_response(self, response):
 
-        print(f"I'm VIEW and I'm receiving a signal from CONTROLLER that says: {output}")
+        print(f"I'm VIEW and I'm receiving a signal from CONTROLLER that says: {response}")
 
         # Append game output to log view window
-        self.log_view.append(f"Output: {output}")
+        self.log_view.append(f"Output: {response}")
     
         # Emits the signal that contains game response
-        self.view_signal_to_controller.emit(output)
+        self.view_signal_to_controller.emit(response)
