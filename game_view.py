@@ -59,5 +59,6 @@ class GameView(QWidget):
         # Append game output to log view window
         self.log_view.append(f"Output: {response}")
     
+        # FIXME: the slot shouldn't emit any signal, it should just show the response
         # Emits the signal that contains game response
         self.view_signal_to_controller.emit(response)
