@@ -8,6 +8,7 @@ class Game(QObject):
     
     def __init__(self):
         self.action = None
+        self.response = None
         super().__init__()
         self.play()
 
@@ -22,7 +23,6 @@ class Game(QObject):
         player = Player()
         
         self.response = "***** INTRUDER *****"
-        self.handle_outbound_signal(self.response)
  
 
     @pyqtSlot(str)
@@ -32,8 +32,14 @@ class Game(QObject):
         print(f"I'm MODEL and I got a signal from CONTROLLER: {user_action}")
         self.action = user_action
 
-    def handle_outbound_signal(self, game_response):
+
+    def handle_outbound_signal(self):
         ''' Takes a string an send it to controller as a signal '''
+        # Test game response
+        game_response = "HI"
         
         print(f"I'm MODEL and I'm sending a signal to CONTROLLER: {game_response}")
+        # Emits the signal that contains game response
         self.model_signal_to_controller.emit(game_response)
+        
+        
