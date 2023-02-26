@@ -1,5 +1,4 @@
 from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
-import random
 
 class GameController(QObject):
     controller_signal_to_model = pyqtSignal(str)
