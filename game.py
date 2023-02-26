@@ -20,14 +20,14 @@ class Game(QObject):
 
 
     @pyqtSlot(str)
-    def handle_inbound_signal(self, input):
+    def handle_inbound_signal(self, user_action):
         ''' Slot that receives a string from controller as a signal '''
         
-        print(f"I'm MODEL and I got a signal from CONTROLLER: {input}")
-        self.action = input.lower()
+        print(f"I'm MODEL and I got a signal from CONTROLLER: {user_action}")
+        self.action = user_action
 
-    def handle_outbound_signal(self, output):
+    def handle_outbound_signal(self, game_response):
         ''' Takes a string an send it to controller as a signal '''
         
-        print(f"I'm MODEL and I'm sending a signal to CONTROLLER: {output}")
-        self.model_signal_to_controller.emit(output)
+        print(f"I'm MODEL and I'm sending a signal to CONTROLLER: {game_response}")
+        self.model_signal_to_controller.emit(game_response)
