@@ -14,7 +14,7 @@ class GameController(QObject):
         # Connect view signals to controller slots
         game_view.view_signal_to_controller.connect(self.on_view_signal)
         # Connect controller signals to view slots
-        self.controller_signal_to_view.connect(game_view.handle_output)
+        self.controller_signal_to_view.connect(game_view.handle_game_response)
 
 
     @pyqtSlot(str)
