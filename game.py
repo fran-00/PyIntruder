@@ -7,6 +7,7 @@ class Game(QObject):
     model_signal_to_controller = pyqtSignal(str)
     
     def __init__(self):
+        self.action = None
         super().__init__()
         self.play()
 
