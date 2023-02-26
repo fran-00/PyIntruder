@@ -40,7 +40,7 @@ class GameView(QWidget):
         # Gets user input
         action = self.input_box.text().strip()
         
-        print(f"I'm VIEW and I'm sending a signal to CONTROLLER that says: {action}")
+        print(f"VIEW: I'm sending a signal to CONTROLLER with user action: {action}")
         # Emits the signal that contains user input
         self.view_signal_to_controller.emit(action)
 
@@ -54,7 +54,7 @@ class GameView(QWidget):
     @pyqtSlot(str)
     def handle_game_response(self, response):
 
-        print(f"I'm VIEW and I'm receiving a signal from CONTROLLER that says: {response}")
+        print(f"VIEW: I'm receiving a signal from CONTROLLER with game responses: {response}")
 
         # Append game output to log view window
         self.log_view.append(f"Output: {response}")
