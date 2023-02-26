@@ -23,6 +23,7 @@ class Game(QObject):
         player = Player()
         
         self.response = "***** INTRUDER *****"
+        self.handle_outbound_signal()
  
 
     @pyqtSlot(str)
@@ -30,7 +31,7 @@ class Game(QObject):
         ''' Slot that receives a string from controller as a signal '''
         
         print(f"MODEL: I got a signal from CONTROLLER with user action: {user_action}")
-        self.action = user_action
+        return user_action
 
     def handle_outbound_signal(self):
         ''' Takes a string an send it to controller as a signal '''
