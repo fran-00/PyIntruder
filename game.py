@@ -19,11 +19,9 @@ class Game(QObject):
         - Get inbound signal with response from controller
         - Parse response to select instruction to send as signal
         """
+        loop = QEventLoop()
         world.parse_world_dsl()
         player = Player()
-        
-        self.response = "***** INTRUDER *****"
-        self.handle_outbound_signal()
  
 
     @pyqtSlot(str)
