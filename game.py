@@ -23,6 +23,24 @@ class Game(QObject):
         world.parse_world_dsl()
         player = Player()
  
+        while player.is_alive:
+            # Il model riceve l'azione dell'utente dalla view
+            user_action = None
+            while not user_action:
+                loop.processEvents()
+                if self.action:
+                    user_action = self.action
+                    self.action = None
+
+            # Il model processa l'azione dell'utente e genera una risposta
+            game_response = "I beg you pardon?"
+
+            # Il model invia la risposta alla view
+            self.model_signal_to_controller.emit(game_response)
+
+            # Il model controlla se il giocatore è vivo e passa al prossimo turno
+            if not player.is_alive:
+                break
 
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
