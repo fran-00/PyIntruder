@@ -33,9 +33,10 @@ class Game(QObject):
         self.event_loop = QEventLoop()
         world.parse_world_dsl()
         player = Player()
+        logic = GameLogic()
  
         while True:
-            game_response = self.get_game_response()
+            game_response = self.get_game_response(logic)
             print(f"MODEL: Game response is: {game_response}")
             self.model_signal_to_controller.emit(game_response)
             self.event_loop.exec()
@@ -59,7 +60,6 @@ class Game(QObject):
         # Emits the signal that contains game response
         self.model_signal_to_controller.emit(game_response)
         
-    def get_game_response(self):
-        # TODO:
-        game_response = "This is a game response."
+    def get_game_response(self, logic):
+        game_response = logic.check_tile()
         return game_response
