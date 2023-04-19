@@ -32,6 +32,8 @@ class GameController(QObject):
         # then ??? will show them and wait for new user input 
         self.controller_signal_to_view.connect(game_view.handle_game_response)
 
+        self.thread = GameThread(game_model)
+        self.thread.start()
 
     @pyqtSlot(str)
     def on_model_signal(self, data):
