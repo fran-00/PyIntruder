@@ -4,6 +4,15 @@ import world
 from player import Player
 
 
+class GameThread(QThread):
+    def __init__(self, game_model):
+        super().__init__()
+        self.game_model = game_model
+
+    def run(self):
+        self.game_model.play()
+        
+
 class Game(QObject):
     model_signal_to_controller = pyqtSignal(str)
     
