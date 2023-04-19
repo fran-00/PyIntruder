@@ -1,4 +1,4 @@
-from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot, QEventLoop
+from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
 import world
 from player import Player
