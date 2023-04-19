@@ -10,6 +10,7 @@ class Game(QObject):
     def __init__(self):
         self.action = None
         self.response = None
+        self.event_loop = None
         super().__init__()
 
     def play(self):
