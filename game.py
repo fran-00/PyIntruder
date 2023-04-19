@@ -29,7 +29,7 @@ class Game(QObject):
         - Get inbound signal with response from controller
         - Parse response to select instruction to send as signal
         """
-        loop = QEventLoop()
+        self.event_loop = QEventLoop()
         world.parse_world_dsl()
         player = Player()
  
