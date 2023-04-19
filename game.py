@@ -2,6 +2,7 @@ from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
 import world
 from player import Player
+from game_logic import GameLogic
 
 
 class GameThread(QThread):
