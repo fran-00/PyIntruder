@@ -3,6 +3,7 @@ from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot, QEventLoop
 import world
 from player import Player
 
+
 class Game(QObject):
     model_signal_to_controller = pyqtSignal(str)
     
@@ -10,7 +11,6 @@ class Game(QObject):
         self.action = None
         self.response = None
         super().__init__()
-        self.play()
 
     def play(self):
         """
