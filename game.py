@@ -53,13 +53,13 @@ class Game(QObject):
 
     def handle_outbound_signal(self, game_response):
         ''' Takes a string an send it to controller as a signal '''
-        # Test game response
-        # game_response = "HI"
         
         print(f"MODEL: I'm sending a signal to CONTROLLER with game response: {game_response}")
+        
         # Emits the signal that contains game response
         self.model_signal_to_controller.emit(game_response)
-        
+
+
     def get_game_response(self, logic):
         game_response = logic.check_tile()
         return game_response
