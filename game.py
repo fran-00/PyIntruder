@@ -1,7 +1,6 @@
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
 import world
-from player import Player
 from game_logic import GameLogic
 
 
@@ -32,7 +31,6 @@ class Game(QObject):
         """
         self.event_loop = QEventLoop()
         world.parse_world_dsl()
-        player = Player()
         logic = GameLogic()
  
         while True:
@@ -67,3 +65,5 @@ class Game(QObject):
     
     def get_room_descriprion(self, logic):
         return(logic.check_tile())
+    
+    
