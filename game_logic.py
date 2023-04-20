@@ -23,7 +23,7 @@ class GameLogic:
                 and self.room.enemy is not None
                 and self.room.enemy.alive is True
             ):
-                return (f"> {self.room.enemy.intro_alive}")
+                return (f"{self.room.enemy.intro_alive}")
             elif self.player.verbose and self.room.enemy.alive is False:
                 return (f"\n***{self.room.name}***\n>{self.room.enemy.intro_dead}")
             elif not self.player.verbose and self.room.enemy is None:
@@ -39,38 +39,38 @@ class GameLogic:
             return(self.player.diagnose())
         
         elif action in ['before']:
-                return (f"> Former room is {self.player.previous_x}, {self.player.previous_y}")
+                return (f"Former room is {self.player.previous_x}, {self.player.previous_y}")
 
         # *** FORBIDDEN DIRECTIONS ***
         elif (available_actions != ['n', 's', 'w', 'e'] and
             action in ['n', 's', 'w', 'e'] and
             self.room.enemy is not None and self.room.enemy.alive is True):
-            return ("> You cannot leave while an enemy attacks you!")
+            return ("You cannot leave while an enemy attacks you!")
 
         elif available_actions != 'n' and action in ['n']:
             if self.room.enemy is None or self.room.enemy.alive is False:
-                return ("> You can't go north from here.")
+                return ("You can't go north from here.")
 
         elif available_actions != 's' and action in ['s']:
             if self.room.enemy is None or self.room.enemy.alive is False:
-                return ("> You can't go south from here.")
+                return ("You can't go south from here.")
 
         elif available_actions != 'w' and action in ['w']:
             if self.room.enemy is None or self.room.enemy.alive is False:
-                return ("> You can't go west from here.")
+                return ("You can't go west from here.")
 
         elif available_actions != 'e' and action in ['e']:
             if self.room.enemy is None or self.room.enemy.alive is False:
-                return ("> You can't go east from here.")
+                return ("You can't go east from here.")
 
         elif available_actions != 'h' and action in ['h']:
-            return ("> Your health is already full.")
+            return ("Your health is already full.")
 
         elif available_actions != 'a' and action in ['a']:
-            return ("> There is no one to attack here.")
+            return ("There is no one to attack here.")
 
         elif available_actions != 'c' and action in ['c']:
-            return ("> There is no one to curse here.")
+            return ("There is no one to curse here.")
 
         else:
             return("I beg you pardon?")
