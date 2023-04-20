@@ -32,7 +32,8 @@ class GameLogic:
             
     def choose_action(self, action=str):
         available_actions = self.get_available_actions(self.room, self.player)
-        action = available_actions.get(action)
+        # FIXME:
+        # action = available_actions.get(action)
 
         if action in ["diagnose"]:
             return(self.player.diagnose())
