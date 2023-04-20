@@ -65,3 +65,5 @@ class Game(QObject):
         return game_response
     
     
+    def get_room_descriprion(self, logic):
+        return(logic.check_tile())
