@@ -31,6 +31,7 @@ class GameController(QObject):
         # then handle_game_response will show them and wait for new user input 
         self.controller_signal_to_view.connect(game_view.handle_game_response)
 
+        # Starts Game thread
         self.thread = GameThread(game_model)
         self.thread.start()
 
