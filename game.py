@@ -13,7 +13,7 @@ class GameThread(QThread):
         self.game_model.play()
         
 
-class Game(QObject):
+class GameModel(QObject):
     model_signal_to_controller = pyqtSignal(str)
     
     def __init__(self):
