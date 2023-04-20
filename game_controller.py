@@ -27,9 +27,8 @@ class GameController(QObject):
         # then handle_inbound_signal method will send them to gameloop
         self.controller_signal_to_model.connect(game_model.handle_inbound_signal)
         
-        # FIXME: this doesn't work
         # Connect CONTROLLER signals to VIEW slots to send game response
-        # then ??? will show them and wait for new user input 
+        # then handle_game_response will show them and wait for new user input 
         self.controller_signal_to_view.connect(game_view.handle_game_response)
 
         self.thread = GameThread(game_model)
