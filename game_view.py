@@ -54,11 +54,6 @@ class GameView(QWidget):
     @pyqtSlot(str)
     def handle_game_response(self, response):
 
-        print(f"VIEW: I'm receiving a signal from CONTROLLER with game responses: {response}")
-
         # Append game output to log view window
         self.log_view.append(f"Output: {response}")
-    
-        # FIXME: the slot shouldn't emit any signal, it should just show the response
-        # Emits the signal that contains game response
-        # self.view_signal_to_controller.emit(response)
+
