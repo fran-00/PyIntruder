@@ -52,3 +52,27 @@ class GameLogic:
         if player.hp < player.max_hp:
             self.action_adder(actions, 'h', player.heal, "heal")
         return actions
+
+
+    def available_directions(self, room, actions, player):
+        if world.tile_at(room.x, room.y - 1) and room.name not in ['Tavern']:
+            self.action_adder(actions, 'n', player.move_north, "north")
+        if world.tile_at(room.x, room.y - 1) and room.name in ['Tavern']:
+            if player.tavern_room_paid is False:
+                self.action_adder(actions, 'n', player.tavern_room_closed, "north")
+            else:
+                self.action_adder(actions, 'n', player.move_north, "north")
+        if world.tile_at(room.x, room.y + 1):
+            self.action_adder(actions, 's', player.move_south, "south")
+        if world.tile_at(room.x + 1, room.y):
+            self.action_adder(actions, 'e', player.move_east, "east")
+        if world.tile_at(room.x - 1, room.y):
+            self.action_adder(actions, 'w', player.move_west, "west")
+        if world.tile_at(room.x - 1, room.y - 1):
+            self.action_adder(actions, 'nw', player.move_northwest, "northwest")
+        if world.tile_at(room.x + 1, room.y - 1):
+            self.action_adder(actions, 'ne', player.move_northeast, "northeast")
+        if world.tile_at(room.x - 1, room.y + 1):
+            self.action_adder(actions, 'sw', player.move_southwest, "southwest")
+        if world.tile_at(room.x + 1, room.y + 1):
+            self.action_adder(actions, 'se', player.move_southeast, "southeast")
