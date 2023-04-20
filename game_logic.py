@@ -38,8 +38,8 @@ class GameLogic:
             return(self.player.diagnose())
         
         # *** FORBIDDEN DIRECTIONS ***
-        elif (available_actions != ['n', 's', 'w', 'e', 'nw', 'ne', 'sw', 'se'] and
-            action in ['n', 's', 'w', 'e', 'nw', 'ne', 'sw', 'se'] and
+        elif (available_actions != ['n', 's', 'w', 'e'] and
+            action in ['n', 's', 'w', 'e'] and
             self.room.enemy is not None and self.room.enemy.alive is True):
             return ("> You cannot leave while an enemy attacks you!")
 
@@ -58,22 +58,6 @@ class GameLogic:
         elif available_actions != 'e' and action in ['e']:
             if self.room.enemy is None or self.room.enemy.alive is False:
                 return ("> You can't go east from here.")
-
-        elif available_actions != 'nw' and action in ['nw']:
-            if self.room.enemy is None or self.room.enemy.alive is False:
-                return ("> You can't go northwest from here.")
-
-        elif available_actions != 'ne' and action in ['ne']:
-            if self.room.enemy is None or self.room.enemy.alive is False:
-                return ("> You can't go northeast from here.")
-
-        elif available_actions != 'sw' and action in ['sw']:
-            if self.room.enemy is None or self.room.enemy.alive is False:
-                return ("> You can't go southwest from here.")
-
-        elif available_actions != 'se' and action in ['se']:
-            if self.room.enemy is None or self.room.enemy.alive is False:
-                return ("> You can't go southeast from here.")
 
         elif available_actions != 'h' and action in ['h']:
             return ("> Your health is already full.")
