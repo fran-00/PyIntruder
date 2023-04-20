@@ -61,5 +61,7 @@ class Game(QObject):
 
 
     def get_game_response(self, logic):
-        game_response = logic.check_tile()
+        game_response = logic.choose_action(self.action)
         return game_response
+    
+    
