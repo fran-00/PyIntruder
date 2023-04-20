@@ -215,7 +215,7 @@ class Player:
 
 # CALL *** DIAGNOSE ***
     def diagnose(self):
-        print(
+        return (
             f"> You have {self.hp}/{self.max_hp} HP and {self.mana}/{self.max_mana} Mana remaining. This is turn number {self.turn}."
         )
 
