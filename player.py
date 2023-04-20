@@ -55,7 +55,7 @@ class Player:
 
 # Call TAVERN ROOM CLOSED**
     def tavern_room_closed(self):
-        print("> The room door is closed.")
+        print("The room door is closed.")
         return
 
 # CALL *** ALIVE ***
@@ -67,9 +67,9 @@ class Player:
         armors = [item for item in self.inventory
                        if isinstance(item, items.Armor)]
         if not armors:
-            print("> You've got no armor.")
+            print("You've got no armor.")
             return
-        print("> Choose an armor to wear:")
+        print("Choose an armor to wear:")
         for i, item in enumerate(armors, 1):
             print(f"{i}. {item}")
 
@@ -79,10 +79,10 @@ class Player:
             try:
                 armor_chosen = armors[int(choice) - 1]
                 self.base_defence = armor_chosen.defence
-                print(f"> Your defence is now {self.base_defence}.")
+                print(f"Your defence is now {self.base_defence}.")
                 valid = True
             except (ValueError, IndexError):
-                print("> Invalid choice, try again.")
+                print("Invalid choice, try again.")
                 return
 
 # CALL *** ATTACK (WITH A WEAPON) ***
@@ -94,38 +94,38 @@ class Player:
             hp_xp = room.enemy.hp
             if best_weapon is not None:
                 if room.enemy is not None and room.enemy.alive is True:
-                    print(f"> You try to hit {enemy.name} with {best_weapon.name}!")
+                    print(f"You try to hit {enemy.name} with {best_weapon.name}!")
                     precision = random.randint(1,20)
                     if precision == 20:
                         enemy.hp -= best_weapon.damage * 2
-                        print(f"> Critical hit! You deal {best_weapon.damage * 2} DMG!")
+                        print(f"Critical hit! You deal {best_weapon.damage * 2} DMG!")
                     elif precision in [17, 18, 19]:
                         enemy.hp -= best_weapon.damage * 1.5              # FIXME che palle, togli la cazzo di virgola che è BRUTTA
-                        print(f"> Good hit! You deal {best_weapon.damage * 1.5} DMG!")
+                        print(f"Good hit! You deal {best_weapon.damage * 1.5} DMG!")
                     elif precision <= 3:
-                        print("> Missed!")
+                        print("Missed!")
                     else:
                         enemy.hp -= best_weapon.damage
-                        print(f"> You deal {best_weapon.damage} DMG!")
+                        print(f"You deal {best_weapon.damage} DMG!")
 
                     if enemy.hp <= 0:
                         xp_earned = (hp_xp // 2)
                         self.xp += xp_earned
-                        print("> YEAH! You killed that fucking bastard! You earned {} XP!"
+                        print("YEAH! You killed that fucking bastard! You earned {} XP!"
                               .format(xp_earned))
                         loot = random.randint(10,200)
                         self.level_up()
                         self.gold = self.gold + loot
-                        print(f"> The asshole lost his booty. Now {loot} Pine Cones are yours!")
+                        print(f"The asshole lost his booty. Now {loot} Pine Cones are yours!")
                         room.enemy.alive = False
                         return
                     elif enemy.hp >= 0:
-                        print("> {} has {} HP remaining.".format(enemy.name, enemy.hp))
+                        print("{} has {} HP remaining.".format(enemy.name, enemy.hp))
                         return
                 else:
                     return
             else:
-                print("> You don't have any weapon with you.")
+                print("You don't have any weapon with you.")
                 return
 
 # CALL *** BEST WEAPON ***
@@ -155,13 +155,13 @@ class Player:
             if curses:
                 sorted_curses = sorted(curses, key=lambda item: item.damage, reverse=True)
                 if room.enemy is not None and room.enemy.alive is True:
-                    print(f"> Ok, what curse do you want to cast? You have {self.mana} Mana.")
+                    print(f"Ok, what curse do you want to cast? You have {self.mana} Mana.")
                     for i, item in enumerate(sorted_curses, 1):
-                        print("> {}. {} DMG - {} - {} Mana"
+                        print("{}. {} DMG - {} - {} Mana"
                             .format(i, item.damage, item.name, item.mana_cost))
                     user_input = input(">>>> ").lower()
                     if user_input == 'q':
-                        print("> Don't waste time!\n")
+                        print("Don't waste time!\n")
                         break
                     try:
                         n = int(i)
@@ -170,10 +170,10 @@ class Player:
                             if choice <= n and choice != 0 and i > 0:
                                 chosen_curse = sorted_curses[choice - 1]
                             else:
-                                print("> Number out of range.\n")
+                                print("Number out of range.\n")
                                 return
                         except IndexError:
-                            print("> Number out of range.\n")
+                            print("Number out of range.\n")
                             return
                     except ValueError:
                         print("ValueError")
@@ -184,39 +184,39 @@ class Player:
                         if dice in [18, 19, 20]:
                             enemy.hp -= (chosen_curse.damage*2)
                             self.mana -= chosen_curse.mana_cost
-                            print("> Critical hit!")
-                            print(f"> You cast {chosen_curse.name} on this {enemy.name}, it does {chosen_curse.damage} DMG! You now have {self.mana} Mana remaining.")
+                            print("Critical hit!")
+                            print(f"You cast {chosen_curse.name} on this {enemy.name}, it does {chosen_curse.damage} DMG! You now have {self.mana} Mana remaining.")
                         else:
                             enemy.hp -= chosen_curse.damage
                             self.mana -= chosen_curse.mana_cost
-                            print(f"> You cast {chosen_curse.name} on this {enemy.name}, it does {chosen_curse.damage} DMG! You now have {self.mana} Mana remaining.")
+                            print(f"You cast {chosen_curse.name} on this {enemy.name}, it does {chosen_curse.damage} DMG! You now have {self.mana} Mana remaining.")
                     else:
-                        print("> You try to cast the curse but you don't have enough Mana! You fail!")
+                        print("You try to cast the curse but you don't have enough Mana! You fail!")
                         return
 
                     if enemy.hp <= 0:
                         xp_earned = (hp_xp // 2)
                         self.xp += xp_earned
-                        print("> YEAH! Your curse killed that fucking bastard!")
+                        print("YEAH! Your curse killed that fucking bastard!")
                         loot = random.randint(10, 200)
                         self.level_up()
                         self.gold = self.gold + loot
-                        print(f"> The asshole lost his booty. Now {loot} Pine Cones are yours!")
+                        print(f"The asshole lost his booty. Now {loot} Pine Cones are yours!")
                         room.enemy.alive = False
                         return
                     elif enemy.hp >= 0:
-                        print("> {} has {} HP remaining.".format(enemy.name, enemy.hp))
+                        print("{} has {} HP remaining.".format(enemy.name, enemy.hp))
                         return
                 else:
                     return
             else:
-                print("> You don't have any curse with you.")
+                print("You don't have any curse with you.")
                 return
 
 # CALL *** DIAGNOSE ***
     def diagnose(self):
         return (
-            f"> You have {self.hp}/{self.max_hp} HP and {self.mana}/{self.max_mana} Mana remaining. This is turn number {self.turn}."
+            f"You have {self.hp}/{self.max_hp} HP and {self.mana}/{self.max_mana} Mana remaining. This is turn number {self.turn}."
         )
 
 # CALL *** DROP ALL / PICK UP ALL ***
@@ -226,9 +226,9 @@ class Player:
             receiver.inventory.extend(giver.inventory)
             giver.inventory = []
             if receiver is self:
-                print(f"> {item.name}: taken.")
+                print(f"{item.name}: taken.")
             if receiver is room:
-                print(f"> {item.name}: dropped.")
+                print(f"{item.name}: dropped.")
 
 # CALL *** DROP/PICK UP/GIVE LIST***
     def dpg(self, receiver, giver):
@@ -238,15 +238,15 @@ class Player:
             print(f" | {i}. {item}")
         while True:
             if giver is self and receiver is room:
-                print("> What do you want to drop? Choose an item or type 'Q' to quit.")
+                print("What do you want to drop? Choose an item or type 'Q' to quit.")
             elif giver is room and receiver is self:
-                print("> What do you want to pick up? Choose an item or type 'Q' to quit.")
+                print("What do you want to pick up? Choose an item or type 'Q' to quit.")
             else:
-                print(f"> What do you want to give to {room.talker}? Choose an item or type 'Q' to quit.")
+                print(f"What do you want to give to {room.talker}? Choose an item or type 'Q' to quit.")
             user_input = input(">>>> ")
 
             if user_input in ['q', ' ', 'exit', 'no']:
-                print("> Ok.")
+                print("Ok.")
                 break
             else:
                 try:
@@ -256,33 +256,33 @@ class Player:
                         chosen_item = sorted_inventory[choice - 1]
                         self.item_donation(giver, receiver, chosen_item)
                         if giver is self and receiver is room:
-                            print(f"> {chosen_item.name}: dropped")
+                            print(f"{chosen_item.name}: dropped")
                             return
                         elif giver is room and receiver is self:
-                            print(f"> {chosen_item.name}: taken")
+                            print(f"{chosen_item.name}: taken")
                             return
                         elif giver is self and receiver is room.talker:     #TODO if room.talker.accept_object is True, else << I don't want it. >>
-                            print(f"> {chosen_item.name}: given.")
-                            print(f"> {room.talker} says to you: << Thank you. >>")
+                            print(f"{chosen_item.name}: given.")
+                            print(f"{room.talker} says to you: << Thank you. >>")
                             return
                         break
                     else:
-                        print("> Number out of range, try again or type 'Q' to quit")
+                        print("Number out of range, try again or type 'Q' to quit")
                         return
                 except ValueError:
-                    print("> Invalid choice, try again or type 'Q' to quit.")
+                    print("Invalid choice, try again or type 'Q' to quit.")
                     continue
 
     def item_donation(self, giver, receiver, item):
         giver.inventory.remove(item)
         receiver.inventory.append(item)
-#        print("> You dropped your {}.".format(item.name))
+#        print("You dropped your {}.".format(item.name))
 
 # CALL *** EXAMINE ITEM *** ok proviamo a confrontare i NOMI degli oggetti invece che la classe
     def examine_item(self):
         room = world.tile_at(self.x, self.y)
         chosen_item = []
-        print("> What do you want to examine?")
+        print("What do you want to examine?")
         key = input(">>>> ").lower()
         if key in items_data.stuff:
             thing_to_examine = items_data.stuff[key]
@@ -294,27 +294,27 @@ class Player:
             if (set(stuff_to_examine) & set(stuff_you_own) or
                 set(stuff_to_examine) & set(stuff_in_room) or
                 set(stuff_to_examine) & set(environmental_in_room)):
-                print("> {}".format(thing_to_examine.description))
+                print("{}".format(thing_to_examine.description))
                 if thing_to_examine.name in "Thermo bottle":
                     if self.bottle_full:
-                        print("> It's full of fresh water, it heals you for {} HP."
+                        print("It's full of fresh water, it heals you for {} HP."
                               .format(thing_to_examine.heal))
                     else:
-                        print("> It's empty.")
+                        print("It's empty.")
                 elif thing_to_examine.damage:
-                    print("> It deals {} DMG.".format(thing_to_examine.damage))
+                    print("It deals {} DMG.".format(thing_to_examine.damage))
                 elif thing_to_examine.heal:
-                    print("> It heals you for {} HP.".format(thing_to_examine.heal))
+                    print("It heals you for {} HP.".format(thing_to_examine.heal))
                 elif thing_to_examine.defence:
-                    print("> It protects you with {} DEF.".format(thing_to_examine.defence))
+                    print("It protects you with {} DEF.".format(thing_to_examine.defence))
                 else:
                     pass
             else:
-                print("> You can't see any {} here.".format(key))
+                print("You can't see any {} here.".format(key))
         elif key == 'all':
             pass            #TODO
         else:
-            print("> {} is something I don't recognize".format(key))
+            print("{} is something I don't recognize".format(key))
 
 # CALL *** HEAL ***
     def heal(self):
@@ -324,39 +324,39 @@ class Player:
                        if isinstance(item, items.Bottle)]
 
         if not consumables and not bottle_list:
-            print("> You've got nothing to heal yourself!")
+            print("You've got nothing to heal yourself!")
             return
         elif consumables:
             sorted_consumables = sorted(consumables, key=lambda item: item.heal)
-            print(f"> Your health is {self.hp}/{self.max_hp}. Choose what you want to cure yourself with or type (Q) to exit:")
+            print(f"Your health is {self.hp}/{self.max_hp}. Choose what you want to cure yourself with or type (Q) to exit:")
             for i, item in enumerate(sorted_consumables, 1):
                 print(f"{i}. {item}")
 
         if bottle_list and self.bottle_full:
-            print("> Your bottle is full. If you want to drink the water it contains, type (Drink).")
+            print("Your bottle is full. If you want to drink the water it contains, type (Drink).")
         elif bottle_list:
-            print("> You have your bottle, but is empty.")
+            print("You have your bottle, but is empty.")
 
         valid = False
         while not valid:
             choice = input(">>>> ").lower()
             if choice == 'q':
-                print("> You close your backpack.")
+                print("You close your backpack.")
                 break
             elif choice == 'drink' and not bottle_list:
-                print("> You don't have any bottle with you.")
+                print("You don't have any bottle with you.")
                 break
             elif choice == 'drink' and self.bottle_full:
-                print(f"> You drink the water from the bottle. The water restores your HP by {items.Bottle().heal}.")
+                print(f"You drink the water from the bottle. The water restores your HP by {items.Bottle().heal}.")
                 if self.max_hp >= self.hp + items.Bottle().heal:
                     self.hp += items.Bottle().heal
                 else:
                     self.hp = self.max_hp
                 self.bottle_full = False
-                print("> Your bottle is now empty.")
+                print("Your bottle is now empty.")
                 break
             elif choice == 'drink':
-                print("> Your bottle is empty.")
+                print("Your bottle is empty.")
                 break
             try:
                 to_eat = sorted_consumables[int(choice) - 1]
@@ -365,10 +365,10 @@ class Player:
                 else:
                     self.hp = self.max_hp
                 self.inventory.remove(to_eat)
-                print(f"> You have {self.hp} HP remaining.")
+                print(f"You have {self.hp} HP remaining.")
                 valid = True
             except (ValueError, IndexError):
-                print("> Invalid choice, try again.")
+                print("Invalid choice, try again.")
                 continue
 
 # CALL *** INVENTORY ***  TODO gli oggetti uguali devono essere raggruppati così: oggetto (2)
@@ -386,7 +386,7 @@ class Player:
                        if isinstance(item, items.Armor)]
         specials = [item for item in self.inventory
                        if isinstance(item, items.MissionItem)]
-        print("> You open your backpack:")
+        print("You open your backpack:")
 
         # Sorts the items alphabetically, adds them sorted and numbered in right_order_list list and shows them divided by category
         right_order_list = []
@@ -395,49 +395,49 @@ class Player:
             sorted_weapons = sorted(weapons, key=lambda item: item.name.lower())
             print(">> WEAPONS:")
             for i, item in enumerate(sorted_weapons, index):
-                print(f"> {index}. {item}")
+                print(f"{index}. {item}")
                 index += 1
                 right_order_list.append(item)
         if curses:
             sorted_curses = sorted(curses, key=lambda item: item.name.lower())
             print(">> CURSES:")
             for i, item in enumerate(sorted_curses, index):
-                print(f"> {index}. {item}")
+                print(f"{index}. {item}")
                 index += 1
                 right_order_list.append(item)
         if consumables:
             sorted_consumables = sorted(consumables, key=lambda item: item.name.lower())
             print(">> CONSUMABLES:")
             for i, item in enumerate(sorted_consumables, index):
-                print(f"> {index}. {item}")
+                print(f"{index}. {item}")
                 index += 1
                 right_order_list.append(item)
         if mrs:
             sorted_mrs = sorted(mrs, key=lambda item: item.name.lower())
             print(">> MANA RECHARGERS:")
             for i, item in enumerate(sorted_mrs, index):
-                print(f"> {index}. {item}")
+                print(f"{index}. {item}")
                 index += 1
                 right_order_list.append(item)
         if armors:
             sorted_armors = sorted(armors, key=lambda item: item.name.lower())
             print(">> ARMORS:")
             for i, item in enumerate(sorted_armors, index):
-                print(f"> {index}. {item}")
+                print(f"{index}. {item}")
                 index += 1
                 right_order_list.append(item)
         if specials:
             sorted_missions = sorted(specials, key=lambda item: item.name.lower())
             print(">> SPECIAL ITEMS:")
             for i, item in enumerate(sorted_missions, index):
-                print(f"> {index}. {item}")
+                print(f"{index}. {item}")
                 index += 1
                 right_order_list.append(item)
-        print(f"> Your wealth: {self.gold} §")
+        print(f"Your wealth: {self.gold} §")
 
         # Allows to view the description of the items
         while True:
-            print("> Choose a number to read an item's description or press Q to quit.")
+            print("Choose a number to read an item's description or press Q to quit.")
             user_input = input(">>>> ")
             if user_input in ['q', ' ', 'exit', 'no']:
                 break
@@ -448,16 +448,16 @@ class Player:
                     try:
                         if choice <= n and choice != 0 and index > 0:
                             to_read = right_order_list[choice - 1]
-                            print(f"> {to_read.name}: {to_read.description}")
+                            print(f"{to_read.name}: {to_read.description}")
                             continue
                         else:
-                            print("> Number out of range, try again or type 'Q' to quit.")
+                            print("Number out of range, try again or type 'Q' to quit.")
                             continue
                     except IndexError:
-                        print("> Number out of range, try again or type 'Q' to quit.")
+                        print("Number out of range, try again or type 'Q' to quit.")
                         continue
                 except ValueError:
-                    print("> Invalid choice, try again or type 'Q' to quit.")
+                    print("Invalid choice, try again or type 'Q' to quit.")
                     continue
 
 # CALL *** LEVEL UP ***
@@ -469,7 +469,7 @@ class Player:
             self.hp = self.max_hp
             self.max_mana += 100
             self.mana = self.max_mana
-            print(f"> You leveled up! You are now at {self.lvl} LVL.")
+            print(f"You leveled up! You are now at {self.lvl} LVL.")
 
 # CALL *** MAP ***   
     # TODO sarebbe ottimo poter vedere solo le stanze in cui sei stato. ho implementato un bool dentro ogni stanza ma non ho ancora capito come usarlo
@@ -605,13 +605,13 @@ class Player:
         room = world.tile_at(self.x, self.y)
         if room.env_obj.can_be_open:
             if room.env_obj.inventory:
-                print(f"> You open the {room.env_obj}.")
+                print(f"You open the {room.env_obj}.")
                 for i, item in enumerate(room.env_obj.inventory, 1):
                     print(f"{i}. {item}")
-                user_input = input("> Choose what you want to get or type (Q) to exit.\n>>>> ").lower()
+                user_input = input("Choose what you want to get or type (Q) to exit.\n>>>> ").lower()
                 while True:
                     if user_input == 'q':
-                        print(f"> You close the {room.env_obj}.")
+                        print(f"You close the {room.env_obj}.")
                         return
                     else:
                         try:
@@ -621,16 +621,16 @@ class Player:
                                 chosen_item = room.env_obj.inventory[choice - 1]
                                 room.env_obj.inventory.remove(chosen_item)
                                 self.inventory.append(chosen_item)
-                                print(f"> {chosen_item.name}: taken")
+                                print(f"{chosen_item.name}: taken")
                                 break
                             else:
-                                print("> Number out of range, try again or type 'Q' to quit")
+                                print("Number out of range, try again or type 'Q' to quit")
                                 continue
                         except ValueError:
-                            print("> Invalid choice, try again or type 'Q' to quit.")
+                            print("Invalid choice, try again or type 'Q' to quit.")
                             continue
             else:
-                print("> There is nothing interesting in here")
+                print("There is nothing interesting in here")
                 return
         else:
             room.open_quest(self)
@@ -642,13 +642,13 @@ class Player:
         mrs = [item for item in self.inventory
                        if isinstance(item, items.ManaRechargers)]
         if not mrs:
-            print("> You've got nothing to recharge your Mana!")
+            print("You've got nothing to recharge your Mana!")
             return
 
         # If the list is not empty, it puts them in order of recharge power
         elif mrs:
             sorted_mrs = sorted(mrs, key=lambda item: item.mr, reverse=True)
-            print(f"> Your mana is {self.mana}/{self.max_mana}. Choose or type (Q) to exit:")
+            print(f"Your mana is {self.mana}/{self.max_mana}. Choose or type (Q) to exit:")
             for i, item in enumerate(sorted_mrs, 1):
                 print(f"{i}. {item}")
 
@@ -657,7 +657,7 @@ class Player:
         while not valid:
             choice = input(">>>> ".lower())
             if choice == 'q':
-                print("> You close your backpack.")
+                print("You close your backpack.")
                 break
             try:
                 to_consume = sorted_mrs[int(choice) - 1]
@@ -666,10 +666,10 @@ class Player:
                 else:
                     self.mana = self.max_mana
                 self.inventory.remove(to_consume)
-                print(f"> You now have {self.mana} Mana.")
+                print(f"You now have {self.mana} Mana.")
                 valid = True
             except (ValueError, IndexError):
-                print("> Invalid choice, try again.")
+                print("Invalid choice, try again.")
                 continue
 
 # CALL *** ROOM VISITED ***
@@ -684,13 +684,13 @@ class Player:
         d20 = random.randint(1,20)
         if d20 == 20:
             room.enemy.alive = False
-            print("> No need to do this. You enemy is dead.")
+            print("No need to do this. You enemy is dead.")
         if d20 > 15 and d20 < 20:
-            print("> You flee.")
+            print("You flee.")
             self.x = self.previous_x
             self.y = self.previous_y
         else:
-            print("> You can't escape!")
+            print("You can't escape!")
             return
 
 # CALL *** SAVE & RESTORE ***
@@ -711,7 +711,7 @@ class Player:
         # Checks if the save files already exist and if so, delete them.
         if os.path.isfile('./saved_data.pkl'):
             os.remove("saved_data.pkl")
-            print("> Deleting old saved data...")
+            print("Deleting old saved data...")
 
         player_data = {
             'name': self.name,
@@ -791,7 +791,7 @@ class Player:
                 world_env_objs = pickle.load(read)
                 chest_rooms = pickle.load(read)
         else:
-            print("> There is no file to restore from!")
+            print("There is no file to restore from!")
             return
 
         # PLAYER
@@ -867,7 +867,7 @@ class Player:
         for i, room in enumerate(cur_chest_rooms, 0):
             room.closed = chest_rooms[i].closed
 
-        print("> Your progress has been restored.")
+        print("Your progress has been restored.")
 
 # CALL *** TALK ***
     def check_dialogue(self):
@@ -904,42 +904,42 @@ class Player:
             sorted_weapons = sorted(weapons, key=lambda item: item.damage, reverse=True)
             for i, item in enumerate(sorted_weapons, index):
                 if buyer == room.talker:
-                    print(f"> {i}. {item.damage} DMG - {item.name} - {item.if_sold} §")
+                    print(f"{i}. {item.damage} DMG - {item.name} - {item.if_sold} §")
                 else:
-                    print(f"> {i}. {item.damage} DMG - {item.name} - {item.value} §")
+                    print(f"{i}. {item.damage} DMG - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
         if curses and room.talker.name in ['Little(o)', 'Merchant']:
             sorted_curses = sorted(curses, key=lambda item: item.damage, reverse=True)
             for i, item in enumerate(sorted_curses, index):
                 if buyer == room.talker:
-                    print(f"> {i}. {item.damage} DMG - {item.name} - {item.if_sold} §")
+                    print(f"{i}. {item.damage} DMG - {item.name} - {item.if_sold} §")
                 else:
-                    print(f"> {i}. {item.damage} DMG - {item.name} - {item.value} §")
+                    print(f"{i}. {item.damage} DMG - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
         if consumables and room.talker.name in ['Innkeeper', 'Merchant']:
             sorted_consumables = sorted(consumables, key=lambda item: item.heal, reverse=True)
             for i, item in enumerate(sorted_consumables, index):
                 if buyer == room.talker:
-                    print(f"> {i}. +{item.heal} HP - {item.name} - {item.if_sold} §")
+                    print(f"{i}. +{item.heal} HP - {item.name} - {item.if_sold} §")
                 else:
-                    print(f"> {i}. +{item.heal} HP - {item.name} - {item.value} §")
+                    print(f"{i}. +{item.heal} HP - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
         if mrs and room.talker.name in ['Monk', 'Merchant']:
             sorted_mrs = sorted(mrs, key=lambda item: item.mr, reverse=True)
             for i, item in enumerate(sorted_mrs, index):
-                print(f"> {i}. +{item.mr} Mana - {item.name} - {item.value} §")
+                print(f"{i}. +{item.mr} Mana - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
         if armors and room.talker.name in ['Blacksmith', 'Merchant']:
             sorted_armors = sorted(armors, key=lambda item: item.defence, reverse=True)
             for i, item in enumerate(sorted_armors, index):
                 if buyer == room.talker:
-                    print(f"> {i}. +{item.defence} DEF - {item.name} - {item.if_sold} §")
+                    print(f"{i}. +{item.defence} DEF - {item.name} - {item.if_sold} §")
                 else:
-                    print(f"> {i}. +{item.defence} DEF - {item.name} - {item.value} §")
+                    print(f"{i}. +{item.defence} DEF - {item.name} - {item.value} §")
                 index += 1
                 right_order_list.append(item)
 
@@ -950,7 +950,7 @@ class Player:
             print("<< You have nothing that interests me. >>")
             return
         while True:
-            print(f"> You have {self.gold} §: choose an item or press 'Q' to quit.")
+            print(f"You have {self.gold} §: choose an item or press 'Q' to quit.")
             user_input = input(">>>> ")
             if user_input in ['Q', 'q']:
                 print("<< As you wish, precious customer. >>")
@@ -973,13 +973,13 @@ class Player:
                                 return
                             break           # è giusto perché deve uscire dal loop per poter riscrivere l'inventario dato che l'indicizzazione è cambiata essendoci un oggetto in meno
                         else:
-                            print("> Number out of range, try again or type 'Q' to quit.")
+                            print("Number out of range, try again or type 'Q' to quit.")
                             continue
                     except IndexError:
                         print("<< Out of stock, please come back later. >>")
                         break
                 except ValueError:
-                    print("> Invalid choice, try again or type 'Q' to quit.")
+                    print("Invalid choice, try again or type 'Q' to quit.")
                     continue
 
     def swap(self, seller, buyer, item):
