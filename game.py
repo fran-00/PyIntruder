@@ -49,7 +49,7 @@ class Game(QObject):
         print(f"MODEL: I got a signal from CONTROLLER with user action: {user_action}")
         
         self.event_loop.exit()
-        return user_action
+
 
     def handle_outbound_signal(self, game_response):
         ''' Takes a string an send it to controller as a signal '''
