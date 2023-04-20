@@ -46,7 +46,7 @@ class GameView(QWidget):
         self.view_signal_to_controller.emit(action)
 
         # Append user input to log view window
-        self.log_view.append(f"Input: {action}")
+        self.log_view.append(f">>> {action}")
 
         # Resets the input box
         self.input_box.clear()
@@ -57,5 +57,5 @@ class GameView(QWidget):
     def handle_game_response(self, response):
         """ Slot that receives a string from controller as a signal """
         # Append game output to log view window
-        self.log_view.append(f"Output: {response}")
+        self.log_view.append(f"> {response}")
 
