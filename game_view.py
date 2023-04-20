@@ -36,6 +36,7 @@ class GameView(QWidget):
         # Modify Style Sheet
         self.setStyleSheet("color: white; background-color: black;")
 
+
     def handle_user_action(self):
         # Gets user input
         action = self.input_box.text().strip()
@@ -51,9 +52,10 @@ class GameView(QWidget):
         self.input_box.clear()
         self.input_box.setFocus()
     
+    
     @pyqtSlot(str)
     def handle_game_response(self, response):
-
+        """ Slot that receives a string from controller as a signal """
         # Append game output to log view window
         self.log_view.append(f"Output: {response}")
 
