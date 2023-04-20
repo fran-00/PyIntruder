@@ -76,3 +76,11 @@ class GameLogic:
             self.action_adder(actions, 'sw', player.move_southwest, "southwest")
         if world.tile_at(room.x + 1, room.y + 1):
             self.action_adder(actions, 'se', player.move_southeast, "southeast")
+
+
+    def action_adder(self, action_dict, hotkey, action, name):
+        action_dict[hotkey.lower()] = action
+        action_dict[hotkey.upper()] = action
+        print(f"| {hotkey}: {name}")
+
+
