@@ -55,11 +55,13 @@ class GameModel(QObject):
 
 
     def get_game_response(self, logic):
+        """ Takes a function and returns it as game_response """
         game_response = logic.choose_action(self.action)
         return game_response
     
     
     def get_room_descriprion(self, logic):
+        """ Takes a function and returns its response """
         return(logic.check_tile())
     
     
