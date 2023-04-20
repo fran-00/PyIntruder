@@ -26,4 +26,9 @@ class GameLogic:
                 return (f"\n***{self.room.name}***\n>{self.room.enemy.intro_dead}")
             elif not self.player.verbose and self.room.enemy is None:
                 return (f"\n***{self.room.name}***")
+    
             
+    def choose_action(self, action=str):
+
+        if action in ["diagnose"]:
+            return(self.player.diagnose())
