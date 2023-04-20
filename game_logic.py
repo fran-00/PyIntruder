@@ -84,6 +84,9 @@ class GameLogic:
         elif available_actions != 'c' and action in ['c']:
             return ("> There is no one to curse here.")
 
+        else:
+            return("I beg you pardon?")
+
 
     def get_available_actions(self, room, player):
         actions = OrderedDict()
