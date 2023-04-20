@@ -36,6 +36,53 @@ class GameLogic:
 
         if action in ["diagnose"]:
             return(self.player.diagnose())
+        
+        # *** FORBIDDEN DIRECTIONS ***
+        elif (available_actions != ['n', 's', 'w', 'e', 'nw', 'ne', 'sw', 'se'] and
+            action in ['n', 's', 'w', 'e', 'nw', 'ne', 'sw', 'se'] and
+            self.room.enemy is not None and self.room.enemy.alive is True):
+            return ("> You cannot leave while an enemy attacks you!")
+
+        elif available_actions != 'n' and action in ['n']:
+            if self.room.enemy is None or self.room.enemy.alive is False:
+                return ("> You can't go north from here.")
+
+        elif available_actions != 's' and action in ['s']:
+            if self.room.enemy is None or self.room.enemy.alive is False:
+                return ("> You can't go south from here.")
+
+        elif available_actions != 'w' and action in ['w']:
+            if self.room.enemy is None or self.room.enemy.alive is False:
+                return ("> You can't go west from here.")
+
+        elif available_actions != 'e' and action in ['e']:
+            if self.room.enemy is None or self.room.enemy.alive is False:
+                return ("> You can't go east from here.")
+
+        elif available_actions != 'nw' and action in ['nw']:
+            if self.room.enemy is None or self.room.enemy.alive is False:
+                return ("> You can't go northwest from here.")
+
+        elif available_actions != 'ne' and action in ['ne']:
+            if self.room.enemy is None or self.room.enemy.alive is False:
+                return ("> You can't go northeast from here.")
+
+        elif available_actions != 'sw' and action in ['sw']:
+            if self.room.enemy is None or self.room.enemy.alive is False:
+                return ("> You can't go southwest from here.")
+
+        elif available_actions != 'se' and action in ['se']:
+            if self.room.enemy is None or self.room.enemy.alive is False:
+                return ("> You can't go southeast from here.")
+
+        elif available_actions != 'h' and action in ['h']:
+            return ("> Your health is already full.")
+
+        elif available_actions != 'a' and action in ['a']:
+            return ("> There is no one to attack here.")
+
+        elif available_actions != 'c' and action in ['c']:
+            return ("> There is no one to curse here.")
 
 
     def get_available_actions(self, room, player):
