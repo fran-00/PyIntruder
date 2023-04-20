@@ -34,3 +34,21 @@ class GameLogic:
 
         if action in ["diagnose"]:
             return(self.player.diagnose())
+
+
+    def get_available_actions(self, room, player):
+        actions = OrderedDict()
+
+        if room.enemy is None or room.enemy.alive is False:
+            self.available_directions(room, actions, player)
+        if room.enemy is not None and room.enemy.alive is True:
+            self.action_adder(actions, 'a', player.attack, "attack")
+        if room.enemy is not None and room.enemy.alive is True:
+            self.action_adder(actions, 'c', player.cast_curse, "cast curse")
+        if room.enemy is not None and room.enemy.alive is True:
+            self.action_adder(actions, 'r', player.run, "run")
+        if room.talker:
+            self.action_adder(actions, 't', player.check_dialogue, "talk")
+        if player.hp < player.max_hp:
+            self.action_adder(actions, 'h', player.heal, "heal")
+        return actions
