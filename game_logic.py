@@ -38,6 +38,9 @@ class GameLogic:
         if action in ["diagnose"]:
             return(self.player.diagnose())
         
+        elif action in ['before']:
+                return (f"> Former room is {self.player.previous_x}, {self.player.previous_y}")
+
         # *** FORBIDDEN DIRECTIONS ***
         elif (available_actions != ['n', 's', 'w', 'e'] and
             action in ['n', 's', 'w', 'e'] and
