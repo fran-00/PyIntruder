@@ -7,7 +7,7 @@ import random
 from environmental_objects import EnvironmentalObjects
 import world
 import items
-import items_data
+import entities.entities_index as entities_index
 
 # MODULO DEL GIOCATORE
 class Player:
@@ -284,8 +284,8 @@ class Player:
         chosen_item = []
         print("What do you want to examine?")
         key = input(">>>> ").lower()
-        if key in items_data.stuff:
-            thing_to_examine = items_data.stuff[key]
+        if key in entities_index.stuff:
+            thing_to_examine = entities_index.stuff[key]
             chosen_item.append(thing_to_examine)
             stuff_to_examine = {item.name for item in chosen_item}
             stuff_you_own = {item.name for item in self.inventory}

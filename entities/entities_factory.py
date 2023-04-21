@@ -1,14 +1,14 @@
-from entities import Entity, Item, Weapon, Enemy, Curse, Consumable, ManaRecharger, Armor, NonPlayableCharacter
+from entities_templates import Entity, Item, Weapon, Enemy, Curse, Consumable, ManaRecharger, Armor, NonPlayableCharacter
 import random, json
   
 
-with open('items_data.json') as f:
+with open('entities_data/items_data.json') as f:
     items_data = json.load(f)
 
-with open('enemies_data.json') as ef:
+with open('entities_data/enemies_data.json') as ef:
     enemies_data = json.load(ef)
 
-with open('npcs_data.json') as nf:
+with open('entities_data/npcs_data.json') as nf:
     npcs_data = json.load(nf)
 
 
