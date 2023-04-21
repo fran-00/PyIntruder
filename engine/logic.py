@@ -2,7 +2,7 @@ import os
 from collections import OrderedDict
 
 import world
-from player import Player
+from entities.player import Player
 
 
 class GameLogic:
