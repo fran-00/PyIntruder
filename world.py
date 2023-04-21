@@ -2,9 +2,9 @@ import random
 
 import enemies
 import npc
-from player import Player
+from entities.player import Player
 import items
-import items_data
+from entities import entities_index
 import environmental_objects
 
 # *** ROOM OF ROOMS ***
@@ -19,11 +19,11 @@ class MapTile:
             pass
         elif n == 3:
             self.inventory.extend(
-                random.choice(items_data.consumables_list)
+                random.choice(entities_index.consumables_list)
                 for _ in range(random.randint(1, 2))
             )
         elif n == 4:
-            self.inventory.append(random.choice(items_data.mrs_list))
+            self.inventory.append(random.choice(entities_index.mrs_list))
 
     def modify_player(self, player):
         if self.enemy is not None and self.enemy.alive is True:
@@ -341,7 +341,7 @@ class Little_oTile(MapTile):
             user_input = input("<< You are at Little(o)! (B)uy, (S)ell or (Q)uit? >>\n>>>> ")
             if user_input in ['Q', 'q']:
                 if not self.talker.inventory:
-                    self.talker.inventory =  random.sample(items_data.curses_list, 5)
+                    self.talker.inventory =  random.sample(entities_index.curses_list, 5)
                 return
             elif user_input in ['B', 'b']:
                 if self.talker.inventory:
