@@ -3,7 +3,7 @@ import sys
 from PyQt6.QtWidgets import QApplication
 
 from engine.model import GameModel
-from engine.game_view import GameView
+from engine.view import GameView
 from engine.controller import GameController
     
     
