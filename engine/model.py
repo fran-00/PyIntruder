@@ -1,7 +1,7 @@
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
 import world
-from game_logic import GameLogic
+from engine.logic import GameLogic
 
 
 class GameThread(QThread):
