@@ -2,9 +2,9 @@ import sys
 
 from PyQt6.QtWidgets import QApplication
 
-from game_model import GameModel
-from game_view import GameView
-from game_controller import GameController
+from engine.model import GameModel
+from engine.game_view import GameView
+from engine.controller import GameController
     
     
 if __name__ == '__main__':
