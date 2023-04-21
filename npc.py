@@ -1,7 +1,7 @@
 import random
 
 import items
-import items_data
+import entities.entities_index as entities_index
 
 # NPC MODULE
 class NonPlayableCharacter():
@@ -17,14 +17,14 @@ class Littleo(NonPlayableCharacter):       # only curses
         self.name = "Little(o)"
         self.description = "Cool"
         self.gold = 10000
-        self.inventory = random.sample(items_data.curses_list, 7)
+        self.inventory = random.sample(entities_index.curses_list, 7)
 
 class InnKeeper(NonPlayableCharacter):      # only consumables
     def __init__(self):
         self.name = "Innkeeper"
         self.description = "Fat and ugly."
         self.gold = 10000
-        self.inventory = random.sample(items_data.consumables_list, 5)
+        self.inventory = random.sample(entities_index.consumables_list, 5)
 
 
 class Blacksmith(NonPlayableCharacter):      # only weapons and armors
@@ -32,21 +32,21 @@ class Blacksmith(NonPlayableCharacter):      # only weapons and armors
         self.name = "Blacksmith"
         self.description = "Chad."
         self.gold = 10000
-        self.inventory = random.sample(items_data.weapons_armors, 10)
+        self.inventory = random.sample(entities_index.weapons_armors, 10)
 
 class Merchant(NonPlayableCharacter):      # only mr
     def __init__(self):
         self.name = "Merchant"
         self.description = "Chad."
         self.gold = 10000
-        self.inventory = random.sample(items_data.all_objects, 20)
+        self.inventory = random.sample(entities_index.all_objects, 20)
 
 class Monk(NonPlayableCharacter):      # only mr
     def __init__(self):
         self.name = "Monk"
         self.description = "Chad."
         self.gold = 10000
-        self.inventory = random.sample(items_data.mrs_list, 5)          # FIXME random.choices (con le ripetizioni) non funziona, dice che int non è qualcosa
+        self.inventory = random.sample(entities_index.mrs_list, 5)          # FIXME random.choices (con le ripetizioni) non funziona, dice che int non è qualcosa
 
 class Ferns(NonPlayableCharacter):
     def __init__(self):
