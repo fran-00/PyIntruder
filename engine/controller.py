@@ -5,7 +5,7 @@ class GameController(QObject):
     controller_signal_to_model = pyqtSignal(str)
     controller_signal_to_view = pyqtSignal(str)
 
-    def __init__(self, view, model):
+    def __init__(self, view, model, logic):
         '''
         CONNECTS SLOTS AND SIGNALS:
         - CONTROLLER gets game response from MODEL
@@ -18,7 +18,11 @@ class GameController(QObject):
         # Connect MODEL signals to CONTROLLER slots to get game
         # response and send it to VIEW via on_model_signal method
         model.model_signal_to_controller.connect(self.on_model_signal)
-        
+
+        # Connect LOGIC signals to CONTROLLER slots to get user
+        # input and send it to MODEL via on_logic_signal method
+        logic.logic_signal_to_controller.connect(self.on_logic_signal)
+
         # Connect VIEW signals to CONTROLLER slots to get user
         # input and send it to MODEL via on_view_signal method
         view.view_signal_to_controller.connect(self.on_view_signal)
