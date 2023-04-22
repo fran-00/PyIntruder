@@ -11,7 +11,9 @@ class GameLogic(QObject):
     def __init__(self):
         self.player = Player()
         self.room = world.tile_at(self.player.x, self.player.y)
-        
+        super().__init__()
+
+
     def check_tile(self):
         if self.player.is_alive():
 
