@@ -7,7 +7,7 @@ import world
 from entities.player import Player
 
 
-class GameLogic:
+class GameLogic(QObject):
     def __init__(self):
         self.player = Player()
         self.room = world.tile_at(self.player.x, self.player.y)
