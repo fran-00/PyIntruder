@@ -1,6 +1,8 @@
 import os
 from collections import OrderedDict
 
+from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
+
 import world
 from entities.player import Player
 
