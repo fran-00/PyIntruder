@@ -112,14 +112,6 @@ class GameLogic(QObject):
             self.action_adder(actions, 'e', player.move_east, "east")
         if world.tile_at(room.x - 1, room.y):
             self.action_adder(actions, 'w', player.move_west, "west")
-        if world.tile_at(room.x - 1, room.y - 1):
-            self.action_adder(actions, 'nw', player.move_northwest, "northwest")
-        if world.tile_at(room.x + 1, room.y - 1):
-            self.action_adder(actions, 'ne', player.move_northeast, "northeast")
-        if world.tile_at(room.x - 1, room.y + 1):
-            self.action_adder(actions, 'sw', player.move_southwest, "southwest")
-        if world.tile_at(room.x + 1, room.y + 1):
-            self.action_adder(actions, 'se', player.move_southeast, "southeast")
 
 
     def action_adder(self, action_dict, hotkey, action, name):
