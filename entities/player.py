@@ -4,9 +4,9 @@ import pickle
 import random
 
 
-from environmental_objects import EnvironmentalObjects
+from old_entities_data.environmental_objects import EnvironmentalObjects
 import world
-import items
+import old_entities_data.items as items
 import entities.entities_index as entities_index
 
 # MODULO DEL GIOCATORE

@@ -1,6 +1,6 @@
-from environmental_objects import *
-from items import *
-from npc import *
+from old_entities_data.environmental_objects import *
+from old_entities_data.items import *
+from old_entities_data.npc import *
 
 
 stuff = dict([
