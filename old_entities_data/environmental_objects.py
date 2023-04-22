@@ -1,4 +1,4 @@
-import items
+import old_entities_data.items as items
 
 class EnvironmentalObjects():
     def __init__(self):

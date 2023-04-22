@@ -1,6 +1,6 @@
 import random
 
-import items
+import old_entities_data.items as items
 import entities.entities_index as entities_index
 
 # NPC MODULE
