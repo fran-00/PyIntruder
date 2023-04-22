@@ -99,13 +99,8 @@ class GameLogic(QObject):
 
 
     def available_directions(self, room, actions, player):
-        if world.tile_at(room.x, room.y - 1) and room.name not in ['Tavern']:
+        if world.tile_at(room.x, room.y - 1):
             self.action_adder(actions, 'n', player.move_north, "north")
-        if world.tile_at(room.x, room.y - 1) and room.name in ['Tavern']:
-            if player.tavern_room_paid is False:
-                self.action_adder(actions, 'n', player.tavern_room_closed, "north")
-            else:
-                self.action_adder(actions, 'n', player.move_north, "north")
         if world.tile_at(room.x, room.y + 1):
             self.action_adder(actions, 's', player.move_south, "south")
         if world.tile_at(room.x + 1, room.y):
