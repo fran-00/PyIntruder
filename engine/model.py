@@ -62,6 +62,7 @@ class GameModel(QObject):
 
 
     def check_tile(self):
+        self.room = world.tile_at(self.player.x, self.player.y)
         if self.player.is_alive():
 
             if self.player.verbose and self.room.enemy is None:
