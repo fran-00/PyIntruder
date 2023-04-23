@@ -20,8 +20,7 @@ class GameModel(QObject):
     def __init__(self, player):
         self.player = player
         self.action = None
-        self.response = None
-        self.event_loop = None
+        self.room = world.tile_at(self.player.x, self.player.y)
         super().__init__()
 
     def play(self):
