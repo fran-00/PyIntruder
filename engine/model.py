@@ -89,6 +89,9 @@ class GameModel(QObject):
         elif action in ['now']:
             return (f"This room is {self.player.x}, {self.player.y}")
         
+        elif action in ["a"]:
+            self.player.attack()
+        
         else:
             return ("Unrecognized command. We apologise for the inconvenience")
 
