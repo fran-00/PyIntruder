@@ -66,8 +66,7 @@ class GameModel(QObject):
             if self.room.enemy is None:
                 return (f"\n***{self.room.name}***\n> {self.room.description}")
             elif self.room.enemy.alive:
-                self.room.modify_player(self.player)
-                return (f"{self.room.enemy.intro_alive}\n{self.room.modify_player(self.player)}")
+                return (f"{self.room.enemy.intro_alive}")
             elif self.player.verbose and self.room.enemy.alive is False:
                 return (f"\n***{self.room.name}***\n>{self.room.enemy.intro_dead}")
             elif not self.player.verbose and self.room.enemy is None:
