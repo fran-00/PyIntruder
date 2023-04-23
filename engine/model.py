@@ -31,8 +31,6 @@ class GameModel(QObject):
         - Parse response to select instruction to send as signal
         """
         self.event_loop = QEventLoop()
-        world.parse_world_dsl()
-        logic = GameLogic()
  
         while True:
             game_response = self.get_game_response(logic)
