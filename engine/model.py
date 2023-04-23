@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
 import world
