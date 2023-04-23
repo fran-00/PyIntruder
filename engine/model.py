@@ -33,7 +33,7 @@ class GameModel(QObject):
         self.event_loop = QEventLoop()
  
         while True:
-            game_response = self.get_game_response(logic)
+            game_response = self.get_game_response()
             print(f"MODEL: Game response is: {game_response}")
             
             # self.model_signal_to_controller.emit(self.get_room_descriprion(logic))
