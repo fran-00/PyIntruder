@@ -58,7 +58,7 @@ class GameModel(QObject):
         return game_response
     
     
-    def get_room_descriprion(self, logic):
+    def get_room_descriprion(self):
         """ Takes a function and returns its response """
         return(self.check_tile())
 
