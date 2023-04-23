@@ -83,9 +83,12 @@ class GameModel(QObject):
     
             
     def choose_action(self, action=str):
-        available_actions = self.get_available_actions(self.room, self.player)
-        # FIXME:
-        # action = available_actions.get(action)
+        if action in ["n", "s", "w", "e"]:
+            if self.room.enemy is None or self.room.enemy.alive is False:
+                self.move(self.room, self.player)
+                return("You moved")
+            else:
+                return("You can't escape!")
 
         if action in ["diagnose"]:
             response = self.player.diagnose()
