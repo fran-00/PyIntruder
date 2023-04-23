@@ -17,7 +17,8 @@ class GameThread(QThread):
 class GameModel(QObject):
     model_signal_to_controller = pyqtSignal(str)
     
-    def __init__(self):
+    def __init__(self, player):
+        self.player = player
         self.action = None
         self.response = None
         self.event_loop = None
