@@ -34,6 +34,7 @@ class GameModel(QObject):
             game_response = self.get_game_response()
             self.model_signal_to_controller.emit(self.get_room_descriprion())
             self.model_signal_to_controller.emit(game_response)
+            self.player.turn += 1
 
             self.event_loop.exec()
 
