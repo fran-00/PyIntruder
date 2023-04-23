@@ -583,18 +583,6 @@ class Player:
     def stand_still(self):
         self.get_coordinates(dx=0, dy=0)
 
-    def move_northwest(self):
-        self.get_coordinates(-1, -1)
-
-    def move_northeast(self):
-        self.get_coordinates(1, -1)
-
-    def move_southwest(self):
-        self.get_coordinates(-1, 1)
-
-    def move_southeast(self):
-        self.get_coordinates(1, 1)
-
     def get_coordinates(self, dx, dy):
         self.previous_x = self.x
         self.previous_y = self.y
