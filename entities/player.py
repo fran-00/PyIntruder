@@ -15,8 +15,7 @@ class Player:
         self.name = 'Your Name Here'
         self.x = world.start_tile_location[0]       # modifica questi valori per modificare la locazione di partenza. di base è su (0, 1)
         self.y = world.start_tile_location[1]       # ma in realtà la locazione di partenza è determinata da dove metti la StartTile
-        self.inventory = [items.SelfLuminousRed(),
-                          items.Deliverance()]
+        self.inventory = [items.Manuport()]
         self.lvl = 1
         self.max_hp = 100
         self.hp = 100
