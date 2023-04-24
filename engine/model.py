@@ -34,7 +34,6 @@ class GameModel(QObject):
             if self.room.enemy and self.room.enemy.alive:
                 self.handle_enemy_attack()
             
-            self.model_signal_to_controller.emit("What do you want to do?")
             self.player.turn += 1
             self.event_loop.exec()
             
