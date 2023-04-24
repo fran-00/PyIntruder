@@ -55,9 +55,9 @@ class GameModel(QObject):
         return game_response
     
     
-    def get_room_descriprion(self):
-        """ Takes a function and returns its response """
-        return(self.check_tile())
+    def handle_enemy_attack(self):
+        enemy_attacks = self.room.modify_player(self.player)
+        self.model_signal_to_controller.emit(enemy_attacks)
 
 
     def check_tile(self):
