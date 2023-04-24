@@ -2,7 +2,7 @@ import sys
 
 from PyQt6.QtWidgets import QApplication
 
-import world
+import old_world_gen as world
 from engine.model import GameModel
 from engine.view import GameView
 from engine.controller import GameController
