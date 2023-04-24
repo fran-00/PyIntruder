@@ -55,7 +55,7 @@ class GameModel(QObject):
         self.model_signal_to_controller.emit(enemy_attacks)
 
 
-    def get_room_descriprion(self):
+    def get_room_description(self):
         self.room = world.tile_at(self.player.x, self.player.y)
         if self.room.enemy is None:
             return (f"\n***{self.room.name}***\n> {self.room.description}")
