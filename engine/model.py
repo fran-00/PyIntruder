@@ -49,6 +49,7 @@ class GameModel(QObject):
         ''' Takes a string an send it to controller as a signal '''
         self.model_signal_to_controller.emit(game_response)
 
+
     def get_game_response(self):
         """ Takes a function and returns it as game_response """
         game_response = self.choose_action(self.action)
@@ -60,7 +61,7 @@ class GameModel(QObject):
         self.model_signal_to_controller.emit(enemy_attacks)
 
 
-    def check_tile(self):
+    def get_room_descriprion(self):
         self.room = world.tile_at(self.player.x, self.player.y)
         if self.room.enemy is None:
             return (f"\n***{self.room.name}***\n> {self.room.description}")
