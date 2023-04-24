@@ -79,49 +79,49 @@ class Player:
 
     # *** ATTACK (WITH A WEAPON) ***
     def attack(self):
-        while True:
-            best_weapon = self.best_weapon()
-            room = world.tile_at(self.x, self.y)
-            enemy = room.enemy
-            hp_xp = room.enemy.hp
-            response = ""
-            if best_weapon is not None:
-                if room.enemy is not None and room.enemy.alive is True:
-                    response += f"You try to hit {enemy.name} with {best_weapon.name}!"
-                    precision = random.randint(1,20)
-                    if precision == 20:
-                        enemy.hp -= best_weapon.damage * 2
-                        response += f"\nCritical hit! You deal {best_weapon.damage * 2} DMG!"
-                    elif precision in [17, 18, 19]:
-                        enemy.hp -= best_weapon.damage * 1.5              # FIXME che palle, togli la cazzo di virgola che è BRUTTA
-                        response += f"\nGood hit! You deal {best_weapon.damage * 1.5} DMG!"
-                    elif precision <= 3:
-                        response += "\nMissed!"
-                    else:
-                        enemy.hp -= best_weapon.damage
-                        response += f"\nYou deal {best_weapon.damage} DMG!"
+        best_weapon = self.best_weapon()
+        room = world.tile_at(self.x, self.y)
+        enemy = room.enemy
+        response = ""
 
-                    if enemy.hp <= 0:
-                        xp_earned = (hp_xp // 2)
-                        self.xp += xp_earned
-                        response += f"\nYEAH! You killed that fucking bastard! You earned {xp_earned} XP!"
+        if best_weapon is None:
+            return "You don't have any weapon with you."
+        
+        if enemy is None or not enemy.alive:
+            return
 
-                        loot = random.randint(10,200)
-                        self.level_up()
-                        self.gold = self.gold + loot
-                        response += f"\nThe asshole lost his booty. Now {loot} Pine Cones are yours!"
-                        room.enemy.alive = False
-                        return
-                    elif enemy.hp >= 0:
-                        response += f"\n{enemy.name} has {enemy.hp} HP remaining."
-                        return response
-                    
-                    return response
-                    
-                else:
-                    return
-            else:
-                return "You don't have any weapon with you."
+        response += f"You try to hit {enemy.name} with {best_weapon.name}!"
+        precision = random.randint(1,20)
+
+        if precision == 20:
+            damage_multiplier = 2
+            response += f"\nCritical hit! You deal {best_weapon.damage * damage_multiplier} DMG!"
+        elif precision in [17, 18, 19]:
+            damage_multiplier = 1.5
+            response += f"\nGood hit! You deal {best_weapon.damage * damage_multiplier} DMG!"
+        elif precision <= 3:
+            response += "\nMissed!"
+            return response
+        else:
+            damage_multiplier = 1
+            response += f"\nYou deal {best_weapon.damage} DMG!"
+
+        enemy.hp -= best_weapon.damage * damage_multiplier
+
+        if enemy.hp <= 0:
+            xp_earned = (room.enemy.hp // 2)
+            self.xp += xp_earned
+            response += f"\nYEAH! You killed that fucking bastard! You earned {xp_earned} XP!"
+
+            loot = random.randint(10,200)
+            self.level_up()
+            self.gold += loot
+            response += f"\nThe asshole lost his booty. Now {loot} Pine Cones are yours!"
+            enemy.alive = False
+        else:
+            response += f"\n{enemy.name} has {enemy.hp} HP remaining."
+
+        return response
 
 
     # *** BEST WEAPON ***
