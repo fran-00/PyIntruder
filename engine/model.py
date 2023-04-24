@@ -87,6 +87,10 @@ class GameModel(QObject):
         elif action in ['now']:
             return (f"This room is {self.player.x}, {self.player.y}")
         
+        elif action in ["i"]:
+            response = self.player.show_inventory()
+            return response
+        
         elif action in ["a"]:
             if self.room.enemy and self.room.enemy.alive:
                 response = self.player.attack()
