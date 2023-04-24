@@ -31,12 +31,17 @@ class GameModel(QObject):
         self.event_loop = QEventLoop()
  
         while True:
-            game_response = self.choose_action(self.action)
-            self.model_signal_to_controller.emit(self.get_room_descriprion())
-            self.model_signal_to_controller.emit(game_response)
+            self.model_signal_to_controller.emit(self.get_room_description())
+            
+            if self.room.enemy and self.room.enemy.alive:
+                self.handle_enemy_attack()
+            
+            self.model_signal_to_controller.emit("What do you want to do?")
             self.player.turn += 1
-
             self.event_loop.exec()
+            
+            game_response = self.choose_action(self.action)
+            self.model_signal_to_controller.emit(game_response)
 
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
