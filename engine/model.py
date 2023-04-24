@@ -105,7 +105,7 @@ class GameModel(QObject):
             return response
         
         else:
-            return ("Unrecognized command. We apologise for the inconvenience")
+            return ("I beg your pardon?")
 
 
     def move(self, room, player):
