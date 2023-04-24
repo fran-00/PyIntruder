@@ -982,9 +982,6 @@ class EnemyTile_1(MapTile):
             self.enemy = enemies.Helicopter()
         super().__init__(x, y)
 
-    # ok ho scoperto che è totalmente inutile!
-    def modify_player(self, player):
-        super().modify_player(player)
 
 # |X2|
 class EnemyTile_2(MapTile):
@@ -1008,8 +1005,6 @@ class EnemyTile_2(MapTile):
             self.enemy = enemies.JacobChansley()
         super().__init__(x, y)
 
-    def modify_player(self, player):
-        super().modify_player(player)
 
 # |X3|
 class EnemyTile_3(MapTile):
@@ -1033,8 +1028,6 @@ class EnemyTile_3(MapTile):
             self.enemy = enemies.Trog()
         super().__init__(x, y)
 
-    def modify_player(self, player):
-        super().modify_player(player)
 
 # |X4|
 class EnemyTile_4(MapTile):
@@ -1058,8 +1051,6 @@ class EnemyTile_4(MapTile):
             self.enemy = enemies.Mcu()
         super().__init__(x, y)
 
-    def modify_player(self, player):
-        super().modify_player(player)
 
 # |X5|
 class EnemyTile_5(MapTile):
@@ -1083,8 +1074,6 @@ class EnemyTile_5(MapTile):
             self.enemy = enemies.MetaVerse()
         super().__init__(x, y)
 
-    def modify_player(self, player):
-        super().modify_player(player)
 
 # >>>> WORLD
 # ROW WORLD MAP
