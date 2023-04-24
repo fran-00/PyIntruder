@@ -81,8 +81,7 @@ class GameModel(QObject):
     def choose_action(self, action=str):
         if action in ["n", "s", "w", "e"]:
             if self.room.enemy is None or self.room.enemy.alive is False:
-                self.move(self.room, self.player)
-                return("You moved")
+                return(self.move(self.room, self.player))
             else:
                 return("You can't escape!")
 
