@@ -31,8 +31,6 @@ class GameModel(QObject):
         self.event_loop = QEventLoop()
  
         while True:
-            self.model_signal_to_controller.emit(self.get_room_description())
-            
             if self.room.enemy and self.room.enemy.alive:
                 self.handle_enemy_attack()
             
