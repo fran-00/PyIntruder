@@ -49,12 +49,6 @@ class GameModel(QObject):
         ''' Takes a string an send it to controller as a signal '''
         self.model_signal_to_controller.emit(game_response)
 
-
-    def get_game_response(self):
-        """ Takes a function and returns it as game_response """
-        game_response = self.choose_action(self.action)
-        return game_response
-    
     
     def handle_enemy_attack(self):
         enemy_attacks = self.room.modify_player(self.player)
