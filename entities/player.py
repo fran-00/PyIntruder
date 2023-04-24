@@ -51,39 +51,33 @@ class Player:
         self.rina_gift_received = False
 
 
-# Call TAVERN ROOM CLOSED**
-    def tavern_room_closed(self):
-        print("The room door is closed.")
-        return
+    # *** MOVEMENT ***
+    def move(self, dx, dy):
+        self.x += dx
+        self.y += dy
 
-# CALL *** ALIVE ***
-    def is_alive(self):
-        return self.hp > 0
+    def move_north(self):
+        self.get_coordinates(0, -1)
 
-# CALL *** ARMOR ***
-    def armor(self):
-        armors = [item for item in self.inventory
-                       if isinstance(item, items.Armor)]
-        if not armors:
-            print("You've got no armor.")
-            return
-        print("Choose an armor to wear:")
-        for i, item in enumerate(armors, 1):
-            print(f"{i}. {item}")
+    def move_south(self):
+        self.get_coordinates(0, 1)
 
-        valid = False
-        while not valid:
-            choice = input(">>>> ")
-            try:
-                armor_chosen = armors[int(choice) - 1]
-                self.base_defence = armor_chosen.defence
-                print(f"Your defence is now {self.base_defence}.")
-                valid = True
-            except (ValueError, IndexError):
-                print("Invalid choice, try again.")
-                return
+    def move_east(self):
+        self.get_coordinates(1, 0)
 
-# CALL *** ATTACK (WITH A WEAPON) ***
+    def move_west(self):
+        self.get_coordinates(-1, 0)
+
+    def stand_still(self):
+        self.get_coordinates(dx=0, dy=0)
+
+    def get_coordinates(self, dx, dy):
+        self.previous_x = self.x
+        self.previous_y = self.y
+        self.move(dx=dx, dy=dy)
+
+
+    # *** ATTACK (WITH A WEAPON) ***
     def attack(self):
         while True:
             best_weapon = self.best_weapon()
@@ -129,7 +123,8 @@ class Player:
             else:
                 return "You don't have any weapon with you."
 
-# CALL *** BEST WEAPON ***
+
+    # *** BEST WEAPON ***
     def best_weapon(self):
         max_damage = 0
         best_weapon = None
@@ -144,6 +139,80 @@ class Player:
             return best_weapon
         else:
             return None
+
+
+    # *** INVENTORY ***
+    def sort_items_by_category(self, category):
+        return sorted([item for item in self.inventory if isinstance(item, category)], key=lambda item: item.name.lower())
+
+    def show_inventory(self):
+        response = "You open your backpack:"
+        right_order_list = []
+        index = 1
+        for category in [items.Weapon, items.Curse, items.Consumable, items.ManaRechargers, items.Armor, items.MissionItem]:
+            items_in_category = self.sort_items_by_category(category)
+            if items_in_category:
+                response += f"\n>> {category.__name__.upper()}:\n"
+                for i, item in enumerate(items_in_category, index):
+                    response += f"{index}. {item}"
+                    index += 1
+                    right_order_list.append(item)
+        self.inventory = right_order_list
+        response += f"\nYour wealth: {self.gold} §"
+        response += "\nChoose a number to read an item's description or press Q to quit."
+        return response
+
+    def choose_item(self, action):
+        if action.lower() in ('q', 'exit', 'no'):
+            return "Ok."
+        try:
+            choice = int(action)-1
+            to_read = self.inventory[choice]
+            return f"{to_read.name}: {to_read.description}"
+        except (ValueError, IndexError):
+            return "Invalid choice, try again."
+
+
+    # *** DIAGNOSE ***
+    def diagnose(self):
+        return (
+            f"You have {self.hp}/{self.max_hp} HP and {self.mana}/{self.max_mana} Mana remaining. This is turn number {self.turn}."
+        )
+
+
+#TODO: All these methods need to be fixed
+# Call TAVERN ROOM CLOSED**
+    def tavern_room_closed(self):
+        print("The room door is closed.")
+        return
+
+# CALL *** ALIVE ***
+    def is_alive(self):
+        return self.hp > 0
+
+# CALL *** ARMOR ***
+    def armor(self):
+        armors = [item for item in self.inventory
+                       if isinstance(item, items.Armor)]
+        if not armors:
+            print("You've got no armor.")
+            return
+        print("Choose an armor to wear:")
+        for i, item in enumerate(armors, 1):
+            print(f"{i}. {item}")
+
+        valid = False
+        while not valid:
+            choice = input(">>>> ")
+            try:
+                armor_chosen = armors[int(choice) - 1]
+                self.base_defence = armor_chosen.defence
+                print(f"Your defence is now {self.base_defence}.")
+                valid = True
+            except (ValueError, IndexError):
+                print("Invalid choice, try again.")
+                return
+
 
 # CALL *** CAST CURSE ***
     def cast_curse(self):
@@ -214,11 +283,6 @@ class Player:
                 print("You don't have any curse with you.")
                 return
 
-# CALL *** DIAGNOSE ***
-    def diagnose(self):
-        return (
-            f"You have {self.hp}/{self.max_hp} HP and {self.mana}/{self.max_mana} Mana remaining. This is turn number {self.turn}."
-        )
 
 # CALL *** DROP ALL / PICK UP ALL ***
     def drop_all_get_all(self, receiver, giver):
@@ -373,37 +437,6 @@ class Player:
                 continue
 
 
-    # CALL *** INVENTORY ***  TODO gli oggetti uguali devono essere raggruppati così: oggetto (2)
-    def sort_items_by_category(self, category):
-        return sorted([item for item in self.inventory if isinstance(item, category)], key=lambda item: item.name.lower())
-
-    def show_inventory(self):
-        response = "You open your backpack:"
-        right_order_list = []
-        index = 1
-        for category in [items.Weapon, items.Curse, items.Consumable, items.ManaRechargers, items.Armor, items.MissionItem]:
-            items_in_category = self.sort_items_by_category(category)
-            if items_in_category:
-                response += f"\n>> {category.__name__.upper()}:\n"
-                for i, item in enumerate(items_in_category, index):
-                    response += f"{index}. {item}"
-                    index += 1
-                    right_order_list.append(item)
-        self.inventory = right_order_list
-        response += f"\nYour wealth: {self.gold} §"
-        response += "\nChoose a number to read an item's description or press Q to quit."
-        return response
-
-    def choose_item(self, action):
-        if action.lower() in ('q', 'exit', 'no'):
-            return "Ok."
-        try:
-            choice = int(action)-1
-            to_read = self.inventory[choice]
-            return f"{to_read.name}: {to_read.description}"
-        except (ValueError, IndexError):
-            return "Invalid choice, try again."
-
 # CALL *** LEVEL UP ***
     def level_up(self):
         if self.xp >= self.xp_modifier:
@@ -507,30 +540,7 @@ class Player:
             print("".join(row))
             print("".join(floor))
 
-# CALL *** MOVEMENT ***
-    def move(self, dx, dy):
-        self.x += dx
-        self.y += dy
 
-    def move_north(self):
-        self.get_coordinates(0, -1)
-
-    def move_south(self):
-        self.get_coordinates(0, 1)
-
-    def move_east(self):
-        self.get_coordinates(1, 0)
-
-    def move_west(self):
-        self.get_coordinates(-1, 0)
-
-    def stand_still(self):
-        self.get_coordinates(dx=0, dy=0)
-
-    def get_coordinates(self, dx, dy):
-        self.previous_x = self.x
-        self.previous_y = self.y
-        self.move(dx=dx, dy=dy)
 
 # CALL *** OPEN ***
     def open_obj(self):
