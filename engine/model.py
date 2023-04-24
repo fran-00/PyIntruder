@@ -42,7 +42,13 @@ class GameModel(QObject):
             
             game_response = self.choose_action(self.action)
             self.model_signal_to_controller.emit(game_response)
-
+            
+            if game_response == self.player.show_inventory():
+                self.event_loop.exec()
+                inventory_response = self.player.choose_item(self.action)
+                self.model_signal_to_controller.emit(inventory_response)
+    
+    
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
         ''' Slot that receives a string from controller as a signal '''
