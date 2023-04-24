@@ -372,94 +372,37 @@ class Player:
                 print("Invalid choice, try again.")
                 continue
 
-# CALL *** INVENTORY ***  TODO gli oggetti uguali devono essere raggruppati così: oggetto (2)
-    def show_inventory(self):
-        # Creates separate lists for different types of items
-        weapons = [item for item in self.inventory
-                       if isinstance(item, items.Weapon)]
-        curses = [item for item in self.inventory
-                       if isinstance(item, items.Curse)]
-        consumables = [item for item in self.inventory
-                       if isinstance(item, items.Consumable)]
-        mrs = [item for item in self.inventory
-                       if isinstance(item, items.ManaRechargers)]
-        armors = [item for item in self.inventory
-                       if isinstance(item, items.Armor)]
-        specials = [item for item in self.inventory
-                       if isinstance(item, items.MissionItem)]
-        print("You open your backpack:")
 
-        # Sorts the items alphabetically, adds them sorted and numbered in right_order_list list and shows them divided by category
+    # CALL *** INVENTORY ***  TODO gli oggetti uguali devono essere raggruppati così: oggetto (2)
+    def sort_items_by_category(self, category):
+        return sorted([item for item in self.inventory if isinstance(item, category)], key=lambda item: item.name.lower())
+
+    def show_inventory(self):
+        response = "You open your backpack:"
         right_order_list = []
         index = 1
-        if weapons:
-            sorted_weapons = sorted(weapons, key=lambda item: item.name.lower())
-            print(">> WEAPONS:")
-            for i, item in enumerate(sorted_weapons, index):
-                print(f"{index}. {item}")
-                index += 1
-                right_order_list.append(item)
-        if curses:
-            sorted_curses = sorted(curses, key=lambda item: item.name.lower())
-            print(">> CURSES:")
-            for i, item in enumerate(sorted_curses, index):
-                print(f"{index}. {item}")
-                index += 1
-                right_order_list.append(item)
-        if consumables:
-            sorted_consumables = sorted(consumables, key=lambda item: item.name.lower())
-            print(">> CONSUMABLES:")
-            for i, item in enumerate(sorted_consumables, index):
-                print(f"{index}. {item}")
-                index += 1
-                right_order_list.append(item)
-        if mrs:
-            sorted_mrs = sorted(mrs, key=lambda item: item.name.lower())
-            print(">> MANA RECHARGERS:")
-            for i, item in enumerate(sorted_mrs, index):
-                print(f"{index}. {item}")
-                index += 1
-                right_order_list.append(item)
-        if armors:
-            sorted_armors = sorted(armors, key=lambda item: item.name.lower())
-            print(">> ARMORS:")
-            for i, item in enumerate(sorted_armors, index):
-                print(f"{index}. {item}")
-                index += 1
-                right_order_list.append(item)
-        if specials:
-            sorted_missions = sorted(specials, key=lambda item: item.name.lower())
-            print(">> SPECIAL ITEMS:")
-            for i, item in enumerate(sorted_missions, index):
-                print(f"{index}. {item}")
-                index += 1
-                right_order_list.append(item)
-        print(f"Your wealth: {self.gold} §")
+        for category in [items.Weapon, items.Curse, items.Consumable, items.ManaRechargers, items.Armor, items.MissionItem]:
+            items_in_category = self.sort_items_by_category(category)
+            if items_in_category:
+                response += f"\n>> {category.__name__.upper()}:\n"
+                for i, item in enumerate(items_in_category, index):
+                    response += f"{index}. {item}"
+                    index += 1
+                    right_order_list.append(item)
+        self.inventory = right_order_list
+        response += f"\nYour wealth: {self.gold} §"
+        response += "\nChoose a number to read an item's description or press Q to quit."
+        return response
 
-        # Allows to view the description of the items
-        while True:
-            print("Choose a number to read an item's description or press Q to quit.")
-            user_input = input(">>>> ")
-            if user_input in ['q', ' ', 'exit', 'no']:
-                break
-            else:
-                try:
-                    n = int(index)
-                    choice = int(user_input)
-                    try:
-                        if choice <= n and choice != 0 and index > 0:
-                            to_read = right_order_list[choice - 1]
-                            print(f"{to_read.name}: {to_read.description}")
-                            continue
-                        else:
-                            print("Number out of range, try again or type 'Q' to quit.")
-                            continue
-                    except IndexError:
-                        print("Number out of range, try again or type 'Q' to quit.")
-                        continue
-                except ValueError:
-                    print("Invalid choice, try again or type 'Q' to quit.")
-                    continue
+    def choose_item(self, action):
+        if action.lower() in ('q', 'exit', 'no'):
+            return "Ok."
+        try:
+            choice = int(action)-1
+            to_read = self.inventory[choice]
+            return f"{to_read.name}: {to_read.description}"
+        except (ValueError, IndexError):
+            return "Invalid choice, try again."
 
 # CALL *** LEVEL UP ***
     def level_up(self):
