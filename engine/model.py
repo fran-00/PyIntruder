@@ -90,7 +90,10 @@ class GameModel(QObject):
             return (f"This room is {self.player.x}, {self.player.y}")
         
         elif action in ["a"]:
-            response = self.player.attack()
+            if self.room.enemy and self.room.enemy.alive:
+                response = self.player.attack()
+            else:
+                response = "There is no one to attack here!"
             return response
         
         else:
