@@ -81,7 +81,7 @@ class GameModel(QObject):
             else:
                 return("You can't escape!")
 
-        if action in ["diagnose"]:
+        elif action in ["diagnose"]:
             response = self.player.diagnose()
             return response
         
