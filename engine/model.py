@@ -117,8 +117,7 @@ class GameModel(QObject):
             player.move_east()
         elif self.action == "w" and world.tile_at(room.x - 1, room.y):
             player.move_west()
-        else:
-            pass
+        return(self.get_room_description())
 
 
 
