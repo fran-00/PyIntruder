@@ -1,7 +1,6 @@
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
-import world
-from engine.logic import GameLogic
+import old_world_gen as world
 
 
 class GameThread(QThread):
@@ -16,10 +15,10 @@ class GameThread(QThread):
 class GameModel(QObject):
     model_signal_to_controller = pyqtSignal(str)
     
-    def __init__(self):
+    def __init__(self, player):
+        self.player = player
         self.action = None
-        self.response = None
-        self.event_loop = None
+        self.room = None
         super().__init__()
 
     def play(self):
@@ -30,15 +29,12 @@ class GameModel(QObject):
         - Parse response to select instruction to send as signal
         """
         self.event_loop = QEventLoop()
-        world.parse_world_dsl()
-        logic = GameLogic()
  
         while True:
-            game_response = self.get_game_response(logic)
-            print(f"MODEL: Game response is: {game_response}")
-            
-            # self.model_signal_to_controller.emit(self.get_room_descriprion(logic))
+            game_response = self.get_game_response()
+            self.model_signal_to_controller.emit(self.get_room_descriprion())
             self.model_signal_to_controller.emit(game_response)
+            self.player.turn += 1
 
             self.event_loop.exec()
 
@@ -53,15 +49,66 @@ class GameModel(QObject):
         ''' Takes a string an send it to controller as a signal '''
         self.model_signal_to_controller.emit(game_response)
 
-
-    def get_game_response(self, logic):
+    def get_game_response(self):
         """ Takes a function and returns it as game_response """
-        game_response = logic.choose_action(self.action)
+        game_response = self.choose_action(self.action)
         return game_response
     
     
-    def get_room_descriprion(self, logic):
+    def get_room_descriprion(self):
         """ Takes a function and returns its response """
-        return(logic.check_tile())
+        return(self.check_tile())
+
+
+    def check_tile(self):
+        self.room = world.tile_at(self.player.x, self.player.y)
+        if self.room.enemy is None:
+            return (f"\n***{self.room.name}***\n> {self.room.description}")
+        elif self.room.enemy.alive:
+            return (f"{self.room.enemy.intro_alive}")
+        elif self.player.verbose and self.room.enemy.alive is False:
+            return (f"\n***{self.room.name}***\n>{self.room.enemy.intro_dead}")
+        elif not self.player.verbose and self.room.enemy is None:
+            return (f"\n***{self.room.name}***")
     
-    
+            
+    def choose_action(self, action=str):
+        if action in ["n", "s", "w", "e"]:
+            if self.room.enemy is None or self.room.enemy.alive is False:
+                self.move(self.room, self.player)
+                return("You moved")
+            else:
+                return("You can't escape!")
+
+        if action in ["diagnose"]:
+            response = self.player.diagnose()
+            return response
+        
+        elif action in ['now']:
+            return (f"This room is {self.player.x}, {self.player.y}")
+        
+        elif action in ["a"]:
+            if self.room.enemy and self.room.enemy.alive:
+                response = self.player.attack()
+            else:
+                response = "There is no one to attack here!"
+            return response
+        
+        else:
+            return ("Unrecognized command. We apologise for the inconvenience")
+
+
+    def move(self, room, player):
+        if self.action == "n" and world.tile_at(room.x, room.y - 1):
+            player.move_north()
+        elif self.action == "s" and world.tile_at(room.x, room.y + 1):
+            player.move_south()
+        elif self.action == "e" and world.tile_at(room.x + 1, room.y):
+            player.move_east()
+        elif self.action == "w" and world.tile_at(room.x - 1, room.y):
+            player.move_west()
+        else:
+            pass
+
+
+

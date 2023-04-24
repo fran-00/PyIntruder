@@ -30,27 +30,25 @@ class MapTile:
             confusion_chance = random.randint(1, 20)
             if confusion_chance >= 19 and self.enemy.damage < self.enemy.hp:                       #in questo modo non può uccidersi da solo
                 self.enemy.hp -= self.enemy.damage
-                print(f"> {self.enemy.name} is confused!")
-                print(f"> It hurts itself in its confusion! (Deals {self.enemy.damage} DMG and has {self.enemy.hp} HP remaining.)")
+                return (f"{self.enemy.name} is confused!\nIt hurts itself in its confusion! (Deals {self.enemy.damage} DMG and has {self.enemy.hp} HP remaining.)")
             elif confusion_chance in [17, 18]:
-                print(f"> {self.enemy.name} is confused!")
-                print(f"> {self.enemy.name} misses the shot!")
+                return (f"{self.enemy.name} is confused!\n{self.enemy.name} misses the shot!")
             elif player.base_defence == 0:
                 player.hp = player.hp - self.enemy.damage
                 if player.hp > 0:
-                    print(f"> {self.enemy.name} inflicts {self.enemy.damage} DMG to you. Oh shit, you have {player.hp} HP remaining...")
+                    return (f"{self.enemy.name} inflicts {self.enemy.damage} DMG to you. Oh shit, you have {player.hp} HP remaining...")
                 elif player.hp <= 0:
-                    print(f"> {self.enemy.name} inflicts {self.enemy.damage} DMG to you. Oh shit, you died...")
+                    return (f"{self.enemy.name} inflicts {self.enemy.damage} DMG to you. Oh shit, you died...")
             elif player.base_defence > 0:
                 damage_reduction = 5 * player.base_defence
                 if damage_reduction < self.enemy.damage:
                     player.hp = player.hp - (self.enemy.damage - damage_reduction)
                     if player.hp > 0:
-                        print(f"> {self.enemy.name} inflicts {self.enemy.damage} DMG to you, but your armor reduce the damage by {damage_reduction}, so you have {player.hp} HP remaining...")
+                        return (f"{self.enemy.name} inflicts {self.enemy.damage} DMG to you, but your armor reduce the damage by {damage_reduction}, so you have {player.hp} HP remaining...")
                     elif player.hp <= 0:
-                        print(f"> {self.enemy.name} inflicts {self.enemy.damage} DMG to you, your armor reduce the damage by {damage_reduction} but you died anyway...")
+                        return (f"{self.enemy.name} inflicts {self.enemy.damage} DMG to you, your armor reduce the damage by {damage_reduction} but you died anyway...")
                 else:
-                    print(f"> {self.enemy.name} tries to inflict {self.enemy.damage} DMG to you, but your armor absorbes {damage_reduction} DMG, so it did nothing to you and you still have {player.hp} HP remaining...")
+                    return (f"{self.enemy.name} tries to inflict {self.enemy.damage} DMG to you, but your armor absorbes {damage_reduction} DMG, so it did nothing to you and you still have {player.hp} HP remaining...")
         else:
             return
 
@@ -984,9 +982,6 @@ class EnemyTile_1(MapTile):
             self.enemy = enemies.Helicopter()
         super().__init__(x, y)
 
-    # ok ho scoperto che è totalmente inutile!
-    def modify_player(self, player):
-        super().modify_player(player)
 
 # |X2|
 class EnemyTile_2(MapTile):
@@ -1010,8 +1005,6 @@ class EnemyTile_2(MapTile):
             self.enemy = enemies.JacobChansley()
         super().__init__(x, y)
 
-    def modify_player(self, player):
-        super().modify_player(player)
 
 # |X3|
 class EnemyTile_3(MapTile):
@@ -1035,8 +1028,6 @@ class EnemyTile_3(MapTile):
             self.enemy = enemies.Trog()
         super().__init__(x, y)
 
-    def modify_player(self, player):
-        super().modify_player(player)
 
 # |X4|
 class EnemyTile_4(MapTile):
@@ -1060,8 +1051,6 @@ class EnemyTile_4(MapTile):
             self.enemy = enemies.Mcu()
         super().__init__(x, y)
 
-    def modify_player(self, player):
-        super().modify_player(player)
 
 # |X5|
 class EnemyTile_5(MapTile):
@@ -1085,8 +1074,6 @@ class EnemyTile_5(MapTile):
             self.enemy = enemies.MetaVerse()
         super().__init__(x, y)
 
-    def modify_player(self, player):
-        super().modify_player(player)
 
 # >>>> WORLD
 # ROW WORLD MAP

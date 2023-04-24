@@ -3,11 +3,10 @@ import os
 import pickle
 import random
 
-
-from old_entities_data.environmental_objects import EnvironmentalObjects
-import world
+import old_world_gen as world
 import old_entities_data.items as items
 import entities.entities_index as entities_index
+
 
 # MODULO DEL GIOCATORE
 class Player:
@@ -15,8 +14,7 @@ class Player:
         self.name = 'Your Name Here'
         self.x = world.start_tile_location[0]       # modifica questi valori per modificare la locazione di partenza. di base è su (0, 1)
         self.y = world.start_tile_location[1]       # ma in realtà la locazione di partenza è determinata da dove metti la StartTile
-        self.inventory = [items.SelfLuminousRed(),
-                          items.Deliverance()]
+        self.inventory = [items.Manuport()]
         self.lvl = 1
         self.max_hp = 100
         self.hp = 100
@@ -92,41 +90,44 @@ class Player:
             room = world.tile_at(self.x, self.y)
             enemy = room.enemy
             hp_xp = room.enemy.hp
+            response = ""
             if best_weapon is not None:
                 if room.enemy is not None and room.enemy.alive is True:
-                    print(f"You try to hit {enemy.name} with {best_weapon.name}!")
+                    response += f"You try to hit {enemy.name} with {best_weapon.name}!"
                     precision = random.randint(1,20)
                     if precision == 20:
                         enemy.hp -= best_weapon.damage * 2
-                        print(f"Critical hit! You deal {best_weapon.damage * 2} DMG!")
+                        response += f"\nCritical hit! You deal {best_weapon.damage * 2} DMG!"
                     elif precision in [17, 18, 19]:
                         enemy.hp -= best_weapon.damage * 1.5              # FIXME che palle, togli la cazzo di virgola che è BRUTTA
-                        print(f"Good hit! You deal {best_weapon.damage * 1.5} DMG!")
+                        response += f"\nGood hit! You deal {best_weapon.damage * 1.5} DMG!"
                     elif precision <= 3:
-                        print("Missed!")
+                        response += "\nMissed!"
                     else:
                         enemy.hp -= best_weapon.damage
-                        print(f"You deal {best_weapon.damage} DMG!")
+                        response += f"\nYou deal {best_weapon.damage} DMG!"
 
                     if enemy.hp <= 0:
                         xp_earned = (hp_xp // 2)
                         self.xp += xp_earned
-                        print("YEAH! You killed that fucking bastard! You earned {} XP!"
-                              .format(xp_earned))
+                        response += f"\nYEAH! You killed that fucking bastard! You earned {xp_earned} XP!"
+
                         loot = random.randint(10,200)
                         self.level_up()
                         self.gold = self.gold + loot
-                        print(f"The asshole lost his booty. Now {loot} Pine Cones are yours!")
+                        response += f"\nThe asshole lost his booty. Now {loot} Pine Cones are yours!"
                         room.enemy.alive = False
                         return
                     elif enemy.hp >= 0:
-                        print("{} has {} HP remaining.".format(enemy.name, enemy.hp))
-                        return
+                        response += f"\n{enemy.name} has {enemy.hp} HP remaining."
+                        return response
+                    
+                    return response
+                    
                 else:
                     return
             else:
-                print("You don't have any weapon with you.")
-                return
+                return "You don't have any weapon with you."
 
 # CALL *** BEST WEAPON ***
     def best_weapon(self):
@@ -582,18 +583,6 @@ class Player:
 
     def stand_still(self):
         self.get_coordinates(dx=0, dy=0)
-
-    def move_northwest(self):
-        self.get_coordinates(-1, -1)
-
-    def move_northeast(self):
-        self.get_coordinates(1, -1)
-
-    def move_southwest(self):
-        self.get_coordinates(-1, 1)
-
-    def move_southeast(self):
-        self.get_coordinates(1, 1)
 
     def get_coordinates(self, dx, dy):
         self.previous_x = self.x
