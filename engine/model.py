@@ -103,6 +103,9 @@ class GameModel(QObject):
             else:
                 return "There is no one to attack here!"
         
+        elif action in ["armor"]:
+            return self.player.armor(), self.player.choose_armor
+        
         else:
             return ("I beg your pardon?")
 
