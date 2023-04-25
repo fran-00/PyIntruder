@@ -95,10 +95,16 @@ class Player:
 
         if precision == 20:
             damage_multiplier = 2
-            response += f"\nCritical hit! You deal {best_weapon.damage * damage_multiplier} DMG!"
+            response += (
+                f"\nCritical hit! "
+                f"You deal {best_weapon.damage * damage_multiplier} DMG!"
+            )
         elif precision in [17, 18, 19]:
             damage_multiplier = 1.5
-            response += f"\nGood hit! You deal {best_weapon.damage * damage_multiplier} DMG!"
+            response += (
+                f"\nGood hit! "
+                f"You deal {best_weapon.damage * damage_multiplier} DMG!"
+            )
         elif precision <= 3:
             response += "\nMissed!"
             return response
@@ -111,12 +117,18 @@ class Player:
         if enemy.hp <= 0:
             xp_earned = (room.enemy.hp // 2)
             self.xp += xp_earned
-            response += f"\nYEAH! You killed that fucking bastard! You earned {xp_earned} XP!"
+            response += (
+                f"\nYEAH! You killed that fucking bastard! "
+                f"You earned {xp_earned} XP!"
+            )
 
             loot = random.randint(10,200)
             self.level_up()
             self.gold += loot
-            response += f"\nThe asshole lost his booty. Now {loot} Pine Cones are yours!"
+            response += (
+                f"\nThe asshole lost his booty. "
+                f"Now {loot} Pine Cones are yours!"
+            )
             enemy.alive = False
         else:
             response += f"\n{enemy.name} has {enemy.hp} HP remaining."
