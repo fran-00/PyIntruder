@@ -38,13 +38,19 @@ class GameModel(QObject):
             self.event_loop.exec()
             
             game_response = self.choose_action(self.action)
-            self.model_signal_to_controller.emit(game_response)
             
-            if game_response == self.player.show_inventory():
+            # If game_response is a tuple creates a nested loop to handle the
+            # second method passed and emits the result.
+            if isinstance(game_response, tuple):
+                self.model_signal_to_controller.emit(game_response[0])
                 self.event_loop.exec()
-                inventory_response = self.player.choose_item(self.action)
-                self.model_signal_to_controller.emit(inventory_response)
-    
+                method = game_response[1]
+                nested_response = method(self.action)
+                
+                self.model_signal_to_controller.emit(nested_response)
+            else:
+                self.model_signal_to_controller.emit(game_response)
+
     
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
