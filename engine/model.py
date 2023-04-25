@@ -89,8 +89,7 @@ class GameModel(QObject):
                 return("You can't escape!")
 
         elif action in ["diagnose"]:
-            response = self.player.diagnose()
-            return response
+            return self.player.diagnose()
         
         elif action in ['now']:
             return (f"This room is {self.player.x}, {self.player.y}")
@@ -100,10 +99,9 @@ class GameModel(QObject):
         
         elif action in ["a"]:
             if self.room.enemy and self.room.enemy.alive:
-                response = self.player.attack()
+                return self.player.attack()
             else:
-                response = "There is no one to attack here!"
-            return response
+                return "There is no one to attack here!"
         
         else:
             return ("I beg your pardon?")
