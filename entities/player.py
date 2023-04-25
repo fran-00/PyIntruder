@@ -192,6 +192,31 @@ class Player:
         )
 
 
+    # *** ARMOR ***
+    def armor(self):
+        armors = [item for item in self.inventory
+                       if isinstance(item, items.Armor)]
+        if not armors:
+            return "You've got no armor."
+        
+        response = "Choose an armor to wear:"
+        for i, item in enumerate(armors, 1):
+            response += f"{i}. {item}"
+        return response
+
+
+    def choose_armor(self, action):
+        armors = [item for item in self.inventory
+                       if isinstance(item, items.Armor)]
+        try:
+            armor_chosen = armors[int(action) - 1]
+            self.base_defence = armor_chosen.defence
+            return f"Your defence is now {self.base_defence}."
+        except (ValueError, IndexError):
+            return "Invalid choice, try again."
+
+
+
 #TODO: All these methods need to be fixed
 # Call TAVERN ROOM CLOSED**
     def tavern_room_closed(self):
@@ -201,29 +226,6 @@ class Player:
 # CALL *** ALIVE ***
     def is_alive(self):
         return self.hp > 0
-
-# CALL *** ARMOR ***
-    def armor(self):
-        armors = [item for item in self.inventory
-                       if isinstance(item, items.Armor)]
-        if not armors:
-            print("You've got no armor.")
-            return
-        print("Choose an armor to wear:")
-        for i, item in enumerate(armors, 1):
-            print(f"{i}. {item}")
-
-        valid = False
-        while not valid:
-            choice = input(">>>> ")
-            try:
-                armor_chosen = armors[int(choice) - 1]
-                self.base_defence = armor_chosen.defence
-                print(f"Your defence is now {self.base_defence}.")
-                valid = True
-            except (ValueError, IndexError):
-                print("Invalid choice, try again.")
-                return
 
 
 # CALL *** CAST CURSE ***
