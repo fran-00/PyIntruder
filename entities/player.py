@@ -214,6 +214,11 @@ class Player:
             return "Invalid choice, try again."
 
 
+    def item_selector_from_type(self, type):
+        item_type = [item for item in self.inventory
+                          if isinstance(item, type)]
+        return item_type
+
 
 #TODO: All these methods need to be fixed
 # Call TAVERN ROOM CLOSED**
