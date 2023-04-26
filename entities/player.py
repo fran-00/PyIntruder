@@ -5,8 +5,8 @@ import random
 
 import old_entities_data.items as items
 import entities.entities_index as entities_index
-import world.world_parser as parser
-import world.world_tiles as world
+import world.parser as parser
+import world.tiles as world
 
 
 # MODULO DEL GIOCATORE
