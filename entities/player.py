@@ -12,8 +12,8 @@ import world.world_parser as parser
 class Player:
     def __init__(self):
         self.name = 'Your Name Here'
-        self.x = world.start_tile_location[0]       # modifica questi valori per modificare la locazione di partenza. di base è su (0, 1)
-        self.y = world.start_tile_location[1]       # ma in realtà la locazione di partenza è determinata da dove metti la StartTile
+        self.x = parser.start_tile_location[0]       # modifica questi valori per modificare la locazione di partenza. di base è su (0, 1)
+        self.y = parser.start_tile_location[1]       # ma in realtà la locazione di partenza è determinata da dove metti la StartTile
         self.inventory = [items.Manuport(), items.TeslaArmor(), items.IronArmor()]
         self.lvl = 1
         self.max_hp = 100
@@ -80,7 +80,7 @@ class Player:
     # *** ATTACK (WITH A WEAPON) ***
     def attack(self):
         best_weapon = self.best_weapon()
-        room = world.tile_at(self.x, self.y)
+        room = parser.tile_at(self.x, self.y)
         enemy = room.enemy
         response = ""
 
@@ -236,7 +236,7 @@ class Player:
         while True:
             curses = [item for item in self.inventory
                        if isinstance(item, items.Curse)]
-            room = world.tile_at(self.x, self.y)
+            room = parser.tile_at(self.x, self.y)
             enemy = room.enemy
             hp_xp = room.enemy.hp
             if curses:
@@ -303,7 +303,7 @@ class Player:
 
 # CALL *** DROP ALL / PICK UP ALL ***
     def drop_all_get_all(self, receiver, giver):
-        room = world.tile_at(self.x, self.y)
+        room = parser.tile_at(self.x, self.y)
         for i, item in enumerate(giver.inventory, 0):   # assolutamente inutile, ma è così perché non funziona dropparli uno per uno..
             receiver.inventory.extend(giver.inventory)
             giver.inventory = []
@@ -315,7 +315,7 @@ class Player:
 
     # CALL *** DROP/PICK UP/GIVE LIST***
     def item_handler(self, action, receiver, giver):
-        room = world.tile_at(self.x, self.y)
+        room = parser.tile_at(self.x, self.y)
         sorted_inventory = sorted(giver.inventory, key=lambda item: item.name.lower())
 
         if giver is self and receiver is room:
@@ -366,7 +366,7 @@ class Player:
 
 # CALL *** EXAMINE ITEM *** ok proviamo a confrontare i NOMI degli oggetti invece che la classe
     def examine_item(self):
-        room = world.tile_at(self.x, self.y)
+        room = parser.tile_at(self.x, self.y)
         chosen_item = []
         print("What do you want to examine?")
         key = input(">>>> ").lower()
@@ -472,11 +472,11 @@ class Player:
 # CALL *** MAP ***   
     # TODO sarebbe ottimo poter vedere solo le stanze in cui sei stato. ho implementato un bool dentro ogni stanza ma non ho ancora capito come usarlo
     def print_map(self):
-        room = world.tile_at(self.x, self.y)
+        room = parser.tile_at(self.x, self.y)
         loc_x = str(self.x)
         loc_y = str(self.y)
         print(f'> You are here: ({loc_x},{loc_y})')
-        dsl_lines = world.world_dsl.splitlines()
+        dsl_lines = parser.world_dsl.splitlines()
         dsl_lines = [x for x in dsl_lines if x]
 
         Black = "|   bs  |"
@@ -565,7 +565,7 @@ class Player:
 
 # CALL *** OPEN ***
     def open_obj(self):
-        room = world.tile_at(self.x, self.y)
+        room = parser.tile_at(self.x, self.y)
         if room.env_obj.can_be_open:
             if room.env_obj.inventory:
                 print(f"You open the {room.env_obj}.")
@@ -637,13 +637,13 @@ class Player:
 
 # CALL *** ROOM VISITED ***
     def room_visited(self):
-        room = world.tile_at(self.x, self.y)
+        room = parser.tile_at(self.x, self.y)
         room.room_seen(self)
 
 # CALL *** RUN ***
     def run(self):
         # Rolls a d20 to decide if you can escape the fight
-        room = world.tile_at(self.x, self.y)
+        room = parser.tile_at(self.x, self.y)
         d20 = random.randint(1,20)
         if d20 == 20:
             room.enemy.alive = False
@@ -663,7 +663,7 @@ class Player:
     # Function that creates a list of rooms with no empty spaces from the world map
     def room_list_creator(self):
         rooms_list_with_empty_spaces = []
-        for tile in world.world_map_caller():
+        for tile in parser.world_map_caller():
             rooms_list_with_empty_spaces.extend(tile)
 
         for room in rooms_list_with_empty_spaces:
@@ -834,7 +834,7 @@ class Player:
 
 # CALL *** TALK ***
     def check_dialogue(self):
-        room = world.tile_at(self.x, self.y)
+        room = parser.tile_at(self.x, self.y)
         room.dialogue(self)
 
 # CALL *** TRADE ***
@@ -845,7 +845,7 @@ class Player:
 
         # Creates separate lists for different types of items
         right_order_list = []
-        room = world.tile_at(self.x, self.y)
+        room = parser.tile_at(self.x, self.y)
         index = 1
         weapons = [item for item in seller.inventory
                        if isinstance(item, items.Weapon)]
@@ -949,7 +949,7 @@ class Player:
         # Exchanges items sold and bought between you and the trader and modify 
         # the money of both. The trader's money does not decrease if he buys 
         # to prevent them from running out of gold to be able to buy more from you
-        room = world.tile_at(self.x, self.y)
+        room = parser.tile_at(self.x, self.y)
         if item.value > buyer.gold:
             print("<< You don't have enough cash. >>")
             return

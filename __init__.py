@@ -10,7 +10,7 @@ from entities.player import Player
     
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    world.parse_world_dsl()
+    parser.parse_world_dsl()
     player = Player()
     view = GameView()
     model = GameModel(player)

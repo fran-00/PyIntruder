@@ -19,7 +19,7 @@ class GameModel(QObject):
     def __init__(self, player):
         self.player = player
         self.action = None
-        self.room = world.tile_at(self.player.x, self.player.y)
+        self.room = parser.tile_at(self.player.x, self.player.y)
         super().__init__()
 
     def play(self):
@@ -75,7 +75,7 @@ class GameModel(QObject):
 
 
     def get_room_description(self):
-        self.room = world.tile_at(self.player.x, self.player.y)
+        self.room = parser.tile_at(self.player.x, self.player.y)
         if self.room.enemy is None:
             return (f"\n***{self.room.name}***\n> {self.room.description}")
         elif self.room.enemy.alive:
@@ -128,13 +128,13 @@ class GameModel(QObject):
 
 
     def move(self, room, player):
-        if self.action == "n" and world.tile_at(room.x, room.y - 1):
+        if self.action == "n" and parser.tile_at(room.x, room.y - 1):
             player.move_north()
-        elif self.action == "s" and world.tile_at(room.x, room.y + 1):
+        elif self.action == "s" and parser.tile_at(room.x, room.y + 1):
             player.move_south()
-        elif self.action == "e" and world.tile_at(room.x + 1, room.y):
+        elif self.action == "e" and parser.tile_at(room.x + 1, room.y):
             player.move_east()
-        elif self.action == "w" and world.tile_at(room.x - 1, room.y):
+        elif self.action == "w" and parser.tile_at(room.x - 1, room.y):
             player.move_west()
         return(self.get_room_description())
 
