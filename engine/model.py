@@ -108,6 +108,12 @@ class GameModel(QObject):
             else:
                 return "There is no one to attack here!"
         
+        elif action in ["c"]:
+            if self.room.enemy and self.room.enemy.alive:
+                return self.player.cast_curse()
+            else:
+                return "There is no one to curse here!"
+        
         elif action in ["armor"]:
             return self.player.armor(), self.player.choose_armor, items.Armor
         
