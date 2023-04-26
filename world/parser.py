@@ -1,4 +1,4 @@
-from world.world_tiles import *
+from world.tiles import *
 
 # >>>> WORLD
 # ROW WORLD MAP
