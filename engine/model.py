@@ -100,7 +100,7 @@ class GameModel(QObject):
             return (f"This room is {self.player.x}, {self.player.y}")
         
         elif action in ["i"]:
-            return self.player.show_inventory(), self.player.choose_item
+            return self.player.show_inventory(), self.player.choose_item, None
         
         elif action in ["a"]:
             if self.room.enemy and self.room.enemy.alive:
