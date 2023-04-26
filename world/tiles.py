@@ -1,9 +1,5 @@
 import random
 
-import old_entities_data.enemies as enemies
-import old_entities_data.npc as npc
-from entities.player import Player
-import old_entities_data.items as items
 from entities import entities_index
 import old_entities_data.environmental_objects as environmental_objects
 
