@@ -111,6 +111,9 @@ class GameModel(QObject):
         elif action in ["armor"]:
             return self.player.armor(), self.player.choose_armor, items.Armor
         
+        elif action in ["t", "talk"]:
+            return self.room.dialogue()
+        
         else:
             return ("I beg your pardon?")
 
