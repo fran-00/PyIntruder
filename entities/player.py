@@ -194,22 +194,20 @@ class Player:
 
     # *** ARMOR ***
     def armor(self):
-        armors = [item for item in self.inventory
-                       if isinstance(item, items.Armor)]
+        armors = self.item_selector_from_type(items.Armor)
         if not armors:
             return "You've got no armor."
-        
         response = "Choose an armor to wear:"
         for i, item in enumerate(armors, 1):
-            response += f"{i}. {item}"
+            response += f"\n{i}. {item}"
         return response
 
-
-    def choose_armor(self, action):
-        armors = [item for item in self.inventory
-                       if isinstance(item, items.Armor)]
+    def choose_armor(self, *args):
+        action = args[0]
+        items_type = args[1]
+        items_type_selection = self.item_selector_from_type(items_type)
         try:
-            armor_chosen = armors[int(action) - 1]
+            armor_chosen = items_type_selection[int(action) - 1]
             self.base_defence = armor_chosen.defence
             return f"Your defence is now {self.base_defence}."
         except (ValueError, IndexError):
