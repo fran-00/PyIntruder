@@ -309,53 +309,57 @@ class Player:
             if receiver is room:
                 print(f"{item.name}: dropped.")
 
-# CALL *** DROP/PICK UP/GIVE LIST***
-    def dpg(self, receiver, giver):
+
+    # CALL *** DROP/PICK UP/GIVE LIST***
+    def item_handler(self, action, receiver, giver):
         room = world.tile_at(self.x, self.y)
         sorted_inventory = sorted(giver.inventory, key=lambda item: item.name.lower())
-        for i, item in enumerate(sorted_inventory, 1):
-            print(f" | {i}. {item}")
-        while True:
-            if giver is self and receiver is room:
-                print("What do you want to drop? Choose an item or type 'Q' to quit.")
-            elif giver is room and receiver is self:
-                print("What do you want to pick up? Choose an item or type 'Q' to quit.")
-            else:
-                print(f"What do you want to give to {room.talker}? Choose an item or type 'Q' to quit.")
-            user_input = input(">>>> ")
 
-            if user_input in ['q', ' ', 'exit', 'no']:
-                print("Ok.")
-                break
+        if giver is self and receiver is room:
+            prompt = "What do you want to drop?"
+            success_msg = "Dropped."
+        elif giver is room and receiver is self:
+            prompt = "What do you want to pick up?"
+            success_msg = "Taken."
+        else:
+            prompt = f"What do you want to give to {room.talker}?"
+            success_msg = "Given."
+
+        chosen_item = self.choose_item(sorted_inventory, prompt)
+        if chosen_item is None:
+            return "Ok."
+
+        self.item_donation(giver, receiver, chosen_item)
+        if action == "give" and giver is self and receiver is room.talker:
+            if room.talker.accept_object:
+                return (
+                    f"{room.talker} says to you: << Thank you. >>"
+                    f"{chosen_item.name}: {success_msg}"
+                )
             else:
-                try:
-                    n = int(i)
-                    choice = int(user_input)
-                    if choice <= n and choice != 0 and i > 0:
-                        chosen_item = sorted_inventory[choice - 1]
-                        self.item_donation(giver, receiver, chosen_item)
-                        if giver is self and receiver is room:
-                            print(f"{chosen_item.name}: dropped")
-                            return
-                        elif giver is room and receiver is self:
-                            print(f"{chosen_item.name}: taken")
-                            return
-                        elif giver is self and receiver is room.talker:     #TODO if room.talker.accept_object is True, else << I don't want it. >>
-                            print(f"{chosen_item.name}: given.")
-                            print(f"{room.talker} says to you: << Thank you. >>")
-                            return
-                        break
-                    else:
-                        print("Number out of range, try again or type 'Q' to quit")
-                        return
-                except ValueError:
-                    print("Invalid choice, try again or type 'Q' to quit.")
-                    continue
+                return f"{room.talker} says to you: << I don't want it. >>"
+
+    def choose_item_handler(self, sorted_inventory, prompt):
+        response = ""
+        for i, item in enumerate(sorted_inventory, 1):
+            response += f" | {i}. {item}"
+            
+        while True:
+            user_input = input(f"{prompt} Choose an item or type 'Q' to quit.\n>>>> ")
+            if user_input in ['q', ' ', 'exit', 'no']:
+                return None
+            try:
+                choice = int(user_input)
+                if choice not in range(1, len(sorted_inventory) + 1):
+                    raise ValueError
+                return sorted_inventory[choice - 1]
+            except (ValueError, IndexError):
+                print("Invalid choice, try again.")
 
     def item_donation(self, giver, receiver, item):
         giver.inventory.remove(item)
         receiver.inventory.append(item)
-#        print("You dropped your {}.".format(item.name))
+    
 
 # CALL *** EXAMINE ITEM *** ok proviamo a confrontare i NOMI degli oggetti invece che la classe
     def examine_item(self):
