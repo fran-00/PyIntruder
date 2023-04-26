@@ -46,7 +46,11 @@ class GameModel(QObject):
                 self.model_signal_to_controller.emit(game_response[0])
                 self.event_loop.exec()
                 method = game_response[1]
-                nested_response = method(self.action)
+                
+                if game_response[2]:
+                    nested_response = method(self.action, game_response[2])
+                else:
+                    nested_response = method(self.action)
                 
                 self.model_signal_to_controller.emit(nested_response)
             else:
@@ -105,7 +109,7 @@ class GameModel(QObject):
                 return "There is no one to attack here!"
         
         elif action in ["armor"]:
-            return self.player.armor(), self.player.choose_armor
+            return self.player.armor(), self.player.choose_armor, items.Armor
         
         else:
             return ("I beg your pardon?")
