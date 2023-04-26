@@ -221,6 +221,75 @@ class Player:
         return item_type
 
 
+    # *** MAP ***   
+    def show_map(self):
+        Black = "| bs |"
+        Chest = "| ?  |"
+        Enem1 = "| .1 |"
+        Enem2 = "| .2 |"
+        Enem3 = "| .3 |"
+        Enem4 = "| .4 |"
+        Enem5 = "| .5 |"
+        Ferns = "| f  |"
+        Intrd = "| in |"
+        Littl = "| (o)|"
+        OakWi = "| k  |"
+        PathT = "| .  |"
+        PathV = "| .V |"
+        RinaC = "| rc |"
+        River = "| r  |"
+        Squar = "| sq |"
+        Start = "| STR|"
+        Styli = "| sy |"
+        Templ = "| Tm |"
+        Taver = "| t  |"
+        TavRo = "| tr |"
+        Victo = "| WIN|"
+        VillN = "| vn |"
+        VillS = "| vs |"
+        Empty = "      "
+
+        tile_type_dict = {"BS": Black,
+                          "!!": Chest,
+                          ".1": Enem1,
+                          ".2": Enem2,
+                          ".3": Enem3,
+                          ".4": Enem4,
+                          ".5": Enem5,
+                          "FT": Ferns,
+                          "IN": Intrd,
+                          "Lo": Littl,
+                          "OK": OakWi,
+                          "..": PathT,
+                          ".V": PathV,
+                          "RC": RinaC,
+                          "RV": River,
+                          "SQ": Squar,
+                          "SS": Start,
+                          "SY": Styli,
+                          "TM": Templ,
+                          "TT": Taver,
+                          "TR": TavRo,
+                          "WW": Victo,
+                          "Vn": VillN,
+                          "Vs": VillS,
+                          "  ": Empty}
+        
+        loc_x = str(self.x)
+        loc_y = str(self.y)
+        dsl_lines = parser.world_dsl.splitlines()
+        dsl_lines = [x for x in dsl_lines if x]
+        for _, dsl_row in enumerate(dsl_lines):
+            row = []
+            dsl_cells = dsl_row.split("|")
+            dsl_cells = [c for c in dsl_cells if c]
+            for dsl_cell in dsl_cells:
+                map_tile_type = tile_type_dict[dsl_cell]
+                row.append(map_tile_type)
+            print("".join(row))
+        print(f'> You are here: ({loc_x},{loc_y})')
+
+
 #TODO: All these methods need to be fixed
 # Call TAVERN ROOM CLOSED**
     def tavern_room_closed(self):
@@ -469,99 +538,6 @@ class Player:
             self.max_mana += 100
             self.mana = self.max_mana
             print(f"You leveled up! You are now at {self.lvl} LVL.")
-
-# CALL *** MAP ***   
-    # TODO sarebbe ottimo poter vedere solo le stanze in cui sei stato. ho implementato un bool dentro ogni stanza ma non ho ancora capito come usarlo
-    def print_map(self):
-        room = parser.tile_at(self.x, self.y)
-        loc_x = str(self.x)
-        loc_y = str(self.y)
-        print(f'> You are here: ({loc_x},{loc_y})')
-        dsl_lines = parser.world_dsl.splitlines()
-        dsl_lines = [x for x in dsl_lines if x]
-
-        Black = "|   bs  |"
-        Chest = "|   ?   |"
-        Enem1 = "|   .1  |"
-        Enem2 = "|   .2  |"
-        Enem3 = "|   .3  |"
-        Enem4 = "|   .4  |"
-        Enem5 = "|   .5  |"
-        Ferns = "|   f   |"
-        Intrd = "|   in  |"
-        Littl = "|  (o)  |"
-        OakWi = "|   k   |"
-        PathT = "|   .   |"
-        PathV = "|   .V  |"
-        RinaC = "|   rc  |"
-        River = "|   r   |"
-        Squar = "|   sq  |"
-        Start = "|  STR  |"
-        Styli = "|  sy   |"
-        Templ = "|  Tm   |"
-        Taver = "|   t   |"
-        TavRo = "|   tr  |"
-        Victo = "|  WIN  |"
-        VillN = "|   vn  |"
-        VillS = "|   vs  |"
-        Empty = "         "
-
-        tile_type_dict = {"BS": Black,
-                          "!!": Chest,
-                          ".1": Enem1,
-                          ".2": Enem2,
-                          ".3": Enem3,
-                          ".4": Enem4,
-                          ".5": Enem5,
-                          "FT": Ferns,
-                          "IN": Intrd,
-                          "Lo": Littl,
-                          "OK": OakWi,
-                          "..": PathT,
-                          ".V": PathV,
-                          "RC": RinaC,
-                          "RV": River,
-                          "SQ": Squar,
-                          "SS": Start,
-                          "SY": Styli,
-                          "TM": Templ,
-                          "TT": Taver,
-                          "TR": TavRo,
-                          "WW": Victo,
-                          "Vn": VillN,
-                          "Vs": VillS,
-                          "  ": Empty}
-        # spazi tra le stanze personalizzati:
-        nonempty_ceil = " _______ "
-        nonempty_wall = "|       |"
-        nonempty_floo = "|_______|"
-
-        empty_floo = "         "
-        empty_ceil = "         "
-        empty_wall = "         "
-        for y, dsl_row in enumerate(dsl_lines):
-            ceiling = []
-            floor = []
-            wall = []
-            row = []
-            dsl_cells = dsl_row.split("|")
-            dsl_cells = [c for c in dsl_cells if c]
-            for dsl_cell in dsl_cells:
-                map_tile_type = tile_type_dict[dsl_cell]
-                row.append(map_tile_type)
-                if dsl_cell in ["  ", ""]:
-                    ceiling.append(empty_ceil)
-                    floor.append(empty_floo)
-                    wall.append(empty_wall)
-                else:
-                    ceiling.append(nonempty_ceil)
-                    floor.append(nonempty_floo)
-                    wall.append(nonempty_wall)
-            print("".join(ceiling))
-            print("".join(wall))
-            print("".join(row))
-            print("".join(floor))
-
 
 
 # CALL *** OPEN ***
