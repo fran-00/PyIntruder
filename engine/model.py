@@ -122,6 +122,9 @@ class GameModel(QObject):
         
         elif action in ["p", "pick up"]:
             return self.player.item_handler()
+
+        elif action in ["m", "map"]:
+            return self.player.show_map()
         
         else:
             return ("I beg your pardon?")
