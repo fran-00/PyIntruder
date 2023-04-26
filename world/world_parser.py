@@ -1,4 +1,4 @@
-from old_world_gen import *
+from world.world_tiles import *
 
 # >>>> WORLD
 # ROW WORLD MAP
