@@ -1,7 +1,10 @@
 import random, json
 
 from entities import entities_index
-import old_entities_data.environmental_objects as environmental_objects
+
+
+with open('entities_data/npc_data.json') as f:
+    npcs_data = json.load(f)
 
 
 # *** ROOM OF ROOMS ***
