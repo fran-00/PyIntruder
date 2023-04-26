@@ -14,7 +14,12 @@
     "blacksmith": {
         "description": "Chad",
         "dialogues": {
-            "1": "dialogue here"
+            "1": "<< Stock up here before your next kill. >>",
+            "2": "<< Now in stock: goods acquired through questionable means. >>",
+            "3": "<< Get your raiding supplies here. Or don't, I don't care. >>",
+            "4": "<< Have a hard day of killing and looting? Don't want to haul it all back yourself? Sell it here. >>",
+            "5": "<< It's dangerous to go alone. It's dangerous to go in groups. It's just dangerous out there, so stock up here. >>",
+            "6": "<< Reminder: Any attempted five finger discounts will be reclaimed and paid for with said fingers. >>"
         }
     },
     "merchant": {
