@@ -120,6 +120,9 @@ class GameModel(QObject):
         elif action in ["t", "talk"]:
             return self.room.dialogue()
         
+        elif action in ["p", "pick up"]:
+            return self.player.item_handler()
+        
         else:
             return ("I beg your pardon?")
 
