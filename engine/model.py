@@ -1,7 +1,7 @@
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
-import old_world_gen as world
 import old_entities_data.items as items
+import world.world_parser as parser
 
 
 class GameThread(QThread):

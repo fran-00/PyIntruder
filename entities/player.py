@@ -6,7 +6,7 @@ import random
 import old_world_gen as world
 import old_entities_data.items as items
 import entities.entities_index as entities_index
-
+import world.world_parser as parser
 
 # MODULO DEL GIOCATORE
 class Player:
