@@ -38,7 +38,7 @@
         "briefcase": "<What's in the case?> <My boss's dirty laundry.> <Your boss makes you do his laundry?> <When he wants it cleaned.> <Sounds like a shit job.> <I was thinking the same thing.>",
         "riemann": "Full of trivial zeroes."
     },
-    "consumables": {
+    "healers": {
         "modification": "You could never live without it in a situation like this.",
         "gummy bears": "They are full of glucose, perfect for synthesizing ATP.",
         "cookies": "homemade With chocolate or jelly.",
