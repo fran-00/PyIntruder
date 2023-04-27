@@ -1,4 +1,6 @@
 from world.tiles import *
+from world.enemies_tiles import *
+
 
 # >>>> WORLD
 # ROW WORLD MAP
