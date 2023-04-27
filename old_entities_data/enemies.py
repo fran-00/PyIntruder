@@ -24,19 +24,6 @@ class GelCube(Enemy):
         self.talk_alive = "<< BLBLBLBLBLBLBLBLBLBLBLBLBL >>"
         self.talk_dead = "A dead cube has nothing to say."
 
-class NoMask(Enemy):
-    def __init__(self):
-        self.name = "COVID Negationist"
-        self.alive = True
-        self.hp = 30
-        self.damage = 15
-        self.intro_alive = "A No Mask appears from behind a tree, he wants to hug you to show you that there is no pandemic."
-        self.intro_dead = "The No Mask waits to be taken to intensive care, but all the ambulances in the area are busy elsewhere."
-        self.look_alive = "He has no mask and he probably didn't even get vaccinated."
-        self.look_dead = "He's waiting not so patiently."
-        self.talk_alive = "<< COVID is a hoax!!! >>"
-        self.talk_dead = "He's too sick to talk."
-
 class Squirrel(Enemy):
     def __init__(self):
         self.name = "Ravenous Squirrel"
@@ -77,19 +64,6 @@ class MushroomHunter(Enemy):
         self.talk_alive = "<< Hi! >>"
         self.talk_dead = "He is too focused on identifying a mushroom."
 
-class Incel(Enemy):
-    def __init__(self):
-        self.name = "Incel"
-        self.alive = True
-        self.hp = 70
-        self.damage = 35
-        self.intro_alive = "An Incel want to send you his dick pick."
-        self.intro_dead = "Eww... gross."
-        self.look_alive = "Eww... gross."
-        self.look_dead = "Eww... gross."
-        self.talk_alive = "<< Are you a virgin? >>"
-        self.talk_dead = "<< I want a girlfriend... >>"
-
 class Cops(Enemy):
     def __init__(self):
         self.name = "Quad Biking Cops"
@@ -102,19 +76,6 @@ class Cops(Enemy):
         self.look_dead = "The only good quod cop is a dead quod cop. (I dissociate myself from that)."
         self.talk_alive = "<< Hands up and let yourself be searched. >>"
         self.talk_dead = "There are no more cops around here."
-
-class JacobChansley(Enemy):
-    def __init__(self):
-        self.name = "QAnon Shaman"
-        self.alive = True
-        self.hp = 90
-        self.damage = 45
-        self.intro_alive = "A QAnon Shaman wants to plagiarize you with his conspiracy beliefs! He is shouting something about a New World Order. He wears horns, furs and a flag drawn on its face."
-        self.intro_dead = "A QAnon Shaman cries and mumbles that there has been fraud."
-        self.look_alive = "He is completely bonkers. I like it."
-        self.look_dead = "There are horns and a fur on the ground."
-        self.talk_alive = ""
-        self.talk_dead = "<< Beware... the... Witches... >>"
 
 # Nemici Tier 3/5: da 50 a 65 DMG
 class Bug(Enemy):
@@ -210,19 +171,6 @@ class Gnome(Enemy):
         self.talk_alive = " "
         self.talk_dead = " "
 
-class Mcu(Enemy):
-    def __init__(self):
-        self.name = "Marvel Cinematic Universe"
-        self.alive = True
-        self.hp = 170
-        self.damage = 85
-        self.intro_alive = "MCU wants to release the 100th Spiderman movie!"
-        self.intro_dead = "There are no more shit movies scheduled."
-        self.look_alive = "It reminds you of 50 other movies you've already seen, how boring..."
-        self.look_dead = " "
-        self.talk_alive = "<< Let yourself be pampered by the fan service! >>"
-        self.talk_dead = " "
-
 # Nemici Tier 5/5: da 100 a 105 DMG
 class Herobrine(Enemy):
     def __init__(self):
@@ -262,20 +210,6 @@ class ArmillariaOstoyae(Enemy):
         self.look_dead = "Even if you have defeated her, she still scares you."
         self.talk_alive = "<< I THINK, THEREFORE I AM >>"
         self.talk_dead = "<< I'M STILL HERE, TRAVELER. >>"
-
-class MetaVerse(Enemy):
-    def __init__(self):
-        self.name = "MetaVerse"
-        self.alive = True
-        self.hp = 210
-        self.damage = 105
-        self.intro_alive = "Face"
-        self.intro_dead = " "
-        self.look_alive = " "
-        self.look_dead = " "
-        self.talk_alive = " "
-        self.talk_dead = " "
-
 
 
 # ENEMIES FOR THE PATH
