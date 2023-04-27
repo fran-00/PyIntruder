@@ -1,4 +1,4 @@
-from entities_templates import NonPlayableCharacter
+from .entities_templates import NonPlayableCharacter
 import random, json
 
 
