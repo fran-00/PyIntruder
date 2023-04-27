@@ -69,10 +69,11 @@ class NonPlayableCharacter(Entity):
 
 class Enemy(Entity):
 
-    def __init__(self, name, description, level, hp, damage):
+    def __init__(self, name, description, level, hp, damage, alive):
         super().__init__(name, description, level)
         self.hp = hp
         self.damage = damage
+        self.alive = alive
 
     def __str__(self):
         return self.name, self.hp
