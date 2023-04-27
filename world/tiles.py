@@ -1,11 +1,9 @@
 import random
 
+from entities.npcs_factory import NPCsFactory as npc
+from entities.weapons_factory import WeaponsFactory as weapon
+from entities.healers_factory import HealersFactory as healer
 import entities.enemies_factory as e
-import old_entities_data.npc as npc
-import old_entities_data.items as items
-from entities import entities_index
-import old_entities_data.environmental_objects as environmental_objects
-
 from world.map_tile import MapTile
 
 
