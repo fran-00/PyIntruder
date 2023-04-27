@@ -32,18 +32,6 @@ class ItemsFactory:
         )
 
 
-class EnemiesFactory:
-    
-    def __init__(self):
-        self.gel_cube = Enemy(
-            "Gelatinous Cube",
-            enemies_data["gel cube"]["intro_alive"],
-            1,
-            20,
-            10
-        )
-
-
 class NPCsFactory:
     
     def __init__(self):
@@ -82,7 +70,6 @@ class CursesFactory:
 
 
 print(ItemsFactory().ats.description)
-print(EnemiesFactory().gel_cube.level)
 print(NPCsFactory().littleo.description)
 print(WeaponsFactory().wireless_wire.description)
 print(CursesFactory().sep_field.description)
