@@ -1,8 +1,10 @@
 import contextlib
 import random
 
-import old_entities_data.items as items
-import entities.entities_index as entities_index
+from .weapons_factory import WeaponsFactory as weapon
+from .curses_factory import CursesFactory as curse
+from .healers_factory import HealersFactory as healer
+
 import world.parser as parser
 import world.tiles as world
 
