@@ -432,44 +432,6 @@ class Player:
         receiver.inventory.append(item)
     
 
-# CALL *** EXAMINE ITEM *** ok proviamo a confrontare i NOMI degli oggetti invece che la classe
-    def examine_item(self):
-        room = parser.tile_at(self.x, self.y)
-        chosen_item = []
-        print("What do you want to examine?")
-        key = input(">>>> ").lower()
-        if key in entities_index.stuff:
-            thing_to_examine = entities_index.stuff[key]
-            chosen_item.append(thing_to_examine)
-            stuff_to_examine = {item.name for item in chosen_item}
-            stuff_you_own = {item.name for item in self.inventory}
-            stuff_in_room = {item.name for item in room.inventory}
-            environmental_in_room = {item.name for item in room.env_obj}
-            if (set(stuff_to_examine) & set(stuff_you_own) or
-                set(stuff_to_examine) & set(stuff_in_room) or
-                set(stuff_to_examine) & set(environmental_in_room)):
-                print("{}".format(thing_to_examine.description))
-                if thing_to_examine.name in "Thermo bottle":
-                    if self.bottle_full:
-                        print("It's full of fresh water, it heals you for {} HP."
-                              .format(thing_to_examine.heal))
-                    else:
-                        print("It's empty.")
-                elif thing_to_examine.damage:
-                    print("It deals {} DMG.".format(thing_to_examine.damage))
-                elif thing_to_examine.heal:
-                    print("It heals you for {} HP.".format(thing_to_examine.heal))
-                elif thing_to_examine.defence:
-                    print("It protects you with {} DEF.".format(thing_to_examine.defence))
-                else:
-                    pass
-            else:
-                print("You can't see any {} here.".format(key))
-        elif key == 'all':
-            pass            #TODO
-        else:
-            print("{} is something I don't recognize".format(key))
-
 # CALL *** HEAL ***
     def heal(self):
         consumables = [item for item in self.inventory
