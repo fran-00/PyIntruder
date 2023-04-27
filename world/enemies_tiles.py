@@ -1,6 +1,6 @@
 import random
 
-from map_tile import MapTile
+from world.map_tile import MapTile
 import old_entities_data.enemies as enemies
 
 
