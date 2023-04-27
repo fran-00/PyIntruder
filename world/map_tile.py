@@ -1,7 +1,5 @@
 import random
 
-from entities import entities_index
-
 
 # *** ROOM OF ROOMS ***
 class MapTile:
@@ -10,20 +8,9 @@ class MapTile:
         self.y = y
         self.inventory = []
         self.world_check = []
-        
-        self.random_item()
 
     def random_item(self):
-        n = random.randint(1, 4)
-        if n in {1, 2}:
-            pass
-        elif n == 3:
-            self.inventory.extend(
-                random.choice(entities_index.consumables_list)
-                for _ in range(random.randint(1, 2))
-            )
-        elif n == 4:
-            self.inventory.append(random.choice(entities_index.mrs_list))
+        pass
 
 
     def modify_player(self, player):
