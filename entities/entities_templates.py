@@ -38,7 +38,7 @@ class Curse(Item):
         return self.name, self.damage
 
 
-class Consumable(Item):
+class Healer(Item):
     
     def __init__(self, name, description, level, value, heal):
         super().__init__(name, description, level, value)
