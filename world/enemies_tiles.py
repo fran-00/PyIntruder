@@ -1,7 +1,7 @@
 import random
 
 from .map_tile import MapTile
-import old_entities_data.enemies as e
+from entities import enemies_factory as e
 
 
 # >>>> FIGHT
@@ -16,7 +16,7 @@ class EnemyTile_1(MapTile):
         self.env_obj = []
         self.water = False
         
-        self.enemy_list = [e.GelCube(), e.Squirrel(), e.Helicopter()]
+        self.enemy_list = [e.Lv1().gel_cube, e.Lv1().squirrel, e.Lv1().helicopter]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
@@ -32,7 +32,7 @@ class EnemyTile_2(MapTile):
         self.env_obj = []
         self.water = False
         
-        self.enemy_list = [e.Cops(), e.MushroomHunter()]
+        self.enemy_list = [e.Lv2().hunter, e.Lv2().hunter, e.Lv2().eyes]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
@@ -48,7 +48,7 @@ class EnemyTile_3(MapTile):
         self.env_obj = []
         self.water = False
         
-        self.enemy_list = [e.Bug(), e.Eyes(), e.Ants(), e.Trog()]
+        self.enemy_list = [e.Lv3().ants, e.Lv3().trog, e.Lv3().uncanny]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
@@ -64,7 +64,7 @@ class EnemyTile_4(MapTile):
         self.env_obj = []
         self.water = False
 
-        self.enemy_list = [e.UncannyValley(), e.Paranoia(), e.Gnome()]
+        self.enemy_list = [e.Lv4().gnome]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
@@ -80,7 +80,7 @@ class EnemyTile_5(MapTile):
         self.env_obj = []
         self.water = False
 
-        self.enemy_list = [e.Herobrine(), e.RubberJohnny(), e.ArmillariaOstoyae()]
+        self.enemy_list = [e.Lv5().ostoyae]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
