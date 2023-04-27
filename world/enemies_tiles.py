@@ -1,7 +1,7 @@
 import random
 
-from world.map_tile import MapTile
-import old_entities_data.enemies as enemies
+from .map_tile import MapTile
+import old_entities_data.enemies as e
 
 
 # >>>> FIGHT
