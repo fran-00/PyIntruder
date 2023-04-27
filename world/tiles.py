@@ -1,8 +1,7 @@
 import random
 
-import old_entities_data.enemies as enemies
+import entities.enemies_factory as e
 import old_entities_data.npc as npc
-from entities.player import Player
 import old_entities_data.items as items
 from entities import entities_index
 import old_entities_data.environmental_objects as environmental_objects
@@ -116,12 +115,12 @@ class ChestTile(MapTile):
                         self.closed = False
                     elif ico < 4 and ico > 0:            # Se esce 3, 2 o 1
                         print(f"> {ico}! Medium Enemy!\n")
-                        self.enemy = enemies.Helicopter()
+                        self.enemy = e.Lv1().helicopter
                         self.closed = False
                         print(f"{self.enemy.intro_alive}")
                     elif ico == 0:                       # se esce 0
                         print(f"> {ico}! Hard Enemy!")
-                        self.enemy = enemies.MushroomHunter()
+                        self.enemy = e.Lv1().gel_cube()
                         self.closed = False
                         print(f"{self.enemy.intro_alive}")
                 else:
@@ -485,7 +484,6 @@ class RinaTile(MapTile):
                 elif user_input2 in ['4']:
                     print("<< It attacked me a while ago, it must not have gone far... >>\n")
                     print("> Just as Rina finishes saying the sentence, you hear an annoying noise coming from the sky.")
-                    self.enemy = enemies.WooWoo()
                     break
                 elif user_input2 in ['q']:
                     print("<< See you soon, child. >>")
@@ -761,7 +759,7 @@ class TavernRoomTile(MapTile):
                     print(">> There's an item under your pillow.")
                     print(f">> It is a {items.Ghirciola()}! Taken.\n")
                 else:
-                    self.enemy = enemies.Thief()
+                    self.enemy = e.Lv1().gel_cube
                     print(">> Ambush!")
                     if player.base_defence > 0:
                         print("> You removed your armor for the night so you are more vulnerable.")
