@@ -6,9 +6,11 @@ from .entities_templates import Weapon
 with open('entities_data/items_data.json') as f:
     items_data = json.load(f)
 
+
 class WeaponsFactory:
     
     def __init__(self):
+        
         self.wireless_wire = Weapon(
             "Manuport",
             items_data["weapons"]["manuport"],
@@ -16,14 +18,14 @@ class WeaponsFactory:
             15,
             20,
         )
-        self.name = Weapon(
+        self.sheet = Weapon(
             "polarized sheet",
-            items_data["weapons"]["polarized_sheet"],
+            items_data["weapons"]["polarized sheet"],
             1,
             15,
             20,
         )
-        self.name = Weapon(
+        self.polyhedron = Weapon(
             "sharp polyhedron",
             items_data["weapons"]["sharp polyhedron"],
             1,
@@ -37,7 +39,7 @@ class WeaponsFactory:
             15,
             20,
         )
-        self.name = Weapon(
+        self.polygon = Weapon(
             "transparent polygon",
             items_data["weapons"]["transparent polygon"],
             1,
@@ -45,63 +47,63 @@ class WeaponsFactory:
             20,
         )
         
-        self.name = Weapon(
+        self.wire = Weapon(
             "wireless wire",
-            items_data["weapons"]["name"],
+            items_data["weapons"]["wireless wire"],
             1,
             15,
             20,
         )
-        self.name = Weapon(
+        self.branch = Weapon(
             "armored brench",
             items_data["weapons"]["armored brench"],
             1,
             15,
             20,
         )
-        self.name = Weapon(
+        self.poly = Weapon(
             "n-dimensional polytope",
             items_data["weapons"]["polytope"],
             1,
             15,
             20,
         )
-        self.name = Weapon(
+        self.device = Weapon(
             "Aperture Science Handheld Portal Device",
             items_data["weapons"]["ashpd"],
             1,
             15,
             20,
         )
-        self.name = Weapon(
+        self.deliverance = Weapon(
             "Deliverance by Tediore (Shotgun)",
             items_data["weapons"]["deliverance"],
             1,
             15,
             20,
         )
-        self.name = Weapon(
+        self.tesseract = Weapon(
             "name",
             items_data["weapons"]["tesseract"],
             1,
             15,
             20,
         )
-        self.name = Weapon(
+        self.chuck = Weapon(
             "Chuck the plant",
             items_data["weapons"]["chuck"],
             1,
             15,
             20,
         )
-        self.name = Weapon(
+        self.attractor = Weapon(
             "great attractor",
             items_data["weapons"]["great attractor"],
             1,
             15,
             20,
         )
-        self.name = Weapon(
+        self.cube = Weapon(
             "The Soul Cube",
             items_data["weapons"]["soul Cube"],
             1,
