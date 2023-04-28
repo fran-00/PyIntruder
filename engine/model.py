@@ -35,9 +35,7 @@ class GameModel(QObject):
             if self.room.enemy and self.room.enemy.alive:
                 self.handle_enemy_attack()
             
-            self.player.turn += 1
             self.event_loop.exec()
-            
             game_response = self.choose_action(self.action)
             
             # If game_response is a tuple creates a nested loop to handle the
@@ -88,6 +86,7 @@ class GameModel(QObject):
     
             
     def choose_action(self, action=str):
+        self.player.turn += 1
         if action in ["n", "s", "w", "e"]:
             if self.room.enemy is None or self.room.enemy.alive is False:
                 return(self.move(self.room, self.player))
