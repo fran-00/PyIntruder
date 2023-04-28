@@ -17,7 +17,7 @@ class Player:
         self.name = 'Your Name Here'
         self.x = parser.start_tile_location[0]       # modifica questi valori per modificare la locazione di partenza. di base è su (0, 1)
         self.y = parser.start_tile_location[1]       # ma in realtà la locazione di partenza è determinata da dove metti la StartTile
-        self.inventory = [weapon().manuport]
+        self.inventory = [weapon().manuport, armor().tesla_armor]
         self.lvl = 1
         self.max_hp = 100
         self.hp = 100
@@ -197,7 +197,7 @@ class Player:
 
     # *** ARMOR ***
     def armor(self):
-        armors = self.item_selector_from_type(items.Armor)
+        armors = self.item_selector_from_type(Armor)
         if not armors:
             return "You've got no armor."
         response = "Choose an armor to wear:"
