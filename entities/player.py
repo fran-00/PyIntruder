@@ -197,9 +197,12 @@ class Player:
         inventory = right_order_list
         return response
 
+
+    @choose_response
     def choose_item(self, *args):
         action = args[0]
         inventory = args[2]
+
         if action.lower() in ('q', 'exit', 'no'):
             return "Ok."
         try:
