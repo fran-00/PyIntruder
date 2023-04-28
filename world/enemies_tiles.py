@@ -1,11 +1,9 @@
 import random
 
 from .map_tile import MapTile
-from entities.factories import enemies_factory as e
+from entities.factories.enemies_factory import EnemiesFactory as Ef
 
 
-# >>>> FIGHT
-# |X1|
 class EnemyTile_1(MapTile):
     def __init__(self, x, y):
         self.name = 'ET1'
@@ -15,13 +13,11 @@ class EnemyTile_1(MapTile):
         self.seen = False
         self.env_obj = []
         self.water = False
-        
-        self.enemy_list = [e.Lv1().gel_cube, e.Lv1().squirrel, e.Lv1().helicopter]
+        self.enemy_list = [Ef().gel_cube, Ef().squirrel, Ef().helicopter]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
 
-# |X2|
 class EnemyTile_2(MapTile):
     def __init__(self, x, y):
         self.name = 'ET2'
@@ -30,14 +26,11 @@ class EnemyTile_2(MapTile):
         self.examine = None
         self.seen = False
         self.env_obj = []
-        self.water = False
-        
-        self.enemy_list = [e.Lv2().hunter, e.Lv2().hunter, e.Lv2().eyes]
+        self.enemy_list = [Ef().hunter, Ef().hunter, Ef().eyes]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
 
-# |X3|
 class EnemyTile_3(MapTile):
     def __init__(self, x, y):
         self.name = 'ET3'
@@ -46,14 +39,11 @@ class EnemyTile_3(MapTile):
         self.examine = None
         self.seen = False
         self.env_obj = []
-        self.water = False
-        
-        self.enemy_list = [e.Lv3().ants, e.Lv3().trog, e.Lv3().uncanny]
+        self.enemy_list = [Ef().ants, Ef().trog, Ef().uncanny]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
 
-# |X4|
 class EnemyTile_4(MapTile):
     def __init__(self, x, y):
         self.name = 'ET4'
@@ -62,14 +52,11 @@ class EnemyTile_4(MapTile):
         self.examine = None
         self.seen = False
         self.env_obj = []
-        self.water = False
-
-        self.enemy_list = [e.Lv4().gnome]
+        self.enemy_list = [Ef().gnome]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
 
-# |X5|
 class EnemyTile_5(MapTile):
     def __init__(self, x, y):
         self.name = 'ET5'
@@ -78,9 +65,7 @@ class EnemyTile_5(MapTile):
         self.examine = None
         self.seen = False
         self.env_obj = []
-        self.water = False
-
-        self.enemy_list = [e.Lv5().ostoyae]
+        self.enemy_list = [Ef().ostoyae]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
