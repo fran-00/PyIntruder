@@ -15,6 +15,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.hyperbolic_orange = Curse(
             "hyperbolic orange",
@@ -22,6 +23,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.stygian_blue = Curse(
             "stygian blue",
@@ -29,6 +31,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.discourse = Curse(
             "Discourse on the Method of Rightly Conducting One's Reason and of Seeking Truth in the Sciences",
@@ -36,6 +39,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.falsidical = Curse(
             "falsidical paradox",
@@ -43,6 +47,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.cluster_point = Curse(
             "cluster point",
@@ -50,6 +55,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.aleph = Curse(
             "Aleph Naught",
@@ -57,6 +63,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.logistic_map = Curse(
             "Logistic Map",
@@ -64,6 +71,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.integral = Curse(
             "integral of a real multivariate function",
@@ -71,6 +79,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.veridical = Curse(
             "veridical paradox",
@@ -78,6 +87,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.comic_sans = Curse(
             "Comic Sans",
@@ -85,6 +95,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.sep = Curse(
             "Somebody Else's Problem Field",
@@ -92,6 +103,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.nimby = Curse(
             "not in my back yard",
@@ -99,6 +111,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.choice = Curse(
             "Axiom of Choice",
@@ -106,6 +119,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.antinomy = Curse(
             "antinomy",
@@ -113,6 +127,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.continuum = Curse(
             "continuum hypothesis",
@@ -120,6 +135,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.insult = Curse(
             "Ultimate Insult",
@@ -127,6 +143,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.briefcase = Curse(
             "Marcellus Wallace's briefcase",
@@ -134,6 +151,7 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
         self.riemann = Curse(
             "Riemann zeta function",
@@ -141,4 +159,5 @@ class CursesFactory:
             1,
             15,
             20,
+            10
         )
