@@ -144,7 +144,7 @@ class Player:
         max_damage = 0
         best_weapon = None
         if weapons := [
-            item for item in self.inventory if isinstance(item, WeaponType)
+            item for item in self.inventory if isinstance(item, Weapon)
         ]:
             for i, item in enumerate(weapons, 1):
                 with contextlib.suppress(AttributeError):
@@ -164,12 +164,12 @@ class Player:
         response = "You open your backpack:"
         right_order_list = []
         index = 1
-        for category in [items.Weapon, items.Curse, items.Consumable, items.ManaRechargers, items.Armor, items.MissionItem]:
+        for category in [Weapon, Curse, Healer]:
             items_in_category = self.sort_items_by_category(category)
             if items_in_category:
                 response += f"\n>> {category.__name__.upper()}:\n"
-                for i, item in enumerate(items_in_category, index):
-                    response += f"{index}. {item}"
+                for _, item in enumerate(items_in_category, index):
+                    response += f"{index}. {item.name}"
                     index += 1
                     right_order_list.append(item)
         self.inventory = right_order_list
