@@ -164,7 +164,7 @@ class Player:
         response = "You open your backpack:"
         right_order_list = []
         index = 1
-        for category in [Weapon, Curse, Healer]:
+        for category in [Weapon, Curse, Healer, Armor]:
             items_in_category = self.sort_items_by_category(category)
             if items_in_category:
                 response += f"\n>> {category.__name__.upper()}:\n"
