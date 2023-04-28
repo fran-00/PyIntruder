@@ -197,40 +197,6 @@ class Player:
         )
 
 
-    # *** ARMOR ***
-    def armor(self):
-        armors = self.item_selector_from_type(Armor)
-        if not armors:
-            return "You've got no armor."
-        response = "Choose an armor to wear:"
-        for i, item in enumerate(armors, 1):
-            response += f"\n{i}. {item}"
-        return response
-
-    def choose_armor(self, *args):
-        armors = self.item_selector_from_type(Armor)
-        if not armors:
-            # FIXME: The second loop is executed anyway and game waits 
-            # for action even if you haven't any armor
-            # Must find a way to avoid this
-            return "No armor"
-        action = args[0]
-        items_type = args[1]
-        items_type_selection = self.item_selector_from_type(items_type)
-        try:
-            armor_chosen = items_type_selection[int(action) - 1]
-            self.base_defence = armor_chosen.defence
-            return f"Your defence is now {self.base_defence}."
-        except (ValueError, IndexError):
-            return "Invalid choice, try again."
-
-
-    def item_selector_from_type(self, type):
-        item_type = [item for item in self.inventory
-                          if isinstance(item, type)]
-        return item_type
-
-
     # *** MAP ***   
     def show_map(self):
         Black = "| bs |"
