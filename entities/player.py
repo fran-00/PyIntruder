@@ -597,9 +597,6 @@ class Player:
             print("You can't escape!")
             return
 
-# CALL *** SAVE & RESTORE ***
-    # TODO aggiungi room.seen che probabilmente servirà per la mappa
-    # TODO verifica il funzionamento corretto della stanza della taverna (se rimane chiusa o aperta come dovrebbe)
 
     # Function that creates a list of rooms with no empty spaces from the world map
     def room_list_creator(self):
