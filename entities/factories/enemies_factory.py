@@ -6,9 +6,9 @@ with open('entities/data/enemies_data.json') as ef:
     enemies_data = json.load(ef)
 
 
-class Lv1:
-    
+class EnemiesFactory:
     def __init__(self):
+        # Level 1
         self.gel_cube = Enemy(
             "Gelatinous Cube",
             enemies_data["gel cube"]["intro_alive"],
@@ -34,10 +34,7 @@ class Lv1:
             True
         )
 
-
-class Lv2:
-    def __init__(self):
-        
+        # Level 2
         self.hunter = Enemy(
             "Mushroom Hunter",
             enemies_data["hunter"]["intro_alive"],
@@ -64,8 +61,7 @@ class Lv2:
         )
 
 
-class Lv3:
-    def __init__(self):
+        # Level 3
         self.ants = Enemy(
             "ants infected by a fungus",
             enemies_data["ants"]["intro_alive"],
@@ -91,10 +87,7 @@ class Lv3:
             True
         )
 
-
-class Lv4:
-    def __init__(self):
-
+        # level 4
         self.gnome = Enemy(
             "Gnome armed with an ax",
             enemies_data["gnome"]["intro_alive"],
@@ -104,10 +97,7 @@ class Lv4:
             True
         )
 
-
-class Lv5:
-    def __init__(self):
-
+        # Level 5
         self.ostoyae = Enemy(
             "Armillaria Ostoyae",
             enemies_data["ostoyae"]["intro_alive"],
