@@ -1,9 +1,11 @@
 import contextlib
 import random
 
-from .weapons_factory import WeaponsFactory as weapon
-from .curses_factory import CursesFactory as curse
-from .healers_factory import HealersFactory as healer
+from .entities_templates import Weapon as WeaponType
+from .factories.weapons_factory import WeaponsFactory as weapon
+from .factories.curses_factory import CursesFactory as curse
+from .factories.armors_factory import ArmorsFactory as armor
+from .factories.healers_factory import HealersFactory as healer
 
 import world.parser as parser
 import world.tiles as world
