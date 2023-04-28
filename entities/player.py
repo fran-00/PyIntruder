@@ -17,7 +17,7 @@ class Player:
         self.name = 'Your Name Here'
         self.x = parser.start_tile_location[0]       # modifica questi valori per modificare la locazione di partenza. di base è su (0, 1)
         self.y = parser.start_tile_location[1]       # ma in realtà la locazione di partenza è determinata da dove metti la StartTile
-        self.inventory = [items.Manuport(), items.TeslaArmor(), items.IronArmor()]
+        self.inventory = [weapon().manuport]
         self.lvl = 1
         self.max_hp = 100
         self.hp = 100
@@ -144,7 +144,7 @@ class Player:
         max_damage = 0
         best_weapon = None
         if weapons := [
-            item for item in self.inventory if isinstance(item, items.Weapon)
+            item for item in self.inventory if isinstance(item, WeaponType)
         ]:
             for i, item in enumerate(weapons, 1):
                 with contextlib.suppress(AttributeError):
