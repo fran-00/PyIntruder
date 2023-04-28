@@ -1,4 +1,6 @@
 from ..entities_templates import NonPlayableCharacter
+from weapons_factory import WeaponsFactory as Wf
+from curses_factory import CursesFactory as Cf
 import random, json
 
 
@@ -14,7 +16,7 @@ class NPCsFactory:
             npcs_data["littleo"]["description"],
             None,
             1000,
-            []
+            [Cf().sep, Cf().choice, Cf().riemann]
         )
         self.blacksmith = NonPlayableCharacter(
             "Blacksmith",

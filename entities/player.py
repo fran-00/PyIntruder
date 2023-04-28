@@ -2,10 +2,10 @@ import contextlib
 import random
 
 from .entities_templates import Weapon, Curse, Armor, Healer
-from .factories.weapons_factory import WeaponsFactory as weapon
-from .factories.curses_factory import CursesFactory as curse
-from .factories.armors_factory import ArmorsFactory as armor
-from .factories.healers_factory import HealersFactory as healer
+from .factories.weapons_factory import WeaponsFactory as Wf
+from .factories.curses_factory import CursesFactory as Cf
+from .factories.armors_factory import ArmorsFactory as Af
+from .factories.healers_factory import HealersFactory as Hf
 
 import world.parser as parser
 import world.tiles as world
@@ -17,7 +17,7 @@ class Player:
         self.name = 'Your Name Here'
         self.x = parser.start_tile_location[0]       # modifica questi valori per modificare la locazione di partenza. di base è su (0, 1)
         self.y = parser.start_tile_location[1]       # ma in realtà la locazione di partenza è determinata da dove metti la StartTile
-        self.inventory = [weapon().manuport, armor().tesla_armor]
+        self.inventory = [Wf().manuport, Af().tesla_armor]
         self.lvl = 1
         self.max_hp = 100
         self.hp = 100
