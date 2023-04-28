@@ -1,9 +1,11 @@
 import random
 
-from entities.npcs_factory import NPCsFactory as npc
-from entities.weapons_factory import WeaponsFactory as weapon
-from entities.healers_factory import HealersFactory as healer
-import entities.enemies_factory as e
+from entities.factories.npcs_factory import NPCsFactory as npc
+from entities.factories.weapons_factory import WeaponsFactory as weapon
+from entities.factories.armors_factory import ArmorsFactory as armor
+from entities.factories.healers_factory import HealersFactory as healer
+from entities.factories.quest_items_factory import QuestItemsFatory as quest_item
+import entities.factories.enemies_factory as e
 from world.map_tile import MapTile
 
 
@@ -11,7 +13,7 @@ from world.map_tile import MapTile
 class BlacksmithTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Blacksmith'
-        self.talker = npc.Blacksmith()
+        self.talker = npc().blacksmith
         self.enemy = None
         self.description = "You are in a blacksmith's shop. He is working on an anvil by striking a hot iron with a hammer. The room is small, full of tools, and it's hot as hell."
         self.examine = None
@@ -65,7 +67,7 @@ class ChestTile(MapTile):
         self.name = 'Chest'
         self.talker = None
         self.enemy = None
-        self.env_obj = environmental_objects.Chest()
+        self.env_obj = None
         self.description = "There's a chest here.\n"
         self.examine = "Chest has a Icosahedron on it."
         self.seen = False
@@ -133,11 +135,11 @@ class ChestTile(MapTile):
 class FernsTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Ferns'
-        self.talker = npc.Ferns()
+        self.talker = npc().ferns
         self.enemy = None
         self.description = "A lot of ferns."
         self.examine = "They're green and worried."
-        self.inventory = [items.Bears()]
+        self.inventory = [healer().ats]
         self.env_obj = []
         self.seen = False
         self.water = False
@@ -178,7 +180,7 @@ class FernsTile(MapTile):
                     continue
                 elif user_input2 in ['4']:
                     print("<< Here is a sample of the perfection of my lineage. Its leaves are green, full of light and immaculate: help us to ensure that the light reaches our roots by illuminating our consciences with the awareness of ourselves and of how to remedy the evils that afflict us. >>")
-                    player.inventory.append(items.Specimen())
+                    player.inventory.append(quest_item().specimen)
                     player.ferns_talked = True
                     player.specimen_received = True
                     print("> You are entrusted with the perfect specimen, treat it with care.")
@@ -259,7 +261,7 @@ class IntruderTile(MapTile):
 class Little_oTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Little(o)'
-        self.talker = npc.Littleo()
+        self.talker = npc().littleo
         self.enemy = None
         self.description = "They say it is only infinitesimally probable to be here."
         self.examine = "It's an experimental application of Infinite Improbability, which in the future will led to the Infinite Improbability Drive."
@@ -318,7 +320,7 @@ class OakTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Oak'
         self.enemy = None
-        self.talker = npc.Oak()
+        self.talker = npc().oak
         self.description = "There's n Oak here."
         self.examine = "OMG he's very wise."
         self.env_obj = []
@@ -456,7 +458,7 @@ class RinaTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Rina Casti'
         self.enemy = None
-        self.talker = npc.RinaCasti()
+        self.talker = npc().rina
         self.description = "You're surrounded by trees. There's someone here."
         self.examine = " "
         self.env_obj = []
@@ -492,7 +494,7 @@ class RinaTile(MapTile):
         elif self.enemy and not self.enemy.alive and not player.rina_gift_received:
             print("<< Thank you for protecting me and my underwear, to reciprocate I offer you a precious gift. >>")
             player.max_hp += 200
-            player.inventory.append(items.RinaArmor())
+            player.inventory.append(armor().rinas_armor)
             player.hp = player.max_hp
             print("> Your maximum health is increased and Rina gave you her armor as a gift.")
             player.rina_gift_received = True
@@ -520,7 +522,7 @@ class RiverTile(MapTile):
 class SquareTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Little Square'
-        self.talker = npc.Merchant()
+        self.talker = npc().merchant
         self.enemy = None
         self.description = "You are in a square, deserted except for a slimy-looking merchant behind a stall full of all kinds of equipment. In the center of the square is a fountain with a statue of a familiar-looking plant in the center."
         self.examine = None
@@ -577,13 +579,12 @@ class StartTile(MapTile):
         self.talker = None
         self.description = "You are in a clearing. You arrived with your car from the west and the road ends in the east, where a path that climbs the mountain begins. A dense network of trees prevents the passage in any other direction. Your car is parked on the north side of the clearing, there is no one else parked."
         self.examine = "Your car is warm. Outside is cold."
-        self.env_obj = environmental_objects.Car()
+        self.env_obj = None
         self.seen = False
         self.water = True
         super().__init__(x, y)
         # in this way the inventory inherit from parent class gets overidden
-        self.inventory = [items.Sheet(),
-                          items.Method(),]
+        self.inventory = [weapon().sheet]
 
 
     def room_seen(self):
@@ -594,7 +595,7 @@ class StyliteTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Stylite'
         self.enemy = None
-        self.talker = npc.Stylite()
+        self.talker = npc().stylite
         self.description = "There is a kind of cross in the trees, it is tall and there is a man in his underwear on it"
         self.examine = ""
         self.env_obj = []
@@ -632,7 +633,7 @@ class StyliteTile(MapTile):
 class TavernTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Tavern'
-        self.talker = npc.InnKeeper()
+        self.talker = npc().innkeeper
         self.enemy = None
         self.description = "You are in a tavern. The whole structure is dark wood, there are a dozen round tables but no people but you and the tavern keeper. He is behind the counter cleaning glasses and greets you with a smile and a nod of his head. The counter is to the right of the entrance and there are stairs to the north that lead to the upper floor, which houses the rooms for the overnight stay."
         self.examine = " Mah."
@@ -753,9 +754,9 @@ class TavernRoomTile(MapTile):
                     player.gold = player.gold + gold
                     print(f">> The fairy give you {gold} Cash! You now have {player.gold}.\n")
                 elif ananke == 2:
-                    player.inventory.append(items.Ghirciola())
+                    player.inventory.append(healer.ats)
                     print(">> There's an item under your pillow.")
-                    print(f">> It is a {items.Ghirciola()}! Taken.\n")
+                    print(f">> It is a {healer().ats}! Taken.\n")
                 else:
                     self.enemy = e.Lv1().gel_cube
                     print(">> Ambush!")
@@ -786,7 +787,7 @@ class TavernRoomTile(MapTile):
 class TempleTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Temple'
-        self.talker = npc.Monk()
+        self.talker = npc().monk
         self.enemy = None
         self.description = "You are in a temple. Strange symbols made up of concentric circles adorn the walls. A monk prays in front of an altar filled with a liquid of a strange color."
         self.examine = None
