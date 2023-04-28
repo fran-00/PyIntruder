@@ -1,4 +1,4 @@
-from .entities_templates import Enemy
+from ..entities_templates import Enemy
 import random, json
 
 

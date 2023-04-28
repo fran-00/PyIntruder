@@ -1,6 +1,6 @@
 import random, json
 
-from .entities_templates import Healer
+from ..entities_templates import Healer
 
 
 with open('entities_data/items_data.json') as f:

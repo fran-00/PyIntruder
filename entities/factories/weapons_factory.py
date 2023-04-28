@@ -1,6 +1,6 @@
 import random, json
 
-from .entities_templates import Weapon
+from ..entities_templates import Weapon
 
 
 with open('entities_data/items_data.json') as f:
