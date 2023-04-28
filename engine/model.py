@@ -102,8 +102,8 @@ class GameModel(QObject):
         elif action in ["i"]:
             return (
                 self.player.show_inventory(self.player.inventory, None), 
-                self.player.choose_item, 
-                None, 
+                self.player.choose_item,
+                None,
                 self.player.inventory
             )
         
@@ -121,6 +121,17 @@ class GameModel(QObject):
 
         elif action in ["t", "talk"]:
             return self.room.dialogue()
+        
+        elif action in ["trade"]:
+            if self.room.talker:
+                return (
+                    self.player.show_inventory(self.room.talker.inventory, None), 
+                    self.player.choose_item,
+                    None,
+                    self.room.talker.inventory
+                )
+            else:
+                return "There is no one to trade with!"
         
         elif action in ["p", "pick up"]:
             return self.player.item_handler()
