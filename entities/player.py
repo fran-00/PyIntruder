@@ -160,21 +160,41 @@ class Player:
     def sort_items_by_category(self, inventory, category):
         return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
 
-    def show_inventory(self, inventory):
-        response = "You open your backpack:"
+
+    def choose_response(func):
+        def wrapper(self, *args):
+            response = ""
+            if args[0] == self.inventory:
+                response += f"\nYour wealth: {self.gold} §"
+                response += "\nChoose a number to read an item's description or press Q to quit."
+    
+                
+            elif args[1] == Armor and args[2] == self.inventory:
+                response = f"Your defence is now {self.base_defence}."
+            else:
+                pass
+            return func(self, *args) + response
+        return wrapper
+
+
+    @choose_response
+    def show_inventory(self, *args):
+        inventory = args[0]
+        response = ""
         right_order_list = []
         index = 1
+        
         for category in [Weapon, Curse, Healer, Armor]:
             items_in_category = self.sort_items_by_category(inventory, category)
+
             if items_in_category:
                 response += f"\n>> {category.__name__.upper()}:\n"
+
                 for _, item in enumerate(items_in_category, index):
                     response += f"{index}. {item.name}"
                     index += 1
                     right_order_list.append(item)
         inventory = right_order_list
-        response += f"\nYour wealth: {self.gold} §"
-        response += "\nChoose a number to read an item's description or press Q to quit."
         return response
 
     def choose_item(self, *args):
