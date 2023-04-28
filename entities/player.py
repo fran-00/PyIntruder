@@ -206,6 +206,12 @@ class Player:
         return response
 
     def choose_armor(self, *args):
+        armors = self.item_selector_from_type(Armor)
+        if not armors:
+            # FIXME: The second loop is executed anyway and game waits 
+            # for action even if you haven't any armor
+            # Must find a way to avoid this
+            return "No armor"
         action = args[0]
         items_type = args[1]
         items_type_selection = self.item_selector_from_type(items_type)
