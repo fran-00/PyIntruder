@@ -11,7 +11,7 @@ class WeaponsFactory:
     
     def __init__(self):
         
-        self.wireless_wire = Weapon(
+        self.manuport = Weapon(
             "Manuport",
             items_data["weapons"]["manuport"],
             1,
