@@ -292,7 +292,7 @@ class Player:
         print(f'> You are here: ({loc_x},{loc_y})')
 
 
-#TODO: All these methods need to be fixed
+# FIXME: All these methods need to be fixed
 # Call TAVERN ROOM CLOSED**
     def tavern_room_closed(self):
         print("The room door is closed.")
@@ -303,74 +303,9 @@ class Player:
         return self.hp > 0
 
 
-# CALL *** CAST CURSE ***
+    # TODO: *** CAST CURSE ***
     def cast_curse(self):
-        while True:
-            curses = [item for item in self.inventory
-                       if isinstance(item, items.Curse)]
-            room = parser.tile_at(self.x, self.y)
-            enemy = room.enemy
-            hp_xp = room.enemy.hp
-            if curses:
-                sorted_curses = sorted(curses, key=lambda item: item.damage, reverse=True)
-                if room.enemy is not None and room.enemy.alive is True:
-                    print(f"Ok, what curse do you want to cast? You have {self.mana} Mana.")
-                    for i, item in enumerate(sorted_curses, 1):
-                        print("{}. {} DMG - {} - {} Mana"
-                            .format(i, item.damage, item.name, item.mana_cost))
-                    user_input = input(">>>> ").lower()
-                    if user_input == 'q':
-                        print("Don't waste time!\n")
-                        break
-                    try:
-                        n = int(i)
-                        choice = int(user_input)
-                        try:
-                            if choice <= n and choice != 0 and i > 0:
-                                chosen_curse = sorted_curses[choice - 1]
-                            else:
-                                print("Number out of range.\n")
-                                return
-                        except IndexError:
-                            print("Number out of range.\n")
-                            return
-                    except ValueError:
-                        print("ValueError")
-                        return
-
-                    if chosen_curse.mana_cost <= self.mana:
-                        dice = random.randint(1, 20)
-                        if dice in [18, 19, 20]:
-                            enemy.hp -= (chosen_curse.damage*2)
-                            self.mana -= chosen_curse.mana_cost
-                            print("Critical hit!")
-                            print(f"You cast {chosen_curse.name} on this {enemy.name}, it does {chosen_curse.damage} DMG! You now have {self.mana} Mana remaining.")
-                        else:
-                            enemy.hp -= chosen_curse.damage
-                            self.mana -= chosen_curse.mana_cost
-                            print(f"You cast {chosen_curse.name} on this {enemy.name}, it does {chosen_curse.damage} DMG! You now have {self.mana} Mana remaining.")
-                    else:
-                        print("You try to cast the curse but you don't have enough Mana! You fail!")
-                        return
-
-                    if enemy.hp <= 0:
-                        xp_earned = (hp_xp // 2)
-                        self.xp += xp_earned
-                        print("YEAH! Your curse killed that fucking bastard!")
-                        loot = random.randint(10, 200)
-                        self.level_up()
-                        self.gold = self.gold + loot
-                        print(f"The asshole lost his booty. Now {loot} Pine Cones are yours!")
-                        room.enemy.alive = False
-                        return
-                    elif enemy.hp >= 0:
-                        print("{} has {} HP remaining.".format(enemy.name, enemy.hp))
-                        return
-                else:
-                    return
-            else:
-                print("You don't have any curse with you.")
-                return
+        pass
 
 
 # CALL *** DROP ALL / PICK UP ALL ***
@@ -436,60 +371,9 @@ class Player:
         receiver.inventory.append(item)
     
 
-# CALL *** HEAL ***
+    # TODO: *** HEAL ***
     def heal(self):
-        consumables = [item for item in self.inventory
-                       if isinstance(item, items.Consumable)]
-        bottle_list = [item for item in self.inventory
-                       if isinstance(item, items.Bottle)]
-
-        if not consumables and not bottle_list:
-            print("You've got nothing to heal yourself!")
-            return
-        elif consumables:
-            sorted_consumables = sorted(consumables, key=lambda item: item.heal)
-            print(f"Your health is {self.hp}/{self.max_hp}. Choose what you want to cure yourself with or type (Q) to exit:")
-            for i, item in enumerate(sorted_consumables, 1):
-                print(f"{i}. {item}")
-
-        if bottle_list and self.bottle_full:
-            print("Your bottle is full. If you want to drink the water it contains, type (Drink).")
-        elif bottle_list:
-            print("You have your bottle, but is empty.")
-
-        valid = False
-        while not valid:
-            choice = input(">>>> ").lower()
-            if choice == 'q':
-                print("You close your backpack.")
-                break
-            elif choice == 'drink' and not bottle_list:
-                print("You don't have any bottle with you.")
-                break
-            elif choice == 'drink' and self.bottle_full:
-                print(f"You drink the water from the bottle. The water restores your HP by {items.Bottle().heal}.")
-                if self.max_hp >= self.hp + items.Bottle().heal:
-                    self.hp += items.Bottle().heal
-                else:
-                    self.hp = self.max_hp
-                self.bottle_full = False
-                print("Your bottle is now empty.")
-                break
-            elif choice == 'drink':
-                print("Your bottle is empty.")
-                break
-            try:
-                to_eat = sorted_consumables[int(choice) - 1]
-                if self.max_hp >= self.hp + to_eat.heal:
-                    self.hp += to_eat.heal
-                else:
-                    self.hp = self.max_hp
-                self.inventory.remove(to_eat)
-                print(f"You have {self.hp} HP remaining.")
-                valid = True
-            except (ValueError, IndexError):
-                print("Invalid choice, try again.")
-                continue
+        pass
 
 
 # CALL *** LEVEL UP ***
@@ -504,77 +388,15 @@ class Player:
             print(f"You leveled up! You are now at {self.lvl} LVL.")
 
 
-# CALL *** OPEN ***
+    # TODO: *** OPEN ***
     def open_obj(self):
-        room = parser.tile_at(self.x, self.y)
-        if room.env_obj.can_be_open:
-            if room.env_obj.inventory:
-                print(f"You open the {room.env_obj}.")
-                for i, item in enumerate(room.env_obj.inventory, 1):
-                    print(f"{i}. {item}")
-                user_input = input("Choose what you want to get or type (Q) to exit.\n>>>> ").lower()
-                while True:
-                    if user_input == 'q':
-                        print(f"You close the {room.env_obj}.")
-                        return
-                    else:
-                        try:
-                            n = int(i)
-                            choice = int(user_input)
-                            if choice <= n and choice != 0 and i > 0:
-                                chosen_item = room.env_obj.inventory[choice - 1]
-                                room.env_obj.inventory.remove(chosen_item)
-                                self.inventory.append(chosen_item)
-                                print(f"{chosen_item.name}: taken")
-                                break
-                            else:
-                                print("Number out of range, try again or type 'Q' to quit")
-                                continue
-                        except ValueError:
-                            print("Invalid choice, try again or type 'Q' to quit.")
-                            continue
-            else:
-                print("There is nothing interesting in here")
-                return
-        else:
-            room.open_quest(self)
+        pass
+    
 
-# CALL *** RECHARGE MANA ***
+    # TODO: *** RECHARGE MANA ***
     def recharge_mana(self):
+        pass
 
-        # Creates a separate list of items that reload mana
-        mrs = [item for item in self.inventory
-                       if isinstance(item, items.ManaRechargers)]
-        if not mrs:
-            print("You've got nothing to recharge your Mana!")
-            return
-
-        # If the list is not empty, it puts them in order of recharge power
-        elif mrs:
-            sorted_mrs = sorted(mrs, key=lambda item: item.mr, reverse=True)
-            print(f"Your mana is {self.mana}/{self.max_mana}. Choose or type (Q) to exit:")
-            for i, item in enumerate(sorted_mrs, 1):
-                print(f"{i}. {item}")
-
-        # Allows to choose which one to consume
-        valid = False
-        while not valid:
-            choice = input(">>>> ".lower())
-            if choice == 'q':
-                print("You close your backpack.")
-                break
-            try:
-                to_consume = sorted_mrs[int(choice) - 1]
-                if self.max_mana >= self.mana + to_consume.mr:
-                    self.mana += to_consume.mr
-                else:
-                    self.mana = self.max_mana
-                self.inventory.remove(to_consume)
-                print(f"You now have {self.mana} Mana.")
-                valid = True
-            except (ValueError, IndexError):
-                print("Invalid choice, try again.")
-                continue
 
 # CALL *** ROOM VISITED ***
     def room_visited(self):
