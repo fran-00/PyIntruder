@@ -16,6 +16,13 @@ class NPCsFactory:
             1000,
             []
         )
+        self.blacksmith = NonPlayableCharacter(
+            "Blacksmith",
+            npcs_data["blacksmith"]["description"],
+            None,
+            1000,
+            []
+        )
         self.innkeeper = NonPlayableCharacter(
             "innkeeper",
             npcs_data["innkeeper"]["description"],
