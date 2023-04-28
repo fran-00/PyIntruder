@@ -157,32 +157,34 @@ class Player:
 
 
     # *** INVENTORY ***
-    def sort_items_by_category(self, category):
-        return sorted([item for item in self.inventory if isinstance(item, category)], key=lambda item: item.name.lower())
+    def sort_items_by_category(self, inventory, category):
+        return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
 
-    def show_inventory(self):
+    def show_inventory(self, inventory):
         response = "You open your backpack:"
         right_order_list = []
         index = 1
         for category in [Weapon, Curse, Healer, Armor]:
-            items_in_category = self.sort_items_by_category(category)
+            items_in_category = self.sort_items_by_category(inventory, category)
             if items_in_category:
                 response += f"\n>> {category.__name__.upper()}:\n"
                 for _, item in enumerate(items_in_category, index):
                     response += f"{index}. {item.name}"
                     index += 1
                     right_order_list.append(item)
-        self.inventory = right_order_list
+        inventory = right_order_list
         response += f"\nYour wealth: {self.gold} §"
         response += "\nChoose a number to read an item's description or press Q to quit."
         return response
 
-    def choose_item(self, action):
+    def choose_item(self, *args):
+        action = args[0]
+        inventory = args[2]
         if action.lower() in ('q', 'exit', 'no'):
             return "Ok."
         try:
             choice = int(action)-1
-            to_read = self.inventory[choice]
+            to_read = inventory[choice]
             return f"{to_read.name}: {to_read.description}"
         except (ValueError, IndexError):
             return "Invalid choice, try again."
