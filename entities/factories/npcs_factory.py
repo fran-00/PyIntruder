@@ -2,7 +2,7 @@ from ..entities_templates import NonPlayableCharacter
 import random, json
 
 
-with open('entities_data/npcs_data.json') as f:
+with open('entities/data/npcs_data.json') as f:
     npcs_data = json.load(f)
 
 

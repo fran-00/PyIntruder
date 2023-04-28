@@ -2,7 +2,7 @@ from ..entities_templates import Enemy
 import random, json
 
 
-with open('entities_data/enemies_data.json') as ef:
+with open('entities/data/enemies_data.json') as ef:
     enemies_data = json.load(ef)
 
 

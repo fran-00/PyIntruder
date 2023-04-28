@@ -3,7 +3,7 @@ import random, json
 from ..entities_templates import Curse
 
 
-with open('entities_data/items_data.json') as f:
+with open('entities/data/items_data.json') as f:
     items_data = json.load(f)
 
 class CursesFactory:
