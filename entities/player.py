@@ -1,7 +1,7 @@
 import contextlib
 import random
 
-from .entities_templates import Weapon as WeaponType
+from .entities_templates import Weapon, Curse, Armor, Healer
 from .factories.weapons_factory import WeaponsFactory as weapon
 from .factories.curses_factory import CursesFactory as curse
 from .factories.armors_factory import ArmorsFactory as armor
