@@ -43,10 +43,10 @@ class GameModel(QObject):
             if isinstance(game_response, tuple):
                 self.model_signal_to_controller.emit(game_response[0])
                 self.event_loop.exec()
-                method = game_response[1]
+                method, *args = game_response[1:]
                 
-                if game_response[2]:
-                    nested_response = method(self.action, game_response[2])
+                if args:
+                    nested_response = method(self.action, *args)
                 else:
                     nested_response = method(self.action)
                 
