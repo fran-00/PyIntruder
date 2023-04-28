@@ -1,11 +1,11 @@
 import random
 
-from entities.factories.npcs_factory import NPCsFactory as npc
-from entities.factories.weapons_factory import WeaponsFactory as weapon
-from entities.factories.armors_factory import ArmorsFactory as armor
-from entities.factories.healers_factory import HealersFactory as healer
-from entities.factories.quest_items_factory import QuestItemsFatory as quest_item
-import entities.factories.enemies_factory as e
+from entities.factories.npcs_factory import NPCsFactory as NPCf
+from entities.factories.weapons_factory import WeaponsFactory as Wf
+from entities.factories.armors_factory import ArmorsFactory as Af
+from entities.factories.healers_factory import HealersFactory as Hf
+from entities.factories.quest_items_factory import QuestItemsFatory as QIf
+from entities.factories.enemies_factory import EnemiesFactory as Ef
 from world.map_tile import MapTile
 
 
@@ -13,7 +13,7 @@ from world.map_tile import MapTile
 class BlacksmithTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Blacksmith'
-        self.talker = npc().blacksmith
+        self.talker = NPCf().blacksmith
         self.enemy = None
         self.description = "You are in a blacksmith's shop. He is working on an anvil by striking a hot iron with a hammer. The room is small, full of tools, and it's hot as hell."
         self.examine = None
@@ -115,12 +115,12 @@ class ChestTile(MapTile):
                         self.closed = False
                     elif ico < 4 and ico > 0:            # Se esce 3, 2 o 1
                         print(f"> {ico}! Medium Enemy!\n")
-                        self.enemy = e.Lv1().helicopter
+                        self.enemy = Ef.Lv1().helicopter
                         self.closed = False
                         print(f"{self.enemy.intro_alive}")
                     elif ico == 0:                       # se esce 0
                         print(f"> {ico}! Hard Enemy!")
-                        self.enemy = e.Lv1().gel_cube()
+                        self.enemy = Ef.Lv1().gel_cube()
                         self.closed = False
                         print(f"{self.enemy.intro_alive}")
                 else:
@@ -135,11 +135,11 @@ class ChestTile(MapTile):
 class FernsTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Ferns'
-        self.talker = npc().ferns
+        self.talker = NPCf().ferns
         self.enemy = None
         self.description = "A lot of ferns."
         self.examine = "They're green and worried."
-        self.inventory = [healer().ats]
+        self.inventory = [Hf().ats]
         self.env_obj = []
         self.seen = False
         self.water = False
@@ -180,7 +180,7 @@ class FernsTile(MapTile):
                     continue
                 elif user_input2 in ['4']:
                     print("<< Here is a sample of the perfection of my lineage. Its leaves are green, full of light and immaculate: help us to ensure that the light reaches our roots by illuminating our consciences with the awareness of ourselves and of how to remedy the evils that afflict us. >>")
-                    player.inventory.append(quest_item().specimen)
+                    player.inventory.append(QIf().specimen)
                     player.ferns_talked = True
                     player.specimen_received = True
                     print("> You are entrusted with the perfect specimen, treat it with care.")
@@ -225,7 +225,7 @@ class House(MapTile):
 class IntruderTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Down the river'
-        self.talker = npc.Intruder()
+        self.talker = NPCf.Intruder()
         self.enemy = None
         self.description = "It shouldn't be here"
         self.examine = "It shouldn't be here"
@@ -261,7 +261,7 @@ class IntruderTile(MapTile):
 class Little_oTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Little(o)'
-        self.talker = npc().littleo
+        self.talker = NPCf().littleo
         self.enemy = None
         self.description = "They say it is only infinitesimally probable to be here."
         self.examine = "It's an experimental application of Infinite Improbability, which in the future will led to the Infinite Improbability Drive."
@@ -320,7 +320,7 @@ class OakTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Oak'
         self.enemy = None
-        self.talker = npc().oak
+        self.talker = NPCf().oak
         self.description = "There's n Oak here."
         self.examine = "OMG he's very wise."
         self.env_obj = []
@@ -405,7 +405,7 @@ class PathTile(MapTile):            # fai in modo che ogni evento possa capitare
         """
     def dialogue(self, player):
         randomguy = self.talker
-        if randomguy is npc.Prolonged():                      # FIXME non riesco a fargli scegliere quale dialogo far partire
+        if randomguy is NPCf().prolonged:                      # FIXME non riesco a fargli scegliere quale dialogo far partire
             print("\n<<  You're a jerk, a complete kneebiter. >>")
             # print("> 1 : >>>> What???")
             while True:
@@ -458,7 +458,7 @@ class RinaTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Rina Casti'
         self.enemy = None
-        self.talker = npc().rina
+        self.talker = NPCf().rina
         self.description = "You're surrounded by trees. There's someone here."
         self.examine = " "
         self.env_obj = []
@@ -494,7 +494,7 @@ class RinaTile(MapTile):
         elif self.enemy and not self.enemy.alive and not player.rina_gift_received:
             print("<< Thank you for protecting me and my underwear, to reciprocate I offer you a precious gift. >>")
             player.max_hp += 200
-            player.inventory.append(armor().rinas_armor)
+            player.inventory.append(Af().rinas_armor)
             player.hp = player.max_hp
             print("> Your maximum health is increased and Rina gave you her armor as a gift.")
             player.rina_gift_received = True
@@ -522,7 +522,7 @@ class RiverTile(MapTile):
 class SquareTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Little Square'
-        self.talker = npc().merchant
+        self.talker = NPCf().merchant
         self.enemy = None
         self.description = "You are in a square, deserted except for a slimy-looking merchant behind a stall full of all kinds of equipment. In the center of the square is a fountain with a statue of a familiar-looking plant in the center."
         self.examine = None
@@ -584,7 +584,7 @@ class StartTile(MapTile):
         self.water = True
         super().__init__(x, y)
         # in this way the inventory inherit from parent class gets overidden
-        self.inventory = [weapon().sheet]
+        self.inventory = [Wf().sheet]
 
 
     def room_seen(self):
@@ -595,7 +595,7 @@ class StyliteTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Stylite'
         self.enemy = None
-        self.talker = npc().stylite
+        self.talker = NPCf().stylite
         self.description = "There is a kind of cross in the trees, it is tall and there is a man in his underwear on it"
         self.examine = ""
         self.env_obj = []
@@ -633,7 +633,7 @@ class StyliteTile(MapTile):
 class TavernTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Tavern'
-        self.talker = npc().innkeeper
+        self.talker = NPCf().innkeeper
         self.enemy = None
         self.description = "You are in a tavern. The whole structure is dark wood, there are a dozen round tables but no people but you and the tavern keeper. He is behind the counter cleaning glasses and greets you with a smile and a nod of his head. The counter is to the right of the entrance and there are stairs to the north that lead to the upper floor, which houses the rooms for the overnight stay."
         self.examine = " Mah."
@@ -754,11 +754,11 @@ class TavernRoomTile(MapTile):
                     player.gold = player.gold + gold
                     print(f">> The fairy give you {gold} Cash! You now have {player.gold}.\n")
                 elif ananke == 2:
-                    player.inventory.append(healer.ats)
+                    player.inventory.append(Hf.ats)
                     print(">> There's an item under your pillow.")
-                    print(f">> It is a {healer().ats}! Taken.\n")
+                    print(f">> It is a {Hf().ats}! Taken.\n")
                 else:
-                    self.enemy = e.Lv1().gel_cube
+                    self.enemy = Ef.Lv1().gel_cube
                     print(">> Ambush!")
                     if player.base_defence > 0:
                         print("> You removed your armor for the night so you are more vulnerable.")
@@ -787,7 +787,7 @@ class TavernRoomTile(MapTile):
 class TempleTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Temple'
-        self.talker = npc().monk
+        self.talker = NPCf().monk
         self.enemy = None
         self.description = "You are in a temple. Strange symbols made up of concentric circles adorn the walls. A monk prays in front of an altar filled with a liquid of a strange color."
         self.examine = None
