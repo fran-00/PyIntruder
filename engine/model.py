@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
-import old_entities_data.items as items
+from entities.factories.armors_factory import ArmorsFactory as armors
 import world.parser as parser
 
 
@@ -116,7 +116,7 @@ class GameModel(QObject):
                 return "There is no one to curse here!"
         
         elif action in ["armor"]:
-            return self.player.armor(), self.player.choose_armor, items.Armor
+            return self.player.armor(), self.player.choose_armor, armors
         
         elif action in ["t", "talk"]:
             return self.room.dialogue()
