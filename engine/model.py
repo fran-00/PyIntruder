@@ -170,6 +170,15 @@ class GameModel(QObject):
 
 
     def move(self, room, player):
+        """Move the player in the specified direction if possible and return the room description.
+
+        Args:
+            room (Room(MapTile)): The current room from world.tiles
+            player (Player): The player object.
+
+        Returns:
+            str: Room's description if player is able to move, or an error message if the requested direction is not valid.
+        """
         if self.action == "n" and parser.tile_at(room.x, room.y - 1):
             player.move_north()
         elif self.action == "s" and parser.tile_at(room.x, room.y + 1):
