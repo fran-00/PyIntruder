@@ -24,10 +24,15 @@ class GameModel(QObject):
 
     def play(self):
         """
-        - Send outbound signal with instructions to controller
-        - Wait for controller response
-        - Get inbound signal with response from controller
-        - Parse response to select instruction to send as signal
+        Starts the game loop and handles player actions.
+
+        The method starts an event loop to handle user actions and game events. It continuously checks
+        if there is an enemy in the room and if it is alive, then handles the enemy attack. It waits for
+        the user to choose an action and executes it. If the action returns a tuple, the method creates
+        a nested loop to handle the second method passed in the tuple and emits the result to the controller.
+
+        Returns:
+            None
         """
         self.event_loop = QEventLoop()
  
