@@ -6,33 +6,27 @@ class GameController(QObject):
     controller_signal_to_view = pyqtSignal(str)
 
     def __init__(self, view, model, thread):
-        '''
-        CONNECTS SLOTS AND SIGNALS:
-        - CONTROLLER gets game response from MODEL
-        - CONTROLLER sends game response to VIEW
-        - CONTROLLER gets user action from VIEW
-        - CONTROLLER send user action to MODEL
-        '''
+        """ 
+        Initialize the controller with the given view, model, and thread.
+        Connects signals and slots to enable communication between the different components of the game:
+        - The MODEL signals are connected to the CONTROLLER slots to get game responses, which are then sent to the VIEW via the `on_model_signal` method.
+        - The VIEW signals are connected to the CONTROLLER slots to get user input, which is then sent to the MODEL via the `on_view_signal` method.
+        - The CONTROLLER signals are connected to the MODEL slots to send user actions, which are then handled by the `handle_inbound_signal` method.
+        - The CONTROLLER signals are also connected to the VIEW slots to send game responses, which are then displayed by the `handle_game_response` method.
+
+        Args:
+            view (GameView): The view component of the game.
+            model (GameModel): The model component of the game.
+            thread (GameThread): The thread used to run the game loop.
+
+        Returns:
+            None
+        """
         super().__init__()
         
-        # Connect MODEL signals to CONTROLLER slots to get game
-        # response and send it to VIEW via on_model_signal method
         model.model_signal_to_controller.connect(self.on_model_signal)
-
-        # Connect LOGIC signals to CONTROLLER slots to get user
-        # input and send it to MODEL via on_logic_signal method
-        # logic.logic_signal_to_controller.connect(self.on_logic_signal)
-
-        # Connect VIEW signals to CONTROLLER slots to get user
-        # input and send it to MODEL via on_view_signal method
         view.view_signal_to_controller.connect(self.on_view_signal)
-        
-        # Connect CONTROLLER signals to MODEL slots to send user action,
-        # then handle_inbound_signal method will send them to gameloop
         self.controller_signal_to_model.connect(model.handle_inbound_signal)
-        
-        # Connect CONTROLLER signals to VIEW slots to send game response
-        # then handle_game_response will show them and wait for new user input 
         self.controller_signal_to_view.connect(view.handle_game_response)
 
         # Starts Game threads
