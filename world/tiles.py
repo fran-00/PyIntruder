@@ -9,6 +9,44 @@ from entities.factories.enemies_factory import EnemiesFactory as Ef
 from world.map_tile import MapTile
 
 
+# |Lo| *** Little(o) ***
+class Little_oTile(MapTile):
+    def __init__(self, x, y):
+        self.name = 'Little(o)'
+        self.talker = NPCf().littleo
+        self.enemy = None
+        self.description = "They say it is only infinitesimally probable to be here."
+        self.examine = "It's an experimental application of Infinite Improbability, which in the future will led to the Infinite Improbability Drive."
+        self.env_obj = []
+        self.seen = False
+        self.water = False
+        super().__init__(x, y)
+
+    def dialogue(self, player):
+        print("<< Little(o)! >>")
+        while True:
+            choice_slogan = random.randint(1,9)
+                
+            user_input = input("<< You are at Little(o)! (B)uy, (S)ell or (Q)uit? >>\n>>>> ")
+            if user_input in ['Q', 'q']:
+                return
+            elif user_input in ['B', 'b']:
+                if self.talker.inventory:
+                    print("****** little(o) ******")
+                    print("<< If you choose an item and insert CASH, Little(o) will give what you desire. >>")
+                    player.trade(buyer=player, seller=self.talker)
+                else:
+                    print("<< Little(o) is out of stock, please come back later. >>")
+            elif user_input in ['S', 's']:
+                if player.inventory:
+                    print("<< Show me your junk: >>")
+                    player.trade(buyer=self.talker, seller=player)
+                else:
+                    print("> You don't have anything to sell.")
+                    continue
+            else:
+                print("<< Asintotic choice. >>")
+
 # |BS| *** Blacksmith ***
 class BlacksmithTile(MapTile):
     def __init__(self, x, y):
@@ -243,46 +281,6 @@ class IntruderTile(MapTile):
                 break
             else:
                 print("> I beg you pardon?")          #fai in modo che ritorni a choose question
-
-# |Lo| *** Little(o) ***
-class Little_oTile(MapTile):
-    def __init__(self, x, y):
-        self.name = 'Little(o)'
-        self.talker = NPCf().littleo
-        self.enemy = None
-        self.description = "They say it is only infinitesimally probable to be here."
-        self.examine = "It's an experimental application of Infinite Improbability, which in the future will led to the Infinite Improbability Drive."
-        self.env_obj = []
-        self.seen = False
-        self.water = False
-        super().__init__(x, y)
-
-    def dialogue(self, player):
-        print("<< Little(o)! >>")
-        while True:
-            choice_slogan = random.randint(1,9)
-                
-            user_input = input("<< You are at Little(o)! (B)uy, (S)ell or (Q)uit? >>\n>>>> ")
-            if user_input in ['Q', 'q']:
-                if not self.talker.inventory:
-                    self.talker.inventory =  random.sample(entities_index.curses_list, 5)
-                return
-            elif user_input in ['B', 'b']:
-                if self.talker.inventory:
-                    print("****** little(o) ******")
-                    print("<< If you choose an item and insert CASH, Little(o) will give what you desire. >>")
-                    player.trade(buyer=player, seller=self.talker)
-                else:
-                    print("<< Little(o) is out of stock, please come back later. >>")
-            elif user_input in ['S', 's']:
-                if player.inventory:
-                    print("<< Show me your junk: >>")
-                    player.trade(buyer=self.talker, seller=player)
-                else:
-                    print("> You don't have anything to sell.")
-                    continue
-            else:
-                print("<< Asintotic choice. >>")
 
 # |OK| *** Oak ***
 class OakTile(MapTile):
