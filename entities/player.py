@@ -240,6 +240,16 @@ class Player:
 
 
     def choose_item(self, *args):
+        """
+        Selects an item from the inventory based on the user's input.
+
+        Args:
+            *args (tuple): A tuple of arguments containing the user's input `action`,
+                `inventory` list, and `trade` boolean.
+
+        Returns:
+            str: A string representing the appropriate response based on the user's input.
+        """
         action = args[0]
         inventory = args[1]
         trade = args[2]
