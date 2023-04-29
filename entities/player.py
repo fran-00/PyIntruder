@@ -202,17 +202,23 @@ class Player:
         return response
 
 
-    @choose_response
+    def show_appropriate_answer(self, choice, inventory):
+        if inventory == self.inventory:
+            return f"{choice.name}: {choice.description}"
+        else:
+            # buy or sell
+            pass
+
+
     def choose_item(self, *args):
         action = args[0]
         inventory = args[1]
 
         if action.lower() in ('q', 'exit', 'no'):
-            return "Ok."
+            return "Ok. Action cancelled."
         try:
-            choice = int(action)-1
-            to_read = inventory[choice]
-            return f"{to_read.name}: {to_read.description}"
+            choice = inventory[int(action)-1]
+            return self.show_appropriate_answer(choice, inventory)
         except (ValueError, IndexError):
             return "Invalid choice, try again."
 
