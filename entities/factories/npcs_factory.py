@@ -28,7 +28,7 @@ class NPCsFactory:
             1000,
             [Hf().ats],
             self.get_random_dialogue("blacksmith"),
-            False
+            True
         )
         self.innkeeper = NonPlayableCharacter(
             "innkeeper",
@@ -46,7 +46,7 @@ class NPCsFactory:
             1000,
             [Hf().ats],
             self.get_random_dialogue("merchant"),
-            False
+            True
         )
         self.monk = NonPlayableCharacter(
             "monk",
@@ -55,7 +55,7 @@ class NPCsFactory:
             1000,
             [Hf().ats],
             self.get_random_dialogue("monk"),
-            False
+            True
         )
         self.ferns = NonPlayableCharacter(
             "ferns",
