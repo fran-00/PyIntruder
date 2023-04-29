@@ -151,6 +151,12 @@ class Player:
 
     # *** BEST WEAPON ***
     def best_weapon(self):
+        """
+        Find the best weapon in the player's inventory and return it.
+
+        Returns:
+            Weapon or None: The best weapon in the player's inventory, or None if the player has no weapons.
+        """
         max_damage = 0
         best_weapon = None
         if weapons := [
