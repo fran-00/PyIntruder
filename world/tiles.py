@@ -24,19 +24,6 @@ class BlacksmithTile(MapTile):
 
     def dialogue(self, player):
         choice_slogan = random.randint(1,6)
-        if choice_slogan == 1:
-            print("<< Stock up here before your next kill. >>")
-        elif choice_slogan == 2:
-            print("<< Now in stock: goods acquired through questionable means. >>")
-        elif choice_slogan == 3:
-            print("<< Get your raiding supplies here. Or don't, I don't care. >>")
-        elif choice_slogan == 4:
-            print("<< Have a hard day of killing and looting? Don't want to haul it all back yourself? Sell it here. >>")
-        elif choice_slogan == 5:
-            print("<< It's dangerous to go alone. It's dangerous to go in groups. It's just dangerous out there, so stock up here. >>")
-        elif choice_slogan == 6:
-            print("<< Reminder: Any attempted five finger discounts will be reclaimed and paid for with said fingers. >>")
-        
         while True:
             user_input = input("> (B)uy, (S)ell, (Q)uit.\n>>>> ")
             if user_input in ['Q', 'q']:
@@ -274,24 +261,6 @@ class Little_oTile(MapTile):
         print("<< Little(o)! >>")
         while True:
             choice_slogan = random.randint(1,9)
-            if choice_slogan == 1:
-                print("<< You will find Little(o) at dawn the day after tomorrow evening. >>")
-            elif choice_slogan == 2:
-                print("<< You will find Little(o) only this Monday from 9:00 am to 9:02 am. >>")
-            elif choice_slogan == 3:
-                print("<< You will find Little(o) only after closing. >>")
-            elif choice_slogan == 4:
-                print("<< You will find Little(o) every third Monday of the odd month >>.")
-            elif choice_slogan == 5:
-                print("<< You will find Little(o) sooner or later. >>")
-            elif choice_slogan == 6:
-                print("<< You would have found Little(o) yesterday at 4:0 pm. >>")
-            elif choice_slogan == 7:
-                print("<< You will find Little(o) only this century. >>")
-            elif choice_slogan == 8:
-                print("<< You would have found Little(o) in the last millennium bug. >>")
-            elif choice_slogan == 9:
-                print("<< Little(o) is infinitesimal and asintotical at once. >>")
                 
             user_input = input("<< You are at Little(o)! (B)uy, (S)ell or (Q)uit? >>\n>>>> ")
             if user_input in ['Q', 'q']:
@@ -534,18 +503,6 @@ class SquareTile(MapTile):
     def dialogue(self, player):
         choice_slogan = random.randint(1,6)
         print("> You approach the stall to ask the merchant to show you his wares.")
-        if choice_slogan == 1:
-            print("<< Trinkets, odds and ends, that sort of thing. >>")
-        elif choice_slogan == 2:
-            print("<<  >>")
-        elif choice_slogan == 3:
-            print("<< Oh, a bit of this and a bit of that. >>")
-        elif choice_slogan == 4:
-            print("<< Just what you see here. >>")
-        elif choice_slogan == 5:
-            print("<< See for yourself. >>")
-        elif choice_slogan == 6:
-            print("<< Beautiful things for beautiful people. >>")
         
         while True:
             user_input = input("> (B)uy, (S)ell, (Q)uit.\n>>>> ")
@@ -644,15 +601,6 @@ class TavernTile(MapTile):
 
     def dialogue(self, player):
         choice_slogan = random.randint(1,4)
-        if choice_slogan == 1:
-            print("<< Come on in. Let me know if you need anything, or take a seat by the fire and I'll send someone over. >>")
-        elif choice_slogan == 2:
-            print("<< Come on in. Just stoked the fire. Take a seat and get the cold out. >>")
-        elif choice_slogan == 3:
-            print("<< Welcome. Let me know if you want anything... think I got a clean mug around here somewhere. >>")
-        elif choice_slogan == 4:
-            print("<< Come on in. We got warm food, warm drinks, and warm beds. >>")
-
         while True:
             if player.tavern_room_paid == False:
                 user_input = input("> You may (T)alk, (B)uy or (S)ell. You may also rent a (R)oom for the night: it will cost you 30 Cash. Press (Q) to go away.>>\n>>>> ")
@@ -797,20 +745,7 @@ class TempleTile(MapTile):
         super().__init__(x, y)
 
     def dialogue(self, player):
-        choice_slogan = random.randint(1,6)
-        if choice_slogan == 1:
-            print("<< Give your bodies to Atom, my friends. Release yourself to his power, feel his Glow and be Divided. >>")
-        elif choice_slogan == 2:
-            print("<< Come forth and drink the waters of the Glow, for this ancient weapon of war is our salvation, it is the very symbol of Atom's glory! >>")
-        elif choice_slogan == 3:
-            print("<< Behold! He's coming with the clouds! And every eye shall be blind with his glory! Every ear shall be stricken deaf to hear the thunder of his voice! >>")
-        elif choice_slogan == 4:
-            print("<< Yea, your suffering shall exist no longer; it shall be washed away in Atom's Glow, burned from you in the fire of his brilliance. >>")
-        elif choice_slogan == 5:
-            print("<< Each of us shall give birth to a billion stars formed from the mass of our wretched and filthy bodies. >>")
-        elif choice_slogan == 6:
-            print("<< Atom reached out and touched this world, bringing his Glow to us. It remains to this day, a reminder of his promise. Infinite worlds through divisions. >>")
-            
+        choice_slogan = random.randint(1,6)  
         while True:
             user_input = input("<< (B)uy, (S)ell or (Q)uit, child? I can also (H)eal you and Recharge your (M)ana, but every service will cost you 100 §. >>\n>>>> ").lower()
             if user_input in ['Q', 'q']:
