@@ -12,7 +12,7 @@ class WeaponsFactory:
     def __init__(self):
         
         self.manuport = Weapon(
-            "Manuport",
+            "manuport",
             items_data["weapons"]["manuport"],
             1,
             15,
@@ -32,7 +32,7 @@ class WeaponsFactory:
             15,
             20,
         )
-        self.name = Weapon(
+        self.armored_manuport = Weapon(
             "armored manuport",
             items_data["weapons"]["armored manuport"],
             1,
