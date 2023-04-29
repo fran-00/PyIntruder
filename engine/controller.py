@@ -5,7 +5,7 @@ class GameController(QObject):
     controller_signal_to_model = pyqtSignal(str)
     controller_signal_to_view = pyqtSignal(str)
 
-    def __init__(self, view, model):
+    def __init__(self, view, model, thread):
         '''
         CONNECTS SLOTS AND SIGNALS:
         - CONTROLLER gets game response from MODEL
@@ -35,9 +35,8 @@ class GameController(QObject):
         # then handle_game_response will show them and wait for new user input 
         self.controller_signal_to_view.connect(view.handle_game_response)
 
-        # Starts Game thread
-        self.thread = GameThread(model)
-        self.thread.start()
+        # Starts Game threads
+        thread.start()
 
     @pyqtSlot(str)
     def on_model_signal(self, data):
@@ -48,6 +47,5 @@ class GameController(QObject):
     def on_view_signal(self, data):
         ''' Process data received from the VIEW and send it to MODEL '''
         self.controller_signal_to_model.emit(data)
-
 
 
