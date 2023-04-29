@@ -86,6 +86,12 @@ class Player:
 
     # *** ATTACK (WITH A WEAPON) ***
     def attack(self):
+        """
+        Attack the enemy in the current room with the best available weapon and return a message describing the outcome of the attack.
+
+        Returns:
+            str: A message describing the outcome of the attack, including any damage dealt or loot obtained.
+        """
         best_weapon = self.best_weapon()
         room = parser.tile_at(self.x, self.y)
         enemy = room.enemy
