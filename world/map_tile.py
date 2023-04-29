@@ -14,6 +14,19 @@ class MapTile:
 
 
     def modify_player(self, player):
+        """Modifies player and enemy based on a random chance of confusion and the enemy's attack.
+
+        Args:
+            player (Player): The player object to be modified.
+
+        Returns:
+            str or None: A string describing the result of the enemy's attack, or None if the enemy is dead or the attack misses.
+
+        The function first checks if the enemy is alive and generate a random number to determine if the enemy becomes confused. 
+        If the player has a base defence, the function calculates the damage reduction based on 5 times the player's base
+        defence, and calls damage_player() with the calculated damage reduction.
+
+        """
         if self.enemy is None or not self.enemy.alive:
             return
         confusion_chance = random.randint(1, 20)
@@ -33,6 +46,17 @@ class MapTile:
         return self.damage_player(player, self.enemy.damage, damage_reduction)
 
     def damage_player(self, player, damage, damage_reduction):
+        """Inflicts damage to the player object based on the enemy's attack and the player's defense.
+
+        Args:
+            player (Player): The player object to be damaged.
+            damage (int): The amount of damage to be inflicted on the player.
+            damage_reduction (int or None): The amount of damage reduction to be applied to the damage, or None if no reduction is applied.
+
+        Returns:
+            str: A string describing the outcome of the attack.
+
+        """
         if damage_reduction is not None:
             damage -= damage_reduction
 
