@@ -11,16 +11,15 @@ import world.parser as parser
 import world.tiles as world
 
 
-# MODULO DEL GIOCATORE
 class Player:
     def __init__(self):
         self.name = 'Your Name Here'
-        self.x = parser.start_tile_location[0]       # modifica questi valori per modificare la locazione di partenza. di base è su (0, 1)
-        self.y = parser.start_tile_location[1]       # ma in realtà la locazione di partenza è determinata da dove metti la StartTile
+        self.x = parser.start_tile_location[0]
+        self.y = parser.start_tile_location[1]
         self.items = [Wf().wire,
-                          Wf().manuport,
-                          Wf().deliverance,
-                          Af().tesla_armor]
+                      Wf().manuport,
+                      Wf().deliverance,
+                      Af().tesla_armor]
         self.inventory = self.sort_inventory(self.items)
         self.lvl = 1
         self.max_hp = 100
@@ -57,8 +56,6 @@ class Player:
         # Rina
         self.rina_gift_received = False
 
-
-    # *** MOVEMENT ***
     def move(self, dx, dy):
         self.x += dx
         self.y += dy
@@ -83,11 +80,8 @@ class Player:
         self.previous_y = self.y
         self.move(dx=dx, dy=dy)
 
-
-    # *** ATTACK (WITH A WEAPON) ***
     def attack(self):
-        """
-        Attack the enemy in the current room with the best available weapon and return a message describing the outcome of the attack.
+        """Attack the enemy in the current room with the best available weapon and return a message describing the outcome of the attack.
 
         Returns:
             str: A message describing the outcome of the attack, including any damage dealt or loot obtained.
@@ -99,12 +93,12 @@ class Player:
 
         if best_weapon is None:
             return "You don't have any weapon with you."
-        
+
         if enemy is None or not enemy.alive:
             return
 
         response += f"You try to hit {enemy.name} with {best_weapon.name}!"
-        precision = random.randint(1,20)
+        precision = random.randint(1, 20)
 
         if precision == 20:
             damage_multiplier = 2
@@ -135,7 +129,7 @@ class Player:
                 f"You earned {xp_earned} XP!"
             )
 
-            loot = random.randint(10,200)
+            loot = random.randint(10, 200)
             self.level_up()
             self.gold += loot
             response += (
@@ -148,11 +142,8 @@ class Player:
 
         return response
 
-
-    # *** BEST WEAPON ***
     def best_weapon(self):
-        """
-        Find the best weapon in the player's inventory and return it.
+        """Find the best weapon in the player's inventory and return it.
 
         Returns:
             Weapon or None: The best weapon in the player's inventory, or None if the player has no weapons.
@@ -162,7 +153,7 @@ class Player:
         if weapons := [
             item for item in self.inventory if isinstance(item, Weapon)
         ]:
-            for i, item in enumerate(weapons, 1):
+            for _, item in enumerate(weapons, 1):
                 with contextlib.suppress(AttributeError):
                     if item.damage > max_damage:
                         best_weapon = item
@@ -171,16 +162,12 @@ class Player:
         else:
             return None
 
-
-    # *** INVENTORY ***
     def sort_items_by_category(self, inventory, category):
         return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
-
 
     def sort_inventory(self, items):
         for category in [Weapon, Curse, Healer, Armor]:
             return sorted([item for item in items if isinstance(item, category)], key=lambda item: item.name.lower())
-    
 
     def show_instructions(func):
         def wrapper(self, *args):
@@ -196,11 +183,9 @@ class Player:
             return func(self, *args) + response
         return wrapper
 
-
     @show_instructions
     def show_inventory(self, *args):
-        """
-        Display the items in the player's inventory, sorted by category.
+        """Display the items in the player's inventory, sorted by category.
 
         Args:
             inventory (list): A list of Item objects representing the player's inventory.
@@ -213,9 +198,10 @@ class Player:
         trade = args[1]
         response = ""
         index = 1
-        
+
         for category in [Weapon, Curse, Healer, Armor]:
-            items_in_category = self.sort_items_by_category(inventory, category)
+            items_in_category = self.sort_items_by_category(
+                inventory, category)
 
             if items_in_category:
                 response += f">> {category.__name__.upper()}:\n"
@@ -230,7 +216,6 @@ class Player:
                     index += 1
         return response
 
-
     def show_appropriate_answer(self, choice, inventory, trade):
         if not trade:
             return f"{choice.name}: {choice.description}"
@@ -238,10 +223,8 @@ class Player:
             # buy or sell
             pass
 
-
     def choose_item(self, *args):
-        """
-        Selects an item from the inventory based on the user's input.
+        """Selects an item from the inventory based on the user's input.
 
         Args:
             *args (tuple): A tuple of arguments containing the user's input `action`,
@@ -262,8 +245,8 @@ class Player:
         except (ValueError, IndexError):
             return "Invalid choice, try again."
 
-
     # FIXME: *** TRADE ***
+
     def trade(self, buyer, seller, item):
         room = world.tile_at(self.x, self.y)
         if item.value > buyer.gold:
@@ -279,25 +262,20 @@ class Player:
         buyer.inventory.append(item)
         pass
 
-
-    # *** DIAGNOSE ***
     def diagnose(self):
         return (
             f"You have {self.hp}/{self.max_hp} HP and {self.mana}/{self.max_mana} Mana remaining. This is turn number {self.turn}."
         )
 
-
-    # *** MAP ***   
     def show_map(self):
-        """
-        Prints a textual representation of the world map, with the current location of the player marked.
-    
+        """Prints a textual representation of the world map, with the current location of the player marked.
+
         The map is defined in the `world_dsl` funcion of `parser` module, and is parsed into a grid of string
         representations of the different types of map tiles. The `tile_type_dict` dictionary maps each tile type to its
         corresponding string representation. The map is printed row by row, with each tile represented by a string enclosed
         in vertical bars.
         """
-        
+
         Black = "| bs |"
         Chest = "| ?  |"
         Enem1 = "| .1 |"
@@ -349,7 +327,7 @@ class Player:
                           "Vn": VillN,
                           "Vs": VillS,
                           "  ": Empty}
-        
+
         loc_x = str(self.x)
         loc_y = str(self.y)
         dsl_lines = parser.world_dsl.splitlines()
@@ -367,24 +345,20 @@ class Player:
 
 # FIXME: All these methods need to be fixed
 # Call TAVERN ROOM CLOSED**
+
     def tavern_room_closed(self):
         print("The room door is closed.")
         return
 
-# CALL *** ALIVE ***
     def is_alive(self):
         return self.hp > 0
 
-
-    # TODO: *** CAST CURSE ***
     def cast_curse(self):
         pass
 
-
-# CALL *** DROP ALL / PICK UP ALL ***
     def drop_all_get_all(self, receiver, giver):
         room = parser.tile_at(self.x, self.y)
-        for i, item in enumerate(giver.inventory, 0):   # assolutamente inutile, ma è così perché non funziona dropparli uno per uno..
+        for _, item in enumerate(giver.inventory, 0):
             receiver.inventory.extend(giver.inventory)
             giver.inventory = []
             if receiver is self:
@@ -392,11 +366,10 @@ class Player:
             if receiver is room:
                 print(f"{item.name}: dropped.")
 
-
-    # CALL *** DROP/PICK UP/GIVE LIST***
     def item_handler(self, action, receiver, giver):
         room = parser.tile_at(self.x, self.y)
-        sorted_inventory = sorted(giver.inventory, key=lambda item: item.name.lower())
+        sorted_inventory = sorted(
+            giver.inventory, key=lambda item: item.name.lower())
 
         if giver is self and receiver is room:
             prompt = "What do you want to drop?"
@@ -426,9 +399,10 @@ class Player:
         response = ""
         for i, item in enumerate(sorted_inventory, 1):
             response += f" | {i}. {item}"
-            
+
         while True:
-            user_input = input(f"{prompt} Choose an item or type 'Q' to quit.\n>>>> ")
+            user_input = input(
+                f"{prompt} Choose an item or type 'Q' to quit.\n>>>> ")
             if user_input in ['q', ' ', 'exit', 'no']:
                 return None
             try:
@@ -442,14 +416,10 @@ class Player:
     def item_donation(self, giver, receiver, item):
         giver.inventory.remove(item)
         receiver.inventory.append(item)
-    
 
-    # TODO: *** HEAL ***
     def heal(self):
         pass
 
-
-# CALL *** LEVEL UP ***
     def level_up(self):
         if self.xp >= self.xp_modifier:
             self.xp_modifier += 100
@@ -460,27 +430,19 @@ class Player:
             self.mana = self.max_mana
             print(f"You leveled up! You are now at {self.lvl} LVL.")
 
-
-    # TODO: *** OPEN ***
     def open_obj(self):
         pass
-    
 
-    # TODO: *** RECHARGE MANA ***
     def recharge_mana(self):
         pass
 
-
-# CALL *** ROOM VISITED ***
     def room_visited(self):
         room = parser.tile_at(self.x, self.y)
         room.room_seen(self)
 
-# CALL *** RUN ***
     def run(self):
-        # Rolls a d20 to decide if you can escape the fight
         room = parser.tile_at(self.x, self.y)
-        d20 = random.randint(1,20)
+        d20 = random.randint(1, 20)
         if d20 == 20:
             room.enemy.alive = False
             print("No need to do this. You enemy is dead.")
@@ -492,8 +454,6 @@ class Player:
             print("You can't escape!")
             return
 
-
-    # Function that creates a list of rooms with no empty spaces from the world map
     def room_list_creator(self):
         rooms_list_with_empty_spaces = []
         for tile in parser.world_map_caller():
@@ -503,14 +463,6 @@ class Player:
             if isinstance(room, world.MapTile):
                 self.rooms_list.append(room)
 
-
-# CALL *** TALK ***
     def check_dialogue(self):
         room = parser.tile_at(self.x, self.y)
         room.dialogue(self)
-
-
-    # TODO: *** TRADE ***
-    def trade(self, buyer, seller):
-        pass
-
