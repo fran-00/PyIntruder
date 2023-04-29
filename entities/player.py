@@ -220,12 +220,13 @@ class Player:
     def choose_item(self, *args):
         action = args[0]
         inventory = args[1]
+        trade = args[2]
 
         if action.lower() in ('q', 'exit', 'no'):
             return "Ok. Action cancelled."
         try:
             choice = inventory[int(action)-1]
-            return self.show_appropriate_answer(choice, inventory)
+            return self.show_appropriate_answer(choice, inventory, trade)
         except (ValueError, IndexError):
             return "Invalid choice, try again."
 
