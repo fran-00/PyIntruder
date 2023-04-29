@@ -186,7 +186,9 @@ class Player:
 
 
     @show_instructions
-    def show_inventory(self, inventory):
+    def show_inventory(self, *args):
+        inventory = args[0]
+        trade = args[1]
         response = ""
         index = 1
         
@@ -196,9 +198,14 @@ class Player:
             if items_in_category:
                 response += f">> {category.__name__.upper()}:\n"
 
-            for _, item in enumerate(items_in_category, index):
-                response += f"{index}. {item.name}\n"
-                index += 1
+            if not trade:
+                for _, item in enumerate(items_in_category, index):
+                    response += f"{index}. {item.name}\n"
+                    index += 1
+            else:
+                for _, item in enumerate(items_in_category, index):
+                    response += f"{index}. DMG: {item.damage} - {item.name} - {item.value}$\n"
+                    index += 1
         return response
 
 
