@@ -231,8 +231,8 @@ class Player:
         return response
 
 
-    def show_appropriate_answer(self, choice, inventory):
-        if inventory == self.inventory:
+    def show_appropriate_answer(self, choice, inventory, trade):
+        if not trade:
             return f"{choice.name}: {choice.description}"
         else:
             # buy or sell
