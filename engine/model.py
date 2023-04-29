@@ -95,14 +95,9 @@ class GameModel(QObject):
     def get_room_description(self):
         self.room = parser.tile_at(self.player.x, self.player.y)
         if self.room.enemy is None:
-            return (f"\n***{self.room.name}***\n> {self.room.description}")
+            return (f"***{self.room.name}***\n> {self.room.description}")
         elif self.room.enemy.alive:
             return (f"{self.room.enemy.description}")
-        elif self.player.verbose and self.room.enemy.alive is False:
-            # TODO: if enemy is dead, it must show a message that depends on enemy
-            return (f"\n***{self.room.name}***\n>{self.room.enemy.name} is dead.")
-        elif not self.player.verbose and self.room.enemy is None:
-            return (f"\n***{self.room.name}***")
 
     def choose_action(self, action=str):
         """Chooses an action based on the given input string and returns its result.
