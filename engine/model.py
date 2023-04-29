@@ -62,17 +62,38 @@ class GameModel(QObject):
     
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
-        ''' Slot that receives a string from controller as a signal '''
+        """
+        Receives a string signal from the controller and sets the user action.
+
+        This method is a slot that receives a string signal from the controller, which represents
+        the user's chosen action. This slot sets the received string to the `action` instance variable
+        and exits the event loop to continue the game execution.
+
+        Args:
+            user_action (str): A string representing the user action.
+        """
         self.action = user_action
         self.event_loop.exit()
 
 
     def handle_outbound_signal(self, game_response):
-        ''' Takes a string an send it to controller as a signal '''
+        """ 
+        Sends the given `game_response` string to the controller as a signal.
+
+        Args:
+            game_response: A string representing the game response to be sent.
+        """
         self.model_signal_to_controller.emit(game_response)
 
     
     def handle_enemy_attack(self):
+        """
+        Handle an enemy attack on the player.
+
+        This method calls the `modify_player` method of the `room` object to calculate the enemy attacks on the player.
+        The resulting `enemy_attacks` are emitted to the controller using the `model_signal_to_controller` signal.
+
+        """
         enemy_attacks = self.room.modify_player(self.player)
         self.model_signal_to_controller.emit(enemy_attacks)
 
