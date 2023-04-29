@@ -81,7 +81,7 @@ class Player:
         self.move(dx=dx, dy=dy)
 
     def attack(self):
-        """Attack the enemy in the current room with the best available weapon and return a message describing the outcome of the attack.
+        """Attacks the enemy in the current room with the best available weapon and return a message describing the outcome of the attack.
 
         Returns:
             str: A message describing the outcome of the attack, including any damage dealt or loot obtained.
@@ -143,7 +143,7 @@ class Player:
         return response
 
     def best_weapon(self):
-        """Find the best weapon in the player's inventory and return it.
+        """Finds the best weapon in the player's inventory and return it.
 
         Returns:
             Weapon or None: The best weapon in the player's inventory, or None if the player has no weapons.
@@ -185,7 +185,7 @@ class Player:
 
     @show_instructions
     def show_inventory(self, *args):
-        """Display the items in the player's inventory, sorted by category.
+        """Displays the items in the player's inventory, sorted by category.
 
         Args:
             inventory (list): A list of Item objects representing the player's inventory.
