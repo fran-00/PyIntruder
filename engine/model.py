@@ -148,7 +148,8 @@ class GameModel(QObject):
             return self.room.dialogue()
 
         elif action in ["trade"]:
-            if self.room.talker:
+            if self.room.talker and self.room.talker.trade:
+                self.model_signal_to_controller.emit(self.room.talker.hello)
                 return (
                     self.player.show_inventory(
                         self.room.talker.inventory, True),
@@ -156,6 +157,8 @@ class GameModel(QObject):
                     self.room.talker.inventory,
                     True
                 )
+            elif self.room.talker and not self.room.talker.trader:
+                return f" {self.room.talker.name} doesn't want to trade"
             else:
                 return "There is no one to trade with!"
 
