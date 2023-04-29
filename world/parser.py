@@ -98,10 +98,18 @@ tile_type_dict = {"BS": BlacksmithTile,
 world_map = []
 start_tile_location = None
 
-# WORLD CONSTRUCTION
-
 
 def parse_world_dsl():
+    """Parses the given DSL string representing game map, and constructs a 2D world map.
+    
+    The DSL string must be a valid game board, satisfying the conditions specified in the `is_dsl_valid` function.
+    The constructed world map is a 2D list of MapTile objects, where each tile represents a location in the game world.
+    The coordinates of a tile within the world map correspond to its x and y coordinates on the game board.
+
+    Raises:
+    - SyntaxError: If the DSL string is invalid.
+    
+    """
     if not is_dsl_valid(world_dsl):
         raise SyntaxError("DSL is invalid!")
 
