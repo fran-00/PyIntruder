@@ -130,6 +130,19 @@ def parse_world_dsl():
 
 
 def tile_at(x, y):
+    """Returns MapTile object at the given (x, y) coordinates within the game world, if it exists.
+
+    If the given (x, y) location is outside the bounds of the game world (i.e., x or y is negative), this function
+    returns None. If the (x, y) location is within the bounds of the game world but there is no tile at that location,
+    this function also returns None.
+
+    Args:
+    - x (int): The x-coordinate of the location to check.
+    - y (int): The y-coordinate of the location to check.
+
+    Returns:
+    - Optional[Tile]: The Tile object at the given (x, y) coordinates, or None if there is no tile at that location.
+    """
     if x < 0 or y < 0:
         return None
     try:
