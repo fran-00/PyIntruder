@@ -18,7 +18,6 @@ world_dsl = """
 """
 
 
-
 """
 |  |  |  |  |TR|  |  |RV|IN|  |  |  |  |  |  |
 |OK|  |  |  |TT|  |  |RV|  |  |  |Lo|  |  |  |
@@ -43,6 +42,20 @@ world_dsl = """
 
 # Domain-Specific language
 def is_dsl_valid(dsl):
+    """Checks if the given domain-specific language (DSL) string representing game map is valid.
+
+    A valid DSL string must:
+    - Contain exactly one '|SS|' and at least one '|WW|'.
+    - Have the same number of pipes ('|') in each row.
+    - Have at least one row.
+
+    Args:
+    - dsl (str): A string representing the game board in DSL format.
+
+    Returns:
+    - bool: True if the DSL string is valid, False otherwise.
+
+    """
     if dsl.count("|SS|") != 1:
         return False
     if dsl.count("|WW|") == 0:
@@ -54,6 +67,7 @@ def is_dsl_valid(dsl):
         if count != pipe_counts[0]:
             return False
     return True
+
 
 tile_type_dict = {"BS": BlacksmithTile,
                   "!!": ChestTile,
@@ -85,6 +99,8 @@ world_map = []
 start_tile_location = None
 
 # WORLD CONSTRUCTION
+
+
 def parse_world_dsl():
     if not is_dsl_valid(world_dsl):
         raise SyntaxError("DSL is invalid!")
@@ -104,6 +120,7 @@ def parse_world_dsl():
             row.append(tile_type(x, y) if tile_type else None)
         world_map.append(row)
 
+
 def tile_at(x, y):
     if x < 0 or y < 0:
         return None
@@ -111,4 +128,3 @@ def tile_at(x, y):
         return world_map[y][x]
     except IndexError:
         return None
-
