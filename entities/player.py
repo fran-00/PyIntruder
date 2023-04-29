@@ -17,7 +17,11 @@ class Player:
         self.name = 'Your Name Here'
         self.x = parser.start_tile_location[0]       # modifica questi valori per modificare la locazione di partenza. di base è su (0, 1)
         self.y = parser.start_tile_location[1]       # ma in realtà la locazione di partenza è determinata da dove metti la StartTile
-        self.inventory = [Wf().manuport, Af().tesla_armor]
+        self.items = [Wf().wire,
+                          Wf().manuport,
+                          Wf().deliverance,
+                          Af().tesla_armor]
+        self.inventory = self.sort_inventory(self.items)
         self.lvl = 1
         self.max_hp = 100
         self.hp = 100
@@ -157,51 +161,51 @@ class Player:
 
 
     # *** INVENTORY ***
-    def sort_items_by_category(self, inventory, category):
-        return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
-
-
     def choose_response(func):
         def wrapper(self, *args):
+            room = parser.tile_at(self.x, self.y)
             response = ""
             if args[0] == self.inventory:
                 response += f"\nYour wealth: {self.gold} §"
                 response += "\nChoose a number to read an item's description or press Q to quit."
-    
-                
-            elif args[1] == Armor and args[2] == self.inventory:
-                response = f"Your defence is now {self.base_defence}."
+            elif room.talker and args[0] == room.talker.inventory:
+                response += "\nChoose a number to buy an item or press Q to quit."
             else:
                 pass
             return func(self, *args) + response
         return wrapper
 
 
+    def sort_items_by_category(self, inventory, category):
+        return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
+
+
+    def sort_inventory(self, items):
+        for category in [Weapon, Curse, Healer, Armor]:
+            return sorted([item for item in items if isinstance(item, category)], key=lambda item: item.name.lower())
+    
+
     @choose_response
-    def show_inventory(self, *args):
-        inventory = args[0]
+    def show_inventory(self, inventory):
         response = ""
-        right_order_list = []
         index = 1
         
         for category in [Weapon, Curse, Healer, Armor]:
             items_in_category = self.sort_items_by_category(inventory, category)
 
             if items_in_category:
-                response += f"\n>> {category.__name__.upper()}:\n"
+                response += f">> {category.__name__.upper()}:\n"
 
-                for _, item in enumerate(items_in_category, index):
-                    response += f"{index}. {item.name}"
-                    index += 1
-                    right_order_list.append(item)
-        inventory = right_order_list
+            for _, item in enumerate(items_in_category, index):
+                response += f"{index}. {item.name}\n"
+                index += 1
         return response
 
 
     @choose_response
     def choose_item(self, *args):
         action = args[0]
-        inventory = args[2]
+        inventory = args[1]
 
         if action.lower() in ('q', 'exit', 'no'):
             return "Ok."
