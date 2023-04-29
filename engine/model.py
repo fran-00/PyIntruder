@@ -105,6 +105,17 @@ class GameModel(QObject):
             return (f"\n***{self.room.name}***")
 
     def choose_action(self, action=str):
+        """Chooses an action based on the given input string and returns its result.
+
+        Args:
+            action (str): The input string representing the action to be taken.
+
+        Returns:
+            Union[str, Tuple[Any, Callable, List, bool]]: The actual return 
+            value and its format depend on the chosen action: it can a string 
+            or a tuple containing arguments that must be passed to Player's methods
+
+        """
         self.player.turn += 1
         if action in ["n", "s", "w", "e"]:
             if self.room.enemy is None or self.room.enemy.alive is False:
