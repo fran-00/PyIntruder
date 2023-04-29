@@ -161,7 +161,16 @@ class Player:
 
 
     # *** INVENTORY ***
-    def choose_response(func):
+    def sort_items_by_category(self, inventory, category):
+        return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
+
+
+    def sort_inventory(self, items):
+        for category in [Weapon, Curse, Healer, Armor]:
+            return sorted([item for item in items if isinstance(item, category)], key=lambda item: item.name.lower())
+    
+
+    def show_instructions(func):
         def wrapper(self, *args):
             room = parser.tile_at(self.x, self.y)
             response = ""
@@ -176,16 +185,7 @@ class Player:
         return wrapper
 
 
-    def sort_items_by_category(self, inventory, category):
-        return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
-
-
-    def sort_inventory(self, items):
-        for category in [Weapon, Curse, Healer, Armor]:
-            return sorted([item for item in items if isinstance(item, category)], key=lambda item: item.name.lower())
-    
-
-    @choose_response
+    @show_instructions
     def show_inventory(self, inventory):
         response = ""
         index = 1
