@@ -40,6 +40,8 @@ class GameModel(QObject):
 
             if isinstance(game_response, tuple):
                 self.process_nested_tuple(game_response)
+            else:
+                self.model_signal_to_controller.emit(game_response)
 
     def process_nested_tuple(self, game_response):
         self.model_signal_to_controller.emit(game_response[0])
