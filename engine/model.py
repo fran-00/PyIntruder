@@ -45,15 +45,13 @@ class GameModel(QObject):
                 self.model_signal_to_controller.emit(game_response)
 
     def process_nested_tuple(self, game_response):
-        self.model_signal_to_controller.emit(game_response[0])
-        self.event_loop.exec()
-        method = game_response[1]
-        self.arguments.append(self.action)
-        actual_args = tuple(self.arguments)
-        nested_response = method(*actual_args)
-
-        self.model_signal_to_controller.emit(nested_response)
-
+        for method in game_response:
+            self.arguments.append(self.action)
+            actual_args = tuple(self.arguments)
+            nested_response = method(*actual_args)
+            self.model_signal_to_controller.emit(nested_response)
+            self.event_loop.exec()
+            
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
         """
@@ -124,7 +122,7 @@ class GameModel(QObject):
         elif action in ["i"]:
             self.arguments = [self.player.inventory, False]
             return (
-                self.player.show_inventory(self.player.inventory, False),
+                self.player.show_inventory,
                 self.player.choose_item
             )
 
@@ -147,8 +145,11 @@ class GameModel(QObject):
             if self.room.talker and self.room.talker.trade:
                 self.arguments = [self.room.talker.inventory, True]
                 self.model_signal_to_controller.emit(self.room.talker.hello)
+                self.model_signal_to_controller.emit("Buy, Sell or Quit?")
+
                 return (
-                    self.player.show_inventory(self.room.talker.inventory, True),
+                    self.player.trading_bsq,
+                    self.player.show_inventory,
                     self.player.choose_item,
                 )
             elif self.room.talker and not self.room.talker.trade:
