@@ -20,7 +20,7 @@ class GameModel(QObject):
         self.player = player
         self.action = None
         self.room = parser.tile_at(self.player.x, self.player.y)
-        self.parameters = []
+        self.arguments = []
         super().__init__()
 
     def play(self):
@@ -48,8 +48,8 @@ class GameModel(QObject):
         self.model_signal_to_controller.emit(game_response[0])
         self.event_loop.exec()
         method = game_response[1]
-        self.parameters.append(self.action)
-        actual_args = tuple(self.parameters)
+        self.arguments.append(self.action)
+        actual_args = tuple(self.arguments)
         nested_response = method(*actual_args)
 
         self.model_signal_to_controller.emit(nested_response)
@@ -122,7 +122,7 @@ class GameModel(QObject):
             return (f"This room is {self.player.x}, {self.player.y}")
 
         elif action in ["i"]:
-            self.parameters = [self.player.inventory, False]
+            self.arguments = [self.player.inventory, False]
             return (
                 self.player.show_inventory(self.player.inventory, False),
                 self.player.choose_item
@@ -145,13 +145,11 @@ class GameModel(QObject):
 
         elif action in ["trade"]:
             if self.room.talker and self.room.talker.trade:
+                self.arguments = [self.room.talker.inventory, True]
                 self.model_signal_to_controller.emit(self.room.talker.hello)
                 return (
-                    self.player.show_inventory(
-                        self.room.talker.inventory, True),
+                    self.player.show_inventory(self.room.talker.inventory, True),
                     self.player.choose_item,
-                    self.room.talker.inventory,
-                    True
                 )
             elif self.room.talker and not self.room.talker.trade:
                 return f" {self.room.talker.name} doesn't want to trade"
