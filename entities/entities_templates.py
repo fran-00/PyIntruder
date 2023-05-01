@@ -61,20 +61,16 @@ class Armor(Item):
 
 class NonPlayableCharacter(Entity):
 
-    def __init__(self, name, description, level, gold, items, hello, trade):
+    def __init__(self, name, description, level, gold, inventory, hello, trade):
         super().__init__(name, description, level)
         self.gold = gold
-        self.items = items
-        self.inventory = self.sort_inventory(self.items)
+        self.inventory = inventory
         self.hello = hello
         self.trade = trade
+        self.sort_inventory()
 
-    def sort_inventory(self, items):
-        inventory = []
-        for category in [Weapon, Curse, Healer, Armor]:
-            inventory.extend(sorted([item for item in items if isinstance(
-                item, category)], key=lambda item: item.name.lower()))
-        return inventory
+    def sort_inventory(self):
+        return self.inventory.sort(key=lambda x: x.name)
 
 
 class Enemy(Entity):
