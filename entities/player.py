@@ -270,19 +270,12 @@ class Player:
             return "Invalid choice, try again."
 
     def trade(self, buyer, seller, item):
-        room = world.tile_at(self.x, self.y)
         if item.value > buyer.gold:
-            print("<< You don't have enough cash. >>")
-            return
-        if buyer == room.talker:
-            seller.gold += item.if_sold
-        else:
-            seller.gold += item.value
-            buyer.gold -= item.value
-        #  buyer.gold -= item.if_sold
+            return "<< You don't have enough cash. >>"
+        seller.gold += item.value
+        buyer.gold -= item.value
         seller.inventory.remove(item)
         buyer.inventory.append(item)
-        pass
 
     def diagnose(self):
         return (
