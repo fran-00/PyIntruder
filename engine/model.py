@@ -20,6 +20,7 @@ class GameModel(QObject):
         self.player = player
         self.action = None
         self.room = parser.tile_at(self.player.x, self.player.y)
+        self.parameters = []
         super().__init__()
 
     def play(self):
@@ -46,12 +47,10 @@ class GameModel(QObject):
     def process_nested_tuple(self, game_response):
         self.model_signal_to_controller.emit(game_response[0])
         self.event_loop.exec()
-        method, *args = game_response[1:]
-
-        if args:
-            nested_response = method(self.action, *args)
-        else:
-            nested_response = method(self.action)
+        method = game_response[1]
+        self.parameters.append(self.action)
+        actual_args = tuple(self.parameters)
+        nested_response = method(*actual_args)
 
         self.model_signal_to_controller.emit(nested_response)
 
@@ -123,11 +122,10 @@ class GameModel(QObject):
             return (f"This room is {self.player.x}, {self.player.y}")
 
         elif action in ["i"]:
+            self.parameters = [self.player.inventory, False]
             return (
                 self.player.show_inventory(self.player.inventory, False),
-                self.player.choose_item,
-                self.player.inventory,
-                False,
+                self.player.choose_item
             )
 
         elif action in ["a"]:
