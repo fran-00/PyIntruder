@@ -232,7 +232,7 @@ class Player:
         """
         inventory = args[0]
         trade = args[1]
-        action = args[2]
+        action = args[-1]
 
         if action.lower() in ('q', 'exit', 'no'):
             return "Ok. Action cancelled."
