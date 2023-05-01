@@ -219,6 +219,8 @@ class Player:
     def show_appropriate_answer(self, choice, inventory, trade):
         if not trade:
             return f"{choice.name}: {choice.description}"
+        elif trade:
+            return f"{choice.name}: {choice.value}"
         else:
             # buy or sell
             pass
