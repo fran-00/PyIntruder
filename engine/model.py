@@ -146,11 +146,10 @@ class GameModel(QObject):
             if self.room.talker and self.room.talker.trade:
                 self.arguments_list = [self.room.talker.inventory, True]
                 self.model_signal_to_controller.emit(self.room.talker.hello)
-                self.model_signal_to_controller.emit("Buy, Sell or Quit?")
 
                 return (
+                    self.player.pretrade,
                     self.player.trading_mode,
-                    self.player.show_inventory,
                     self.player.choose_item,
                 )
             elif self.room.talker and not self.room.talker.trade:
