@@ -50,7 +50,7 @@ class GameModel(QObject):
             arguments_tuple = tuple(self.arguments_list)
             nested_response = method(*arguments_tuple)
             self.model_signal_to_controller.emit(nested_response)
-            if nested_response == None or i == len(game_response) - 1:
+            if nested_response in [None, "Invalid choice, try again."] or i == len(game_response) - 1:
                 break
             else:
                 self.event_loop.exec()
