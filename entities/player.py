@@ -31,7 +31,7 @@ class Player:
         self.base_defence = 0
         self.current_weapon = self.best_weapon()
         self.carryweight = 1
-        self.gold = 10
+        self.gold = 10000000
         self.victory = False
         self.previous_x = None
         self.previous_y = None
