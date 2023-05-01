@@ -185,14 +185,18 @@ class Player:
 
     @show_instructions
     def show_inventory(self, *args):
-        """Displays the items in the player's inventory, sorted by category.
+        """Displays items in an inventory, sorted by category.
+        Data shown depends on the action to be taken in the inventory, 
+        such as seeing the description of an item, selling it or buying it
 
         Args:
-            inventory (list): A list of Item objects representing the player's inventory.
-            trade (bool): A boolean flag indicating whether the inventory is being viewed for trading purposes.
+            inventory (list): A list of Item objects representing inventory.
+            trade (bool): A boolean flag indicating whether the inventory is 
+            being viewed for trading purposes.
 
         Returns:
-            str: A string representation of the inventory, formatted as a list of items sorted by category.
+            str: A string representation of the inventory, formatted as a list 
+            of items sorted by category and name.
         """
         inventory = args[0]
         trade = args[1]
