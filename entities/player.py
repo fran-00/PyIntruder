@@ -243,12 +243,15 @@ class Player:
             return "Invalid choice, try again."
         
     def show_appropriate_answer(self, choice, inventory, trade):
+        room = parser.tile_at(self.x, self.y)
         if not trade:
             return f"{choice.name}: {choice.description}"
-        elif trade:
-            return f"{choice.name}: {choice.value}"
+        elif trade and inventory == self.inventory:
+            self.trade(self, room.talker, choice)
+            return f"Bye {choice.name}!"
         else:
-            # buy or sell
+            self.trade(room.talker, self, choice)
+            return f"Good! Now {choice.name} is yours!"
             pass
 
     def pre_trading(self, *args):
