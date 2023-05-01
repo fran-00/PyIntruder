@@ -251,7 +251,20 @@ class Player:
             # buy or sell
             pass
 
-    # FIXME: *** TRADE ***
+    def pre_trading(self, *args):
+        return "Buy, Sell or Quit?"
+        
+    def trading_mode(self, *args):
+        action = args[-1]
+        room = parser.tile_at(self.x, self.y)
+        if action == "b":
+            return self.show_inventory(room.talker.inventory, True)
+        elif action == "s":
+            return self.show_inventory(self.inventory, True)
+        elif action == "q":
+            return None
+        else:
+            return "Invalid choice, try again."
 
     def trade(self, buyer, seller, item):
         room = world.tile_at(self.x, self.y)
