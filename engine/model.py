@@ -148,7 +148,7 @@ class GameModel(QObject):
                 self.model_signal_to_controller.emit(self.room.talker.hello)
 
                 return (
-                    self.player.pretrade,
+                    self.player.pre_trading,
                     self.player.trading_mode,
                     self.player.choose_item,
                 )
