@@ -220,15 +220,6 @@ class Player:
                     index += 1
         return response
 
-    def show_appropriate_answer(self, choice, inventory, trade):
-        if not trade:
-            return f"{choice.name}: {choice.description}"
-        elif trade:
-            return f"{choice.name}: {choice.value}"
-        else:
-            # buy or sell
-            pass
-
     def choose_item(self, *args):
         """Selects an item from the inventory based on the user's input.
 
@@ -250,6 +241,15 @@ class Player:
             return self.show_appropriate_answer(choice, inventory, trade)
         except (ValueError, IndexError):
             return "Invalid choice, try again."
+        
+    def show_appropriate_answer(self, choice, inventory, trade):
+        if not trade:
+            return f"{choice.name}: {choice.description}"
+        elif trade:
+            return f"{choice.name}: {choice.value}"
+        else:
+            # buy or sell
+            pass
 
     # FIXME: *** TRADE ***
 
