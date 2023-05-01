@@ -239,9 +239,9 @@ class Player:
         Returns:
             str: A string representing the appropriate response based on the user's input.
         """
-        action = args[0]
-        inventory = args[1]
-        trade = args[2]
+        inventory = args[0]
+        trade = args[1]
+        action = args[2]
 
         if action.lower() in ('q', 'exit', 'no'):
             return "Ok. Action cancelled."
