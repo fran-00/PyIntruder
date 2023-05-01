@@ -25,11 +25,6 @@ class GameModel(QObject):
     def play(self):
         """Starts the game loop and handles player actions.
 
-        The method starts an event loop to handle user actions and game events. It continuously checks
-        if there is an enemy in the room and if it is alive, then handles the enemy attack. It waits for
-        the user to choose an action and executes it. If the action returns a tuple, the method creates
-        a nested loop to handle the second method passed in the tuple and emits the result to the controller.
-
         Returns:
             None
 
@@ -44,18 +39,19 @@ class GameModel(QObject):
             game_response = self.choose_action(self.action)
 
             if isinstance(game_response, tuple):
-                self.model_signal_to_controller.emit(game_response[0])
-                self.event_loop.exec()
-                method, *args = game_response[1:]
+                self.process_nested_tuple(game_response)
 
-                if args:
-                    nested_response = method(self.action, *args)
-                else:
-                    nested_response = method(self.action)
+    def process_nested_tuple(self, game_response):
+        self.model_signal_to_controller.emit(game_response[0])
+        self.event_loop.exec()
+        method, *args = game_response[1:]
 
-                self.model_signal_to_controller.emit(nested_response)
-            else:
-                self.model_signal_to_controller.emit(game_response)
+        if args:
+            nested_response = method(self.action, *args)
+        else:
+            nested_response = method(self.action)
+
+        self.model_signal_to_controller.emit(nested_response)
 
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
