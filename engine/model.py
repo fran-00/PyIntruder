@@ -20,7 +20,7 @@ class GameModel(QObject):
         self.player = player
         self.action = None
         self.room = parser.tile_at(self.player.x, self.player.y)
-        self.arguments = []
+        self.arguments_list = []
         super().__init__()
 
     def play(self):
@@ -46,15 +46,15 @@ class GameModel(QObject):
 
     def process_nested_tuple(self, game_response):
         for i, method in enumerate(game_response):
-            self.arguments.append(self.action)
-            actual_args = tuple(self.arguments)
-            nested_response = method(*actual_args)
+            self.arguments_list.append(self.action)
+            arguments_tuple = tuple(self.arguments_list)
+            nested_response = method(*arguments_tuple)
             self.model_signal_to_controller.emit(nested_response)
             if nested_response == None or i == len(game_response) - 1:
                 break
             else:
                 self.event_loop.exec()
-            
+
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
         """
@@ -104,9 +104,7 @@ class GameModel(QObject):
             action (str): The input string representing the action to be taken.
 
         Returns:
-            Union[str, Tuple[Any, Callable, List, bool]]: The actual return 
-            value and its format depend on the chosen action: it can a string 
-            or a tuple containing arguments that must be passed to Player's methods
+            # TODO
 
         """
         self.player.turn += 1
@@ -123,7 +121,7 @@ class GameModel(QObject):
             return (f"This room is {self.player.x}, {self.player.y}")
 
         elif action in ["i"]:
-            self.arguments = [self.player.inventory, False]
+            self.arguments_list = [self.player.inventory, False]
             return (
                 self.player.show_inventory,
                 self.player.choose_item
@@ -146,12 +144,12 @@ class GameModel(QObject):
 
         elif action in ["trade"]:
             if self.room.talker and self.room.talker.trade:
-                self.arguments = [self.room.talker.inventory, True]
+                self.arguments_list = [self.room.talker.inventory, True]
                 self.model_signal_to_controller.emit(self.room.talker.hello)
                 self.model_signal_to_controller.emit("Buy, Sell or Quit?")
 
                 return (
-                    self.player.trading_bsq,
+                    self.player.trading_mode,
                     self.player.show_inventory,
                     self.player.choose_item,
                 )
