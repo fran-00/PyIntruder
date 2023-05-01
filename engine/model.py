@@ -45,12 +45,15 @@ class GameModel(QObject):
                 self.model_signal_to_controller.emit(game_response)
 
     def process_nested_tuple(self, game_response):
-        for method in game_response:
+        for i, method in enumerate(game_response):
             self.arguments.append(self.action)
             actual_args = tuple(self.arguments)
             nested_response = method(*actual_args)
             self.model_signal_to_controller.emit(nested_response)
-            self.event_loop.exec()
+            if nested_response == None or i == len(game_response) - 1:
+                break
+            else:
+                self.event_loop.exec()
             
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
