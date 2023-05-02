@@ -127,7 +127,7 @@ class GameModel(QObject):
                 self.player.choose_item
             )
 
-        elif action in ["a"]:
+        elif action in ["a", "attack"]:
             if self.room.enemy and self.room.enemy.alive:
                 return self.player.attack()
             else:
