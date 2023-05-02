@@ -288,26 +288,26 @@ class Player:
         except Exception as e:
             return f"{e}"
 
-    def show_appropriate_answer(self, choice, command_name):
+    def show_appropriate_answer(self, choice, purpose):
         room = parser.tile_at(self.x, self.y)
-        if command_name == "my-inventory" :
+        if purpose == "my-inventory" :
             return f"{choice.name}: {choice.description}"
-        elif command_name == "trade" and self.is_selling:
+        elif purpose == "trade" and self.is_selling:
             self.trade(self, room.talker, choice)
             self.is_selling = False
             return f"Bye {choice.name}!"
-        elif command_name == "trade" and not self.is_selling:
+        elif purpose == "trade" and not self.is_selling:
             self.trade(room.talker, self, choice)
             return f"Good! Now {choice.name} is yours!"
-        elif command_name == "pick-up":
+        elif purpose == "pick-up":
             self.swap_item(room, self, choice)
             return f"{choice.name}: taken."
-        elif command_name == "drop":
+        elif purpose == "drop":
             self.swap_item(self, room, choice)
             return f"{choice.name}: dropped."
 
     # TODO: Merge trade and swap_item methods
-    def trade(self, seller, buyer, item):
+    def items_swapper(self, seller, buyer, item, purpose):
         if item.value > buyer.gold:
             return "<< You don't have enough cash. >>"
         seller.gold += item.value
