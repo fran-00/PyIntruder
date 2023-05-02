@@ -140,22 +140,22 @@ class GameModel(QObject):
                 return "There is no one to curse here!"
 
         elif action in ["t", "talk"]:
-            return "Hmmm... A tree looks at you expectantly, as if you seemed to be about to talk."
-
-        elif action in ["trade"]:
-            if self.room.talker and self.room.talker.trade:
-                self.arguments_list = [self.room.talker.inventory, "trade"]
-                self.model_signal_to_controller.emit(self.room.talker.hello)
-
+            if self.room.talker and not self.room.talker.trade:
+                self.arguments_list = [None, "trade"]
                 return (
-                    self.player.choose_nested_action,
+                    self.room.choose_dialogue
+                )
+            elif self.room.talker and self.room.talker.trade:
+                self.arguments_list = [self.room.talker.inventory, "trade"]
+                return (
+                    self.room.choose_dialogue,
                     self.player.trading_mode,
                     self.player.choose_item,
                 )
             elif self.room.talker and not self.room.talker.trade:
                 return f" {self.room.talker.name} doesn't want to trade"
             else:
-                return "There is no one to trade with!"
+                return "Hmmm... A tree looks at you expectantly, as if you seemed to be about to talk."
 
         elif action in ["p", "pick up"]:
             if self.room.inventory != []:
