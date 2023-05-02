@@ -272,17 +272,23 @@ class Player:
         except Exception as e:
             return f"{e}"
 
-    def show_appropriate_answer(self, choice, trade):
+    def show_appropriate_answer(self, choice, command_name):
         room = parser.tile_at(self.x, self.y)
-        if trade != "trade":
+        if command_name == "my-inventory" :
             return f"{choice.name}: {choice.description}"
-        elif trade == "trade" and self.is_selling:
+        elif command_name == "trade" and self.is_selling:
             self.trade(self, room.talker, choice)
             self.is_selling = False
             return f"Bye {choice.name}!"
-        elif trade == "trade" and not self.is_selling:
+        elif command_name == "trade" and not self.is_selling:
             self.trade(room.talker, self, choice)
             return f"Good! Now {choice.name} is yours!"
+        elif command_name == "pick-up":
+            self.swap_item(room, self, choice)
+            return f"Now {choice.name} is yours."
+        elif command_name == "drop":
+            self.swap_item(self, room, choice)
+            return f"Bye {choice.name}!"
 
     def trade(self, seller, buyer, item):
         if item.value > buyer.gold:
