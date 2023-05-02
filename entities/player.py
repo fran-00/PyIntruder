@@ -201,6 +201,10 @@ class Player:
                 response += "Choose a number to buy an item or press Q to quit.\n"
             elif args[1] == "trade" and self.is_selling == True:
                 response += "Choose a number to sell an item or press Q to quit.\n"
+            elif args[1] == "pick-up":
+                response += "Choose a number to pick up an item or press Q to quit.\n"
+            elif args[1] == "drop":
+                response += "Choose a number to drop an item or press Q to quit.\n"
             else:
                 pass
             return func(self, *args) + response
