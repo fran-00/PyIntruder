@@ -90,3 +90,8 @@ class MapTile:
         )
 
 
+    def choose_dialogue(self, *args):
+        if args[1] == "trade":
+            return "Buy, Sell or Quit?"
+        elif args[1] == "talk":
+            return "self.talker.hello"
