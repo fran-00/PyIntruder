@@ -3,8 +3,8 @@
 ## Upcoming Fixes
 
 - Generalize Player methods code that could be reused:
-     - A method that accept as arguments an inventory (player's or npc's) and an item class to narrow down the choice.
-     - A method of choosing an item from the inventory that can be used for pick up, drop and examine actions, and for trading with an npc.
+     - **choose_item()** method in **Player** class must also be usable for pick up, drop and examine actions, as well as to trade with an npc.
+- Update with improved exception handling: create ad hoc errors to break the game loop or resume it depending on exception's type.
 
 ## Upcoming Features
 
