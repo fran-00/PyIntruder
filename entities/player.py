@@ -301,10 +301,10 @@ class Player:
             return f"Good! Now {choice.name} is yours!"
         elif command_name == "pick-up":
             self.swap_item(room, self, choice)
-            return f"Now {choice.name} is yours."
+            return f"{choice.name}: taken."
         elif command_name == "drop":
             self.swap_item(self, room, choice)
-            return f"Bye {choice.name}!"
+            return f"{choice.name}: dropped."
 
     def trade(self, seller, buyer, item):
         if item.value > buyer.gold:
