@@ -11,7 +11,7 @@ class MapTile:
         self.y = y
         self.inventory = []
         self.world_check = []
-        self.random_items()
+        self.choose_random_items()
 
     def choose_random_items(self):
         n = random.randint(1, 4)
