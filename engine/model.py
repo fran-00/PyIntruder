@@ -167,15 +167,15 @@ class GameModel(QObject):
                 )
         
         elif action in ["d", "drop"]:
-            if self.room.inventory:
-                self.arguments_list = [self.room.inventory, "drop"]
+            if self.player.inventory:
+                self.arguments_list = [self.player.inventory, "drop"]
                 self.model_signal_to_controller.emit("What do you want to drop?")
                 return (
                     self.player.show_inventory,
                     self.player.choose_item
                 )
             else:
-                return "There is nothing to pick up."
+                return "Your inventory is empty."
 
         elif action in ["m", "map"]:
             return self.player.show_map()
