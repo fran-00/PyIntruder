@@ -158,13 +158,15 @@ class GameModel(QObject):
                 return "There is no one to trade with!"
 
         elif action in ["p", "pick up"]:
-            if self.room.inventory:
+            if self.room.inventory != []:
                 self.arguments_list = [self.room.inventory, "pick-up"]
                 self.model_signal_to_controller.emit("What do you want to pick up?")
                 return (
                     self.player.show_inventory,
                     self.player.choose_item
                 )
+            else:
+                return "There is nothing to pick up!"
         
         elif action in ["d", "drop"]:
             if self.player.inventory:
