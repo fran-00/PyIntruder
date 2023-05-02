@@ -237,12 +237,11 @@ class Player:
         if action.lower() in ('q', 'exit', 'no'):
             return "Ok. Action cancelled."
         try:
-            # FIXME: It works if watching player inventory but not if trading
             item_index = int(action)
             choice = inventory[item_index - 1]
             return self.show_appropriate_answer(choice, inventory, trade)
-        except (ValueError, IndexError):
-            return "Invalid choice, try again."
+        except Exception as e:
+            return f"{e}"
         
     def show_appropriate_answer(self, choice, inventory, trade):
         room = parser.tile_at(self.x, self.y)
