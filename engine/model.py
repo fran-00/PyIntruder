@@ -141,6 +141,14 @@ class GameModel(QObject):
                 )
             else:
                 return "There is no one to curse here!"
+        
+        elif action in ["run", "flee", "escape"]:
+            if self.room.enemy and self.room.enemy.alive:
+                return self.player.flee_from_fight()
+            elif self.room.enemy and not self.room.enemy.alive:
+                return "No need to escape, the enemy is dead!"
+            else:
+                return "There is nothing to run away from. If you want to escape just quit the game!"
 
         elif action in ["t", "talk"]:
             if self.room.talker and not self.room.talker.trade:
