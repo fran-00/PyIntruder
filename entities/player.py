@@ -306,6 +306,7 @@ class Player:
             self.swap_item(self, room, choice)
             return f"{choice.name}: dropped."
 
+    # TODO: Merge trade and swap_item methods
     def trade(self, seller, buyer, item):
         if item.value > buyer.gold:
             return "<< You don't have enough cash. >>"
