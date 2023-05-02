@@ -162,18 +162,6 @@ class Player:
         self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
         return
 
-    def choose_nested_action(self, *args):
-        """Returns a prompt string for the action specified in the second argument.
-
-        Args:
-            *args: Variable length argument list, with the second argument specifying the action.
-
-        Returns:
-            A string prompt for the specified action.
-        """
-        if args[1] == "trade":
-            return "Buy, Sell or Quit?"
-
     def trading_mode(self, *args):
         action = args[-1]
         room = parser.tile_at(self.x, self.y)
