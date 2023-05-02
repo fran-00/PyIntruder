@@ -141,19 +141,18 @@ class GameModel(QObject):
 
         elif action in ["t", "talk"]:
             if self.room.talker and not self.room.talker.trade:
-                self.arguments_list = [None, "trade"]
+                self.arguments_list = [None, "talk"]
                 return (
-                    self.room.choose_dialogue
+                    self.room.check_if_trading,
+                    self.room.dialogue
                 )
             elif self.room.talker and self.room.talker.trade:
                 self.arguments_list = [self.room.talker.inventory, "trade"]
                 return (
-                    self.room.choose_dialogue,
+                    self.room.check_if_trading,
                     self.player.trading_mode,
                     self.player.choose_item,
                 )
-            elif self.room.talker and not self.room.talker.trade:
-                return f" {self.room.talker.name} doesn't want to trade"
             else:
                 return "Hmmm... A tree looks at you expectantly, as if you seemed to be about to talk."
 
