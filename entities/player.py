@@ -277,6 +277,8 @@ class Player:
         buyer.gold -= item.value
         seller.inventory.remove(item)
         buyer.inventory.append(item)
+        self.sort_inventory()
+        buyer.sort_inventory()
 
     # -------------------------------------------------------------------------|
     # INFO --------------------------------------------------------------------|
