@@ -173,10 +173,6 @@ class Player:
         """
         if args[1] == "trade":
             return "Buy, Sell or Quit?"
-        elif args[1] == "pick-up":
-            return "What do you want to pick up?"
-        elif args[1] == "drop":
-            return "What do you want to drop?"
 
     def trading_mode(self, *args):
         action = args[-1]
