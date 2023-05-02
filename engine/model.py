@@ -40,11 +40,11 @@ class GameModel(QObject):
             game_response = self.choose_action(self.action)
 
             if isinstance(game_response, tuple):
-                self.process_nested_tuple(game_response)
+                self.process_nested_loop(game_response)
             else:
                 self.model_signal_to_controller.emit(game_response)
 
-    def process_nested_tuple(self, game_response):
+    def process_nested_loop(self, game_response):
         for i, method in enumerate(game_response):
             self.arguments_list.append(self.action)
             arguments_tuple = tuple(self.arguments_list)
