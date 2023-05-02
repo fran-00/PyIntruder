@@ -11,10 +11,19 @@ class MapTile:
         self.y = y
         self.inventory = []
         self.world_check = []
+        self.random_items()
 
-    def random_item(self):
-        pass
-
+    def choose_random_items(self):
+        n = random.randint(1, 4)
+        if n in {1}:
+            pass
+        elif n in {2, 3}:
+            self.inventory.extend(
+                random.choice(Hf().get_items_list())
+                for _ in range(random.randint(1, 2))
+            )
+        elif n == 4:
+            self.inventory.append(random.choice(Wf().get_items_list()))
 
     def modify_player(self, player):
         """Modifies player and enemy based on a random chance of confusion and the enemy's attack.
