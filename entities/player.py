@@ -158,6 +158,22 @@ class Player:
         for category in [Weapon, Curse, Healer, Armor]:
             return sorted([item for item in items if isinstance(item, category)], key=lambda item: item.name.lower())
 
+    def pre_trading(self, *args):
+        return "Buy, Sell or Quit?"
+
+    def trading_mode(self, *args):
+        action = args[-1]
+        room = parser.tile_at(self.x, self.y)
+        if action == "b":
+            return self.show_inventory(room.talker.inventory, True)
+        elif action == "s":
+            self.is_selling = True
+            return self.show_inventory(self.inventory, True)
+        elif action == "q":
+            return None
+        else:
+            return "Invalid choice, try again."
+
     def show_instructions(func):
         def wrapper(self, *args):
             room = parser.tile_at(self.x, self.y)
@@ -209,6 +225,9 @@ class Player:
                     index += 1
         return response
 
+    def sort_items_by_category(self, inventory, category):
+        return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
+
     def choose_item(self, *args):
         """Selects an item from the inventory based on the user's input.
 
@@ -246,22 +265,6 @@ class Player:
         elif trade and not self.is_selling:
             self.trade(room.talker, self, choice)
             return f"Good! Now {choice.name} is yours!"
-
-    def pre_trading(self, *args):
-        return "Buy, Sell or Quit?"
-
-    def trading_mode(self, *args):
-        action = args[-1]
-        room = parser.tile_at(self.x, self.y)
-        if action == "b":
-            return self.show_inventory(room.talker.inventory, True)
-        elif action == "s":
-            self.is_selling = True
-            return self.show_inventory(self.inventory, True)
-        elif action == "q":
-            return None
-        else:
-            return "Invalid choice, try again."
 
     def trade(self, seller, buyer, item):
         if item.value > buyer.gold:
