@@ -210,8 +210,11 @@ class Player:
         Returns:
             str: A string representing the appropriate response based on the user's input.
         """
-        inventory = args[0]
-        trade = args[1]
+        if not self.is_selling:
+            inventory = args[0]
+        else:
+            inventory = self.inventory
+        trade = args[1]    
         action = args[-1]
 
         if action.lower() in ('q', 'exit', 'no'):
@@ -227,10 +230,11 @@ class Player:
         room = parser.tile_at(self.x, self.y)
         if not trade:
             return f"{choice.name}: {choice.description}"
-        elif trade and inventory == self.inventory:
+        elif trade and self.is_selling:
             self.trade(self, room.talker, choice)
+            self.is_selling = False
             return f"Bye {choice.name}!"
-        else:
+        elif trade and not self.is_selling:
             self.trade(room.talker, self, choice)
             return f"Good! Now {choice.name} is yours!"
             pass
@@ -244,6 +248,7 @@ class Player:
         if action == "b":
             return self.show_inventory(room.talker.inventory, True)
         elif action == "s":
+            self.is_selling = True
             return self.show_inventory(self.inventory, True)
         elif action == "q":
             return None
