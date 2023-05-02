@@ -14,16 +14,15 @@ class MapTile:
         self.choose_random_items()
 
     def choose_random_items(self):
+        healers_list = Hf().get_items_list()
+        weapons_list = Wf().get_items_list()
         n = random.randint(1, 4)
         if n in {1}:
             pass
         elif n in {2, 3}:
-            self.inventory.extend(
-                random.choice(Hf().get_items_list())
-                for _ in range(random.randint(1, 2))
-            )
+            self.inventory.append(random.choice(healers_list))
         elif n == 4:
-            self.inventory.append(random.choice(Wf().get_items_list()))
+            self.inventory.append(random.choice(weapons_list))
 
     def modify_player(self, player):
         """Modifies player and enemy based on a random chance of confusion and the enemy's attack.
