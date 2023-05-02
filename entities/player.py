@@ -16,11 +16,17 @@ class Player:
         self.name = 'Your Name Here'
         self.x = parser.start_tile_location[0]
         self.y = parser.start_tile_location[1]
+
         self.items = [Wf().wire,
                       Wf().manuport,
                       Wf().deliverance,
                       Af().tesla_armor]
         self.inventory = self.sort_inventory(self.items)
+        self.current_weapon = self.best_weapon()
+        self.gold = 10000000
+
+        self.turn = 0
+        self.is_selling = False
         self.lvl = 1
         self.max_hp = 100
         self.hp = 100
@@ -29,32 +35,6 @@ class Player:
         self.xp = 0
         self.xp_modifier = 100
         self.base_defence = 0
-        self.current_weapon = self.best_weapon()
-        self.carryweight = 1
-        self.gold = 10000000
-        self.victory = False
-        self.previous_x = None
-        self.previous_y = None
-        self.turn = 0
-        self.verbose = True
-        self.bottle_full = True
-        self.rooms_list = []
-
-        # GAME VARIABLES
-        # Tavern
-        self.tavern_room_paid = False
-
-        # Ferns
-        self.ferns_talked = False
-        self.specimen_received = False
-        self.ferns_price_received = False
-
-        # Oak
-        self.specimen_planted = False
-        self.oracle_response = False
-
-        # Rina
-        self.rina_gift_received = False
 
     def move(self, dx, dy):
         self.x += dx
@@ -242,7 +222,7 @@ class Player:
             return self.show_appropriate_answer(choice, inventory, trade)
         except Exception as e:
             return f"{e}"
-        
+
     def show_appropriate_answer(self, choice, inventory, trade):
         room = parser.tile_at(self.x, self.y)
         if not trade:
@@ -257,7 +237,7 @@ class Player:
 
     def pre_trading(self, *args):
         return "Buy, Sell or Quit?"
-        
+
     def trading_mode(self, *args):
         action = args[-1]
         room = parser.tile_at(self.x, self.y)
