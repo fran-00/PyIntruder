@@ -185,13 +185,14 @@ class Player:
 
     def show_instructions(func):
         def wrapper(self, *args):
-            room = parser.tile_at(self.x, self.y)
             response = ""
-            if args[0] == self.inventory:
-                response += f"\nYour wealth: {self.gold} §"
-                response += "\nChoose a number to read an item's description or press Q to quit."
-            elif room.talker and args[0] == room.talker.inventory:
-                response += "\nChoose a number to buy an item or press Q to quit."
+            if args[1] == "my-inventory":
+                response += f"Your wealth: {self.gold} §\n"
+                response += "Choose a number to read an item's description or press Q to quit.\n"
+            elif args[1] == "trade" and self.is_selling == False:
+                response += "Choose a number to buy an item or press Q to quit.\n"
+            elif args[1] == "trade" and self.is_selling == True:
+                response += "Choose a number to sell an item or press Q to quit.\n"
             else:
                 pass
             return func(self, *args) + response
