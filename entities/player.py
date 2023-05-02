@@ -174,10 +174,10 @@ class Player:
         action = args[-1]
         room = parser.tile_at(self.x, self.y)
         if action == "b":
-            return self.show_inventory(room.talker.inventory, True)
+            return self.show_inventory(room.talker.inventory, "trade")
         elif action == "s":
             self.is_selling = True
-            return self.show_inventory(self.inventory, True)
+            return self.show_inventory(self.inventory, "trade")
         elif action == "q":
             return None
         else:
