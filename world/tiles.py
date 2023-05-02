@@ -9,6 +9,24 @@ from entities.factories.enemies_factory import EnemiesFactory as Ef
 from world.map_tile import MapTile
 
 
+# |SS| *** Start ***
+class StartTile(MapTile):
+    def __init__(self, x, y):
+        self.name = 'Clearing'
+        self.enemy = None
+        self.talker = None
+        self.description = "You are in a clearing. You arrived with your car from the west and the road ends in the east, where a path that climbs the mountain begins. A dense network of trees prevents the passage in any other direction. Your car is parked on the north side of the clearing, there is no one else parked."
+        self.examine = "Your car is warm. Outside is cold."
+        self.inventory = None
+        self.seen = False
+        self.water = True
+        super().__init__(x, y)
+        # in this way the inventory inherit from parent class gets overidden
+        self.inventory = [Wf().sheet]
+
+    def room_seen(self):
+        self.seen = True
+
 # |Lo| *** Little(o) ***
 class Little_oTile(MapTile):
     def __init__(self, x, y):
@@ -525,25 +543,6 @@ class SquareTile(MapTile):
             else:
                 print("<< Try again. >>")
                 continue
-
-# |SS| *** Start ***
-class StartTile(MapTile):
-    def __init__(self, x, y):
-        self.name = 'Clearing'
-        self.enemy = None
-        self.talker = None
-        self.description = "You are in a clearing. You arrived with your car from the west and the road ends in the east, where a path that climbs the mountain begins. A dense network of trees prevents the passage in any other direction. Your car is parked on the north side of the clearing, there is no one else parked."
-        self.examine = "Your car is warm. Outside is cold."
-        self.env_obj = None
-        self.seen = False
-        self.water = True
-        super().__init__(x, y)
-        # in this way the inventory inherit from parent class gets overidden
-        self.inventory = [Wf().sheet]
-
-
-    def room_seen(self):
-        self.seen = True
 
 # |Sy| *** STYLITE ***
 class StyliteTile(MapTile):
