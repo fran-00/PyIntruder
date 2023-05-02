@@ -319,6 +319,8 @@ class Player:
     def swap_item(self, giver, receiver, item):
         giver.inventory.remove(item)
         receiver.inventory.append(item)
+        giver.sort_inventory()
+        receiver.sort_inventory()
 
     # -------------------------------------------------------------------------|
     # INFO --------------------------------------------------------------------|
