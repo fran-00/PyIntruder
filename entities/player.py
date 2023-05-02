@@ -237,7 +237,6 @@ class Player:
         elif trade and not self.is_selling:
             self.trade(room.talker, self, choice)
             return f"Good! Now {choice.name} is yours!"
-            pass
 
     def pre_trading(self, *args):
         return "Buy, Sell or Quit?"
