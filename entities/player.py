@@ -154,6 +154,31 @@ class Player:
         else:
             return None
 
+    def show_curses(self, *args):
+        curses = self.sort_items_by_category(self.inventory, Curse)
+        index = 1
+        response = f"Ok, what curse do you want to cast? You have {self.mana} Mana.\n"
+        if curses != []:
+            for _, item in enumerate(curses, index):
+                response += f"{index}. {item.name}\n"
+                index += 1
+            return response
+
+    def cast_curse(self, *args):
+        room = parser.tile_at(self.x, self.y)
+        curses = self.sort_items_by_category(self.inventory, Curse)
+        action = args[-1]
+        if action.lower() in ('q', 'exit', 'no'):
+            return "Action cancelled. You are fighting! Don't waste time!"
+        try:
+            item_index = int(action)
+            choice = curses[item_index - 1]
+            room.enemy.hp -= choice.damage
+            self.mana -= choice.mana_cost
+            return f"You cast {choice.name} on {room.enemy.name}, it does {choice.damage} DMG! You now have {self.mana} Mana remaining."
+        except Exception as e:
+            return f"{e}"
+ 
     # -------------------------------------------------------------------------|
     # INVENTORY AND TRADING SYSTEM --------------------------------------------|
     # -------------------------------------------------------------------------|
