@@ -14,8 +14,8 @@ class StartTile(MapTile):
         self.name = 'Clearing'
         self.description = "You are in a clearing. You arrived with your car from the west and the road ends in the east, where a path that climbs the mountain begins. A dense network of trees prevents the passage in any other direction. Your car is parked on the north side of the clearing, there is no one else parked."
         self.inventory = []
-        self.enemy = None
         self.talker = None
+        self.enemy = None
         super().__init__(x, y)
 
 
@@ -74,8 +74,8 @@ class OakTile(MapTile):
         self.name = 'Oak'
         self.description = "There's n Oak here."
         self.inventory = []
-        self.enemy = None
         self.talker = NPCf().oak
+        self.enemy = None
         super().__init__(x, y)
 
 
