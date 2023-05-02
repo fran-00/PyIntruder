@@ -177,7 +177,20 @@ class Player:
             return f"You cast {choice.name} on {room.enemy.name}, it does {choice.damage} DMG! You now have {self.mana} Mana remaining."
         except Exception as e:
             return f"{e}"
- 
+        
+    def flee_from_fight(self):
+        room = parser.tile_at(self.x, self.y)
+        d20 = random.randint(1, 20)
+        if d20 == 20:
+            room.enemy.alive = False
+            return "No need to do this. Enemy is dead!"
+        if d20 > 15 and d20 < 20:
+            self.x = self.previous_x
+            self.y = self.previous_y
+            return "You flee."  # FIXME: it doesn't work! Enemy still attacks
+        else:
+            return"You can't escape!"
+
     # -------------------------------------------------------------------------|
     # INVENTORY AND TRADING SYSTEM --------------------------------------------|
     # -------------------------------------------------------------------------|
@@ -435,19 +448,6 @@ class Player:
     def room_visited(self):
         room = parser.tile_at(self.x, self.y)
         room.room_seen(self)
-
-    def run(self):
-        room = parser.tile_at(self.x, self.y)
-        d20 = random.randint(1, 20)
-        if d20 == 20:
-            room.enemy.alive = False
-            return "No need to do this. Enemy is dead!"
-        if d20 > 15 and d20 < 20:
-            self.x = self.previous_x
-            self.y = self.previous_y
-            return "You flee."
-        else:
-            return"You can't escape!"
 
     def room_list_creator(self):
         rooms_list_with_empty_spaces = []
