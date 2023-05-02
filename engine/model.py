@@ -37,7 +37,7 @@ class GameModel(QObject):
                 self.handle_enemy_attack()
 
             self.event_loop.exec()
-            game_response = self.choose_action(self.action.lower())
+            game_response = self.choose_action(self.action)
 
             if isinstance(game_response, tuple):
                 self.process_nested_loop(game_response)
@@ -68,7 +68,7 @@ class GameModel(QObject):
             user_action (str): A string representing the user action.
 
         """
-        self.action = user_action
+        self.action = user_action.lower()
         self.event_loop.exit()
 
     def handle_outbound_signal(self, game_response):
