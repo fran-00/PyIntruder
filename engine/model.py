@@ -148,7 +148,7 @@ class GameModel(QObject):
                 self.model_signal_to_controller.emit(self.room.talker.hello)
 
                 return (
-                    self.player.pre_trading,
+                    self.player.choose_nested_action,
                     self.player.trading_mode,
                     self.player.choose_item,
                 )
@@ -161,7 +161,7 @@ class GameModel(QObject):
             if self.room.inventory:
                 self.arguments_list = [self.room.inventory, "pick-up"]
                 return (
-                    self.player.pre_trading,
+                    self.player.choose_nested_action,
 
                 )
         
@@ -169,7 +169,7 @@ class GameModel(QObject):
             if self.room.inventory:
                 self.arguments_list = [self.room.inventory, "drop"]
                 return (
-                    self.player.pre_trading,
+                    self.player.choose_nested_action,
 
                 )
             else:

@@ -162,8 +162,13 @@ class Player:
         self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
         return
 
-    def pre_trading(self, *args):
-        return "Buy, Sell or Quit?"
+    def choose_nested_action(self, *args):
+        if args[1] == "trade":
+            return "Buy, Sell or Quit?"
+        elif args[1] == "pick-up":
+            return "What do you want to pick up?"
+        elif args[1] == "drop":
+            return "What do you want to drop?"
 
     def trading_mode(self, *args):
         action = args[-1]
