@@ -399,8 +399,7 @@ class Player:
         print(f'> You are here: ({loc_x},{loc_y})')
 
 
-# FIXME: All these methods need to be fixed
-# Call TAVERN ROOM CLOSED**
+    # FIXME: All these methods need to be fixed
 
     def drop_all_get_all(self, receiver, giver):
         room = parser.tile_at(self.x, self.y)
