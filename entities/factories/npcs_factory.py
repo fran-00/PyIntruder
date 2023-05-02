@@ -18,7 +18,7 @@ class NPCsFactory:
             npcs_data["littleo"]["description"],
             None,
             1000,
-            [Cf().sep, Cf().choice, Cf().riemann],
+            [Cf().sep, Af().tesla_armor, Cf().choice, Cf().riemann, Wf().poly],
             self.get_random_dialogue("littleo"),
             True
         )
