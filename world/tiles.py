@@ -18,9 +18,8 @@ class StartTile(MapTile):
         self.description = "You are in a clearing. You arrived with your car from the west and the road ends in the east, where a path that climbs the mountain begins. A dense network of trees prevents the passage in any other direction. Your car is parked on the north side of the clearing, there is no one else parked."
         self.examine = "Your car is warm. Outside is cold."
         self.water = True
-        super().__init__(x, y)
-        # in this way the inventory inherit from parent class gets overidden
-        self.inventory = [Wf().sheet]
+        self.inventory = []
+        super().__init__(x, y)      
 
     def room_seen(self):
         self.seen = True
@@ -34,6 +33,7 @@ class Little_oTile(MapTile):
         self.description = "They say it is only infinitesimally probable to be here."
         self.examine = "It's an experimental application of Infinite Improbability, which in the future will led to the Infinite Improbability Drive."
         self.water = False
+        self.inventory = []
         super().__init__(x, y)
 
     def dialogue(self, player):
@@ -69,6 +69,7 @@ class BlacksmithTile(MapTile):
         self.enemy = None
         self.description = "You are in a blacksmith's shop. He is working on an anvil by striking a hot iron with a hammer. The room is small, full of tools, and it's hot as hell."
         self.water = True
+        self.inventory = []
         super().__init__(x, y)
 
     def dialogue(self, player):
@@ -107,6 +108,7 @@ class ChestTile(MapTile):
         self.description = "There's a chest here.\n"
         self.examine = "Chest has a Icosahedron on it."
         self.water = False
+        self.inventory = []
         self.closed = True
         super().__init__(x, y)
 
@@ -176,6 +178,7 @@ class FernsTile(MapTile):
         self.examine = "They're green and worried."
         self.inventory = [Hf().ats]
         self.water = False
+        self.inventory = []
         self.price_given = False
         super().__init__(x, y)
 
@@ -249,6 +252,7 @@ class House(MapTile):
         self.enemy = None
         self.description = None
         self.water = False
+        self.inventory = []
         super().__init__(x, y)
 
 # |IN| *** Intruder ***
@@ -260,6 +264,7 @@ class IntruderTile(MapTile):
         self.description = "It shouldn't be here"
         self.examine = "It shouldn't be here"
         self.water = True
+        self.inventory = []
         super().__init__(x, y)
 
     def dialogue(self, player):
@@ -294,6 +299,7 @@ class OakTile(MapTile):
         self.description = "There's n Oak here."
         self.examine = "OMG he's very wise."
         self.water = False
+        self.inventory = []
         super().__init__(x, y)
 
         # se nell'inventario dell' oracolo c'è lo specimen, il dialogo cambia.
@@ -345,6 +351,7 @@ class PathTile(MapTile):            # fai in modo che ogni evento possa capitare
         self.description = "The path is a boring place to stop: usually you just walk over it to go somewhere (wherever it is). This path in particular is uphill and surrounded by tall, green trees. Noises can be heard coming from the trees, maybe you're not alone..."
         self.examine = "\nTwo roads diverged in a yellow wood\nAnd sorry I could not travel both\nAnd be one traveler, long I stood\nAnd looked down one as far as I could\nTo where it bent in the undergrowth\n\nThen took the other, just as fair\nAnd having perhaps the better claim\nBecause it was grassy and wanted wear\nThough as for that the passing there\nHad worn them really about the same\n\nAnd both that morning equally lay\nIn leaves, no step had trodden black\nOh, I kept the first for another day\nYet knowing how way leads on to way\nI doubted if I should ever come back\n\nI shall be telling this with a sigh\nSomewhere ages and ages hence\nTwo roads diverged in a wood, and I\nI took the one less traveled by\nAnd that has made all the difference\n"
         self.water = False
+        self.inventory = []
         super().__init__(x, y)
         """
         ananke = random.randint(1, 10)
@@ -414,6 +421,7 @@ class PathToVillageTile(MapTile):
         self.enemy = None
         self.description = "The path is surrounded by trees, in the south the path descends towards the bottom of the mountain while going up towards the north you begin to see houses: further along the path there is a village."
         self.water = False
+        self.inventory = []
         super().__init__(x, y)
 
 # |Rn| *** Rina Casti ***
@@ -425,6 +433,7 @@ class RinaTile(MapTile):
         self.description = "You're surrounded by trees. There's someone here."
         self.examine = " "
         self.water = False
+        self.inventory = []
         super().__init__(x, y)
 
     def dialogue(self, player):
@@ -475,6 +484,7 @@ class RiverTile(MapTile):
         self.description = "There's a river, he is flowing and changing. He's wet."
         self.examine = "The stones here are very beautiful and smooth."
         self.water = True
+        self.inventory = []
         super().__init__(x, y)
 
 # |SQ| *** Square ***
@@ -485,6 +495,7 @@ class SquareTile(MapTile):
         self.enemy = None
         self.description = "You are in a square, deserted except for a slimy-looking merchant behind a stall full of all kinds of equipment. In the center of the square is a fountain with a statue of a familiar-looking plant in the center."
         self.water = True
+        self.inventory = []
         super().__init__(x, y)
 
     def dialogue(self, player):
@@ -524,6 +535,7 @@ class StyliteTile(MapTile):
         self.description = "There is a kind of cross in the trees, it is tall and there is a man in his underwear on it"
         self.examine = ""
         self.water = False
+        self.inventory = []
         super().__init__(x, y)
 
     def dialogue(self, player):
@@ -561,6 +573,7 @@ class TavernTile(MapTile):
         self.description = "You are in a tavern. The whole structure is dark wood, there are a dozen round tables but no people but you and the tavern keeper. He is behind the counter cleaning glasses and greets you with a smile and a nod of his head. The counter is to the right of the entrance and there are stairs to the north that lead to the upper floor, which houses the rooms for the overnight stay."
         self.examine = " Mah."
         self.water = True
+        self.inventory = []
         super().__init__(x, y)
 
     def dialogue(self, player):
@@ -643,6 +656,7 @@ class TavernRoomTile(MapTile):
         self.description = "You are in a small room with wooden walls and floor. There is an uncomfortable looking bed on the west wall and a small desk on the east wall. The entrance door is to the south."
         self.examine = ""
         self.water = False
+        self.inventory = []
         super().__init__(x, y)
 
     def random_event(self, player):
@@ -701,6 +715,7 @@ class TempleTile(MapTile):
         self.enemy = None
         self.description = "You are in a temple. Strange symbols made up of concentric circles adorn the walls. A monk prays in front of an altar filled with a liquid of a strange color."
         self.water = True
+        self.inventory = []
         super().__init__(x, y)
 
     def dialogue(self, player):
@@ -761,6 +776,7 @@ class VictoryTile(MapTile):
         self.enemy = None
         self.description = None
         self.water = False
+        self.inventory = []
         super().__init__(x, y)
 
     def modify_player(self, player):
@@ -783,6 +799,7 @@ class VillageSouthTile(MapTile):
         self.enemy = None
         self.description = "everything is collapsing ... over me, danger of going to the cemetery today."
         self.water = False
+        self.inventory = []
         super().__init__(x, y)
 
     def dialogue(self, player):
@@ -796,5 +813,6 @@ class VillageNorthTile(MapTile):
         self.enemy = None
         self.description = None
         self.water = False
+        self.inventory = []
         super().__init__(x, y)
 
