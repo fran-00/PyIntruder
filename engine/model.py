@@ -120,7 +120,7 @@ class GameModel(QObject):
         elif action in ['now']:
             return (f"This room is {self.player.x}, {self.player.y}")
 
-        elif action in ["i"]:
+        elif action in ["i", "inventory"]:
             self.arguments_list = [self.player.inventory, "my-inventory"]
             return (
                 self.player.show_inventory,
