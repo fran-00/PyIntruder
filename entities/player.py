@@ -408,13 +408,6 @@ class Player:
 # FIXME: All these methods need to be fixed
 # Call TAVERN ROOM CLOSED**
 
-    def tavern_room_closed(self):
-        print("The room door is closed.")
-        return
-
-    def is_alive(self):
-        return self.hp > 0
-
     def drop_all_get_all(self, receiver, giver):
         room = parser.tile_at(self.x, self.y)
         for _, item in enumerate(giver.inventory, 0):
@@ -424,57 +417,6 @@ class Player:
                 print(f"{item.name}: taken.")
             if receiver is room:
                 print(f"{item.name}: dropped.")
-
-    def item_handler(self, action, receiver, giver):
-        room = parser.tile_at(self.x, self.y)
-        sorted_inventory = sorted(
-            giver.inventory, key=lambda item: item.name.lower())
-
-        if giver is self and receiver is room:
-            prompt = "What do you want to drop?"
-            success_msg = "Dropped."
-        elif giver is room and receiver is self:
-            prompt = "What do you want to pick up?"
-            success_msg = "Taken."
-        else:
-            prompt = f"What do you want to give to {room.talker}?"
-            success_msg = "Given."
-
-        chosen_item = self.choose_item(sorted_inventory, prompt)
-        if chosen_item is None:
-            return "Ok."
-
-        self.item_donation(giver, receiver, chosen_item)
-        if action == "give" and giver is self and receiver is room.talker:
-            if room.talker.accept_object:
-                return (
-                    f"{room.talker} says to you: << Thank you. >>"
-                    f"{chosen_item.name}: {success_msg}"
-                )
-            else:
-                return f"{room.talker} says to you: << I don't want it. >>"
-
-    def choose_item_handler(self, sorted_inventory, prompt):
-        response = ""
-        for i, item in enumerate(sorted_inventory, 1):
-            response += f" | {i}. {item}"
-
-        while True:
-            user_input = input(
-                f"{prompt} Choose an item or type 'Q' to quit.\n>>>> ")
-            if user_input in ['q', ' ', 'exit', 'no']:
-                return None
-            try:
-                choice = int(user_input)
-                if choice not in range(1, len(sorted_inventory) + 1):
-                    raise ValueError
-                return sorted_inventory[choice - 1]
-            except (ValueError, IndexError):
-                print("Invalid choice, try again.")
-
-    def item_donation(self, giver, receiver, item):
-        giver.inventory.remove(item)
-        receiver.inventory.append(item)
 
     def heal(self):
         pass
