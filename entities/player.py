@@ -293,6 +293,10 @@ class Player:
         buyer.inventory.append(item)
         self.sort_inventory()
         buyer.sort_inventory()
+    
+    def swap_item(self, giver, receiver, item):
+        giver.inventory.remove(item)
+        receiver.inventory.append(item)
 
     # -------------------------------------------------------------------------|
     # INFO --------------------------------------------------------------------|
