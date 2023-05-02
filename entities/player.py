@@ -390,9 +390,6 @@ class Player:
     def is_alive(self):
         return self.hp > 0
 
-    def cast_curse(self):
-        pass
-
     def drop_all_get_all(self, receiver, giver):
         room = parser.tile_at(self.x, self.y)
         for _, item in enumerate(giver.inventory, 0):
