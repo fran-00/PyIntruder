@@ -133,7 +133,7 @@ class GameModel(QObject):
             else:
                 return "There is no one to attack here!"
 
-        elif action in ["c"]:
+        elif action in ["c", "curse", "cast curse"]:
             if self.room.enemy and self.room.enemy.alive:
                 return (
                     self.player.show_curses,
