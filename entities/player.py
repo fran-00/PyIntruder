@@ -36,6 +36,10 @@ class Player:
         self.xp_modifier = 100
         self.base_defence = 0
 
+    # -------------------------------------------------------------------------|
+    # MOVEMENT ----------------------------------------------------------------|
+    # -------------------------------------------------------------------------|
+
     def move(self, dx, dy):
         self.x += dx
         self.y += dy
@@ -59,6 +63,10 @@ class Player:
         self.previous_x = self.x
         self.previous_y = self.y
         self.move(dx=dx, dy=dy)
+
+    # -------------------------------------------------------------------------|
+    # COMBAT ------------------------------------------------------------------|
+    # -------------------------------------------------------------------------|
 
     def attack(self):
         """Attacks the enemy in the current room with the best available weapon and return a message describing the outcome of the attack.
@@ -142,8 +150,9 @@ class Player:
         else:
             return None
 
-    def sort_items_by_category(self, inventory, category):
-        return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
+    # -------------------------------------------------------------------------|
+    # INVENTORY AND TRADING SYSTEM --------------------------------------------|
+    # -------------------------------------------------------------------------|
 
     def sort_inventory(self, items):
         for category in [Weapon, Curse, Healer, Armor]:
@@ -261,6 +270,10 @@ class Player:
         buyer.gold -= item.value
         seller.inventory.remove(item)
         buyer.inventory.append(item)
+
+    # -------------------------------------------------------------------------|
+    # INFO --------------------------------------------------------------------|
+    # -------------------------------------------------------------------------|
 
     def diagnose(self):
         return (
