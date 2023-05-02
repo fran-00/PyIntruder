@@ -231,7 +231,7 @@ class Player:
                     index += 1
             elif trade == "trade":
                 for _, item in enumerate(items_in_category, index):
-                    response += f"{index}. DMG: {item.damage} - {item.name} - {item.value}$\n"
+                    response += f"{index}. - {item.name} - {item.value}$\n"
                     index += 1
         return response
 
