@@ -24,7 +24,7 @@ class Weapon(Item):
         self.damage = damage
 
     def __str__(self):
-        return self.name, self.damage
+        return f"{self.name} - {self.damage} DMG"
 
 
 class Curse(Item):
@@ -35,7 +35,7 @@ class Curse(Item):
         self.mana_cost = mana_cost
 
     def __str__(self):
-        return self.name, self.damage
+        return f"{self.name} - {self.damage} DMG"
 
 
 class Healer(Item):
@@ -44,12 +44,18 @@ class Healer(Item):
         super().__init__(name, description, level, value)
         self.heal = heal
 
+    def __str__(self):
+        return f"{self.name} - {self.heal} HP"
+
 
 class ManaRecharger(Item):
 
     def __init__(self, name, description, level, value, mr):
         super().__init__(name, description, level, value)
         self.mr = mr
+ 
+    def __str__(self):
+        return f"{self.name} - {self.mr} MR"
 
 
 class Armor(Item):
@@ -57,6 +63,9 @@ class Armor(Item):
     def __init__(self, name, description, level, value, defence):
         super().__init__(name, description, level, value)
         self.defence = defence
+
+    def __str__(self):
+        return f"{self.name} - {self.defence} DEF"
 
 
 class NonPlayableCharacter(Entity):
