@@ -293,17 +293,17 @@ class Player:
         if purpose == "my-inventory" :
             return f"{choice.name}: {choice.description}"
         elif purpose == "trade" and self.is_selling:
-            self.items_swapper(self, room.talker, choice)
+            self.items_swapper(self, room.talker, choice, purpose)
             self.is_selling = False
             return f"Bye {choice.name}!"
         elif purpose == "trade" and not self.is_selling:
-            self.items_swapper(room.talker, self, choice)
+            self.items_swapper(room.talker, self, choice, purpose)
             return f"Good! Now {choice.name} is yours!"
         elif purpose == "pick-up":
-            self.items_swapper(room, self, choice)
+            self.items_swapper(room, self, choice, purpose)
             return f"{choice.name}: taken."
         elif purpose == "drop":
-            self.items_swapper(self, room, choice)
+            self.items_swapper(self, room, choice, purpose)
             return f"{choice.name}: dropped."
 
     # TODO: Merge trade and swap_item methods
