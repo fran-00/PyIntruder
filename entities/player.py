@@ -163,6 +163,14 @@ class Player:
         return
 
     def choose_nested_action(self, *args):
+        """Returns a prompt string for the action specified in the second argument.
+
+        Args:
+            *args: Variable length argument list, with the second argument specifying the action.
+
+        Returns:
+            A string prompt for the specified action.
+        """
         if args[1] == "trade":
             return "Buy, Sell or Quit?"
         elif args[1] == "pick-up":
