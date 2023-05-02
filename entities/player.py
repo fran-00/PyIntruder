@@ -17,11 +17,15 @@ class Player:
         self.x = parser.start_tile_location[0]
         self.y = parser.start_tile_location[1]
 
-        self.items = [Wf().wire,
-                      Wf().manuport,
+        self.inventory = [Cf().veridical,
+                      Wf().wire,
+                      Af().fungine_armor,
+                      Hf().ats,
                       Wf().deliverance,
-                      Af().tesla_armor]
-        self.inventory = self.sort_inventory(self.items)
+                      Cf().cluster_point,
+                      Af().tesla_armor,
+                      ]
+        self.sort_inventory()
         self.current_weapon = self.best_weapon()
         self.gold = 10000000
 
@@ -154,9 +158,9 @@ class Player:
     # INVENTORY AND TRADING SYSTEM --------------------------------------------|
     # -------------------------------------------------------------------------|
 
-    def sort_inventory(self, items):
-        for category in [Weapon, Curse, Healer, Armor]:
-            return sorted([item for item in items if isinstance(item, category)], key=lambda item: item.name.lower())
+    def sort_inventory(self):
+        self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
+        return
 
     def pre_trading(self, *args):
         return "Buy, Sell or Quit?"

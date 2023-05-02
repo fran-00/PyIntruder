@@ -70,7 +70,8 @@ class NonPlayableCharacter(Entity):
         self.sort_inventory()
 
     def sort_inventory(self):
-        return self.inventory.sort(key=lambda x: x.name)
+        self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
+        return
 
 
 class Enemy(Entity):
