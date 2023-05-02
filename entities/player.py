@@ -256,8 +256,11 @@ class Player:
         Returns:
             str: A string representing the appropriate response based on the user's input.
         """
+        room = parser.tile_at(self.x, self.y)
         if not self.is_selling:
             inventory = args[0]
+        elif args[1] == "pick-up":
+            inventory = room.inventory
         else:
             inventory = self.inventory
         trade = args[1]
