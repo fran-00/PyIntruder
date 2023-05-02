@@ -270,7 +270,7 @@ class Player:
         else:
             return "Invalid choice, try again."
 
-    def trade(self, buyer, seller, item):
+    def trade(self, seller, buyer, item):
         if item.value > buyer.gold:
             return "<< You don't have enough cash. >>"
         seller.gold += item.value
