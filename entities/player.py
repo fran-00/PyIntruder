@@ -306,18 +306,12 @@ class Player:
             self.items_swapper(self, room, choice, purpose)
             return f"{choice.name}: dropped."
 
-    # TODO: Merge trade and swap_item methods
-    def items_swapper(self, seller, buyer, item, purpose):
-        if item.value > buyer.gold:
-            return "<< You don't have enough cash. >>"
-        seller.gold += item.value
-        buyer.gold -= item.value
-        seller.inventory.remove(item)
-        buyer.inventory.append(item)
-        self.sort_inventory()
-        buyer.sort_inventory()
-    
-    def swap_item(self, giver, receiver, item):
+    def items_swapper(self, giver, receiver, item, purpose):
+        if purpose == "trade" and receiver == self:
+            if item.value > receiver.gold:
+                return "<< You don't have enough cash. >>"
+            giver.gold += item.value
+            receiver.gold -= item.value
         giver.inventory.remove(item)
         receiver.inventory.append(item)
         giver.sort_inventory()
