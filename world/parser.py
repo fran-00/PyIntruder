@@ -5,14 +5,14 @@ from world.enemies_tiles import *
 # >>>> WORLD
 # ROW WORLD MAP
 world_dsl = """
-|  |  |  |  |  |  |TR|  |  |  |  |  |WW|
-|  |  |  |  |  |  |TT|  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |  |  |  |  |WW|
+|  |  |  |  |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |Lo|  |  |  |  |  |  |
 |.4|.4|.4|.4|OK|FT|SS|.1|.1|.2|.2|.3|.3|
-|.4|  |!!|  |.4|  |TM|  |.1|  |!!|  |.3|
-|.5|  |!!|  |.5|  |BS|  |.1|  |!!|  |.3|
-|.4|  |!!|  |.4|  |SQ|  |.1|  |!!|  |.3|
-|.5|  |!!|  |.5|  |RC|  |.1|  |!!|  |.3|
+|.4|  |!!|  |.4|  |  |  |.1|  |!!|  |.3|
+|.5|  |!!|  |.5|  |  |  |.1|  |!!|  |.3|
+|.4|  |!!|  |.4|  |  |  |.1|  |!!|  |.3|
+|.5|  |!!|  |.5|  |  |  |.1|  |!!|  |.3|
 |.5|.5|.5|.5|.5|.5|!!|.1|.1|.2|.2|.3|.3|
 
 """
@@ -81,18 +81,9 @@ tile_type_dict = {"BS": BlacksmithTile,
                   "Lo": Little_oTile,
                   "OK": OakTile,
                   "..": PathTile,
-                  ".V": PathToVillageTile,
-                  "RC": RinaTile,
-                  "RV": RiverTile,
-                  "SQ": SquareTile,
                   "SS": StartTile,
-                  "SY": StyliteTile,
                   "TM": TempleTile,
-                  "TT": TavernTile,
-                  "TR": TavernRoomTile,
                   "WW": VictoryTile,
-                  "Vn": VillageNorthTile,
-                  "Vs": VillageSouthTile,
                   "  ": None}
 
 world_map = []
