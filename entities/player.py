@@ -441,14 +441,13 @@ class Player:
         d20 = random.randint(1, 20)
         if d20 == 20:
             room.enemy.alive = False
-            print("No need to do this. You enemy is dead.")
+            return "No need to do this. Enemy is dead!"
         if d20 > 15 and d20 < 20:
-            print("You flee.")
             self.x = self.previous_x
             self.y = self.previous_y
+            return "You flee."
         else:
-            print("You can't escape!")
-            return
+            return"You can't escape!"
 
     def room_list_creator(self):
         rooms_list_with_empty_spaces = []
