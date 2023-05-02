@@ -212,7 +212,7 @@ class Player:
         response = ""
         index = 1
 
-        for category in [Weapon, Curse, Healer, Armor]:
+        for category in [Armor, Curse, Healer, Weapon]:
             items_in_category = self.sort_items_by_category(
                 inventory, category)
 
