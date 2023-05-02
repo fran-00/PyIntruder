@@ -12,6 +12,7 @@ class MapTile:
         self.inventory = []
         self.world_check = []
         self.choose_random_items()
+        self.sort_inventory()
 
     def choose_random_items(self):
         healers_list = Hf().get_items_list()
@@ -23,6 +24,10 @@ class MapTile:
             self.inventory.append(random.choice(healers_list))
         elif n == 4:
             self.inventory.append(random.choice(weapons_list))
+    
+    def sort_inventory(self):
+        self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
+        return
 
     def modify_player(self, player):
         """Modifies player and enemy based on a random chance of confusion and the enemy's attack.
