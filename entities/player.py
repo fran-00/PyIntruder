@@ -60,9 +60,6 @@ class Player:
     def move_west(self):
         self.get_coordinates(-1, 0)
 
-    def stand_still(self):
-        self.get_coordinates(dx=0, dy=0)
-
     def get_coordinates(self, dx, dy):
         self.previous_x = self.x
         self.previous_y = self.y
