@@ -158,7 +158,22 @@ class GameModel(QObject):
                 return "There is no one to trade with!"
 
         elif action in ["p", "pick up"]:
-            return self.player.item_handler()
+            if self.room.inventory:
+                self.arguments_list = [self.room.inventory, "pick-up"]
+                return (
+                    self.player.pre_trading,
+
+                )
+        
+        elif action in ["d", "drop"]:
+            if self.room.inventory:
+                self.arguments_list = [self.room.inventory, "drop"]
+                return (
+                    self.player.pre_trading,
+
+                )
+            else:
+                return "There is nothing to pick up."
 
         elif action in ["m", "map"]:
             return self.player.show_map()
