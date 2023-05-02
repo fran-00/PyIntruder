@@ -160,7 +160,7 @@ class Player:
         response = f"Ok, what curse do you want to cast? You have {self.mana} Mana.\n"
         if curses != []:
             for _, item in enumerate(curses, index):
-                response += f"{index}. {item.name}\n"
+                response += f"{index}. {item}\n"
                 index += 1
             return response
 
@@ -252,7 +252,7 @@ class Player:
                     index += 1
             elif trade == "trade":
                 for _, item in enumerate(items_in_category, index):
-                    response += f"{index}. - {item.name} - {item.value}$\n"
+                    response += f"{index}. - {item} - {item.value}§\n"
                     index += 1
         return response
 
