@@ -219,7 +219,7 @@ class Player:
                 inventory, category)
 
             if items_in_category:
-                response += f">> {category.__name__.upper()}:\n"
+                response += f">> {category.__name__.upper()}S:\n"
 
             if trade != "trade":
                 for _, item in enumerate(items_in_category, index):
