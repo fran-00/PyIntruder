@@ -222,11 +222,11 @@ class Player:
         try:
             item_index = int(action)
             choice = inventory[item_index - 1]
-            return self.show_appropriate_answer(choice, inventory, trade)
+            return self.show_appropriate_answer(choice, trade)
         except Exception as e:
             return f"{e}"
 
-    def show_appropriate_answer(self, choice, inventory, trade):
+    def show_appropriate_answer(self, choice, trade):
         room = parser.tile_at(self.x, self.y)
         if not trade:
             return f"{choice.name}: {choice.description}"
