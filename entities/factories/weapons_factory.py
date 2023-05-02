@@ -110,3 +110,22 @@ class WeaponsFactory:
             15,
             20,
         )
+    
+    def get_items_list(self):
+        weapon_list = [
+            self.manuport,
+            self.sheet,
+            self.polyhedron,
+            self.armored_manuport,
+            self.polygon,
+            self.wire,
+            self.branch,
+            self.poly,
+            self.device,
+            self.deliverance,
+            self.tesseract,
+            self.chuck,
+            self.attractor,
+            self.cube
+        ]
+        return weapon_list

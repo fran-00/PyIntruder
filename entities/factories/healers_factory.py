@@ -25,3 +25,10 @@ class HealersFactory:
             1,
             3           
         )
+    
+    def get_items_list(self):
+        healers_list = [
+            self.ats,
+            self.gommo
+        ]
+        return healers_list

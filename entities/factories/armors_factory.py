@@ -39,3 +39,12 @@ class ArmorsFactory:
             15,
             20,
         )
+    
+    def get_items_list(self):
+        armors_list = [
+            self.rinas_armor,
+            self.fungine_armor,
+            self.iron_armor,
+            self.tesla_armor
+        ]
+        return armors_list

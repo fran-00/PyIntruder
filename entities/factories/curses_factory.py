@@ -161,3 +161,26 @@ class CursesFactory:
             20,
             10
         )
+    
+    def get_items_list(self):
+        curses_list = [
+            self.red,
+            self.hyperbolic_orange,
+            self.stygian_blue,
+            self.falsidical,
+            self.cluster_point,
+            self.aleph,
+            self.logistic_map,
+            self.integral,
+            self.veridical,
+            self.comic_sans,
+            self.sep,
+            self.nimby,
+            self.choice,
+            self.antinomy,
+            self.continuum,
+            self.insult,
+            self.briefcase,
+            self.riemann
+        ]
+        return curses_list
