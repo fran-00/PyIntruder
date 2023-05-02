@@ -144,7 +144,7 @@ class GameModel(QObject):
 
         elif action in ["trade"]:
             if self.room.talker and self.room.talker.trade:
-                self.arguments_list = [self.room.talker.inventory, True]
+                self.arguments_list = [self.room.talker.inventory, "trade"]
                 self.model_signal_to_controller.emit(self.room.talker.hello)
 
                 return (

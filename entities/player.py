@@ -215,11 +215,11 @@ class Player:
             if items_in_category:
                 response += f">> {category.__name__.upper()}:\n"
 
-            if not trade:
+            if trade != "trade":
                 for _, item in enumerate(items_in_category, index):
                     response += f"{index}. {item.name}\n"
                     index += 1
-            else:
+            elif trade == "trade":
                 for _, item in enumerate(items_in_category, index):
                     response += f"{index}. DMG: {item.damage} - {item.name} - {item.value}$\n"
                     index += 1
@@ -242,7 +242,7 @@ class Player:
             inventory = args[0]
         else:
             inventory = self.inventory
-        trade = args[1]    
+        trade = args[1]
         action = args[-1]
 
         if action.lower() in ('q', 'exit', 'no'):
@@ -256,13 +256,13 @@ class Player:
 
     def show_appropriate_answer(self, choice, trade):
         room = parser.tile_at(self.x, self.y)
-        if not trade:
+        if trade != "trade":
             return f"{choice.name}: {choice.description}"
-        elif trade and self.is_selling:
+        elif trade == "trade" and self.is_selling:
             self.trade(self, room.talker, choice)
             self.is_selling = False
             return f"Bye {choice.name}!"
-        elif trade and not self.is_selling:
+        elif trade == "trade" and not self.is_selling:
             self.trade(room.talker, self, choice)
             return f"Good! Now {choice.name} is yours!"
 
