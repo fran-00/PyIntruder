@@ -37,7 +37,7 @@ class GameModel(QObject):
                 self.handle_enemy_attack()
 
             self.event_loop.exec()
-            game_response = self.choose_action(self.action)
+            game_response = self.choose_action(self.action.lower())
 
             if isinstance(game_response, tuple):
                 self.process_nested_loop(game_response)
