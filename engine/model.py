@@ -160,17 +160,19 @@ class GameModel(QObject):
         elif action in ["p", "pick up"]:
             if self.room.inventory:
                 self.arguments_list = [self.room.inventory, "pick-up"]
+                self.model_signal_to_controller.emit("What do you want to pick up?")
                 return (
-                    self.player.choose_nested_action,
-
+                    self.player.show_inventory,
+                    self.player.choose_item
                 )
         
         elif action in ["d", "drop"]:
             if self.room.inventory:
                 self.arguments_list = [self.room.inventory, "drop"]
+                self.model_signal_to_controller.emit("What do you want to drop?")
                 return (
-                    self.player.choose_nested_action,
-
+                    self.player.show_inventory,
+                    self.player.choose_item
                 )
             else:
                 return "There is nothing to pick up."
