@@ -1,5 +1,8 @@
 import random
-
+from entities.factories.weapons_factory import WeaponsFactory as Wf
+from entities.factories.curses_factory import CursesFactory as Cf
+from entities.factories.armors_factory import ArmorsFactory as Af
+from entities.factories.healers_factory import HealersFactory as Hf
 
 # *** ROOM OF ROOMS ***
 class MapTile:
