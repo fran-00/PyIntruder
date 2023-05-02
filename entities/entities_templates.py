@@ -35,7 +35,7 @@ class Curse(Item):
         self.mana_cost = mana_cost
 
     def __str__(self):
-        return f"{self.name} - {self.damage} DMG"
+        return f"{self.name} - {self.damage} DMG - {self.mana_cost} Mana"
 
 
 class Healer(Item):
