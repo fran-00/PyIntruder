@@ -121,7 +121,7 @@ class GameModel(QObject):
             return (f"This room is {self.player.x}, {self.player.y}")
 
         elif action in ["i"]:
-            self.arguments_list = [self.player.inventory, False]
+            self.arguments_list = [self.player.inventory, "my-inventory"]
             return (
                 self.player.show_inventory,
                 self.player.choose_item
