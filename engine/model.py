@@ -140,7 +140,7 @@ class GameModel(QObject):
                 return "There is no one to curse here!"
 
         elif action in ["t", "talk"]:
-            return self.room.dialogue()
+            return "Hmmm... A tree looks at you expectantly, as if you seemed to be about to talk."
 
         elif action in ["trade"]:
             if self.room.talker and self.room.talker.trade:
