@@ -39,6 +39,8 @@ class Player:
         self.xp = 0
         self.xp_modifier = 100
         self.base_defence = 0
+        self.previous_x = None
+        self.previous_y = None
 
     # -------------------------------------------------------------------------|
     # MOVEMENT ----------------------------------------------------------------|
