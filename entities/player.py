@@ -153,15 +153,12 @@ class Player:
         else:
             return None
 
-    def show_curses(self, *args):
-        curses = self.sort_items_by_category(self.inventory, Curse)
-        index = 1
-        response = f"Ok, what curse do you want to cast? You have {self.mana} Mana.\n"
-        if curses != []:
-            for _, item in enumerate(curses, index):
-                response += f"{index}. {item}\n"
-                index += 1
-            return response
+    def show_curses(func):
+        def wrapper(self, *args):
+            if args[1] == "Curse":
+                response = f"Ok, what curse do you want to cast? You have {self.mana} Mana.\n"
+            return response + func(self, *args)
+        return wrapper
 
     def cast_curse(self, *args):
         room = parser.tile_at(self.x, self.y)
