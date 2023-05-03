@@ -97,7 +97,9 @@ class GameModel(QObject):
         if self.room.enemy is None:
             return (f"***{self.room.name}***\n> {self.room.description}")
         elif self.room.enemy.is_alive():
-            return (f"{self.room.enemy.description}")
+            return (f"{self.room.enemy.description_if_alive}")
+        elif not self.room.enemy.is_alive():
+            return (f"{self.room.enemy.description_if_dead}")
 
     def choose_action(self, action=str):
         """Chooses an action based on the given input string and returns its result.
