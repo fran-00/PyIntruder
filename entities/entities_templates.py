@@ -33,6 +33,7 @@ class Weapon(Item):
 
     def __init__(self, name, level, value, damage):
         super().__init__(name, level, value)
+        self.description = items_data["weapons"][f"{self.name}".lower()]
         self.damage = damage
 
     def __str__(self):
@@ -43,6 +44,7 @@ class Curse(Item):
 
     def __init__(self, name, level, value, damage, mana_cost):
         super().__init__(name, level, value)
+        self.description = items_data["curses"][f"{self.name}".lower()]
         self.damage = damage
         self.mana_cost = mana_cost
 
@@ -54,6 +56,7 @@ class Healer(Item):
 
     def __init__(self, name, level, value, heal):
         super().__init__(name, level, value)
+        self.description = items_data["healers"][f"{self.name}".lower()]
         self.heal = heal
 
     def __str__(self):
@@ -64,6 +67,7 @@ class ManaRecharger(Item):
 
     def __init__(self, name, level, value, mr):
         super().__init__(name, level, value)
+        self.description = items_data["mana rechargers"][f"{self.name}".lower()]
         self.mr = mr
  
     def __str__(self):
@@ -74,6 +78,7 @@ class Armor(Item):
 
     def __init__(self, name, level, value, defence):
         super().__init__(name, level, value)
+        self.description = items_data["armors"][f"{self.name}".lower()]
         self.defence = defence
 
     def __str__(self):
@@ -84,6 +89,7 @@ class NonPlayableCharacter(Entity):
 
     def __init__(self, name, level, gold, inventory, hello, trade):
         super().__init__(name, level)
+        self.description = npcs_data[f"{self.name}".lower()]["description"]
         self.gold = gold
         self.inventory = inventory
         self.hello = hello
@@ -99,6 +105,7 @@ class Enemy(Entity):
 
     def __init__(self, name, level, hp, damage):
         super().__init__(name, level)
+        self.description = enemies_data[f"{self.name}".lower()]["intro_alive"]
         self.hp = hp
         self.damage = damage
 
