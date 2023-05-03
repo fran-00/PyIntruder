@@ -138,9 +138,10 @@ class GameModel(QObject):
                 return "There is no one to attack here!"
 
         elif action in ["c", "curse", "cast curse"]:
+            self.arguments_list = [self.player.inventory, "Curse"]
             if self.room.enemy and self.room.enemy.is_alive():
                 return (
-                    self.player.show_curses,
+                    self.player.show_inventory_subset,
                     self.player.cast_curse
                 )
             else:
