@@ -5,10 +5,10 @@ with open('entities/data/items_data.json') as f:
     items_data = json.load(f)
 
 with open('entities/data/npcs_data.json') as nf:
-    npcs_data = json.load(f)
+    npcs_data = json.load(nf)
 
 with open('entities/data/enemies_data.json') as ef:
-    enemies_data = json.load(f)
+    enemies_data = json.load(ef)
 
 
 class Entity:
