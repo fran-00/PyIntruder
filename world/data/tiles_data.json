@@ -1,0 +1,32 @@
+{
+    "clearing": {
+        "description": "You are in a clearing. You arrived with your car from the west and the road ends in the east, where a path that climbs the mountain begins. A dense network of trees prevents the passage in any other direction. Your car is parked on the north side of the clearing, there is no one else parked."
+    },
+    "little(o) shop": {
+        "description": "They say it is only infinitesimally probable to be here."
+    },
+    "blacksmith": {
+        "description": "You are in a blacksmith's shop. He is working on an anvil by striking a hot iron with a hammer. The room is small, full of tools, and it's hot as hell."
+    },
+    "chest": {
+        "description": "Hey! There's a chest here!"
+    },
+    "ferns": {
+        "description": "A lot of ferns."
+    },
+    "intruder": {
+        "description": "It shouldn't be here"
+    },
+    "oak": {
+        "description": "There's n Oak here."
+    },
+    "path": {
+        "description": "The path is a boring place to stop: usually you just walk over it to go somewhere (wherever it is). This path in particular is uphill and surrounded by tall, green trees. Noises can be heard coming from the trees, maybe you're not alone..."
+    },
+    "temple": {
+        "description": "You are in a temple. Strange symbols made up of concentric circles adorn the walls. A monk prays in front of an altar filled with a liquid of a strange color."
+    },
+    "victory": {
+        "description": ""
+    }
+}
