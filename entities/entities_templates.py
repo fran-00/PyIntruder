@@ -1,3 +1,10 @@
+import json
+
+
+with open('entities/data/items_data.json') as f:
+    items_data = json.load(f)
+
+
 class Entity:
 
     def __init__(self, name, description, level):
