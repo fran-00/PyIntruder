@@ -25,7 +25,6 @@ class Item(Entity):
     def __init__(self, name, value):
         super().__init__(name)
         self.value = value
-        self.value_if_sold = self.value // 10
 
 
 class Weapon(Item):
