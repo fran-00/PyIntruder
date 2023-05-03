@@ -103,7 +103,8 @@ class MapTile:
 
     def check_if_trading(self, *args):
         if args[1] == "trade":
-            return "Buy, Sell or Quit?"
+            sentence = self.talker.get_random_opening_sentence(f"{self.talker.name}")
+            return f"{sentence}\nBuy, Sell or Quit?"
         elif args[1] == "talk":
             return self.talker.hello
     
