@@ -107,9 +107,10 @@ class NonPlayableCharacter(Entity):
 
 class Enemy(Entity):
 
-    def __init__(self, name, hp, damage):
+    def __init__(self, name, level, hp, damage):
         super().__init__(name)
         self.description = enemies_data[f"{self.name}".lower()]["intro_alive"]
+        self.level = level
         self.hp = hp
         self.damage = damage
 
