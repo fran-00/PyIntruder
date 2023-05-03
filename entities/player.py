@@ -239,15 +239,14 @@ class Player:
 
         Args:
             inventory (list): A list of Item objects representing inventory.
-            trade (bool): A boolean flag indicating whether the inventory is 
-            being viewed for trading purposes.
+            purpose (string): 
 
         Returns:
             str: A string representation of the inventory, formatted as a list 
             of items sorted by category and name.
         """
         inventory = args[0]
-        trade = args[1]
+        purpose = args[1]
         response = ""
         index = 1
 
@@ -258,11 +257,11 @@ class Player:
             if items_in_category:
                 response += f">> {category.__name__.upper()}S:\n"
 
-            if trade != "trade":
+            if purpose != "trade":
                 for _, item in enumerate(items_in_category, index):
                     response += f"{index}. {item.name}\n"
                     index += 1
-            elif trade == "trade":
+            elif purpose == "trade":
                 for _, item in enumerate(items_in_category, index):
                     response += f"{index}. - {item} - {item.value}§\n"
                     index += 1
@@ -276,7 +275,7 @@ class Player:
 
         Args:
             *args (tuple): A tuple of arguments containing the user's input `action`,
-                `inventory` list, and `trade` boolean.
+                `inventory` list, and `purpose` string.
 
         Returns:
             str: A string representing the appropriate response based on the user's input.
@@ -288,7 +287,7 @@ class Player:
             inventory = room.inventory
         else:
             inventory = self.inventory
-        trade = args[1]
+        purpose = args[1]
         action = args[-1]
 
         if action.lower() in ('q', 'exit', 'no'):
@@ -296,7 +295,7 @@ class Player:
         try:
             item_index = int(action)
             choice = inventory[item_index - 1]
-            return self.show_appropriate_answer(choice, trade)
+            return self.show_appropriate_answer(choice, purpose)
         except Exception as e:
             return f"{e}"
 
