@@ -1,4 +1,4 @@
-import json
+import json, random
 
 
 with open('entities/data/items_data.json') as f:
