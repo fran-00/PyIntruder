@@ -1,4 +1,3 @@
-import contextlib
 import random
 
 from .entities_templates import Weapon, Curse, Armor, Healer
