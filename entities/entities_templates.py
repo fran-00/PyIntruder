@@ -97,7 +97,7 @@ class NonPlayableCharacter(Entity):
         self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
         return
 
-    def get_random_dialogue(self, npc_name=str):
+    def get_random_opening_sentence(self, npc_name=str):
         # FIXME:
         dialogues = npcs_data[npc_name]['dialogues']
         dialogue = random.choice(list(dialogues.values()))
