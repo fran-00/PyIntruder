@@ -13,7 +13,6 @@ class NPCsFactory:
             None,
             1000,
             [Cf().sep, Af().tesla_armor, Cf().choice, Cf().riemann, Wf().poly],
-            self.get_random_dialogue("littleo"),
             True
         )
         self.blacksmith = NonPlayableCharacter(
@@ -21,7 +20,6 @@ class NPCsFactory:
             None,
             1000,
             [Hf().ats],
-            self.get_random_dialogue("blacksmith"),
             True
         )
         self.innkeeper = NonPlayableCharacter(
@@ -29,7 +27,6 @@ class NPCsFactory:
             None,
             1000,
             [Hf().ats],
-            self.get_random_dialogue("innkeeper"),
             True
         )
         self.merchant = NonPlayableCharacter(
@@ -37,7 +34,6 @@ class NPCsFactory:
             None,
             1000,
             [Hf().ats],
-            self.get_random_dialogue("merchant"),
             True
         )
         self.monk = NonPlayableCharacter(
@@ -45,7 +41,6 @@ class NPCsFactory:
             None,
             1000,
             [Hf().ats],
-            self.get_random_dialogue("monk"),
             True
         )
         self.ferns = NonPlayableCharacter(
@@ -53,7 +48,6 @@ class NPCsFactory:
             None,
             1000,
             [Hf().ats],
-            self.get_random_dialogue("ferns"),
             False
         )
         self.rina = NonPlayableCharacter(
@@ -61,7 +55,6 @@ class NPCsFactory:
             None,
             1000,
             [Hf().ats],
-            self.get_random_dialogue("rina"),
             False
         )
         self.intruder = NonPlayableCharacter(
@@ -69,7 +62,6 @@ class NPCsFactory:
             None,
             1000,
             [Hf().ats],
-            self.get_random_dialogue("intruder"),
             False
         )
         self.oak = NonPlayableCharacter(
@@ -77,7 +69,6 @@ class NPCsFactory:
             None,
             1000,
             [Hf().ats],
-            self.get_random_dialogue("oak"),
             False
         )
         self.enzopaolo = NonPlayableCharacter(
@@ -85,7 +76,6 @@ class NPCsFactory:
             None,
             1000,
             [Hf().ats],
-            self.get_random_dialogue("enzopaolo"),
             False
         )
         self.priamo = NonPlayableCharacter(
@@ -93,7 +83,6 @@ class NPCsFactory:
             None,
             1000,
             [Hf().ats],
-            self.get_random_dialogue("priamo"),
             False
         )
         self.effrafax = NonPlayableCharacter(
@@ -101,7 +90,6 @@ class NPCsFactory:
             None,
             1000,
             [Hf().ats],
-            self.get_random_dialogue("effrafax"),
             False
         )
         self.stylite = NonPlayableCharacter(
@@ -109,7 +97,6 @@ class NPCsFactory:
             None,
             1000,
             [Hf().ats],
-            self.get_random_dialogue("stylite"),
             False
         )
         
