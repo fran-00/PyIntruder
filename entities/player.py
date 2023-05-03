@@ -268,6 +268,21 @@ class Player:
                 index += 1
         return response
 
+    @show_curses
+    def show_inventory_subset(self, *args):
+        category_name = args[1]
+        index = 1
+        response = ""
+        category = globals()[category_name]
+        items_subset = self.sort_items_by_category(self.inventory, category)
+        if items_subset != []:
+            for _, item in enumerate(items_subset, index):
+                response += f"{index}. {item}\n"
+                index += 1
+            return response
+        else:
+            return "You don't have any."
+
     def sort_items_by_category(self, inventory, category):
         return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
 
