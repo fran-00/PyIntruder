@@ -31,7 +31,7 @@ class EnemiesFactory:
             25
         )
         self.bug = Enemy(
-            "Bug in the Program",
+            "Bug in the Code",
             2,
             60,
             30
@@ -46,7 +46,7 @@ class EnemiesFactory:
 
         # Level 3
         self.ants = Enemy(
-            "ants infected by a fungus",
+            "Ants infected by a Fungus",
             3,
             80,
             40
