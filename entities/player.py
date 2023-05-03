@@ -258,14 +258,12 @@ class Player:
             if items_in_category:
                 response += f">> {category.__name__.upper()}S:\n"
 
-            if purpose != "trade":
-                for _, item in enumerate(items_in_category, index):
-                    response += f"{index}. {item.name}\n"
-                    index += 1
-            elif purpose == "trade":
-                for _, item in enumerate(items_in_category, index):
+            for _, item in enumerate(items_in_category, index):
+                if purpose in ["trade"]:
                     response += f"{index}. - {item} - {item.value}§\n"
-                    index += 1
+                else:
+                    response += f"{index}. {item.name}\n"
+                index += 1
         return response
 
     def sort_items_by_category(self, inventory, category):
