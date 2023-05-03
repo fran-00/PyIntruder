@@ -113,9 +113,3 @@ class NPCsFactory:
             False
         )
         
-    def get_random_dialogue(self, npc_name=str):
-        with open('entities/data/npcs_data.json') as f:
-            data = json.load(f)
-            dialogues = data[npc_name]['dialogues']
-            dialogue = random.choice(list(dialogues.values()))
-            return dialogue
