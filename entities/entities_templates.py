@@ -98,10 +98,9 @@ class NonPlayableCharacter(Entity):
         return
 
     def get_random_opening_sentence(self, npc_name=str):
-        # FIXME:
-        dialogues = npcs_data[npc_name]['dialogues']
-        dialogue = random.choice(list(dialogues.values()))
-        return dialogue
+        sentences = npcs_data[npc_name.lower()]['opening sentence']
+        opening_sentence = random.choice(list(sentences.values()))
+        return opening_sentence
 
 
 class Enemy(Entity):
