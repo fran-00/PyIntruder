@@ -19,7 +19,7 @@ class StartTile(MapTile):
         super().__init__(x, y)
 
 
-class Little_oTile(MapTile):
+class LittleoTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Little(o) Shop'
         self.description = "They say it is only infinitesimally probable to be here."
