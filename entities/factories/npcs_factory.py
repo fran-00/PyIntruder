@@ -32,7 +32,7 @@ class NPCsFactory:
             True
         )
         self.innkeeper = NonPlayableCharacter(
-            "innkeeper",
+            "Innkeeper",
             npcs_data["innkeeper"]["description"],
             None,
             1000,
@@ -41,7 +41,7 @@ class NPCsFactory:
             True
         )
         self.merchant = NonPlayableCharacter(
-            "merchant",
+            "Merchant",
             npcs_data["merchant"]["description"],
             None,
             1000,
@@ -50,7 +50,7 @@ class NPCsFactory:
             True
         )
         self.monk = NonPlayableCharacter(
-            "monk",
+            "Monk",
             npcs_data["monk"]["description"],
             None,
             1000,
@@ -59,7 +59,7 @@ class NPCsFactory:
             True
         )
         self.ferns = NonPlayableCharacter(
-            "ferns",
+            "Ferns",
             npcs_data["ferns"]["description"],
             None,
             1000,
@@ -68,7 +68,7 @@ class NPCsFactory:
             False
         )
         self.rina = NonPlayableCharacter(
-            "rina",
+            "Rina",
             npcs_data["rina"]["description"],
             None,
             1000,
@@ -77,7 +77,7 @@ class NPCsFactory:
             False
         )
         self.intruder = NonPlayableCharacter(
-            "intruder",
+            "Intruder",
             npcs_data["intruder"]["description"],
             None,
             1000,
@@ -86,7 +86,7 @@ class NPCsFactory:
             False
         )
         self.oak = NonPlayableCharacter(
-            "oak",
+            "Oak",
             npcs_data["oak"]["description"],
             None,
             1000,
@@ -95,8 +95,8 @@ class NPCsFactory:
             False
         )
         self.enzopaolo = NonPlayableCharacter(
-            "enzopaolo",
-            npcs_data["enzopaolo"]["description"],
+            "Enzo Paolo",
+            npcs_data["enzo paolo"]["description"],
             None,
             1000,
             [Hf().ats],
@@ -104,7 +104,7 @@ class NPCsFactory:
             False
         )
         self.priamo = NonPlayableCharacter(
-            "priamo",
+            "Priamo",
             npcs_data["priamo"]["description"],
             None,
             1000,
@@ -113,7 +113,7 @@ class NPCsFactory:
             False
         )
         self.effrafax = NonPlayableCharacter(
-            "effrafax",
+            "Effrafax",
             npcs_data["effrafax"]["description"],
             None,
             1000,
@@ -122,7 +122,7 @@ class NPCsFactory:
             False
         )
         self.stylite = NonPlayableCharacter(
-            "stylite",
+            "Stylite",
             npcs_data["stylite"]["description"],
             None,
             1000,
