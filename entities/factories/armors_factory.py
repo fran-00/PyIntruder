@@ -7,25 +7,21 @@ class ArmorsFactory:
     
         self.rinas_armor = Armor(
             "Rina's Armor",
-            1,
             15,
             20,
         )
         self.fungine_armor = Armor(
             "Fungine Armor",
-            1,
             15,
             20,
         )
         self.iron_armor = Armor(
             "Iron Armor",
-            1,
             15,
             20,
         )
         self.tesla_armor = Armor(
             "Tesla Armor",
-            1,
             15,
             20,
         )
