@@ -176,7 +176,7 @@ class Player:
             self.mana -= choice.mana_cost
             return f"You cast {choice.name} on {room.enemy.name}, it does {choice.damage} DMG! You now have {self.mana} Mana remaining."
         except Exception as e:
-            return f"{e}"
+            return e
         
     def flee_from_fight(self):
         room = parser.tile_at(self.x, self.y)
@@ -301,7 +301,7 @@ class Player:
     def show_appropriate_answer(self, choice, purpose):
         room = parser.tile_at(self.x, self.y)
         if purpose == "my-inventory" :
-            return f"{choice.name}: {choice.description}"
+            return f"{choice}: {choice.description}"
         elif purpose == "trade" and self.is_selling:
             self.items_swapper(self, room.talker, choice, purpose)
             self.is_selling = False
