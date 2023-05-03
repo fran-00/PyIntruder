@@ -106,7 +106,7 @@ class MapTile:
             sentence = self.talker.get_random_opening_sentence(f"{self.talker.name}")
             return f"{sentence}\nBuy, Sell or Quit?"
         elif args[1] == "talk":
-            return self.talker.hello
+            return
     
     def dialogue(self, *args):
         return "We are talking."
