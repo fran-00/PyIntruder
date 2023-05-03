@@ -6,7 +6,7 @@ from entities.factories.enemies_factory import EnemiesFactory as Ef
 
 class EnemyTile_1(MapTile):
     def __init__(self, x, y):
-        self.name = 'ET1'
+        self.name = 'Path'
         self.talker = None
         self.description = 'You are on a path surrounded by trees.'
         self.examine = None
@@ -20,7 +20,7 @@ class EnemyTile_1(MapTile):
 
 class EnemyTile_2(MapTile):
     def __init__(self, x, y):
-        self.name = 'ET2'
+        self.name = 'Path'
         self.talker = None
         self.description = 'You are on a path surrounded by trees.'
         self.examine = None
@@ -33,7 +33,7 @@ class EnemyTile_2(MapTile):
 
 class EnemyTile_3(MapTile):
     def __init__(self, x, y):
-        self.name = 'ET3'
+        self.name = 'Path'
         self.talker = None
         self.description = 'You are on a path surrounded by trees.'
         self.examine = None
@@ -46,7 +46,7 @@ class EnemyTile_3(MapTile):
 
 class EnemyTile_4(MapTile):
     def __init__(self, x, y):
-        self.name = 'ET4'
+        self.name = 'Path'
         self.talker = None
         self.description = 'You are on a path surrounded by trees.'
         self.examine = None
@@ -59,7 +59,7 @@ class EnemyTile_4(MapTile):
 
 class EnemyTile_5(MapTile):
     def __init__(self, x, y):
-        self.name = 'ET5'
+        self.name = 'Path'
         self.talker = None
         self.description = 'You are on a path surrounded by trees.'
         self.examine = None
