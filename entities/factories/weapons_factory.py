@@ -12,7 +12,7 @@ class WeaponsFactory:
     def __init__(self):
         
         self.manuport = Weapon(
-            "manuport",
+            "Manuport",
             1,
             15,
             20,
@@ -24,38 +24,38 @@ class WeaponsFactory:
             20,
         )
         self.polyhedron = Weapon(
-            "sharp polyhedron",
+            "Sharp Polyhedron",
             1,
             15,
             20,
         )
         self.armored_manuport = Weapon(
-            "armored manuport",
+            "Armored Manuport",
             1,
             15,
             20,
         )
         self.polygon = Weapon(
-            "transparent polygon",
+            "Transparent Polygon",
             1,
             15,
             20,
         )
         
         self.wire = Weapon(
-            "wireless wire",
+            "Wireless Wire",
             1,
             15,
             20,
         )
         self.branch = Weapon(
-            "armored brench",
+            "Armored Brench",
             1,
             15,
             20,
         )
         self.poly = Weapon(
-            "n-dimensional polytope",
+            "N-dimensional Polytope",
             1,
             15,
             20,
@@ -67,13 +67,13 @@ class WeaponsFactory:
             20,
         )
         self.deliverance = Weapon(
-            "Deliverance by Tediore (Shotgun)",
+            "Deliverance",
             1,
             15,
             20,
         )
         self.tesseract = Weapon(
-            "name",
+            "Tesseract",
             1,
             15,
             20,
@@ -85,7 +85,7 @@ class WeaponsFactory:
             20,
         )
         self.attractor = Weapon(
-            "great attractor",
+            "Great Attractor",
             1,
             15,
             20,
