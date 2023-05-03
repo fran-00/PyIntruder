@@ -21,7 +21,7 @@ class StartTile(MapTile):
 
 class Little_oTile(MapTile):
     def __init__(self, x, y):
-        self.name = 'Little(o)'
+        self.name = 'Little(o) Shop'
         self.description = "They say it is only infinitesimally probable to be here."
         self.inventory = []
         self.talker = NPCf().littleo
@@ -61,7 +61,7 @@ class FernsTile(MapTile):
 
 class IntruderTile(MapTile):
     def __init__(self, x, y):
-        self.name = 'Down the river'
+        self.name = 'Intruder'
         self.description = "It shouldn't be here"
         self.inventory = []
         self.talker = NPCf.intruder()
