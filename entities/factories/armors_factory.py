@@ -1,10 +1,4 @@
-import random, json
-
 from ..entities_templates import Armor
-
-
-with open('entities/data/items_data.json') as f:
-    items_data = json.load(f)
 
 
 class ArmorsFactory:

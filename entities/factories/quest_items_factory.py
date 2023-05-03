@@ -1,10 +1,4 @@
-import random, json
-
 from ..entities_templates import Item
-
-
-with open('entities/data/items_data.json') as f:
-    items_data = json.load(f)
 
 
 class QuestItemsFatory:

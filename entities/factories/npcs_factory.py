@@ -3,11 +3,6 @@ from .weapons_factory import WeaponsFactory as Wf
 from .curses_factory import CursesFactory as Cf
 from .healers_factory import HealersFactory as Hf
 from .armors_factory import ArmorsFactory as Af
-import random, json
-
-
-with open('entities/data/npcs_data.json') as f:
-    npcs_data = json.load(f)
 
 
 class NPCsFactory:
