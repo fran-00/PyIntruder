@@ -5,6 +5,11 @@ from entities.factories.curses_factory import CursesFactory as Cf
 from entities.factories.armors_factory import ArmorsFactory as Af
 from entities.factories.healers_factory import HealersFactory as Hf
 
+
+with open('world/data/tiles_data.json') as f:
+    tiles_data = json.load(f)
+
+
 # *** ROOM OF ROOMS ***
 class MapTile:
     def __init__(self, x, y):
