@@ -144,10 +144,9 @@ class Player:
             item for item in self.inventory if isinstance(item, Weapon)
         ]:
             for _, item in enumerate(weapons, 1):
-                with contextlib.suppress(AttributeError):
-                    if item.damage > max_damage:
-                        best_weapon = item
-                        max_damage = item.damage
+                if item.damage > max_damage:
+                    best_weapon = item
+                    max_damage = item.damage
             return best_weapon
         else:
             return None
