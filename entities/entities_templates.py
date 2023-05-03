@@ -107,7 +107,8 @@ class Enemy(Entity):
 
     def __init__(self, name, level, hp, damage):
         super().__init__(name)
-        self.description = enemies_data[f"{self.name}".lower()]["intro_alive"]
+        self.description_if_alive = enemies_data[f"{self.name}".lower()]["intro_alive"]
+        self.description_if_dead = enemies_data[f"{self.name}".lower()]["intro_dead"]
         self.level = level
         self.hp = hp
         self.damage = damage
