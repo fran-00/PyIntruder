@@ -1,7 +1,7 @@
 {
-    "littleo": {
+    "little(o)": {
         "description": "Cool",
-        "dialogues": {
+        "opening sentence": {
             "1": "<< You will find Little(o) at dawn the day after tomorrow evening. >>",
             "2": "<< You will find Little(o) only this Monday from 9:00 am to 9:02 am. >>",
             "3": "<< You will find Little(o) only after closing. >>",
@@ -15,7 +15,7 @@
     },
     "innkeeper": {
         "description": "Cool",
-        "dialogues": {
+        "opening sentence": {
             "1": "<< Come on in. Let me know if you need anything, or take a seat by the fire and I'll send someone over. >>",
             "2": "<< Come on in. Just stoked the fire. Take a seat and get the cold out. >>",
             "3": "<< Welcome. Let me know if you want anything... think I got a clean mug around here somewhere. >>",
@@ -24,7 +24,7 @@
     },
     "blacksmith": {
         "description": "Chad",
-        "dialogues": {
+        "opening sentence": {
             "1": "<< Stock up here before your next kill. >>",
             "2": "<< Now in stock: goods acquired through questionable means. >>",
             "3": "<< Get your raiding supplies here. Or don't, I don't care. >>",
@@ -35,7 +35,7 @@
     },
     "merchant": {
         "description": "Cool",
-        "dialogues": {
+        "opening sentence": {
             "1": "<< Trinkets, odds and ends, that sort of thing. >>",
             "2": "<< Oh, a bit of this and a bit of that. >>",
             "3": "<< Just what you see here. >>",
@@ -45,7 +45,7 @@
     },
     "monk": {
         "description": "Cool",
-        "dialogues": {
+        "opening sentence": {
             "1": "<< Give your bodies to Atom, my friends. Release yourself to his power, feel his Glow and be Divided. >>",
             "2": "<< Come forth and drink the waters of the Glow, for this ancient weapon of war is our salvation, it is the very symbol of Atom's glory! >>",
             "3": "<< Behold! He's coming with the clouds! And every eye shall be blind with his glory! Every ear shall be stricken deaf to hear the thunder of his voice! >>",
@@ -56,49 +56,49 @@
     },
     "ferns": {
         "description": "Cool",
-        "dialogues": {
+        "opening sentence": {
             "1": "dialogue here"
         }
     },
     "rina": {
         "description": "Cool",
-        "dialogues": {
+        "opening sentence": {
             "1": "dialogue here"
         }
     },
     "intruder": {
         "description": "Cool",
-        "dialogues": {
+        "opening sentence": {
             "1": "dialogue here"
         }
     },
     "oak": {
         "description": "Cool",
-        "dialogues": {
+        "opening sentence": {
             "1": "dialogue here"
         }
     },
-    "enzopaolo": {
+    "enzo paolo": {
         "description": "Cool",
-        "dialogues": {
+        "opening sentence": {
             "1": "dialogue here"
         }
     },
     "priamo": {
         "description": "Cool",
-        "dialogues": {
+        "opening sentence": {
             "1": "dialogue here"
         }
     },
     "effrafax": {
         "description": "Cool",
-        "dialogues": {
+        "opening sentence": {
             "1": "dialogue here"
         }
     },
     "stylite": {
         "description": "Cool",
-        "dialogues": {
+        "opening sentence": {
             "1": "dialogue here"
         }
     }
