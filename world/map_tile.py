@@ -15,6 +15,7 @@ class MapTile:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+        self.description = tiles_data[f"{self.name}".lower()]["description"]
         self.inventory = []
         self.world_check = []
         self.choose_random_items()
