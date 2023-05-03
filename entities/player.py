@@ -85,7 +85,7 @@ class Player:
         if best_weapon is None:
             return "You don't have any weapon with you."
 
-        if enemy is None or not enemy.alive:
+        if enemy is None or not enemy.is_alive():
             return
 
         response += f"You try to hit {enemy.name} with {best_weapon.name}!"
@@ -127,7 +127,7 @@ class Player:
                 f"\nThe asshole lost his booty. "
                 f"Now {loot} Pine Cones are yours!"
             )
-            enemy.alive = False
+
         else:
             response += f"\n{enemy.name} has {enemy.hp} HP remaining."
 

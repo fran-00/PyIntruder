@@ -33,7 +33,7 @@ class GameModel(QObject):
         self.event_loop = QEventLoop()
 
         while True:
-            if self.room.enemy and self.room.enemy.alive:
+            if self.room.enemy and self.room.enemy.is_alive():
                 self.handle_enemy_attack()
 
             self.event_loop.exec()
@@ -94,7 +94,7 @@ class GameModel(QObject):
         self.room = parser.tile_at(self.player.x, self.player.y)
         if self.room.enemy is None:
             return (f"***{self.room.name}***\n> {self.room.description}")
-        elif self.room.enemy.alive:
+        elif self.room.enemy.is_alive():
             return (f"{self.room.enemy.description}")
 
     def choose_action(self, action=str):
@@ -128,13 +128,13 @@ class GameModel(QObject):
             )
 
         elif action in ["a", "attack"]:
-            if self.room.enemy and self.room.enemy.alive:
+            if self.room.enemy and self.room.enemy.is_alive():
                 return self.player.attack()
             else:
                 return "There is no one to attack here!"
 
         elif action in ["c", "curse", "cast curse"]:
-            if self.room.enemy and self.room.enemy.alive:
+            if self.room.enemy and self.room.enemy.is_alive():
                 return (
                     self.player.show_curses,
                     self.player.cast_curse
@@ -143,9 +143,9 @@ class GameModel(QObject):
                 return "There is no one to curse here!"
         
         elif action in ["run", "flee", "escape"]:
-            if self.room.enemy and self.room.enemy.alive:
+            if self.room.enemy and self.room.enemy.is_alive():
                 return self.player.flee_from_fight()
-            elif self.room.enemy and not self.room.enemy.alive:
+            elif self.room.enemy and not self.room.enemy.is_alive():
                 return "No need to escape, the enemy is dead!"
             else:
                 return "There is nothing to run away from. If you want to escape just quit the game!"

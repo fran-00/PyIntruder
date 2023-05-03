@@ -43,7 +43,7 @@ class MapTile:
         defence, and calls damage_player() with the calculated damage reduction.
 
         """
-        if self.enemy is None or not self.enemy.alive:
+        if self.enemy is None or not self.enemy.is_alive():
             return
         confusion_chance = random.randint(1, 20)
         if confusion_chance >= 19 and self.enemy.damage < self.enemy.hp:
