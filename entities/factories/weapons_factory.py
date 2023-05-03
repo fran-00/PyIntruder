@@ -7,74 +7,59 @@ class WeaponsFactory:
         
         self.manuport = Weapon(
             "Manuport",
-            5,
-            10,
+            5
         )
         self.sheet = Weapon(
             "polarized sheet",
-            10,
-            20,
+            10
         )
         self.polyhedron = Weapon(
             "Sharp Polyhedron",
-            15,
-            30,
+            15
         )
         self.armored_manuport = Weapon(
             "Armored Manuport",
             20,
-            40,
         )
         self.polygon = Weapon(
             "Transparent Polygon",
-            25,
-            50,
+            25
         )
-        
         self.wire = Weapon(
             "Wireless Wire",
-            30,
-            60,
+            30
         )
         self.branch = Weapon(
             "Armored Brench",
-            35,
-            70,
+            35
         )
         self.poly = Weapon(
             "N-dimensional Polytope",
-            40,
-            80,
+            40
         )
         self.device = Weapon(
             "Aperture Science Handheld Portal Device",
-            45,
-            90,
+            45
         )
         self.deliverance = Weapon(
             "Deliverance",
-            50,
-            100,
+            50
         )
         self.tesseract = Weapon(
             "Tesseract",
-            55,
-            110,
+            55
         )
         self.chuck = Weapon(
             "Chuck the plant",
-            60,
-            120,
+            60
         )
         self.attractor = Weapon(
             "Great Attractor",
-            65,
-            130,
+            65
         )
         self.cube = Weapon(
             "The Soul Cube",
-            70,
-            140,
+            70
         )
     
     def get_items_list(self):

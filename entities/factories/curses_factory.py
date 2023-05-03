@@ -6,117 +6,79 @@ class CursesFactory:
     def __init__(self):
         self.red = Curse(
             "Self-Luminous Red",
-            15,
-            20,
-            10
+            5
         )
         self.hyperbolic_orange = Curse(
             "Hyperbolic Orange",
-            15,
-            20,
             10
         )
         self.stygian_blue = Curse(
             "Stygian Blue",
-            15,
-            20,
-            10
+            15
         )
         self.discourse = Curse(
             "Discourse on the Method",
-            15,
-            20,
-            10
+            20
         )
         self.falsidical = Curse(
             "Falsidical Paradox",
-            15,
-            20,
-            10
+            25
         )
         self.cluster_point = Curse(
             "Cluster Point",
-            15,
-            20,
-            10
+            30
         )
         self.aleph = Curse(
             "Aleph Naught",
-            15,
-            20,
-            10
+            35
         )
         self.logistic_map = Curse(
             "Logistic Map",
-            15,
-            20,
-            10
+            40
         )
         self.integral = Curse(
             "Integral Of a Real Multivariate Function",
-            15,
-            20,
-            10
+            45
         )
         self.veridical = Curse(
             "Veridical Paradox",
-            15,
-            20,
-            10
+            50
         )
         self.comic_sans = Curse(
             "Comic Sans",
-            15,
-            20,
-            10
+            55
         )
         self.sep = Curse(
             "Somebody Else's Problem Field",
-            15,
-            20,
-            10
+            60
         )
         self.nimby = Curse(
             "NIMBY",
-            15,
-            20,
-            10
+            65
         )
         self.choice = Curse(
             "Axiom of Choice",
-            15,
-            20,
-            10
+            70
         )
         self.antinomy = Curse(
             "Antinomy",
-            15,
-            20,
-            10
+            75
         )
         self.continuum = Curse(
             "Continuum Hypothesis",
-            15,
-            20,
-            10
+            80
         )
         self.insult = Curse(
             "Ultimate Insult",
-            15,
-            20,
-            10
+            85
         )
         self.briefcase = Curse(
             "Briefcase",
-            15,
-            20,
-            10
+            90
         )
         self.riemann = Curse(
             "Riemann zeta function",
-            15,
-            20,
-            10
+            95
         )
     
     def get_items_list(self):
