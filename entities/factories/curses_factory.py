@@ -5,42 +5,42 @@ class CursesFactory:
     
     def __init__(self):
         self.red = Curse(
-            "self-luminous red",
+            "Self-Luminous Red",
             1,
             15,
             20,
             10
         )
         self.hyperbolic_orange = Curse(
-            "hyperbolic orange",
+            "Hyperbolic Orange",
             1,
             15,
             20,
             10
         )
         self.stygian_blue = Curse(
-            "stygian blue",
+            "Stygian Blue",
             1,
             15,
             20,
             10
         )
         self.discourse = Curse(
-            "Discourse on the Method of Rightly Conducting One's Reason and of Seeking Truth in the Sciences",
+            "Discourse on the Method",
             1,
             15,
             20,
             10
         )
         self.falsidical = Curse(
-            "falsidical paradox",
+            "Falsidical Paradox",
             1,
             15,
             20,
             10
         )
         self.cluster_point = Curse(
-            "cluster point",
+            "Cluster Point",
             1,
             15,
             20,
@@ -61,14 +61,14 @@ class CursesFactory:
             10
         )
         self.integral = Curse(
-            "integral of a real multivariate function",
+            "Integral Of a Real Multivariate Function",
             1,
             15,
             20,
             10
         )
         self.veridical = Curse(
-            "veridical paradox",
+            "Veridical Paradox",
             1,
             15,
             20,
@@ -89,7 +89,7 @@ class CursesFactory:
             10
         )
         self.nimby = Curse(
-            "not in my back yard",
+            "NIMBY",
             1,
             15,
             20,
@@ -103,14 +103,14 @@ class CursesFactory:
             10
         )
         self.antinomy = Curse(
-            "antinomy",
+            "Antinomy",
             1,
             15,
             20,
             10
         )
         self.continuum = Curse(
-            "continuum hypothesis",
+            "Continuum Hypothesis",
             1,
             15,
             20,
