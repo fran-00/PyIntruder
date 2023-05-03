@@ -7,56 +7,48 @@ class HealersFactory:
         
         self.ats = Healer(
             "Advanced Tea Substitute",
-            items_data["healers"]["ats"],
             2,
             1,
             3           
         )       
         self.gommo = Healer(
             "Gommo",
-            items_data["healers"]["gommo"],
             2,
             1,
             3           
         )
         self.yellow_liquid = Healer(
             "Suspicious Yellow Liquid",
-            items_data["healers"]["yellow liquid"],
             2,
             1,
             3           
         )
         self.golden_apple = Healer(
             "Golden Apple",
-            items_data["healers"]["golden apple"],
             2,
             1,
             3           
         )
         self.nuka_cola = Healer(
             "Nuka Cola",
-            items_data["healers"]["nuka cola"],
             2,
             1,
             3           
         )
         self.bandages = Healer(
-            "bandages",
-            items_data["healers"]["bandages"],
+            "Bandages",
             2,
             1,
             3           
         )
         self.gummy_bears = Healer(
-            "gummy bears",
-            items_data["healers"]["gummy bears"],
+            "Gummy Bears",
             2,
             1,
             3           
         )
         self.mushrooms = Healer(
-            "mushrooms",
-            items_data["healers"]["mushrooms"],
+            "Mushrooms",
             2,
             1,
             3           
