@@ -124,7 +124,7 @@ class CursesFactory:
             10
         )
         self.briefcase = Curse(
-            "Marcellus Wallace's briefcase",
+            "Briefcase",
             1,
             15,
             20,
