@@ -7,9 +7,8 @@ with open('entities/data/items_data.json') as f:
 
 class Entity:
 
-    def __init__(self, name, description, level):
+    def __init__(self, name, level):
         self.name = name
-        self.description = description
         self.level = level
 
     def __str__(self):
@@ -18,16 +17,16 @@ class Entity:
 
 class Item(Entity):
 
-    def __init__(self, name, description, level, value):
-        super().__init__(name, description, level)
+    def __init__(self, name, level, value):
+        super().__init__(name, level)
         self.value = value
         self.value_if_sold = self.value // 10
 
 
 class Weapon(Item):
 
-    def __init__(self, name, description, level, value, damage):
-        super().__init__(name, description, level, value)
+    def __init__(self, name, level, value, damage):
+        super().__init__(name, level, value)
         self.damage = damage
 
     def __str__(self):
@@ -36,8 +35,8 @@ class Weapon(Item):
 
 class Curse(Item):
 
-    def __init__(self, name, description, level, value, damage, mana_cost):
-        super().__init__(name, description, level, value)
+    def __init__(self, name, level, value, damage, mana_cost):
+        super().__init__(name, level, value)
         self.damage = damage
         self.mana_cost = mana_cost
 
@@ -47,8 +46,8 @@ class Curse(Item):
 
 class Healer(Item):
 
-    def __init__(self, name, description, level, value, heal):
-        super().__init__(name, description, level, value)
+    def __init__(self, name, level, value, heal):
+        super().__init__(name, level, value)
         self.heal = heal
 
     def __str__(self):
@@ -57,8 +56,8 @@ class Healer(Item):
 
 class ManaRecharger(Item):
 
-    def __init__(self, name, description, level, value, mr):
-        super().__init__(name, description, level, value)
+    def __init__(self, name, level, value, mr):
+        super().__init__(name, level, value)
         self.mr = mr
  
     def __str__(self):
@@ -67,8 +66,8 @@ class ManaRecharger(Item):
 
 class Armor(Item):
 
-    def __init__(self, name, description, level, value, defence):
-        super().__init__(name, description, level, value)
+    def __init__(self, name, level, value, defence):
+        super().__init__(name, level, value)
         self.defence = defence
 
     def __str__(self):
@@ -77,8 +76,8 @@ class Armor(Item):
 
 class NonPlayableCharacter(Entity):
 
-    def __init__(self, name, description, level, gold, inventory, hello, trade):
-        super().__init__(name, description, level)
+    def __init__(self, name, level, gold, inventory, hello, trade):
+        super().__init__(name, level)
         self.gold = gold
         self.inventory = inventory
         self.hello = hello
@@ -92,8 +91,8 @@ class NonPlayableCharacter(Entity):
 
 class Enemy(Entity):
 
-    def __init__(self, name, description, level, hp, damage):
-        super().__init__(name, description, level)
+    def __init__(self, name, level, hp, damage):
+        super().__init__(name, level)
         self.hp = hp
         self.damage = damage
 
