@@ -87,12 +87,11 @@ class Armor(Item):
 
 class NonPlayableCharacter(Entity):
 
-    def __init__(self, name, level, gold, inventory, hello, trade):
+    def __init__(self, name, level, gold, inventory, trade):
         super().__init__(name, level)
         self.description = npcs_data[f"{self.name}".lower()]["description"]
         self.gold = gold
         self.inventory = inventory
-        self.hello = hello
         self.trade = trade
         self.sort_inventory()
 
