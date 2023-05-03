@@ -7,74 +7,74 @@ class WeaponsFactory:
         
         self.manuport = Weapon(
             "Manuport",
-            15,
-            20,
+            5,
+            10,
         )
         self.sheet = Weapon(
             "polarized sheet",
-            15,
+            10,
             20,
         )
         self.polyhedron = Weapon(
             "Sharp Polyhedron",
             15,
-            20,
+            30,
         )
         self.armored_manuport = Weapon(
             "Armored Manuport",
-            15,
             20,
+            40,
         )
         self.polygon = Weapon(
             "Transparent Polygon",
-            15,
-            20,
+            25,
+            50,
         )
         
         self.wire = Weapon(
             "Wireless Wire",
-            15,
-            20,
+            30,
+            60,
         )
         self.branch = Weapon(
             "Armored Brench",
-            15,
-            20,
+            35,
+            70,
         )
         self.poly = Weapon(
             "N-dimensional Polytope",
-            15,
-            20,
+            40,
+            80,
         )
         self.device = Weapon(
             "Aperture Science Handheld Portal Device",
-            15,
-            20,
+            45,
+            90,
         )
         self.deliverance = Weapon(
             "Deliverance",
-            15,
-            20,
+            50,
+            100,
         )
         self.tesseract = Weapon(
             "Tesseract",
-            15,
-            20,
+            55,
+            110,
         )
         self.chuck = Weapon(
             "Chuck the plant",
-            15,
-            20,
+            60,
+            120,
         )
         self.attractor = Weapon(
             "Great Attractor",
-            15,
-            20,
+            65,
+            130,
         )
         self.cube = Weapon(
             "The Soul Cube",
-            15,
-            20,
+            70,
+            140,
         )
     
     def get_items_list(self):
