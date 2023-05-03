@@ -8,7 +8,6 @@ class EnemyTile_1(MapTile):
     def __init__(self, x, y):
         self.name = 'Path'
         self.talker = None
-        self.description = 'You are on a path surrounded by trees.'
         self.examine = None
         self.seen = False
         self.env_obj = []
@@ -22,7 +21,6 @@ class EnemyTile_2(MapTile):
     def __init__(self, x, y):
         self.name = 'Path'
         self.talker = None
-        self.description = 'You are on a path surrounded by trees.'
         self.examine = None
         self.seen = False
         self.env_obj = []
@@ -35,7 +33,6 @@ class EnemyTile_3(MapTile):
     def __init__(self, x, y):
         self.name = 'Path'
         self.talker = None
-        self.description = 'You are on a path surrounded by trees.'
         self.examine = None
         self.seen = False
         self.env_obj = []
@@ -48,7 +45,6 @@ class EnemyTile_4(MapTile):
     def __init__(self, x, y):
         self.name = 'Path'
         self.talker = None
-        self.description = 'You are on a path surrounded by trees.'
         self.examine = None
         self.seen = False
         self.env_obj = []
@@ -61,7 +57,6 @@ class EnemyTile_5(MapTile):
     def __init__(self, x, y):
         self.name = 'Path'
         self.talker = None
-        self.description = 'You are on a path surrounded by trees.'
         self.examine = None
         self.seen = False
         self.env_obj = []
