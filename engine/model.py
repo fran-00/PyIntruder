@@ -109,7 +109,7 @@ class GameModel(QObject):
         """
         self.player.turn += 1
         if action in ["n", "s", "w", "e"]:
-            if self.room.enemy is None or self.room.enemy.alive is False:
+            if not self.room.enemy or not self.room.enemy.is_alive():
                 return (self.move(self.room, self.player))
             else:
                 return ("You can't escape!")
