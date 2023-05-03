@@ -1,5 +1,5 @@
 {
-    "gel cube": {
+    "gelatinous cube": {
         "intro_alive": "A jelly-like cube wants to encompass you!",
         "intro_dead": "Now the jelly is just a bunch of wet goo.",
         "look_alive": "He is big and jelly.",
@@ -7,7 +7,7 @@
         "talk_alive": "<< BLBLBLBLBLBLBLBLBLBLBLBLBL >>",
         "talk_dead": "A dead cube has nothing to say."
     },
-    "squirrel": {
+    "ravenous squirrel": {
         "intro_alive": "An angry squirrel wants to bite your carotid artery!",
         "intro_dead": "You defeated a squirrel! That's something to be proud of.",
         "look_alive": "He's scary.",
@@ -23,7 +23,7 @@
         "talk_alive": "<< BZZZZZZZZZZZZZZZZZZZZZZ >>",
         "talk_dead": "Were the buzzes you've heard so far not enough for you?"
     },
-    "hunter": {
+    "mushroom hunter": {
         "intro_alive": "A mushroom hunter walking around with a wicker basket looks at you in a puzzled way, could he have understood that you are on drugs?",
         "intro_dead": "The mushroom hunter returns to focus on mushrooms.",
         "look_alive": "Yes, he sure knows you are on drugs.",
@@ -31,7 +31,7 @@
         "talk_alive": "<< Hi! >>",
         "talk_dead": "He is too focused on identifying a mushroom."
     },
-    "bug": {
+    "bug in the code": {
         "intro_alive": "A mighty bug in the program threatens to stop the game so you don t win.",
         "intro_dead": "The code runs smoothly.",
         "look_alive": "It looks like Missingno.",
@@ -39,7 +39,7 @@
         "talk_alive": "<< You didn't put a bracket right there!!! >>",
         "talk_dead": "There are no more bugs around here."
     },
-    "eyes": {
+    "floating eyes": {
         "intro_alive": "A swarm of floating eyes surrounds you and judges you severely.",
         "intro_dead": "And now all eyes are closed.",
         "look_alive": "They judge you without mercy.",
@@ -47,7 +47,7 @@
         "talk_alive": "<< We see everything. >>",
         "talk_dead": "<< We are closed. Try again later. >>"
     },
-    "ants": {
+    "ants infected by a fungus": {
         "intro_alive": "Ophiocordyceps unilateralis suddenly attacks you riding on a herd of ants of the species Camponotus leonardi.",
         "intro_dead": "Eww... gross.",
         "look_alive": "Eww... gross.",
@@ -63,7 +63,7 @@
         "talk_alive": "<< GRRRRRRRRRRRRRRR! >>",
         "talk_dead": "..."
     },
-    "uncanny": {
+    "uncanny valley": {
         "intro_alive": "A robot which is almost, but not quite, entirely unlike humans confronts you!",
         "intro_dead": "There are leaky cables everywhere.",
         "look_alive": "Something about it reminds you of GLaDOS...",
@@ -79,7 +79,7 @@
         "talk_alive": "<< ZZZZZZZZZ >>",
         "talk_dead": "You hear the wind that moves the leaves and feel refreshed."
     },
-    "gnome": {
+    "gnome armed with an ax": {
         "intro_alive": "OH MY GOD! It's a gnome armed with an ax!!!",
         "intro_dead": "This terrifying abomination is no longer the terrible threat it was before.",
         "look_alive": "The argentines are hiking in a north american wood when they spot a strange figure in the distance. They approach to find out if it is an animal, continuing to wonder what it is. The girl throws a stone at him, suddenly the figure gets up: it is a gnome armed with an ax who begins to chase the tourists who are fleeing!!!",
@@ -87,7 +87,7 @@
         "talk_alive": "It looks really menacing.",
         "talk_dead": "..."
     },
-    "ostoyae": {
+    "armillaria ostoyae": {
         "intro_alive": "An immanent manifestation of the transcendent Armillaria ostoyae blocks your path.",
         "intro_dead": "Armillaria ostoyae stares silently at you from the Underground.",
         "look_alive": "Oh my God, she's HUGE.",
