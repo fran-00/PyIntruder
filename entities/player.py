@@ -210,17 +210,17 @@ class Player:
             purpose = args[1]
             match(purpose):
                 case "my-inventory":
-                    response = f"Your wealth: {self.gold} §\nChoose a number to read an item's description or press Q to quit.\n"
+                    response = f"Your wealth: {self.gold} §\nChoose a number to read an item's description or press Q to quit."
                 case "trade" if not self.is_selling:
-                    response = "Choose a number to buy an item or press Q to quit.\n"
+                    response = "Choose a number to buy an item or press Q to quit."
                 case "trade" if self.is_selling:
-                    response = "Choose a number to sell an item or press Q to quit.\n"
+                    response = "Choose a number to sell an item or press Q to quit."
                 case "pick-up":
-                    response = "Choose a number to pick up an item or press Q to quit.\n"
+                    response = "Choose a number to pick up an item or press Q to quit."
                 case "drop":
-                    response = "Choose a number to drop an item or press Q to quit.\n"
+                    response = "Choose a number to drop an item or press Q to quit."
                 case "Curse":
-                    response = f"Ok, what curse do you want to cast? You have {self.mana} Mana.\n"
+                    response = f"Ok, what curse do you want to cast? You have {self.mana} Mana."
                 case _:
                     ""
             return func(self, *args) + response
