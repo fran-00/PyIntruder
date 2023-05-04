@@ -1,11 +1,6 @@
 import random
 
 from entities.factories.npcs_factory import NPCsFactory as NPCf
-from entities.factories.weapons_factory import WeaponsFactory as Wf
-from entities.factories.armors_factory import ArmorsFactory as Af
-from entities.factories.healers_factory import HealersFactory as Hf
-from entities.factories.quest_items_factory import QuestItemsFatory as QIf
-from entities.factories.enemies_factory import EnemiesFactory as Ef
 from world.map_tile import MapTile
 
 
