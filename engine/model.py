@@ -31,6 +31,9 @@ class GameModel(QObject):
             None
 
         """
+        self.model_signal_to_controller.emit("******* PYINTRUDER*******")
+        self.model_signal_to_controller.emit(self.get_room_description())
+        
         self.event_loop = QEventLoop()
 
         while True:
