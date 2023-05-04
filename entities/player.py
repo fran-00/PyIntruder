@@ -70,6 +70,25 @@ class Player:
     # COMBAT ------------------------------------------------------------------|
     # -------------------------------------------------------------------------|
 
+    def best_weapon(self):
+        """Finds the best weapon in the player's inventory and return it.
+
+        Returns:
+            Weapon or None: The best weapon in the player's inventory, or None if the player has no weapons.
+        """
+        max_damage = 0
+        best_weapon = None
+        if weapons := [
+            item for item in self.inventory if isinstance(item, Weapon)
+        ]:
+            for _, item in enumerate(weapons, 1):
+                if item.damage > max_damage:
+                    best_weapon = item
+                    max_damage = item.damage
+            return best_weapon
+        else:
+            return None
+
     def attack(self):
         """Attacks the enemy in the current room with the best available weapon and return a message describing the outcome of the attack.
 
@@ -134,25 +153,6 @@ class Player:
         else:
             response += f"\n{enemy.name} has {enemy.hp} HP remaining."
         return response
-
-    def best_weapon(self):
-        """Finds the best weapon in the player's inventory and return it.
-
-        Returns:
-            Weapon or None: The best weapon in the player's inventory, or None if the player has no weapons.
-        """
-        max_damage = 0
-        best_weapon = None
-        if weapons := [
-            item for item in self.inventory if isinstance(item, Weapon)
-        ]:
-            for _, item in enumerate(weapons, 1):
-                if item.damage > max_damage:
-                    best_weapon = item
-                    max_damage = item.damage
-            return best_weapon
-        else:
-            return None
 
     def cast_curse(self, enemy, choice):
         if choice.mana_cost > self.mana:
