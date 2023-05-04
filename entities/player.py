@@ -207,23 +207,22 @@ class Player:
 
     def show_instructions(func):
         def wrapper(self, *args):
-            response = ""
             purpose = args[1]
-            if purpose == "my-inventory":
-                response += f"Your wealth: {self.gold} §\n"
-                response += "Choose a number to read an item's description or press Q to quit.\n"
-            elif purpose == "trade" and self.is_selling == False:
-                response += "Choose a number to buy an item or press Q to quit.\n"
-            elif purpose == "trade" and self.is_selling == True:
-                response += "Choose a number to sell an item or press Q to quit.\n"
-            elif purpose == "pick-up":
-                response += "Choose a number to pick up an item or press Q to quit.\n"
-            elif purpose == "drop":
-                response += "Choose a number to drop an item or press Q to quit.\n"
-            elif purpose == "Curse":
-                response = f"Ok, what curse do you want to cast? You have {self.mana} Mana.\n"
-            else:
-                pass
+            match(purpose):
+                case "my-inventory":
+                    response = f"Your wealth: {self.gold} §\nChoose a number to read an item's description or press Q to quit.\n"
+                case "trade" if not self.is_selling:
+                    response = "Choose a number to buy an item or press Q to quit.\n"
+                case "trade" if self.is_selling:
+                    response = "Choose a number to sell an item or press Q to quit.\n"
+                case "pick-up":
+                    response = "Choose a number to pick up an item or press Q to quit.\n"
+                case "drop":
+                    response = "Choose a number to drop an item or press Q to quit.\n"
+                case "Curse":
+                    response = f"Ok, what curse do you want to cast? You have {self.mana} Mana.\n"
+                case _:
+                    ""
             return func(self, *args) + response
         return wrapper
 
