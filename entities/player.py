@@ -116,13 +116,13 @@ class Player:
                     f"\nCritical hit! "
                     f"You deal {best_weapon.damage * damage_multiplier} DMG!"
                 )
-            case [17, 18, 19]:
+            case 17 | 18 | 19:
                 damage_multiplier = 1.5
                 response += (
                     f"\nGood hit! "
                     f"You deal {best_weapon.damage * damage_multiplier} DMG!"
                 )
-            case [3, 2, 1]:
+            case 3 | 2 | 1:
                 response += "\nMissed!"
                 return response
             case _:
