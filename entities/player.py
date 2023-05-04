@@ -276,27 +276,29 @@ class Player:
 
     def show_appropriate_answer(self, choice, purpose):
         room = parser.tile_at(self.x, self.y)
-        if purpose == "my-inventory" :
-            return f"{choice}: {choice.description}"
-        elif purpose == "trade" and self.is_selling:
+        if purpose == "trade" and self.is_selling:
             self.items_swapper(self, room.talker, choice, purpose)
             self.is_selling = False
             return f"Bye {choice.name}!"
-        elif purpose == "trade" and not self.is_selling:
-            self.items_swapper(room.talker, self, choice, purpose)
-            return f"Good! Now {choice.name} is yours!"
-        elif purpose == "pick-up":
-            self.items_swapper(room, self, choice, purpose)
-            return f"{choice.name}: taken."
-        elif purpose == "drop":
-            self.items_swapper(self, room, choice, purpose)
-            return f"{choice.name}: dropped."
-        elif purpose == "Curse":
-            response = f"You cast {choice.name} on {room.enemy.name}, it does {choice.damage} DMG!\n"
-            response += f"You now have {self.mana} Mana remaining."
-            return self.check_enemy_hp(room.enemy, response)
         else:
-            return
+            match(purpose):
+                case "my-inventory" :
+                    return f"{choice}: {choice.description}"
+                case "trade":
+                    self.items_swapper(room.talker, self, choice, purpose)
+                    return f"Good! Now {choice.name} is yours!"
+                case "pick-up":
+                    self.items_swapper(room, self, choice, purpose)
+                    return f"{choice.name}: taken."
+                case "drop":
+                    self.items_swapper(self, room, choice, purpose)
+                    return f"{choice.name}: dropped."
+                case "Curse":
+                    response = f"You cast {choice.name} on {room.enemy.name}, it does {choice.damage} DMG!\n"
+                    response += f"You now have {self.mana} Mana remaining."
+                    return self.check_enemy_hp(room.enemy, response)
+                case _:
+                    return
 
     def items_swapper(self, giver, receiver, item, purpose):
         if purpose == "trade" and receiver == self:
