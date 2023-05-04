@@ -123,9 +123,6 @@ class GameModel(QObject):
         elif action in ["diagnose"]:
             return self.player.diagnose()
 
-        elif action in ['now']:
-            return (f"This room is {self.player.x}, {self.player.y}")
-
         elif action in ["i", "inventory"]:
             self.arguments_list = [self.player.inventory, "my-inventory"]
             return (
