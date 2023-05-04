@@ -271,11 +271,11 @@ class Player:
         Returns:
             str: A string representing the appropriate response based on the user's input.
         """
-        room = parser.tile_at(self.x, self.y)
         if not self.is_selling:
             inventory = args[0]
-        elif args[1] == "pick-up":
-            inventory = room.inventory
+        elif purpose in [Armor.__name__, Curse.__name__, Healer.__name__, Weapon.__name__]:
+            category = globals()[purpose]
+            inventory = self.sort_items_by_category(self.inventory, category)
         else:
             inventory = self.inventory
         purpose = args[1]
