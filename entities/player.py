@@ -254,6 +254,7 @@ class Player:
         Returns:
             str: A string representing the appropriate response based on the user's input.
         """
+        purpose = args[1]
         if not self.is_selling:
             inventory = args[0]
         elif purpose in [Armor.__name__, Curse.__name__, Healer.__name__, Weapon.__name__]:
