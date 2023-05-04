@@ -308,8 +308,8 @@ class Player:
                     return self.check_enemy_hp(room.enemy, self.cast_curse(room.enemy, choice))
                 case "Healer":
                     self.hp += choice.heal
-                    response = f"You use {choice.name}. You now have {self.hp} HP remaining."
                     self.inventory.remove(choice)
+                    return f"You use {choice.name}. You now have {self.hp} HP remaining."
                 case _:
                     return
 
