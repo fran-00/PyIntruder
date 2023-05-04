@@ -165,9 +165,11 @@ class Player:
             choice = curses[item_index - 1]
             room.enemy.hp -= choice.damage
             self.mana -= choice.mana_cost
-            return f"You cast {choice.name} on {room.enemy.name}, it does {choice.damage} DMG! You now have {self.mana} Mana remaining."
+            response = f"You cast {choice.name} on {room.enemy.name}, it does {choice.damage} DMG!\n"
+            response += f"You now have {self.mana} Mana remaining."
+            return self.check_enemy_hp(room.enemy, response)
         except Exception as e:
-            return e
+            return f"{e}"
         
     def flee_from_fight(self):
         room = parser.tile_at(self.x, self.y)
