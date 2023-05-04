@@ -2,10 +2,10 @@
 
 ## How to Play
 
-The player can move around the world map by entering commands into the text input line at the bottom of the interface. You can see the world map by typing the M command (it will be shown in the terminal) and change it in world.pareser.py file via the DSL.
+The player can move around the world map by entering commands into the text input line at the bottom of the interface. You can see the world map by typing the M command (it will be shown in the terminal) and change it in *world.pareser.py* file via the DSL.
 The recognized commands case insensitive:
 
-- **N**, **S**, **W**, **O** - Move to one of the adjacent rooms, if any.
+- **N**, **S**, **W**, **E** - Move to one of the adjacent rooms, if any.
 - **A**, **ATTACK** - Attack an enemy.
 - **C**, **CURSE** - Cast a curse on an enemy.
 - **I**, **INVENTORY** - See currently owned items.
