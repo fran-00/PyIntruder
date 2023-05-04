@@ -207,6 +207,8 @@ class Player:
                     response = "Choose a number to drop an item or press Q to quit."
                 case "Curse":
                     response = f"Ok, what curse do you want to cast? You have {self.mana} Mana."
+                case "Healer":
+                    response = f"Your health is {self.hp}/{self.max_hp}. Choose what you want to cure yourself with or type (Q) to exit."
                 case _:
                     ""
             return func(self, *args) + response
