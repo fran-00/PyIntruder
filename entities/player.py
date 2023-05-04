@@ -305,9 +305,7 @@ class Player:
                     self.items_swapper(self, room, choice, purpose)
                     return f"{choice.name}: dropped."
                 case "Curse":
-                    response = f"You cast {choice.name} on {room.enemy.name}, it does {choice.damage} DMG!\n"
-                    response += f"You now have {self.mana} Mana remaining."
-                    return self.check_enemy_hp(room.enemy, response)
+                    return self.check_enemy_hp(room.enemy, self.cast_curse(room.enemy, choice))
                 case "Healer":
                     self.hp += choice.heal
                     response = f"You use {choice.name}. You now have {self.hp} HP remaining."
