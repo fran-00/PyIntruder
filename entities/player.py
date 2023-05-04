@@ -428,9 +428,6 @@ class Player:
             if receiver is room:
                 print(f"{item.name}: dropped.")
 
-    def heal(self):
-        pass
-
     def level_up(self):
         if self.xp >= self.xp_modifier:
             self.xp_modifier += 100
