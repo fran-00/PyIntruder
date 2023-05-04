@@ -152,23 +152,6 @@ class Player:
             return best_weapon
         else:
             return None
-
-    def cast_curse(self, *args):
-        room = parser.tile_at(self.x, self.y)
-        curses = self.sort_items_by_category(self.inventory, Curse)
-        action = args[-1]
-        if action.lower() in ('q', 'exit', 'no'):
-            return "Action cancelled. You are fighting! Don't waste time!"
-        try:
-            item_index = int(action)
-            choice = curses[item_index - 1]
-            room.enemy.hp -= choice.damage
-            self.mana -= choice.mana_cost
-            response = f"You cast {choice.name} on {room.enemy.name}, it does {choice.damage} DMG!\n"
-            response += f"You now have {self.mana} Mana remaining."
-            return self.check_enemy_hp(room.enemy, response)
-        except Exception as e:
-            return f"{e}"
         
     def flee_from_fight(self):
         room = parser.tile_at(self.x, self.y)
