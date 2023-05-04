@@ -2,7 +2,6 @@ import itertools as it
 
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
-from entities.entities_templates import Armor
 import world.parser as parser
 
 
