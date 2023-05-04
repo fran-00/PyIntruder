@@ -2,7 +2,7 @@
 
 ## How to Play
 
-The player can move around the world map by entering commands into the text input line at the bottom of the interface. You can see the world map by typing the M command (it will be shown in the terminal) and change it to world.pareser.py via the DSL.
+The player can move around the world map by entering commands into the text input line at the bottom of the interface. You can see the world map by typing the M command (it will be shown in the terminal) and change it in world.pareser.py file via the DSL.
 The recognized commands case insensitive:
 
 - **N**, **S**, **W**, **O** - Move to one of the adjacent rooms, if any.
@@ -13,7 +13,7 @@ The recognized commands case insensitive:
 - **P**, **PICK UP** - Pick up an item in the current room.
 - **D**, **DROP** - Drop an inventory item in the current room.
 - **DIAGNOSE** - Provides informations about the game and the player.
-- **RUN**, **FLEE**, **ESCAPE**: try to run away from a fight with an enemy.
+- **RUN**, **FLEE**, **ESCAPE** - Try to run away from a fight with an enemy.
 - **M**, **MAP** - Show world map.
 
 When the player enters a room where there is a living enemy, he will automatically be attacked and can respond with a physical attack by using a weapon or by casting a curse.
