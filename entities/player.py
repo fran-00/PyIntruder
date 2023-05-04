@@ -79,7 +79,6 @@ class Player:
         best_weapon = self.best_weapon()
         room = parser.tile_at(self.x, self.y)
         enemy = room.enemy
-        xp_earned = (room.enemy.hp // 2)
         response = ""
 
         if best_weapon is None:
@@ -112,11 +111,14 @@ class Player:
                 response += f"\nYou deal {best_weapon.damage} DMG!"
 
         enemy.hp -= best_weapon.damage * damage_multiplier
+        return self.check_enemy_hp(enemy, response)
 
+    def check_enemy_hp(self, enemy, response):
+        xp_earned = (enemy.hp // 2)
         if enemy.hp <= 0:
             self.xp += xp_earned
             response += (
-                f"\nYEAH! You killed that fucking bastard! "
+                f"YEAH! You killed that fucking bastard! "
                 f"You earned {xp_earned} XP!"
             )
 
@@ -130,7 +132,6 @@ class Player:
 
         else:
             response += f"\n{enemy.name} has {enemy.hp} HP remaining."
-
         return response
 
     def best_weapon(self):
