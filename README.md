@@ -15,6 +15,7 @@ The recognized commands case insensitive:
 - **DIAGNOSE** - Provides informations about the game and the player.
 - **RUN**, **FLEE**, **ESCAPE** - Try to run away from a fight with an enemy.
 - **M**, **MAP** - Show world map.
+- **H**, **HEAL** - Select an item from your inventory to restore HP.
 
 When the player enters a room where there is a living enemy, he will automatically be attacked and can respond with a physical attack by using a weapon or by casting a curse.
 Weapon attacks can miss, while curses cannot but each curse cast consumes a varying amount of Mana.
