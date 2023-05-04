@@ -321,8 +321,16 @@ class Player:
     # -------------------------------------------------------------------------|
 
     def diagnose(self):
+        room = parser.tile_at(self.x, self.y)
         return (
-            f"You have {self.hp}/{self.max_hp} HP and {self.mana}/{self.max_mana} Mana remaining. This is turn number {self.turn}."
+            f"> Level : {self.lvl}\n"
+            f"> HP : {self.hp}/{self.max_hp}\n"
+            f"> Mana : {self.mana}/{self.max_mana}\n"
+            f"> § : {self.gold}\n"
+            f"> XP : {self.xp}/{self.xp_modifier}\n"
+            f"> Weapon equipped : {self.current_weapon}\n"
+            f"> Turn : {self.turn}\n"
+            f"> Location : {self.x}.{self.y} - {room.name}\n"
         )
 
     def show_map(self):
