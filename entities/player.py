@@ -154,7 +154,6 @@ class Player:
             return None
 
     def cast_curse(self, *args):
-        # TODO: Add warnings to enemy's state
         room = parser.tile_at(self.x, self.y)
         curses = self.sort_items_by_category(self.inventory, Curse)
         action = args[-1]
