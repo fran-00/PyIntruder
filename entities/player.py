@@ -90,25 +90,26 @@ class Player:
 
         response += f"You try to hit {enemy.name} with {best_weapon.name}!"
         precision = random.randint(1, 20)
-
-        if precision == 20:
-            damage_multiplier = 2
-            response += (
-                f"\nCritical hit! "
-                f"You deal {best_weapon.damage * damage_multiplier} DMG!"
-            )
-        elif precision in [17, 18, 19]:
-            damage_multiplier = 1.5
-            response += (
-                f"\nGood hit! "
-                f"You deal {best_weapon.damage * damage_multiplier} DMG!"
-            )
-        elif precision <= 3:
-            response += "\nMissed!"
-            return response
-        else:
-            damage_multiplier = 1
-            response += f"\nYou deal {best_weapon.damage} DMG!"
+        
+        match(precision):
+            case 20:
+                damage_multiplier = 2
+                response += (
+                    f"\nCritical hit! "
+                    f"You deal {best_weapon.damage * damage_multiplier} DMG!"
+                )
+            case [17, 18, 19]:
+                damage_multiplier = 1.5
+                response += (
+                    f"\nGood hit! "
+                    f"You deal {best_weapon.damage * damage_multiplier} DMG!"
+                )
+            case [3, 2, 1]:
+                response += "\nMissed!"
+                return response
+            case _:
+                damage_multiplier = 1
+                response += f"\nYou deal {best_weapon.damage} DMG!"
 
         enemy.hp -= best_weapon.damage * damage_multiplier
 
