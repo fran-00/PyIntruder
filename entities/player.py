@@ -255,6 +255,7 @@ class Player:
             str: A string representing the appropriate response based on the user's input.
         """
         purpose = args[1]
+        action = args[-1]
         if not self.is_selling:
             inventory = args[0]
         elif purpose in [Armor.__name__, Curse.__name__, Healer.__name__, Weapon.__name__]:
@@ -262,8 +263,6 @@ class Player:
             inventory = self.sort_items_by_category(self.inventory, category)
         else:
             inventory = self.inventory
-        purpose = args[1]
-        action = args[-1]
 
         if action.lower() in ('q', 'exit', 'no'):
             return "Ok. Action cancelled."
