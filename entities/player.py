@@ -264,7 +264,7 @@ class Player:
         else:
             inventory = self.inventory
 
-        if action.lower() in ('q', 'exit', 'no'):
+        if action in ('q', 'exit', 'no'):
             return "Ok. Action cancelled."
         try:
             item_index = int(action)
