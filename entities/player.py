@@ -432,19 +432,3 @@ class Player:
     def recharge_mana(self):
         pass
 
-    def room_visited(self):
-        room = parser.tile_at(self.x, self.y)
-        room.room_seen(self)
-
-    def room_list_creator(self):
-        rooms_list_with_empty_spaces = []
-        for tile in parser.world_map_caller():
-            rooms_list_with_empty_spaces.extend(tile)
-
-        for room in rooms_list_with_empty_spaces:
-            if isinstance(room, world.MapTile):
-                self.rooms_list.append(room)
-
-    def check_dialogue(self):
-        room = parser.tile_at(self.x, self.y)
-        room.dialogue(self)
