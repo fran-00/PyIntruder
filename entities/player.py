@@ -258,7 +258,7 @@ class Player:
         """
         purpose = args[1]
         action = args[-1]
-        if not self.is_selling:
+        if purpose == "trade" and not self.is_selling:
             inventory = args[0]
         elif purpose in [Armor.__name__, Curse.__name__, Healer.__name__, Weapon.__name__]:
             category = globals()[purpose]
