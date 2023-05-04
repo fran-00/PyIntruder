@@ -234,52 +234,32 @@ class Player:
 
     @show_instructions
     def show_inventory(self, *args):
-        """Displays items in an inventory, sorted by category.
-        Data shown depends on the action to be taken in the inventory, 
-        such as seeing the description of an item, selling it or buying it
-
-        Args:
-            inventory (list): A list of Item objects representing inventory.
-            purpose (string): 
-
-        Returns:
-            str: A string representation of the inventory, formatted as a list 
-            of items sorted by category and name.
-        """
         inventory = args[0]
         purpose = args[1]
-        response = ""
-        index = 1
-
-        for category in [Armor, Curse, Healer, Weapon]:
-            items_in_category = self.sort_items_by_category(
-                inventory, category)
-
-            if items_in_category:
-                response += f">> {category.__name__.upper()}S:\n"
-
-            for _, item in enumerate(items_in_category, index):
-                if purpose in ["trade"]:
-                    response += f"{index}. - {item} - {item.value}§\n"
-                else:
-                    response += f"{index}. {item.name}\n"
-                index += 1
-        return response
-
-    @show_curses
-    def show_inventory_subset(self, *args):
-        category_name = args[1]
         index = 1
         response = ""
-        category = globals()[category_name]
-        items_subset = self.sort_items_by_category(self.inventory, category)
-        if items_subset != []:
-            for _, item in enumerate(items_subset, index):
-                response += f"{index}. {item}\n"
-                index += 1
-            return response
+        
+        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, Weapon.__name__]:
+            category = globals()[purpose]
+            items_subset = self.sort_items_by_category(self.inventory, category)
+            if items_subset != []:
+                for _, item in enumerate(items_subset, index):
+                    response += f"{index}. {item}\n"
+                    index += 1
         else:
-            return "You don't have any."
+            for parent in [Armor, Curse, Healer, Weapon]:
+                items_subset = self.sort_items_by_category(inventory, parent)
+
+                if items_subset:
+                    response += f">> {parent.__name__.upper()}S:\n"
+
+                for _, item in enumerate(items_subset, index):
+                    if purpose in ["trade"]:
+                        response += f"{index}. - {item} - {item.value}§\n"
+                    else:
+                        response += f"{index}. {item.name}\n"
+                    index += 1
+        return response
 
     def sort_items_by_category(self, inventory, category):
         return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
