@@ -227,6 +227,8 @@ class Player:
                 response += "Choose a number to pick up an item or press Q to quit.\n"
             elif purpose == "drop":
                 response += "Choose a number to drop an item or press Q to quit.\n"
+            elif purpose == "Curse":
+                response = f"Ok, what curse do you want to cast? You have {self.mana} Mana.\n"
             else:
                 pass
             return func(self, *args) + response
