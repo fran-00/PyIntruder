@@ -307,6 +307,12 @@ class Player:
         elif purpose == "drop":
             self.items_swapper(self, room, choice, purpose)
             return f"{choice.name}: dropped."
+        elif purpose == "Curse":
+            response = f"You cast {choice.name} on {room.enemy.name}, it does {choice.damage} DMG!\n"
+            response += f"You now have {self.mana} Mana remaining."
+            return self.check_enemy_hp(room.enemy, response)
+        else:
+            return
 
     def items_swapper(self, giver, receiver, item, purpose):
         if purpose == "trade" and receiver == self:
