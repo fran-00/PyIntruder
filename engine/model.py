@@ -195,6 +195,13 @@ class GameModel(QObject):
 
         elif action in ["m", "map"]:
             return self.player.show_map()
+        
+        elif action in ["h", "heal"]:
+            self.arguments_list = [self.player.inventory, "Healer"]
+            return (
+                self.player.show_inventory,
+                self.player.choose_item
+            )
 
         else:
             return ("I beg your pardon?")
