@@ -151,13 +151,6 @@ class Player:
         else:
             return None
 
-    def show_curses(func):
-        def wrapper(self, *args):
-            if args[1] == "Curse":
-                response = f"Ok, what curse do you want to cast? You have {self.mana} Mana.\n"
-            return response + func(self, *args)
-        return wrapper
-
     def cast_curse(self, *args):
         # TODO: Add warnings to enemy's state
         room = parser.tile_at(self.x, self.y)
