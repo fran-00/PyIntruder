@@ -298,6 +298,10 @@ class Player:
                     response = f"You cast {choice.name} on {room.enemy.name}, it does {choice.damage} DMG!\n"
                     response += f"You now have {self.mana} Mana remaining."
                     return self.check_enemy_hp(room.enemy, response)
+                case "Healer":
+                    self.hp += choice.heal
+                    response = f"You use {choice.name}. You now have {self.hp} HP remaining."
+                    self.inventory.remove(choice)
                 case _:
                     return
 
