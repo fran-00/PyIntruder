@@ -144,7 +144,7 @@ class GameModel(QObject):
             if self.room.enemy and self.room.enemy.is_alive():
                 return (
                     self.player.show_inventory,
-                    self.player.cast_curse
+                    self.player.choose_item
                 )
             else:
                 return "There is no one to curse here!"
