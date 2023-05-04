@@ -153,7 +153,16 @@ class Player:
             return best_weapon
         else:
             return None
-        
+
+    def cast_curse(self, enemy, choice):
+        if choice.mana_cost > self.mana:
+            return f"You don't have enough mana to cast {choice.name}!"
+        else:
+            enemy.hp -= choice.damage
+            self.mana -= choice.mana_cost
+            return (f"You cast {choice.name} on {enemy.name}, it does {choice.damage} DMG!\n"
+                   f"You now have {self.mana} Mana remaining.")
+
     def flee_from_fight(self):
         room = parser.tile_at(self.x, self.y)
         d20 = random.randint(1, 20)
