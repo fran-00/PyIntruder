@@ -109,7 +109,7 @@ class Player:
         response += f"You try to hit {enemy.name} with {best_weapon.name}!"
         precision = random.randint(1, 20)
         
-        match(precision):
+        match precision:
             case 20:
                 damage_multiplier = 2
                 response += (
@@ -204,7 +204,7 @@ class Player:
     def show_instructions(func):
         def wrapper(self, *args):
             purpose = args[1]
-            match(purpose):
+            match purpose:
                 case "my-inventory":
                     response = f"Your wealth: {self.gold} §\nChoose a number to read an item's description or press Q to quit."
                 case "trade" if not self.is_selling:
@@ -287,7 +287,7 @@ class Player:
 
     def show_appropriate_answer(self, choice, purpose):
         room = parser.tile_at(self.x, self.y)
-        match(purpose):
+        match purpose:
             case "my-inventory":
                 return f"{choice}: \n{choice.description}"
             case "trade" if self.is_selling:
