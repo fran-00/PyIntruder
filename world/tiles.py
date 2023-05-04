@@ -1,5 +1,3 @@
-import random
-
 from entities.factories.npcs_factory import NPCsFactory as NPCf
 from world.map_tile import MapTile
 
