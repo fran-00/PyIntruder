@@ -287,31 +287,30 @@ class Player:
 
     def show_appropriate_answer(self, choice, purpose):
         room = parser.tile_at(self.x, self.y)
-        if purpose == "trade" and self.is_selling:
-            self.items_swapper(self, room.talker, choice, purpose)
-            self.is_selling = False
-            return f"Bye {choice.name}!"
-        else:
-            match(purpose):
-                case "my-inventory" :
-                    return f"{choice}: {choice.description}"
-                case "trade":
-                    self.items_swapper(room.talker, self, choice, purpose)
-                    return f"Good! Now {choice.name} is yours!"
-                case "pick-up":
-                    self.items_swapper(room, self, choice, purpose)
-                    return f"{choice.name}: taken."
-                case "drop":
-                    self.items_swapper(self, room, choice, purpose)
-                    return f"{choice.name}: dropped."
-                case "Curse":
-                    return self.check_enemy_hp(room.enemy, self.cast_curse(room.enemy, choice))
-                case "Healer":
-                    self.hp += choice.heal
-                    self.inventory.remove(choice)
-                    return f"You use {choice.name}. You now have {self.hp} HP remaining."
-                case _:
-                    return
+        match(purpose):
+            case "my-inventory":
+                return f"{choice}: \n{choice.description}"
+            case "trade" if self.is_selling:
+                self.items_swapper(self, room.talker, choice, purpose)
+                self.is_selling = False
+                return f"Bye {choice.name}!"
+            case "trade" if not self.is_selling:
+                self.items_swapper(room.talker, self, choice, purpose)
+                return f"Good! Now {choice.name} is yours!"
+            case "pick-up":
+                self.items_swapper(room, self, choice, purpose)
+                return f"{choice.name}: taken."
+            case "drop":
+                self.items_swapper(self, room, choice, purpose)
+                return f"{choice.name}: dropped."
+            case "Curse":
+                return self.check_enemy_hp(room.enemy, self.cast_curse(room.enemy, choice))
+            case "Healer":
+                self.hp += choice.heal
+                self.inventory.remove(choice)
+                return f"You use {choice.name}. You now have {self.hp} HP remaining."
+            case _:
+                return
 
     def items_swapper(self, giver, receiver, item, purpose):
         if purpose == "trade" and receiver == self:
