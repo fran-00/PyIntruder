@@ -244,9 +244,9 @@ class Player:
                         return "You don't have anything to sell!", None
                     case "trade" if not self.is_selling:
                         return "Out of stock! Come back later!", None
-                    case "pick-up":     # FIXME: it doesn't work
+                    case "pick-up":
                         return "There is nothing to pick up.", None
-                    case "drop":     # FIXME: it doesn't work
+                    case "drop":
                         return "You don't have anything to drop.", None
             else:
                 return self.show_inventory(inventory, purpose)
