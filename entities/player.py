@@ -223,6 +223,33 @@ class Player:
                     ""
             return func(self, *args) + response
         return wrapper
+    
+    def check_inventory(self, *args):
+        inventory = args[0]
+        purpose = args[1]
+        
+        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, Weapon.__name__]:
+            category = globals()[purpose]
+            items_subset = self.sort_items_by_category(self.inventory, category)
+            if items_subset == []:
+                return f"You don't have any {purpose} with you", None
+            else:
+                return self.show_inventory(inventory, purpose)
+        else:
+            if inventory == []:
+                match purpose:
+                    case "my-inventory":
+                        return f"Your inventory is empty!\n You have {self.gold} §.", None
+                    case "trade" if self.is_selling:
+                        return "You don't have anything to sell!", None
+                    case "trade" if not self.is_selling:
+                        return "Out of stock! Come back later!", None
+                    case "pick-up":     # FIXME: it doesn't work
+                        return "There is nothing to pick up.", None
+                    case "drop":     # FIXME: it doesn't work
+                        return "You don't have anything to drop.", None
+            else:
+                return self.show_inventory(inventory, purpose)
 
     @show_instructions
     def show_inventory(self, *args):
