@@ -200,7 +200,7 @@ class Player:
             case "q":
                 return "Come back when you want to trade!", None
             case _:
-                return "Invalid choice, try again."
+                return "Invalid choice, try again.", None
 
     def show_instructions(func):
         def wrapper(self, *args):
