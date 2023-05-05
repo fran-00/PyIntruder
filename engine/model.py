@@ -53,11 +53,16 @@ class GameModel(QObject):
             self.arguments_list.append(self.action)
             arguments_tuple = tuple(self.arguments_list)
             nested_response = method(*arguments_tuple)
-            self.model_signal_to_controller.emit(nested_response)
-            if nested_response in [None, "Invalid choice, try again."] or i == len(game_response) - 1:
+            
+            if isinstance(nested_response, tuple) and nested_response[1] == None:
+                self.model_signal_to_controller.emit(nested_response[0])
                 break
             else:
-                self.event_loop.exec()
+                self.model_signal_to_controller.emit(nested_response)
+                if nested_response in [None, "Invalid choice, try again."] or i == len(game_response) - 1:
+                    break
+                else:
+                    self.event_loop.exec()
 
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
