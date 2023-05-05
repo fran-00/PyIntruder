@@ -295,8 +295,11 @@ class Player:
         """
         purpose = args[1]
         action = args[-1]
+        room = parser.tile_at(self.x, self.y)
         if purpose == "trade" and not self.is_selling:
             inventory = args[0]
+        elif purpose == "pick-up":
+            inventory = room.inventory
         elif purpose in [Armor.__name__, Curse.__name__, Healer.__name__, Weapon.__name__]:
             category = globals()[purpose]
             inventory = self.sort_items_by_category(self.inventory, category)
