@@ -147,7 +147,7 @@ class Player:
             self.gold += loot
             response += (
                 f"\nThe asshole lost his booty. "
-                f"Now {loot} Pine Cones are yours!"
+                f"Now {loot} § are yours!"
             )
 
         else:
