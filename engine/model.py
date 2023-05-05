@@ -126,7 +126,7 @@ class GameModel(QObject):
         elif action in ["i", "inventory"]:
             self.arguments_list = [self.player.inventory, "my-inventory"]
             return (
-                self.player.show_inventory,
+                self.player.check_inventory,
                 self.player.choose_item
             )
 
@@ -176,22 +176,18 @@ class GameModel(QObject):
                 self.arguments_list = [self.room.inventory, "pick-up"]
                 self.model_signal_to_controller.emit("What do you want to pick up?")
                 return (
-                    self.player.show_inventory,
+                    self.player.check_inventory,
                     self.player.choose_item
                 )
-            else:
-                return "There is nothing to pick up!"
         
         elif action in ["d", "drop"]:
             if self.player.inventory:
                 self.arguments_list = [self.player.inventory, "drop"]
                 self.model_signal_to_controller.emit("What do you want to drop?")
                 return (
-                    self.player.show_inventory,
+                    self.player.check_inventory,
                     self.player.choose_item
                 )
-            else:
-                return "Your inventory is empty."
 
         elif action in ["m", "map"]:
             return self.player.show_map()
@@ -199,7 +195,7 @@ class GameModel(QObject):
         elif action in ["h", "heal"]:
             self.arguments_list = [self.player.inventory, "Healer"]
             return (
-                self.player.show_inventory,
+                self.player.check_inventory,
                 self.player.choose_item
             )
 
