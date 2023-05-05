@@ -59,7 +59,7 @@ class GameModel(QObject):
                 break
             else:
                 self.model_signal_to_controller.emit(nested_response)
-                if nested_response in [None, "Invalid choice, try again."] or i == len(game_response) - 1:
+                if i == len(game_response) - 1:
                     break
                 else:
                     self.event_loop.exec()
