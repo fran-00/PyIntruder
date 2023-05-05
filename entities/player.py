@@ -191,15 +191,16 @@ class Player:
     def trading_mode(self, *args):
         action = args[-1]
         room = parser.tile_at(self.x, self.y)
-        if action == "b":
-            return self.check_inventory(room.talker.inventory, "trade")
-        elif action == "s":
-            self.is_selling = True
-            return self.check_inventory(self.inventory, "trade")
-        elif action == "q":
-            return "Come back when you want to trade!", None
-        else:
-            return "Invalid choice, try again."
+        match action:
+            case "b":
+                return self.check_inventory(room.talker.inventory, "trade")
+            case "s":
+                self.is_selling = True
+                return self.check_inventory(self.inventory, "trade")
+            case "q":
+                return "Come back when you want to trade!", None
+            case _:
+                return "Invalid choice, try again."
 
     def show_instructions(func):
         def wrapper(self, *args):
