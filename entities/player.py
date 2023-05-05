@@ -197,7 +197,7 @@ class Player:
             self.is_selling = True
             return self.check_inventory(self.inventory, "trade")
         elif action == "q":
-            return None
+            return "Come back when you want to trade!", None
         else:
             return "Invalid choice, try again."
 
