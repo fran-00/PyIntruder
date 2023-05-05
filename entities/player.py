@@ -212,9 +212,9 @@ class Player:
                 case "trade" if self.is_selling:
                     response = "Choose a number to sell an item or press Q to quit."
                 case "pick-up":
-                    response = "Choose a number to pick up an item or press Q to quit."
+                    response = "What do you want to pick up?\nChoose an item or press Q to quit."
                 case "drop":
-                    response = "Choose a number to drop an item or press Q to quit."
+                    response = "What do you want to drop?\nChoose an item or press Q to quit."
                 case "Curse":
                     response = f"Ok, what curse do you want to cast? You have {self.mana} Mana."
                 case "Healer":
