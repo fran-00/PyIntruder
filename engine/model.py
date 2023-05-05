@@ -145,7 +145,7 @@ class GameModel(QObject):
             self.arguments_list = [self.player.inventory, "Curse"]
             if self.room.enemy and self.room.enemy.is_alive():
                 return (
-                    self.player.show_inventory,
+                    self.player.check_inventory,
                     self.player.choose_item
                 )
             else:
