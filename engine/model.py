@@ -31,6 +31,7 @@ class GameModel(QObject):
             None
 
         """
+        self.commands = Commands(self.player, self.room)
         self.model_signal_to_controller.emit("******* PYINTRUDER*******")
         self.model_signal_to_controller.emit(self.get_room_description())
         
