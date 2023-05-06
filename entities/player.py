@@ -365,7 +365,22 @@ class Player:
             if item_name in "all":
                 pass
         return(f"You can't see any {item_name} here")
-    
+
+    def get_or_drop_all(self, giver, receiver, purpose):
+        response = ""
+        print(giver.inventory)
+        for item in giver.inventory:
+            if purpose == "get":
+                response += f"{item.name}: taken.\n"
+            else:
+                response += f"{item.name}: dropped.\n"
+        receiver.inventory.extend(giver.inventory)
+        giver.inventory.clear()
+        if response == "":
+            return f"There is nothing to {purpose}."
+        else:
+            return response
+
     def look(self, room, entity):
         return
 
