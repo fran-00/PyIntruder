@@ -365,6 +365,9 @@ class Player:
                     return f"{item.name}: taken."
                 else:
                     return f"{item.name}: dropped."
+        # TODO: a different response should be shown if the target is present
+        # but cannot be picked up, for example in the case of an NPC, an enemy
+        # or a heavy object
         return(f"You can't see any {target} here")
 
     def get_or_drop_all(self, giver, receiver, purpose):
