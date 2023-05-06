@@ -51,7 +51,7 @@ class Commands:
             else:
                 return "There is no one to attack here!"
 
-        elif re.match(r"^(c|curse|cast curse)$", action):
+        elif re.match(r'^(c(urse)?)$', action):
             self.arguments_list = [self.player.inventory, "Curse"]
             if self.room.enemy and self.room.enemy.is_alive():
                 return (
@@ -69,7 +69,7 @@ class Commands:
             else:
                 return "There is nothing to run away from. If you want to escape just quit the game!"
 
-        elif re.match(r"^(t|talk)$", action):
+        elif re.match(r'^(t(alk)?)$', action):
             if self.room.talker and not self.room.talker.trade:
                 self.arguments_list = [None, "talk"]
                 return (
@@ -113,10 +113,10 @@ class Commands:
                 self.player.choose_item
             )
 
-        elif re.match(r"^(m|map)$", action):
+        elif re.match(r'^(m(ap)?)$', action):
             return self.player.show_map()
-        
-        elif re.match(r"^(h|heal)$", action):
+
+        elif re.match(r'^(h(eal)?)$', action):
             self.arguments_list = [self.player.inventory, "Healer"]
             return (
                 self.player.check_inventory,
