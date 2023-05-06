@@ -354,13 +354,18 @@ class Player:
         giver.sort_inventory()
         receiver.sort_inventory()
 
-    def get_item(self, room, item_name):
-        for item in room.inventory:
+    def get_or_drop_item(self, giver, receiver, item_name):
+        for item in giver.inventory:
             if item_name in item.name.lower():
-                self.items_swapper(room, self, item, "get")
-                return(f"{item.name}: taken.")
+                self.items_swapper(giver, receiver, item, "get-drop")
+                if receiver == self:
+                    return f"{item.name}: taken."
+                else:
+                    return f"{item.name}: dropped."
+            if item_name in "all":
+                pass
         return(f"You can't see any {item_name} here")
-
+    
     def look(self, room, entity):
         return
 
