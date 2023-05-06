@@ -117,11 +117,14 @@ class Commands:
             return self.player.get_or_drop_item(self.player, self.room, target, "drop")
 
         elif re.match(r'^(h(eal)?)$', action):
-            self.arguments_list = [self.player.inventory, "Healer"]
-            return (
-                self.player.check_inventory,
-                self.player.choose_item
-            )
+            if self.player.hp == self.player.max_hp:
+                return f"You are already in good health."
+            else:
+                self.arguments_list = [self.player.inventory, "Healer"]
+                return (
+                    self.player.check_inventory,
+                    self.player.choose_item
+                )
 
         elif re.match(r'^(m(ap)?)$', action):
             return self.player.show_map()
