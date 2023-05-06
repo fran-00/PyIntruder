@@ -119,7 +119,7 @@ class GameModel(QObject):
 
         """
         self.player.turn += 1
-        if action in ["n", "s", "w", "e"]:
+        if re.match(r'^(n|s|w|e)$', action):
             if not self.room.enemy or not self.room.enemy.is_alive():
                 return (self.move(self.room, self.player))
             else:
@@ -128,20 +128,20 @@ class GameModel(QObject):
         elif action in ["diagnose"]:
             return self.player.diagnose()
 
-        elif action in ["i", "inventory"]:
+        elif re.match(r'^(i|inventory)$', action):
             self.arguments_list = [self.player.inventory, "my-inventory"]
             return (
                 self.player.check_inventory,
                 self.player.choose_item
             )
 
-        elif action in ["a", "attack"]:
+        elif re.match(r"^(a|attack)$", action):
             if self.room.enemy and self.room.enemy.is_alive():
                 return self.player.attack()
             else:
                 return "There is no one to attack here!"
 
-        elif action in ["c", "curse", "cast curse"]:
+        elif re.match(r"^(c|curse|cast curse)$", action):
             self.arguments_list = [self.player.inventory, "Curse"]
             if self.room.enemy and self.room.enemy.is_alive():
                 return (
@@ -151,7 +151,7 @@ class GameModel(QObject):
             else:
                 return "There is no one to curse here!"
         
-        elif action in ["run", "flee", "escape"]:
+        elif re.match(r"^(run|flee|escape)$", action):
             if self.room.enemy and self.room.enemy.is_alive():
                 return self.player.flee_from_fight()
             elif self.room.enemy and not self.room.enemy.is_alive():
@@ -159,7 +159,7 @@ class GameModel(QObject):
             else:
                 return "There is nothing to run away from. If you want to escape just quit the game!"
 
-        elif action in ["t", "talk"]:
+        elif re.match(r"^(t|talk)$", action):
             if self.room.talker and not self.room.talker.trade:
                 self.arguments_list = [None, "talk"]
                 return (
@@ -176,24 +176,24 @@ class GameModel(QObject):
             else:
                 return "Hmmm... A tree looks at you expectantly, as if you seemed to be about to talk."
 
-        elif action in ["p", "pick up"]:
+        elif re.match(r"^(p|pick up)$", action):
             self.arguments_list = [self.room.inventory, "pick-up"]
             return (
                 self.player.check_inventory,
                 self.player.choose_item
                 )
         
-        elif action in ["d", "drop"]:
+        elif re.match(r"^(d|drop)$", action):
             self.arguments_list = [self.player.inventory, "drop"]
             return (
                 self.player.check_inventory,
                 self.player.choose_item
             )
 
-        elif action in ["m", "map"]:
+        elif re.match(r"^(m|map)$", action):
             return self.player.show_map()
         
-        elif action in ["h", "heal"]:
+        elif re.match(r"^(h|heal)$", action):
             self.arguments_list = [self.player.inventory, "Healer"]
             return (
                 self.player.check_inventory,
