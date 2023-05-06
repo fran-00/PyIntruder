@@ -337,11 +337,18 @@ class Player:
             case "Curse":
                 return self.check_enemy_hp(room.enemy, self.cast_curse(room.enemy, choice))
             case "Healer":
-                self.hp += choice.heal
-                self.inventory.remove(choice)
-                return f"You use {choice.name}. You now have {self.hp} HP remaining."
+                return self.heal(choice)
             case _:
                 return
+
+    def heal(self, choice):
+        if (choice.heal + self.hp) > self.max_hp:
+            self.hp = self.max_hp
+        else: 
+            self.hp += choice.heal
+        self.inventory.remove(choice)
+        self.sort_inventory()
+        return f"You use {choice.name}. You now have {self.hp} HP remaining."
 
     def items_swapper(self, giver, receiver, item, purpose):
         if purpose == "trade" and receiver == self:
