@@ -35,8 +35,11 @@ class Commands:
             else:
                 return ("You can't escape!")
 
-        elif action in ["diagnose"]:
+        elif re.match(r"^(diagnose)$", action):
             return self.player.diagnose()
+
+        elif re.match(r'^(l(ook)?)$', action):
+            return self.player.look(self.room)
 
         elif re.match(r'^(i(nv(entory)?)?)$', action):
             self.arguments_list = [self.player.inventory, "my-inventory"]
@@ -45,7 +48,7 @@ class Commands:
                 self.player.choose_item
             )
 
-        elif re.match(r"^(a|attack)$", action):
+        elif re.match(r'^(a(ttack)?)$', action):
             if self.room.enemy and self.room.enemy.is_alive():
                 return self.player.attack()
             else:
@@ -60,8 +63,8 @@ class Commands:
                 )
             else:
                 return "There is no one to curse here!"
-        
-        elif re.match(r"^(run|flee|escape)$", action):
+
+        elif re.match(r'^(run|flee|escape)$', action):
             if self.room.enemy and self.room.enemy.is_alive():
                 return self.player.flee_from_fight()
             elif self.room.enemy and not self.room.enemy.is_alive():
@@ -72,7 +75,7 @@ class Commands:
         elif re.match(r'^(talk to)\s+(.+)$', action):
             talker_name = re.match(r'^(talk to)\s+(.+)$', action).group(2)
             return talker_name # TODO:
-        
+
         elif re.match(r'^(t(alk)?)$', action):
             if self.room.talker and not self.room.talker.trade:
                 self.arguments_list = [None, "talk"]
@@ -97,26 +100,20 @@ class Commands:
                 self.player.choose_item
                 )
 
-        elif re.match(r'^(look)$', action):
-            return self.player.look(self.room)
-        
-        elif re.match(r'^(get|pick up)\s+(.+)$', action):
-            target = re.match(r'^(get|pick up)\s+(.+)$', action).group(2)
-            return self.player.get_or_drop_item(self.room, self.player, target, "get")
-        
-        elif re.match(r'^(drop)\s+(.+)$', action):
-            target = re.match(r'^(drop)\s+(.+)$', action).group(2)
-            return self.player.get_or_drop_item(self.player, self.room, target, "drop")
-    
-        elif re.match(r"^(d|drop)$", action):
+        elif re.match(r'^(d(rop)?)$', action):
             self.arguments_list = [self.player.inventory, "drop"]
             return (
                 self.player.check_inventory,
                 self.player.choose_item
             )
 
-        elif re.match(r'^(m(ap)?)$', action):
-            return self.player.show_map()
+        elif re.match(r'^(get|pick up)\s+(.+)$', action):
+            target = re.match(r'^(get|pick up)\s+(.+)$', action).group(2)
+            return self.player.get_or_drop_item(self.room, self.player, target, "get")
+
+        elif re.match(r'^(drop)\s+(.+)$', action):
+            target = re.match(r'^(drop)\s+(.+)$', action).group(2)
+            return self.player.get_or_drop_item(self.player, self.room, target, "drop")
 
         elif re.match(r'^(h(eal)?)$', action):
             self.arguments_list = [self.player.inventory, "Healer"]
@@ -124,6 +121,9 @@ class Commands:
                 self.player.check_inventory,
                 self.player.choose_item
             )
+
+        elif re.match(r'^(m(ap)?)$', action):
+            return self.player.show_map()
 
         else:
             return ("I beg your pardon?")
