@@ -3,6 +3,7 @@ import re
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
 import world.parser as parser
+from .commands import Commands
 
 
 class GameThread(QThread):
