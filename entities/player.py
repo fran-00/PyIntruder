@@ -354,6 +354,13 @@ class Player:
         giver.sort_inventory()
         receiver.sort_inventory()
 
+    def get_item(self, room, item_name):
+        for item in room.inventory:
+            if item_name in item.name.lower():
+                self.items_swapper(room, self, item, "get")
+                return(f"{item.name}: taken.")
+        return(f"You can't see any {item_name} here")
+
     # -------------------------------------------------------------------------|
     # INFO --------------------------------------------------------------------|
     # -------------------------------------------------------------------------|
