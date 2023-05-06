@@ -1,7 +1,7 @@
 from ..entities_templates import Item
 
 
-class QuestItemsFatory:
+class QuestItemsFactory:
     
     def __init__(self):
         
