@@ -71,7 +71,7 @@ class Commands:
 
         elif re.match(r'^(talk to)\s+(.+)$', action):
             talker_name = re.match(r'^(talk to)\s+(.+)$', action).group(2)
-            return talker_name TODO:
+            return talker_name # TODO:
         
         elif re.match(r'^(t(alk)?)$', action):
             if self.room.talker and not self.room.talker.trade:
