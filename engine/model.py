@@ -1,4 +1,5 @@
 import itertools as it
+import re
 
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
