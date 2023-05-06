@@ -38,7 +38,7 @@ class Commands:
         elif action in ["diagnose"]:
             return self.player.diagnose()
 
-        elif re.match(r'^(i|inventory)$', action):
+        elif re.match(r'^(i(nv(entory)?)?)$', action):
             self.arguments_list = [self.player.inventory, "my-inventory"]
             return (
                 self.player.check_inventory,
