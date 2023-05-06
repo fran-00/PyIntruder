@@ -354,18 +354,18 @@ class Player:
         giver.sort_inventory()
         receiver.sort_inventory()
 
-    def get_or_drop_item(self, giver, receiver, item_name, purpose):
-        if item_name in "all":
+    def get_or_drop_item(self, giver, receiver, target, purpose):
+        if target in "all":
             return self.get_or_drop_all(giver, receiver, purpose)
 
         for item in giver.inventory:
-            if item_name in item.name.lower():
+            if target in item.name.lower():
                 self.items_swapper(giver, receiver, item, "get-drop")
                 if purpose == "get":
                     return f"{item.name}: taken."
                 else:
                     return f"{item.name}: dropped."
-        return(f"You can't see any {item_name} here")
+        return(f"You can't see any {target} here")
 
     def get_or_drop_all(self, giver, receiver, purpose):
         response = ""

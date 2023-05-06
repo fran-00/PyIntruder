@@ -97,12 +97,12 @@ class Commands:
             return self.player.look(self.room)
         
         elif re.match(r'^(get|pick up)\s+(.+)$', action):
-            item_name = re.match(r'^(get|pick up)\s+(.+)$', action).group(2)
-            return self.player.get_or_drop_item(self.room, self.player, item_name, "get")
+            target = re.match(r'^(get|pick up)\s+(.+)$', action).group(2)
+            return self.player.get_or_drop_item(self.room, self.player, target, "get")
         
         elif re.match(r'^(drop)\s+(.+)$', action):
-            item_name = re.match(r'^(drop)\s+(.+)$', action).group(2)
-            return self.player.get_or_drop_item(self.player, self.room, item_name, "drop")
+            target = re.match(r'^(drop)\s+(.+)$', action).group(2)
+            return self.player.get_or_drop_item(self.player, self.room, target, "drop")
     
         elif re.match(r"^(d|drop)$", action):
             self.arguments_list = [self.player.inventory, "drop"]
