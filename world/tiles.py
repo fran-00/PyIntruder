@@ -51,7 +51,7 @@ class IntruderTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Intruder'
         self.inventory = []
-        self.talker = NPCf.intruder()
+        self.talker = NPCf().intruder
         self.enemy = None
         super().__init__(x, y)
 
