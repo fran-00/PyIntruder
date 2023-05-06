@@ -382,8 +382,17 @@ class Player:
         else:
             return response
 
-    def look(self, room, entity):
-        return
+    def look(self, room):
+        response = room.description
+        for item in room.inventory:
+            response += f"\nThere is a {item.name} here."
+        if room.talker:
+            response += f"\nThere is {room.talker.name} here."
+        if room.enemy and room.enemy.is_alive():
+            response += f"\nThere is a {room.enemy.name} here, willing to kill you."
+        if room.enemy and not room.enemy.is_alive():
+            response += f"\nThere the corpse of a {room.enemy.name} here."
+        return response
 
     # -------------------------------------------------------------------------|
     # INFO --------------------------------------------------------------------|
