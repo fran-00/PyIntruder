@@ -38,6 +38,7 @@ class GameModel(QObject):
         self.event_loop = QEventLoop()
 
         while True:
+            self.room = parser.tile_at(self.player.x, self.player.y)
             if self.room.enemy and self.room.enemy.is_alive():
                 self.handle_enemy_attack()
 
