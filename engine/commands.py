@@ -100,7 +100,11 @@ class Commands:
         
         elif re.match(r'^(get|pick up)\s+(.+)$', action):
             item_name = re.match(r'^(get|pick up)\s+(.+)$', action).group(2)
-            return self.player.get_item(self.room, item_name)
+            return self.player.get_or_drop_item(self.room, self.player, item_name)
+        
+        elif re.match(r'^(drop)\s+(.+)$', action):
+            item_name = re.match(r'^(drop)\s+(.+)$', action).group(2)
+            return self.player.get_or_drop_item(self.player, self.room, item_name)
     
         elif re.match(r"^(d|drop)$", action):
             self.arguments_list = [self.player.inventory, "drop"]
