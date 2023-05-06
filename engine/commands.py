@@ -29,7 +29,7 @@ class Commands:
         """
         self.player.turn += 1
 
-        if re.match(r'^(n(o(rth)?)?|s(o(uth)?)?|w(e(st)?)?|e(a(st)?)?)$', action):
+        if re.match(r'^(go\s)?(n(o(rth)?)?|s(o(uth)?)?|w(e(st)?)?|e(a(st)?)?)$', action):
             if not self.room.enemy or not self.room.enemy.is_alive():
                 return (self.move(action))
             else:
@@ -133,14 +133,14 @@ class Commands:
             str: Room's description if player is able to move, or an error message if the requested direction is not valid.
 
         """
-        if re.match(r'^n(o(rth)?)?$', action) and parser.tile_at(self.room.x, self.room.y - 1):
+        if re.match(r'^(go\s)?n(o(rth)?)?$', action) and parser.tile_at(self.room.x, self.room.y - 1):
             self.player.move_north()
-        elif re.match(r'^s(o(uth)?)?$', action) and parser.tile_at(self.room.x, self.room.y + 1):
+        elif re.match(r'^(go\s)?s(o(uth)?)?$', action) and parser.tile_at(self.room.x, self.room.y + 1):
             self.player.move_south()
-        elif re.match(r'^e(a(st)?)?$', action) and parser.tile_at(self.room.x + 1, self.room.y):
+        elif re.match(r'^(go\s)?e(a(st)?)?$', action) and parser.tile_at(self.room.x + 1, self.room.y):
             self.player.move_east()
-        elif re.match(r'^w(e(st)?)?$', action) and parser.tile_at(self.room.x - 1, self.room.y):
+        elif re.match(r'^(go\s)?w(e(st)?)?$', action) and parser.tile_at(self.room.x - 1, self.room.y):
             self.player.move_west()
         else:
             return "You can't go that way!"
-        return (self.get_room_description())
+        return self.get_room_description()
