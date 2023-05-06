@@ -73,25 +73,26 @@ class Commands:
                 return "There is nothing to run away from. If you want to escape just quit the game!"
 
         elif re.match(r'^(talk to)\s+(.+)$', action):
-            talker_name = re.match(r'^(talk to)\s+(.+)$', action).group(2)
-            return talker_name # TODO:
-
-        elif re.match(r'^(t(alk)?)$', action):
+            target = re.match(r'^(talk to)\s+(.+)$', action).group(2)
             if self.room.talker and not self.room.talker.trade:
+                return ""
+            else:
                 self.arguments_list = [None, "talk"]
                 return (
                     self.room.check_if_trading,
                     self.room.dialogue
                 )
-            elif self.room.talker and self.room.talker.trade:
+
+        elif re.match(r'^(trade)$', action):
+            if self.room.talker and self.room.talker.trade:
                 self.arguments_list = [self.room.talker.inventory, "trade"]
-                return (
-                    self.room.check_if_trading,
-                    self.player.trading_mode,
-                    self.player.choose_item,
-                )
             else:
-                return "Hmmm... A tree looks at you expectantly, as if you seemed to be about to talk."
+                self.arguments_list = [None]
+            return (
+                self.room.trade,
+                self.player.trading_mode,
+                self.player.choose_item,
+            )
 
         elif re.match(r"^(p|pick up)$", action):
             self.arguments_list = [self.room.inventory, "pick-up"]
