@@ -499,16 +499,6 @@ class Player:
 
     # FIXME: All these methods need to be fixed
 
-    def drop_all_get_all(self, receiver, giver):
-        room = parser.tile_at(self.x, self.y)
-        for _, item in enumerate(giver.inventory, 0):
-            receiver.inventory.extend(giver.inventory)
-            giver.inventory = []
-            if receiver is self:
-                print(f"{item.name}: taken.")
-            if receiver is room:
-                print(f"{item.name}: dropped.")
-
     def level_up(self):
         if self.xp >= self.xp_modifier:
             self.xp_modifier += 100
