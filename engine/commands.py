@@ -28,7 +28,8 @@ class Commands:
 
         """
         self.player.turn += 1
-        if re.match(r'^(n|s|w|e)$', action):
+
+        if re.match(r'^(n(o(rth)?)?|s(o(uth)?)?|w(e(st)?)?|e(a(st)?)?)$', action):
             if not self.room.enemy or not self.room.enemy.is_alive():
                 return (self.move(action))
             else:
