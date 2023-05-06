@@ -110,3 +110,12 @@ class MapTile:
     
     def dialogue(self, *args):
         return "We are talking."
+    
+    def trade(self, *args):
+        if self.talker and self.talker.trade:
+            sentence = self.talker.get_random_opening_sentence(f"{self.talker.name}")
+            return f"{sentence}\nBuy, Sell or Quit?"
+        elif self.talker and not self.talker.trade:
+            return f"{self.talker.name} doesn't want to trade.", None
+        else:
+            return "There is no one to trade with.", None
