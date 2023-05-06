@@ -58,6 +58,11 @@
         "description": "Cool",
         "opening sentence": {
             "1": "dialogue here"
+        },
+        "dialogues": {
+            "1": "<< >>",
+            "2": "<< >>",
+            "3": "<< >>"
         }
     },
     "rina": {
