@@ -91,6 +91,11 @@ class Commands:
                 self.player.check_inventory,
                 self.player.choose_item
                 )
+
+        elif re.match(r'^(look|examine|watch)\s+(.+)$', action):
+            entity = re.match(r'^(look|examine|watch)\s+(.+)$', action).group(2)
+            # TODO:
+            return
         
         elif re.match(r'^(get|pick up)\s+(.+)$', action):
             item_name = re.match(r'^(get|pick up)\s+(.+)$', action).group(2)
