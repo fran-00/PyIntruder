@@ -22,7 +22,6 @@ class GameModel(QObject):
         self.player = player
         self.action = None
         self.room = parser.tile_at(self.player.x, self.player.y)
-        self.arguments_list = []
         super().__init__()
 
     def play(self):
