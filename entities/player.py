@@ -372,7 +372,6 @@ class Player:
 
     def get_or_drop_all(self, giver, receiver, purpose):
         response = ""
-        print(giver.inventory)
         for item in giver.inventory:
             if purpose == "get":
                 response += f"{item.name}: taken.\n"
