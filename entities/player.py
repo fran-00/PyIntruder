@@ -123,6 +123,22 @@ class Player:
         return self.calculate_attack_precision(enemy, weapon, response)
 
     def calculate_attack_precision(self, enemy, weapon, response):
+        """Calculate attack precision and damage multiplier based on a random integer.
+        
+        Parameters
+        ----------
+            enemy : Enemy
+                An Enemy class instance alive in the current room.
+            weapon : Weapon
+                Best player's weapon, if any.
+            response : str
+                A string to add to the response.
+        
+        Returns
+        -------
+            func
+                Call check_enemy_hp() passing enemy and response string as arguments
+        """
         precision = random.randint(1, 20)
         match precision:
             case 20:
