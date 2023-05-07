@@ -7,6 +7,25 @@ class Commands:
         self.player = player
         self.room = room
         self.arguments_list = []
+        self.commands_dict = {
+            'DIRECTIONS': r'^(go\s)?(n(o(rth)?)?|s(o(uth)?)?|w(e(st)?)?|e(a(st)?)?)$',
+            'NORTH': r'^(go\s)?n(o(rth)?)?$',
+            'SOUTH': r'^(go\s)?s(o(uth)?)?$',
+            'WEST': r'^(go\s)?w(e(st)?)?$',
+            'EAST': r'^(go\s)?e(a(st)?)?$',
+            'DIAGNOSE': r'^(diagnose)$',
+            'LOOK': r'^(l(ook)?)$',
+            'INVENTORY': r'^(i(nv(entory)?)?)$',
+            'ATTACK': r'^(a(ttack)?)$',
+            'CURSE': r'^(c(urse)?)$',
+            'RUN': r'^(run|flee|escape)$',
+            'TALK TO': r'^(talk to)\s+(.+)$',
+            'TRADE': r'^(trade)$',
+            'GET': r'^(get|pick up)\s+(.+)$',
+            'DROP': r'^(drop)\s+(.+)$',
+            'HEAL': r'^(h(eal)?)$',
+            'MAP': r'^(m(ap)?)$'
+        }
 
     def get_room_description(self):
         self.room = parser.tile_at(self.player.x, self.player.y)
