@@ -62,7 +62,7 @@ class Commands:
                     return self.player.diagnose()
 
                 elif command == "LOOK":
-                    return self.player.look(self.room)
+                    return self.room.look()
 
                 elif command == "INVENTORY":
                     self.arguments_list = [self.player.inventory, "my-inventory"]
