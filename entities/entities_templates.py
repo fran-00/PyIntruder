@@ -139,5 +139,7 @@ class Surrounding(Item):
 
 
 class MissionRelatedItem(Item):
+
     def __init__(self, name, collectable=True, marketable=False, openable=False):
         super().__init__(name, collectable, marketable, openable)
+        self.value = 0
