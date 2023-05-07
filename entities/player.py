@@ -163,6 +163,20 @@ class Player:
         return self.check_enemy_hp(enemy, response)
 
     def check_enemy_hp(self, enemy, response):
+        """Check the HP of an enemy and responds accordingly.
+
+        Parameters
+        ----------
+            enemy : Enemy
+                An instance of Enemy class representing the enemy being checked.
+            response : str
+                The current response string that is being built.
+
+        Returns
+        -------
+            str
+                The updated response string after checking the enemy's HP.
+        """
         if not enemy.is_alive():
             response += f"\nYEAH! You killed it!"
             response += self.add_xp(enemy)
@@ -175,6 +189,19 @@ class Player:
         return response
 
     def add_xp(self, enemy):
+        """Calculate the earned XP points from killing an enemy, update Player
+        level if necessary and return the response string for the XP gain.
+
+        Parameters
+        ----------
+            enemy : Enemy
+                An instance of Enemy class representing killed enemy.
+
+        Returns
+        -------
+            str
+                The updated response string after earning XP.
+        """
         xp_earned = (enemy.damage // 2)
         response = f"\nYou earned {xp_earned} XP!"
         self.xp += xp_earned
@@ -183,6 +210,13 @@ class Player:
         return response
 
     def level_up(self):
+        """Increase Player level and updates the maximum health and mana points.
+
+        Returns
+        -------
+            str
+                A string indicating the new player level.
+        """
         self.xp_modifier *= 1.1
         self.lvl += 1
         self.max_hp *= 1.1
