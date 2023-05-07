@@ -20,6 +20,43 @@ class Entity:
         return self.name
 
 
+class NonPlayableCharacter(Entity):
+
+    def __init__(self, name, gold, inventory, trade):
+        super().__init__(name)
+        self.description = npcs_data[f"{self.name}".lower()]["description"]
+        self.gold = gold
+        self.inventory = inventory
+        self.trade = trade
+        self.sort_inventory()
+
+    def sort_inventory(self):
+        self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
+        return
+
+    def get_random_opening_sentence(self, npc_name=str):
+        sentences = npcs_data[npc_name.lower()]['opening sentence']
+        opening_sentence = random.choice(list(sentences.values()))
+        return opening_sentence
+
+
+class Enemy(Entity):
+
+    def __init__(self, name, level, hp, damage):
+        super().__init__(name)
+        self.description_if_alive = enemies_data[f"{self.name}".lower()]["intro_alive"]
+        self.description_if_dead = enemies_data[f"{self.name}".lower()]["intro_dead"]
+        self.level = level
+        self.hp = hp
+        self.damage = damage
+
+    def __str__(self):
+        return self.name, self.hp
+
+    def is_alive(self):
+        return self.hp > 0
+
+
 class Item(Entity):
 
     def __init__(self, name, collectable=True, marketable=True, openable=False):
@@ -104,40 +141,3 @@ class Surrounding(Item):
 class MissionRelatedItem(Item):
     def __init__(self, name, collectable=True, marketable=False, openable=False):
         super().__init__(name, collectable, marketable, openable)
-
-
-class NonPlayableCharacter(Entity):
-
-    def __init__(self, name, gold, inventory, trade):
-        super().__init__(name)
-        self.description = npcs_data[f"{self.name}".lower()]["description"]
-        self.gold = gold
-        self.inventory = inventory
-        self.trade = trade
-        self.sort_inventory()
-
-    def sort_inventory(self):
-        self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
-        return
-
-    def get_random_opening_sentence(self, npc_name=str):
-        sentences = npcs_data[npc_name.lower()]['opening sentence']
-        opening_sentence = random.choice(list(sentences.values()))
-        return opening_sentence
-
-
-class Enemy(Entity):
-
-    def __init__(self, name, level, hp, damage):
-        super().__init__(name)
-        self.description_if_alive = enemies_data[f"{self.name}".lower()]["intro_alive"]
-        self.description_if_dead = enemies_data[f"{self.name}".lower()]["intro_dead"]
-        self.level = level
-        self.hp = hp
-        self.damage = damage
-
-    def __str__(self):
-        return self.name, self.hp
-
-    def is_alive(self):
-        return self.hp > 0
