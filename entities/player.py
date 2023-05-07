@@ -601,6 +601,28 @@ class Player:
         return(f"You can't see any {target} here")
 
     def get_or_drop_all(self, giver, receiver, purpose):
+        """Takes all items from giver's inventory, add them to receiver's inventory
+        and show appropriate message based on purpose.
+        
+        Parameters
+        ----------
+        giver : Player or Room
+            The class who gives items.
+        receiver : Player or Room
+            The class who receives items.
+        purpose : str)
+            The purpose of the transfer operation. 
+            Must be either "get" or "drop".
+
+        Returns
+        -------
+        str
+            A response indicating the status of the transfer operation.
+            If there are no items to transfer, "There is nothing to [purpose]."
+            Otherwise, a string with the names of the transferred items and 
+            the operation (taken/dropped).
+
+        """
         response = ""
         for item in giver.inventory:
             if purpose == "get":
