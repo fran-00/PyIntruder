@@ -64,6 +64,29 @@ class GameModel(QObject):
                 self.model_signal_to_controller.emit(game_response)
 
     def process_nested_loop(self, game_response):
+        """Process a tuple of methods in a for loop.
+
+        First add action to be processed to argument_list attribute of Commands
+        class (a list of arguments to be passed to the methods processed in the loop
+        and which depend on the command sent by the user) and convert this list 
+        into a tuple. Then pass the tuple as an argument to the current method
+        that loop is processing.
+        If this operation results in another tuple that has None as the second 
+        element, emit the first element as a signal and interrupt the loop: this
+        means that an exception was raised or the user canceled the operation.
+        Otherwise resume loop execution to be able to receive the user's input
+        and process it in the next iteration.
+
+        Parameters
+        ----------
+            game_response : tuple
+                tuple of methods to be processed in the nested loop.
+
+        Returns
+        -------
+            None
+                Emits PyQT signal to Controller for each nested response processed.
+        """
         for i, method in enumerate(game_response):
             self.commands.arguments_list.append(self.action)
             arguments_tuple = tuple(self.commands.arguments_list)
