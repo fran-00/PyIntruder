@@ -505,6 +505,8 @@ class Player:
             to consume an Healer.
         """
         room = parser.tile_at(self.x, self.y)
+        if choice.marketable == False:
+            return f"You can't sell {choice.name}!"
         match purpose:
             case "my-inventory":
                 return f"{choice}: \n{choice.description}"
