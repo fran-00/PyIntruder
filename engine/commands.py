@@ -158,12 +158,16 @@ class Commands:
     def move(self, action):
         """Move the player in the specified direction if possible and return the room description.
 
-        Args:
-            room (Room(MapTile)): The current room from world.tiles
-            player (Player): The player object.
+        Parameters
+        ----------
+            action : str
+                The direction Player wants to go.
 
-        Returns:
-            str: Room's description if player is able to move, or an error message if the requested direction is not valid.
+        Returns
+        -------
+            str
+                Room's description if player is able to move, or an error
+                message if the requested direction is not valid.
 
         """
         if re.match(r'^(go\s)?n(o(rth)?)?$', action) and parser.tile_at(self.room.x, self.room.y - 1):
