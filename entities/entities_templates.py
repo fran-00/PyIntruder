@@ -22,15 +22,15 @@ class Entity:
 
 class Item(Entity):
 
-    def __init__(self, name, value):
+    def __init__(self, name):
         super().__init__(name)
         self.value = value
 
 
 class Weapon(Item):
 
-    def __init__(self, name, value, damage):
-        super().__init__(name, value)
+    def __init__(self, name, damage):
+        super().__init__(name)
         self.description = items_data["weapons"][f"{self.name}".lower()]
         self.damage = damage
 
@@ -40,8 +40,8 @@ class Weapon(Item):
 
 class Curse(Item):
 
-    def __init__(self, name, value, damage):
-        super().__init__(name, value)
+    def __init__(self, name, damage):
+        super().__init__(name)
         self.description = items_data["curses"][f"{self.name}".lower()]
         self.damage = damage
         self.mana_cost = self.value * 4
@@ -52,8 +52,8 @@ class Curse(Item):
 
 class Healer(Item):
 
-    def __init__(self, name, value, heal):
-        super().__init__(name, value)
+    def __init__(self, name, heal):
+        super().__init__(name)
         self.description = items_data["healers"][f"{self.name}".lower()]
         self.heal = heal
 
@@ -63,8 +63,8 @@ class Healer(Item):
 
 class ManaRecharger(Item):
 
-    def __init__(self, name, value, mr):
-        super().__init__(name, value)
+    def __init__(self, name, mr):
+        super().__init__(name)
         self.description = items_data["mana rechargers"][f"{self.name}".lower()]
         self.mr = mr
  
@@ -74,8 +74,8 @@ class ManaRecharger(Item):
 
 class Armor(Item):
 
-    def __init__(self, name, value, defence):
-        super().__init__(name, value)
+    def __init__(self, name, defence):
+        super().__init__(name)
         self.description = items_data["armors"][f"{self.name}".lower()]
         self.defence = defence
 
