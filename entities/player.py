@@ -402,8 +402,10 @@ class Player:
             str
                 If action is cancelled, return a message.
         
-        Returns:
-            str: A string representing the appropriate response based on the user's input.
+        Raises
+        ------
+            Exception
+                If action is not a valid number or if choice index is out of range
         """
         purpose = args[1]
         action = args[-1]
