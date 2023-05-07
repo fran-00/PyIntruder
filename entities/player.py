@@ -44,8 +44,22 @@ class Player:
     # -------------------------------------------------------------------------|
 
     def move(self, dx, dy):
+        """Update Player's coordinates within the game map.
+
+        Parameters
+        ----------
+            dx : int
+                The change in the x coordinate.
+            dy : int
+                The change in the y coordinate.
+        """
         self.x += dx
         self.y += dy
+
+    def get_coordinates(self, dx, dy):
+        self.previous_x = self.x
+        self.previous_y = self.y
+        self.move(dx=dx, dy=dy)
 
     def move_north(self):
         self.get_coordinates(0, -1)
@@ -58,11 +72,6 @@ class Player:
 
     def move_west(self):
         self.get_coordinates(-1, 0)
-
-    def get_coordinates(self, dx, dy):
-        self.previous_x = self.x
-        self.previous_y = self.y
-        self.move(dx=dx, dy=dy)
 
     # -------------------------------------------------------------------------|
     # COMBAT ------------------------------------------------------------------|
