@@ -1,15 +1,14 @@
-from ..entities_templates import Item
+from ..entities_templates import MissionRelatedItem
 
 
-class QuestItemsFactory:
+class MissionRelatedItemsFactory:
     
     def __init__(self):
         
-        self.specimen = Item(
+        self.specimen = MissionRelatedItem(
             "The Specimen",
-            10
         )
-        self.bottle = Item(
+        self.bottle = MissionRelatedItem(
             "bottle",
-            10
+            openable = True
         )
