@@ -23,11 +23,26 @@ class GameModel(QObject):
         super().__init__()
 
     def play(self):
-        """Starts the game loop and handles player actions.
+        """Start game loop and allow user to move and perform actions within a
+        grid-based map connecting player, game world and all game features
+        through Commands class.
 
-        Returns:
+        Start game loop, check if there's a living enemy in the current room
+        and if so call handle_enemy_attack method from MapTile class.
+        Then allow user to choose an action, passing the signal received from
+        GameControlelr as argument to choose_action method from Command class.
+        The result of this operation may be a string or a tuple.
+        If it is a string, it is emitted as a signal to Controller.
+        if it is a tuple, it means that several methods of Player class must be 
+        executed in sequence and that loop must be broken when required to allow
+        the user to make a choice.
+        In this case, the tuple is passed as argument of process_nested_loop
+        method, that will handle nested loop.
+
+        Returns
+        -------
             None
-
+                Send game output as signals to the GameController class.
         """
         self.commands = Commands(self.player, self.room)
         self.model_signal_to_controller.emit("******* PYINTRUDER*******")
