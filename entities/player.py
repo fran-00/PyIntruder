@@ -547,6 +547,7 @@ class Player:
                 response += f"{item.name}: dropped.\n"
         receiver.inventory.extend(giver.inventory)
         giver.inventory.clear()
+        receiver.sort_inventory()
         if response == "":
             return f"There is nothing to {purpose}."
         else:
