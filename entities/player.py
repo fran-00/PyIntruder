@@ -294,6 +294,24 @@ class Player:
         return wrapper
     
     def check_inventory(self, *args):
+        """Check if inventory contains any items or items of a specified category
+
+        Parameters
+        ----------
+            *args
+                A tuple of positional arguments.
+                *args[0] (list): [Required] The inventory to show.
+                *args[1] (str): [Required] The purpose of the inventory check.
+
+        Returns
+        -------
+            tuple
+                If no items are found, a tuple that contains a string with 
+                informative message and None value
+            func
+                If items are found, call show_inventory method passing inventory
+                and purpose as arguments
+        """
         inventory = args[0]
         purpose = args[1]
         
