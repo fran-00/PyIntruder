@@ -195,3 +195,13 @@ class MapTile:
             if target in item.name.lower():
                 return item.description
         return(f"I can't see any {target} here.")
+
+    def open(self, target):
+        """_summary_
+
+        Parameters
+        ---------
+            target : str
+                _description_
+        """
+        pass
