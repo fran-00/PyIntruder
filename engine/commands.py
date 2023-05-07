@@ -27,6 +27,7 @@ class Commands:
             'DROP ITEM': r'^(drop)\s+(.+)$',
             'DROP FROM LIST': r'^(d(rop)?)$',
             'HEAL': r'^(h(eal)?)$',
+            'OPEN OBJECT': r'^(open)\s+(.+)$',
             'MAP': r'^(m(ap)?)$'
         }
 
@@ -169,6 +170,9 @@ class Commands:
                             self.player.check_inventory,
                             self.player.choose_item
                         )
+                elif command == "OPEN OBJECT":
+                    target = re.match(regex, action).group(2)
+                    return self.room.open(target)
 
                 elif command == "MAP":
                     return self.player.show_map()
