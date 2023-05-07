@@ -94,6 +94,18 @@ class Armor(Item):
         return f"{self.name} - {self.defence} DEF"
 
 
+class Surrounding(Item):
+    
+    def __init__(self, name, inventory, collectable=False, marketable=False, openable=False):
+        super().__init__(name, collectable, marketable, openable)
+        self.inventory = inventory
+
+
+class MissionRelatedItem(Item):
+    def __init__(self, name, collectable=True, marketable=False, openable=False):
+        super().__init__(name, collectable, marketable, openable)
+
+
 class NonPlayableCharacter(Entity):
 
     def __init__(self, name, gold, inventory, trade):
