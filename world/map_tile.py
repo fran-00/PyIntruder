@@ -117,6 +117,21 @@ class MapTile:
         return "We are talking."
     
     def trade(self, *args):
+        """
+        Initiates a trade with the non-player character in the current room.
+
+        Parameters
+        ----------
+            *args (tuple)
+                An optional tuple passed because play() method in GameModel
+                class expects arguments to be passed.
+
+        Returns:
+            str
+                Prompt for the user to choose from the trade options.
+            None
+                If there is no npc in the current room or if npc doesn't want to trade.
+        """
         if self.talker and self.talker.trade:
             sentence = self.talker.get_random_opening_sentence(f"{self.talker.name}")
             return f"{sentence}\nBuy, Sell or Quit?"
