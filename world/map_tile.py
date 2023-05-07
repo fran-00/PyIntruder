@@ -75,15 +75,23 @@ class MapTile:
         return self.damage_player(player, self.enemy.damage, damage_reduction)
 
     def damage_player(self, player, damage, damage_reduction):
-        """Inflicts damage to the player object based on the enemy's attack and the player's defense.
+        """Inflict damage to the player object based on enemy's attack and player's
+        damage reduction.
 
-        Args:
-            player (Player): The player object to be damaged.
-            damage (int): The amount of damage to be inflicted on the player.
-            damage_reduction (int or None): The amount of damage reduction to be applied to the damage, or None if no reduction is applied.
+        Parameters
+        ----------
+            player : Player
+                The Player to be damaged.
+            damage : int 
+                The amount of damage to be inflicted on Player.
+            damage_reduction : int or None
+                The amount of damage reduction to be applied to the damage, or 
+                None if no reduction is applied.
 
-        Returns:
-            str: A string describing the outcome of the attack.
+        Returns
+        -------
+            str
+                A string describing the outcome of the attack.
 
         """
         if damage_reduction is not None:
