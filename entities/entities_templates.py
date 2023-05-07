@@ -36,6 +36,7 @@ class Weapon(Item):
         super().__init__(name)
         self.description = items_data["weapons"][f"{self.name}".lower()]
         self.damage = damage
+        self.value = self.calculate_value(self.damage)
 
     def __str__(self):
         return f"{self.name} - {self.damage} DMG"
@@ -48,6 +49,7 @@ class Curse(Item):
         self.description = items_data["curses"][f"{self.name}".lower()]
         self.damage = damage
         self.mana_cost = self.value * 4
+        self.value = self.calculate_value(self.damage)
 
     def __str__(self):
         return f"{self.name} - {self.damage} DMG - {self.mana_cost} Mana"
@@ -59,6 +61,7 @@ class Healer(Item):
         super().__init__(name)
         self.description = items_data["healers"][f"{self.name}".lower()]
         self.heal = heal
+        self.value = self.calculate_value(self.heal)
 
     def __str__(self):
         return f"{self.name} - {self.heal} HP"
@@ -70,6 +73,7 @@ class ManaRecharger(Item):
         super().__init__(name)
         self.description = items_data["mana rechargers"][f"{self.name}".lower()]
         self.mr = mr
+        self.value = self.calculate_value(self.mr)
  
     def __str__(self):
         return f"{self.name} - {self.mr} MR"
@@ -81,6 +85,7 @@ class Armor(Item):
         super().__init__(name)
         self.description = items_data["armors"][f"{self.name}".lower()]
         self.defence = defence
+        self.value = self.calculate_value(self.defence)
 
     def __str__(self):
         return f"{self.name} - {self.defence} DEF"
