@@ -117,8 +117,8 @@ class MapTile:
         return "We are talking."
     
     def trade(self, *args):
-        """
-        Initiates a trade with the non-player character in the current room.
+        """Initiates a trade with an npc in the current room that wants to trade,
+        if any.
 
         Parameters
         ----------
@@ -126,7 +126,8 @@ class MapTile:
                 An optional tuple passed because play() method in GameModel
                 class expects arguments to be passed.
 
-        Returns:
+        Returns
+        -------
             str
                 Prompt for the user to choose from the trade options.
             None
