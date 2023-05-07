@@ -340,6 +340,19 @@ class Player:
 
     @show_instructions
     def show_inventory(self, *args):
+        """Display an inventory based on purpose.
+
+        Parameters
+        ----------
+            *args
+                Arguments to customize the display of an inventory:
+                *args[0]: [Required] The inventory to show.
+                *args[1]: [Required] The purpose of the retrieval.
+        Returns
+        -------
+            response : str
+                A formatted string containing the inventory.
+        """
         inventory = args[0]
         purpose = args[1]
         index = 1
