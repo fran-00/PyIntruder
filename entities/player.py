@@ -75,10 +75,10 @@ class Player:
 
         Returns
         -------
-            best_weapon : Weapon
-                The weapon in the player's inventory with higher damage attribute
-            None
-                The player has no weapons.
+        best_weapon : Weapon
+            The weapon in the player's inventory with higher damage attribute
+        None
+            The player has no weapons.
         """
         max_damage = 0
         best_weapon = None
@@ -99,13 +99,13 @@ class Player:
 
         Returns
         -------
-             str
-                Return the result of calling calculate_attack_precision() with
-                arguments for the enemy, weapon, and a message about the attack
-                attempt.
-                If the player has no weapon, return a message stating this.
-             None
-                If there is no living enemy in the room, return None.
+        str
+            Return the result of calling calculate_attack_precision() with
+            arguments for the enemy, weapon, and a message about the attack
+            attempt.
+            If the player has no weapon, return a message stating this.
+        None
+            If there is no living enemy in the room, return None.
         """
         weapon = self.best_weapon()
         room = parser.tile_at(self.x, self.y)
@@ -126,17 +126,17 @@ class Player:
         
         Parameters
         ----------
-            enemy : Enemy
-                An Enemy class instance alive in the current room.
-            weapon : Weapon
-                Best player's weapon, if any.
-            response : str
-                A string to add to the response.
+        enemy : Enemy
+            An Enemy class instance alive in the current room.
+        weapon : Weapon
+            Best player's weapon, if any.
+        response : str
+            A string to add to the response.
         
         Returns
         -------
-            func
-                Call check_enemy_hp() passing enemy and response string as arguments
+        func
+            Call check_enemy_hp() passing enemy and response string as arguments
         """
         precision = random.randint(1, 20)
         match precision:
@@ -167,15 +167,15 @@ class Player:
 
         Parameters
         ----------
-            enemy : Enemy
-                An instance of Enemy class representing the enemy being checked.
-            response : str
-                The current response string that is being built.
+        enemy : Enemy
+            An instance of Enemy class representing the enemy being checked.
+        response : str
+            The current response string that is being built.
 
         Returns
         -------
-            str
-                The updated response string after checking the enemy's HP.
+        str
+            The updated response string after checking the enemy's HP.
         """
         if not enemy.is_alive():
             response += f"\nYEAH! You killed it!"
@@ -194,13 +194,13 @@ class Player:
 
         Parameters
         ----------
-            enemy : Enemy
-                An instance of Enemy class representing killed enemy.
+        enemy : Enemy
+            An instance of Enemy class representing killed enemy.
 
         Returns
         -------
-            str
-                The updated response string after earning XP.
+        str
+            The updated response string after earning XP.
         """
         xp_earned = (enemy.damage // 2)
         response = f"\nYou earned {xp_earned} XP!"
@@ -214,8 +214,8 @@ class Player:
 
         Returns
         -------
-            str
-                A string indicating the new player level.
+        str
+            A string indicating the new player level.
         """
         self.xp_modifier *= 1.1
         self.lvl += 1
@@ -235,16 +235,16 @@ class Player:
 
         Parameters
         ----------
-            enemy : Enemy
-                The enemy in the current room.
-            choice : Curse
-                The choosen curse returned by choose_item() method.
+        enemy : Enemy
+            The enemy in the current room.
+        choice : Curse
+            The choosen curse returned by choose_item() method.
 
         Returns
         -------
-            str
-                Return a formatted string indicating name of the spell cast,
-                damage dealt and remaining mana.
+        str
+            Return a formatted string indicating name of the spell cast,
+            damage dealt and remaining mana.
         """
         if choice.mana_cost > self.mana:
             return f"You don't have enough mana to cast {choice.name}!"
@@ -285,18 +285,18 @@ class Player:
         
         Parameters
         ----------
-            *args
-                Accepts any number of arguments.
-                *args[-1] (str): [Required] User's action
+        *args
+            Accepts any number of arguments.
+            *args[-1] (str): [Required] User's action
         Returns
         -------
-            str
-                if action is "B" or "S", return the result of calling
-                check_inventory() passing as argument player's inventory
-                (if selling) or trader's inventory (if buying).
-            tuple : str, None
-                if action is q or is not recognizedm return a tuple with a
-                message and None value to break play() loop.
+        str
+            if action is "B" or "S", return the result of calling
+            check_inventory() passing as argument player's inventory
+            (if selling) or trader's inventory (if buying).
+        tuple : str, None
+            if action is q or is not recognizedm return a tuple with a
+            message and None value to break play() loop.
         """
         action = args[-1]
         room = parser.tile_at(self.x, self.y)
@@ -357,19 +357,19 @@ class Player:
 
         Parameters
         ----------
-            *args
-                A tuple of positional arguments.
-                *args[0] (list): [Required] The inventory to show.
-                *args[1] (str): [Required] The purpose of the inventory check.
+        *args
+            A tuple of positional arguments.
+            *args[0] (list): [Required] The inventory to show.
+            *args[1] (str): [Required] The purpose of the inventory check.
 
         Returns
         -------
-            tuple
-                If no items are found, a tuple that contains a string with 
-                informative message and None value
-            str
-                If items are found, call show_inventory() method passing inventory
-                and purpose as arguments
+        tuple
+            If no items are found, a tuple that contains a string with 
+            informative message and None value
+        str
+            If items are found, call show_inventory() method passing inventory
+            and purpose as arguments
         """
         inventory = args[0]
         purpose = args[1]
@@ -403,14 +403,14 @@ class Player:
 
         Parameters
         ----------
-            *args
-                Arguments to customize the display of an inventory:
-                *args[0]: [Required] The inventory to show.
-                *args[1]: [Required] The purpose of the retrieval.
+        *args
+            Arguments to customize the display of an inventory:
+            *args[0]: [Required] The inventory to show.
+            *args[1]: [Required] The purpose of the retrieval.
         Returns
         -------
-            response : str
-                A formatted string containing the inventory.
+        response : str
+            A formatted string containing the inventory.
         """
         inventory = args[0]
         purpose = args[1]
@@ -447,22 +447,22 @@ class Player:
 
         Parameters
         ----------
-            *args
-                The arguments to customize the behavior of the method:
-                *args[0]: The inventory to use for trade purposes or None
-                *args[1]: The purpose of the item selection
-                *args[-1]: The action to perform
+        *args
+            The arguments to customize the behavior of the method:
+            *args[0]: The inventory to use for trade purposes or None
+            *args[1]: The purpose of the item selection
+            *args[-1]: The action to perform
 
         Returns
         -------
-            str
-                Call show_appropriate_answer() passing choosen item and purpose
-                as arguments. If action is cancelled, return a message.
+        str
+            Call show_appropriate_answer() passing choosen item and purpose
+            as arguments. If action is cancelled, return a message.
         
         Raises
         ------
-            Exception
-                If action is not a valid number or if choice index is out of range
+        Exception
+            If action is not a valid number or if choice index is out of range
         """
         purpose = args[1]
         action = args[-1]
@@ -491,18 +491,18 @@ class Player:
 
         Parameters
         ----------
-            choice : Item
-                The selected item
-            purpose : str
-                The purpose of the selection
+        choice : Item
+            The selected item
+        purpose : str
+            The purpose of the selection
 
         Returns
         -------
-            str
-                The appropriate string response for the selected `choice` and
-                `purpose` obtained from item_swapper() if manipulating items,
-                from check_enemy_hp() if fighting or from heal() if player wants
-                to consume an Healer.
+        str
+            The appropriate string response for the selected `choice` and
+            `purpose` obtained from item_swapper() if manipulating items,
+            from check_enemy_hp() if fighting or from heal() if player wants
+            to consume an Healer.
         """
         room = parser.tile_at(self.x, self.y)
         match purpose:
@@ -533,13 +533,13 @@ class Player:
 
         Parameters
         ----------
-            choice : Healer
-                The selected item to use for healing. It must have a 'heal' attribute.
+        choice : Healer
+            The selected item to use for healing. It must have a 'heal' attribute.
 
         Returns
         -------
-            str
-                A string providing name of the item used and remaining HP.
+        str
+            A string providing name of the item used and remaining HP.
         """
         if (choice.heal + self.hp) > self.max_hp:
             self.hp = self.max_hp
@@ -555,21 +555,21 @@ class Player:
 
         Parameters
         ----------  
-            giver
-                The player instance that is giving the item.
-            receiver
-                The player instance that is receiving the item.
-            item
-                The item being transferred or bought/sold.
-            purpose
-                A string that specifies the purpose of the transfer. It can have two possible values: 'trade' (when the characters are trading items) or 'buy_sell' (when one character is buying and the other is selling).
+        giver
+            The player instance that is giving the item.
+        receiver
+            The player instance that is receiving the item.
+        item
+            The item being transferred or bought/sold.
+        purpose
+            A string that specifies the purpose of the transfer. It can have two possible values: 'trade' (when the characters are trading items) or 'buy_sell' (when one character is buying and the other is selling).
 
         Returns
         -------
-            str 
-                String that warns if player has no gold. 
-            None
-                In any other case.
+        str 
+            String that warns if player has no gold. 
+        None
+            In any other case.
         """
         if purpose == "trade" and receiver == self:
             if item.value > receiver.gold:

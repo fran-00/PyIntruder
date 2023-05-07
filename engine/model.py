@@ -41,8 +41,8 @@ class GameModel(QObject):
 
         Returns
         -------
-            None
-                Send game output as signals to the GameController class.
+        None
+            Send game output as signals to the GameController class.
         """
         self.commands = Commands(self.player, self.room)
         self.model_signal_to_controller.emit("******* PYINTRUDER*******")
@@ -79,13 +79,13 @@ class GameModel(QObject):
 
         Parameters
         ----------
-            game_response : tuple
-                Tuple of methods to be processed in the nested loop.
+        game_response : tuple
+            Tuple of methods to be processed in the nested loop.
 
         Returns
         -------
-            None
-                Emit PyQT signal to Controller for each nested response processed.
+        None
+            Emit PyQT signal to Controller for each nested response processed.
         """
         for i, method in enumerate(game_response):
             self.commands.arguments_list.append(self.action)
@@ -114,8 +114,8 @@ class GameModel(QObject):
 
         Parameters
         ----------
-            user_action : str
-                A string representing the user action.
+        user_action : str
+            A string representing the user action.
         """
         self.action = user_action.lower()
         self.event_loop.exit()

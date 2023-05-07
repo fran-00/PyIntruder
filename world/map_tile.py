@@ -46,15 +46,15 @@ class MapTile:
         
         Parameters
         ----------
-            player : Player
-                The player to modify.
+        player : Player
+            The player to modify.
 
         Returns
         -------
-            str
-                A string describing the result of the enemy's attack.
-            None
-                If the enemy is dead or the attack misses.
+        str
+            A string describing the result of the enemy's attack.
+        None
+            If the enemy is dead or the attack misses.
         """
         if self.enemy is None or not self.enemy.is_alive():
             return
@@ -80,18 +80,18 @@ class MapTile:
 
         Parameters
         ----------
-            player : Player
-                The Player to be damaged.
-            damage : int 
-                The amount of damage to be inflicted on Player.
-            damage_reduction : int or None
-                The amount of damage reduction to be applied to the damage, or 
-                None if no reduction is applied.
+        player : Player
+            The Player to be damaged.
+        damage : int 
+            The amount of damage to be inflicted on Player.
+        damage_reduction : int or None
+            The amount of damage reduction to be applied to the damage, or 
+            None if no reduction is applied.
 
         Returns
         -------
-            str
-                A string describing the outcome of the attack.
+        str
+            A string describing the outcome of the attack.
 
         """
         if damage_reduction is not None:
@@ -130,16 +130,16 @@ class MapTile:
 
         Parameters
         ----------
-            *args (tuple)
-                An optional tuple passed because play() method in GameModel
-                class expects arguments to be passed.
+        *args (tuple)
+            An optional tuple passed because play() method in GameModel
+            class expects arguments to be passed.
 
         Returns
         -------
-            str
-                Prompt for the user to choose from the trade options.
-            None
-                If there is no npc in the current room or if npc doesn't want to trade.
+        str
+            Prompt for the user to choose from the trade options.
+        None
+            If there is no npc in the current room or if npc doesn't want to trade.
         """
         if self.talker and self.talker.trade:
             sentence = self.talker.get_random_opening_sentence(f"{self.talker.name}")
@@ -154,8 +154,8 @@ class MapTile:
 
         Returns
         -------
-            str
-                A detailed description of the current room and its features
+        str
+            A detailed description of the current room and its features
         """
         response = self.description
         for item in self.inventory:

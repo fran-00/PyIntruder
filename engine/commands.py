@@ -40,8 +40,8 @@ class Commands:
 
         Returns
         -------
-            string
-                A description of the current room or enemy
+        string
+            A description of the current room or enemy
         """
         self.room = parser.tile_at(self.player.x, self.player.y)
         if self.room.enemy is None:
@@ -56,14 +56,14 @@ class Commands:
 
         Parameters
         ----------
-            action : str
-                The input string representing the action to be taken.
+        action : str
+            The input string representing the action to be taken.
 
         Returns
         -------
-            str
-                The string to show depends on the command entered, for each of
-                them a method of Player class or of MapTile class is called.
+        str
+            The string to show depends on the command entered, for each of
+            them a method of Player class or of MapTile class is called.
         """
         self.player.turn += 1
 
@@ -181,14 +181,14 @@ class Commands:
 
         Parameters
         ----------
-            action : str
-                The direction Player wants to go.
+        action : str
+            The direction Player wants to go.
 
         Returns
         -------
-            str
-                Room's description if player is able to move, or an error
-                message if the requested direction is not valid.
+        str
+            Room's description if player is able to move, or an error
+            message if the requested direction is not valid.
 
         """
         if re.match(r'^(go\s)?n(o(rth)?)?$', action) and parser.tile_at(self.room.x, self.room.y - 1):
