@@ -25,7 +25,7 @@ class Item(Entity):
     def __init__(self, name):
         super().__init__(name)
         
-    def calculate_price(self, n):
+    def calculate_value(self, n):
         range_value = n * 0.1
         return round(random.uniform(n - range_value, n + range_value), 2)
 
