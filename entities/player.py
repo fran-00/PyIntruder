@@ -184,6 +184,23 @@ class Player:
             response += f"\n{enemy.name} has {enemy.hp} HP remaining."
         return response
 
+    def add_xp(self, enemy):
+        xp_earned = (enemy.damage // 2)
+        response = f"\nYou earned {xp_earned} XP!"
+        self.xp += xp_earned
+        if self.xp >= self.xp_modifier:
+            response += self.level_up()
+        return response
+
+    def level_up(self):
+        self.xp_modifier *= 1.1
+        self.lvl += 1
+        self.max_hp *= 1.1
+        self.hp = self.max_hp
+        self.max_mana *= 1.1
+        self.mana = self.max_mana
+        return f"You leveled up! You are now at {self.lvl} LVL."
+
     def cast_curse(self, enemy, choice):
         """Cast a curse on an enemy.
 
