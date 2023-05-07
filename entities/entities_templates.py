@@ -29,10 +29,10 @@ class Item(Entity):
 
 class Weapon(Item):
 
-    def __init__(self, name, value):
+    def __init__(self, name, value, damage):
         super().__init__(name, value)
         self.description = items_data["weapons"][f"{self.name}".lower()]
-        self.damage = self.value * 2
+        self.damage = damage
 
     def __str__(self):
         return f"{self.name} - {self.damage} DMG"
@@ -40,10 +40,10 @@ class Weapon(Item):
 
 class Curse(Item):
 
-    def __init__(self, name, value):
+    def __init__(self, name, value, damage):
         super().__init__(name, value)
         self.description = items_data["curses"][f"{self.name}".lower()]
-        self.damage = self.value * 2
+        self.damage = damage
         self.mana_cost = self.value * 4
 
     def __str__(self):
