@@ -741,13 +741,3 @@ class Player:
                 row.append(map_tile_type)
             print("".join(row))
         print(f'> You are here: ({loc_x},{loc_y})')
-
-
-    # FIXME: All these methods need to be fixed
-
-    def open_obj(self):
-        pass
-
-    def recharge_mana(self):
-        pass
-
