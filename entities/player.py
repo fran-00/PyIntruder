@@ -163,22 +163,12 @@ class Player:
         return self.check_enemy_hp(enemy, response)
 
     def check_enemy_hp(self, enemy, response):
-        # FIXME: Move xp calculation to a specific method
-        # xp_earned = (enemy.hp // 2)
-        if enemy.hp <= 0:
-            # self.xp += xp_earned
-            response += (
-                f"\nYEAH! You killed it! "
-                # f"\nYou earned {xp_earned} XP!"
-            )
-
+        if not enemy.is_alive():
+            response += f"\nYEAH! You killed it!"
+            response += self.add_xp(enemy)
             loot = random.randint(10, 200)
-            # self.level_up()
             self.gold += loot
-            response += (
-                f"\nThe asshole lost his booty. "
-                f"Now {loot} § are yours!"
-            )
+            response += f"\n{enemy.name} lost his booty. Now {loot} § are yours!"
 
         else:
             response += f"\n{enemy.name} has {enemy.hp} HP remaining."
