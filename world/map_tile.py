@@ -37,8 +37,8 @@ class MapTile:
         return
 
     def modify_player(self, player):
-        """Modifies player and enemy based on a random chance of confusion
-        and the enemy's attack.
+        """Modify player and enemy based on a random chance of confusion
+        and enemy's attack.
         
         Check if the enemy is alive and generate a random number to determine
         if the enemy becomes confused. Calculate damage reduction based on
@@ -47,7 +47,7 @@ class MapTile:
         Parameters
         ----------
             player : Player
-                The Player object to be modified.
+                The player to modify.
 
         Returns
         -------
