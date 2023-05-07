@@ -374,7 +374,7 @@ class Player:
         inventory = args[0]
         purpose = args[1]
         
-        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, Weapon.__name__]:
+        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
             category = globals()[purpose]
             items_subset = self.sort_items_by_category(self.inventory, category)
             if items_subset == []:
@@ -417,7 +417,7 @@ class Player:
         index = 1
         response = ""
         
-        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, Weapon.__name__]:
+        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
             category = globals()[purpose]
             items_subset = self.sort_items_by_category(self.inventory, category)
             if items_subset != []:
@@ -425,7 +425,7 @@ class Player:
                     response += f"{index}. {item}\n"
                     index += 1
         else:
-            for parent in [Armor, Curse, Healer, Weapon]:
+            for parent in [Armor, Curse, Healer, MissionRelatedItem, Weapon]:
                 items_subset = self.sort_items_by_category(inventory, parent)
 
                 if items_subset:
@@ -471,7 +471,7 @@ class Player:
             inventory = args[0]
         elif purpose == "pick-up":
             inventory = room.inventory
-        elif purpose in [Armor.__name__, Curse.__name__, Healer.__name__, Weapon.__name__]:
+        elif purpose in [Armor.__name__, Curse.__name__, Healer.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
             category = globals()[purpose]
             inventory = self.sort_items_by_category(self.inventory, category)
         else:
