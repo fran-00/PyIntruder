@@ -48,7 +48,7 @@ class Curse(Item):
         super().__init__(name)
         self.description = items_data["curses"][f"{self.name}".lower()]
         self.damage = damage
-        self.mana_cost = self.value * 4
+        self.mana_cost = self.damage * 4
         self.value = self.calculate_value(self.damage)
 
     def __str__(self):
