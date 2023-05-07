@@ -455,6 +455,18 @@ class Player:
                 return
 
     def heal(self, choice):
+        """Heal Player using chosen item and remove it from the inventory.
+
+        Parameters
+        ----------
+            choice : Healer
+                The selected item to use for healing. It must have a 'heal' attribute.
+
+        Returns
+        -------
+            str
+                A string providing name of the item used and remaining HP.
+        """
         if (choice.heal + self.hp) > self.max_hp:
             self.hp = self.max_hp
         else: 
