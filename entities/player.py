@@ -709,16 +709,6 @@ class Player:
 
     # FIXME: All these methods need to be fixed
 
-    def level_up(self):
-        if self.xp >= self.xp_modifier:
-            self.xp_modifier += 100
-            self.lvl += 1
-            self.max_hp += 100
-            self.hp = self.max_hp
-            self.max_mana += 100
-            self.mana = self.max_mana
-            print(f"You leveled up! You are now at {self.lvl} LVL.")
-
     def open_obj(self):
         pass
 
