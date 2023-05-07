@@ -1,13 +1,15 @@
-from ..entities_templates import Entity
+from ..entities_templates import Surrounding
 
 
 class SurroundingsFactory:
     
     def __init__(self):
         
-        self.specimen = Entity(
+        self.specimen = Surrounding(
             "your car",
+            openable = True,
         )
-        self.specimen = Entity(
+        self.specimen = Surrounding(
             "chest",
+            openable = True,
         )
