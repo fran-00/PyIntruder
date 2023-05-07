@@ -22,9 +22,12 @@ class Entity:
 
 class Item(Entity):
 
-    def __init__(self, name):
+    def __init__(self, name, collectable=True, marketable=True, openable=False):
         super().__init__(name)
-        
+        self.collectable = collectable
+        self.openable = openable
+        self.marketable = marketable
+
     def calculate_value(self, n):
         range_value = n * 0.1
         return round(random.uniform(n - range_value, n + range_value), 2)
@@ -32,8 +35,8 @@ class Item(Entity):
 
 class Weapon(Item):
 
-    def __init__(self, name, damage):
-        super().__init__(name)
+    def __init__(self, name, damage, collectable=True, marketable=True, openable=False):
+        super().__init__(name, collectable, marketable, openable)
         self.description = items_data["weapons"][f"{self.name}".lower()]
         self.damage = damage
         self.value = self.calculate_value(self.damage)
@@ -44,8 +47,8 @@ class Weapon(Item):
 
 class Curse(Item):
 
-    def __init__(self, name, damage):
-        super().__init__(name)
+    def __init__(self, name, damage, collectable=True, marketable=True, openable=False):
+        super().__init__(name, collectable, marketable, openable)
         self.description = items_data["curses"][f"{self.name}".lower()]
         self.damage = damage
         self.mana_cost = self.damage * 4
@@ -57,8 +60,8 @@ class Curse(Item):
 
 class Healer(Item):
 
-    def __init__(self, name, heal):
-        super().__init__(name)
+    def __init__(self, name, heal, collectable=True, marketable=True, openable=False):
+        super().__init__(name, collectable, marketable, openable)
         self.description = items_data["healers"][f"{self.name}".lower()]
         self.heal = heal
         self.value = self.calculate_value(self.heal)
@@ -69,8 +72,8 @@ class Healer(Item):
 
 class ManaRecharger(Item):
 
-    def __init__(self, name, mr):
-        super().__init__(name)
+    def __init__(self, name, mr, collectable=True, marketable=True, openable=False):
+        super().__init__(name, collectable, marketable, openable)
         self.description = items_data["mana rechargers"][f"{self.name}".lower()]
         self.mr = mr
         self.value = self.calculate_value(self.mr)
@@ -81,8 +84,8 @@ class ManaRecharger(Item):
 
 class Armor(Item):
 
-    def __init__(self, name, defence):
-        super().__init__(name)
+    def __init__(self, name, defence, collectable=True, marketable=True, openable=False):
+        super().__init__(name, collectable, marketable, openable)
         self.description = items_data["armors"][f"{self.name}".lower()]
         self.defence = defence
         self.value = self.calculate_value(self.defence)
