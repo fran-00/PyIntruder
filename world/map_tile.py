@@ -126,6 +126,13 @@ class MapTile:
             return "There is no one to trade with.", None
     
     def look(self):
+        """Show a detailed description of the current room's scenario.
+
+        Returns
+        -------
+            str
+                A detailed description of the current room and its features
+        """
         response = self.description
         for item in self.inventory:
             response += f"\nThere is a {item.name} here."
