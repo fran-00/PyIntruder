@@ -73,8 +73,12 @@ class Player:
     def best_weapon(self):
         """Finds the best weapon in the player's inventory and return it.
 
-        Returns:
-            Weapon or None: The best weapon in the player's inventory, or None if the player has no weapons.
+        Returns
+        -------
+            best_weapon : Weapon
+                The weapon in the player's inventory with higher damage attribute
+            None
+                The player has no weapons.
         """
         max_damage = 0
         best_weapon = None
@@ -90,10 +94,19 @@ class Player:
             return None
 
     def attack(self):
-        """Attacks the enemy in the current room with the best available weapon and return a message describing the outcome of the attack.
+        """Attempt to attack an enemy in the current room with the best
+        available weapon.
 
-        Returns:
-            str: A message describing the outcome of the attack, including any damage dealt or loot obtained.
+        Returns
+        -------
+             str
+                If the player has no weapon, return a message stating this.
+             None
+                If there is no living enemy in the room, return None.
+             func
+                Return the result of calling calculate_attack_precision with
+                arguments for the enemy, weapon, and a message about the attack
+                attempt.
         """
         weapon = self.best_weapon()
         room = parser.tile_at(self.x, self.y)
@@ -289,10 +302,22 @@ class Player:
     def choose_item(self, *args):
         """Selects an item from the inventory based on the user's input.
 
-        Args:
-            *args (tuple): A tuple of arguments containing the user's input `action`,
-                `inventory` list, and `purpose` string.
+        Parameters
+        ----------
+            *args
+                The arguments to customize the behavior of the method:
+                *args[0]: The inventory to use for trade purposes or None
+                *args[1]: The purpose of the item selection
+                *args[-1]: The action to perform
 
+        Returns
+        -------
+            func
+                Call show_appropriate_answer passing choosen item and purpose as
+                arguments
+            str
+                If action is cancelled, return a message.
+        
         Returns:
             str: A string representing the appropriate response based on the user's input.
         """
