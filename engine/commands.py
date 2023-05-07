@@ -15,6 +15,7 @@ class Commands:
             'EAST': r'^(go\s)?e(a(st)?)?$',
             'DIAGNOSE': r'^(diagnose)$',
             'LOOK': r'^(l(ook)?)$',
+            'LOOK AT': r'^(look at|examine|watch)\s+(.+)$',
             'INVENTORY': r'^(i(nv(entory)?)?)$',
             'ATTACK': r'^(a(ttack)?)$',
             'CURSE': r'^(c(urse)?)$',
