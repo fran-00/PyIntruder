@@ -490,6 +490,27 @@ class Player:
         return f"You use {choice.name}. You now have {self.hp} HP remaining."
 
     def items_swapper(self, giver, receiver, item, purpose):
+        """Moves items between inventories of two Entities or buys/sells items.
+        Call sort_inventory method on both Entities when done.
+
+        Parameters
+        ----------  
+            giver
+                The player instance that is giving the item.
+            receiver
+                The player instance that is receiving the item.
+            item
+                The item being transferred or bought/sold.
+            purpose
+                A string that specifies the purpose of the transfer. It can have two possible values: 'trade' (when the characters are trading items) or 'buy_sell' (when one character is buying and the other is selling).
+
+        Returns
+        -------
+            str 
+                String that warns if player has no gold. 
+            None
+                In any other case.
+        """
         if purpose == "trade" and receiver == self:
             if item.value > receiver.gold:
                 return "<< You don't have enough cash. >>"
