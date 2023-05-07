@@ -71,7 +71,7 @@ class Player:
     # -------------------------------------------------------------------------|
 
     def best_weapon(self):
-        """Finds the best weapon in the player's inventory and return it.
+        """Find the best weapon in the player's inventory and return it.
 
         Returns
         -------
@@ -100,13 +100,12 @@ class Player:
         Returns
         -------
              str
+                Return the result of calling calculate_attack_precision() with
+                arguments for the enemy, weapon, and a message about the attack
+                attempt.
                 If the player has no weapon, return a message stating this.
              None
                 If there is no living enemy in the room, return None.
-             func
-                Return the result of calling calculate_attack_precision with
-                arguments for the enemy, weapon, and a message about the attack
-                attempt.
         """
         weapon = self.best_weapon()
         room = parser.tile_at(self.x, self.y)
@@ -249,9 +248,9 @@ class Player:
                 *args[-1] (str): [Required] User's action
         Returns
         -------
-            func
+            str
                 if action is "B" or "S", return the result of calling
-                check_inventory method passing as argument player's inventory
+                check_inventory() passing as argument player's inventory
                 (if selling) or trader's inventory (if buying).
             tuple : str, None
                 if action is q or is not recognizedm return a tuple with a
@@ -308,8 +307,8 @@ class Player:
             tuple
                 If no items are found, a tuple that contains a string with 
                 informative message and None value
-            func
-                If items are found, call show_inventory method passing inventory
+            str
+                If items are found, call show_inventory() method passing inventory
                 and purpose as arguments
         """
         inventory = args[0]
@@ -396,11 +395,9 @@ class Player:
 
         Returns
         -------
-            func
-                Call show_appropriate_answer passing choosen item and purpose as
-                arguments
             str
-                If action is cancelled, return a message.
+                Call show_appropriate_answer() passing choosen item and purpose
+                as arguments. If action is cancelled, return a message.
         
         Raises
         ------
