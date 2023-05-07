@@ -106,9 +106,11 @@ class Player:
         if enemy is None or not enemy.is_alive():
             return
 
-        response += f"You try to hit {enemy.name} with {best_weapon.name}!"
+        response += f"You try to hit {enemy.name} with {weapon.name}!"
+        return self.calculate_attack_precision(enemy, weapon, response)
+
+    def calculate_attack_precision(self, enemy, weapon, response):
         precision = random.randint(1, 20)
-        
         match precision:
             case 20:
                 damage_multiplier = 2
