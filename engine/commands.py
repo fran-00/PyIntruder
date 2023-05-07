@@ -41,12 +41,16 @@ class Commands:
     def choose_action(self, action=str):
         """Chooses an action based on the given input string and returns its result.
 
-        Args:
-            action (str): The input string representing the action to be taken.
+        Parameters
+        ----------
+            action : str
+                The input string representing the action to be taken.
 
-        Returns:
-            # TODO
-
+        Returns
+        -------
+            str
+                The string to show depends on the command entered, for each of
+                them a method of Player class or of MapTile class is called.
         """
         self.player.turn += 1
 
