@@ -240,6 +240,23 @@ class Player:
         return
 
     def trading_mode(self, *args):
+        """Enter trading mode with a non-player character.
+        
+        Parameters
+        ----------
+            *args
+                Accepts any number of arguments.
+                *args[-1] (str): [Required] User's action
+        Returns
+        -------
+            func
+                if action is "B" or "S", return the result of calling
+                check_inventory method passing as argument player's inventory
+                (if selling) or trader's inventory (if buying).
+            tuple : str, None
+                if action is q or is not recognizedm return a tuple with a
+                message and None value to break play() loop.
+        """
         action = args[-1]
         room = parser.tile_at(self.x, self.y)
         match action:
