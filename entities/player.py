@@ -95,12 +95,12 @@ class Player:
         Returns:
             str: A message describing the outcome of the attack, including any damage dealt or loot obtained.
         """
-        best_weapon = self.best_weapon()
+        weapon = self.best_weapon()
         room = parser.tile_at(self.x, self.y)
         enemy = room.enemy
         response = ""
 
-        if best_weapon is None:
+        if weapon is None:
             return "You don't have any weapon with you."
 
         if enemy is None or not enemy.is_alive():
@@ -114,22 +114,22 @@ class Player:
                 damage_multiplier = 2
                 response += (
                     f"\nCritical hit! "
-                    f"You deal {best_weapon.damage * damage_multiplier} DMG!"
+                    f"You deal {weapon.damage * damage_multiplier} DMG!"
                 )
             case 17 | 18 | 19:
                 damage_multiplier = 1.5
                 response += (
                     f"\nGood hit! "
-                    f"You deal {best_weapon.damage * damage_multiplier} DMG!"
+                    f"You deal {weapon.damage * damage_multiplier} DMG!"
                 )
             case 3 | 2 | 1:
                 response += "\nMissed!"
                 return response
             case _:
                 damage_multiplier = 1
-                response += f"\nYou deal {best_weapon.damage} DMG!"
+                response += f"\nYou deal {weapon.damage} DMG!"
 
-        enemy.hp -= best_weapon.damage * damage_multiplier
+        enemy.hp -= weapon.damage * damage_multiplier
         return self.check_enemy_hp(enemy, response)
 
     def check_enemy_hp(self, enemy, response):
