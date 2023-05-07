@@ -167,3 +167,18 @@ class MapTile:
         if self.enemy and not self.enemy.is_alive():
             response += f"\nThere the corpse of a {self.enemy.name} here."
         return response
+    
+    def look_at(self, target):
+        stuff_in_room = []
+        if self.inventory != []:
+            stuff_in_room.extend(self.inventory)
+        if target in self.name.lower():
+            return self.description
+        elif self.talker and target in self.talker.name:
+            return self.talker.description
+        if self.enemy and target in self.enemy.name:
+           return self.enemy.description
+        for item in self.inventory:
+            if target in item.name.lower():
+                return item.description
+        return(f"I can't see any {target} here.")
