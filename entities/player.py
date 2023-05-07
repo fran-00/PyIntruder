@@ -276,6 +276,7 @@ class Player:
     # -------------------------------------------------------------------------|
 
     def sort_inventory(self):
+        """Sorts the inventory in-place based on the item class name and item name."""
         self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
         return
 
@@ -311,6 +312,24 @@ class Player:
                 return "Invalid choice, try again.", None
 
     def show_instructions(func):
+        """Decorator: add a response string to decorated function, based on its argument.
+
+        The wrapper function determines the functionality based on the second
+        argument of the decorated function, "purpose": a message is
+        created and appended to the result of the called function.
+        If no matching value is encountered, no message is added.
+
+        Parameters
+        ----------
+        func : function
+            The function to be decorated. It must have a string argument 
+            with the string "purpose".
+
+        Returns
+        -------
+        function
+            A new function that wraps the given function with added functionality.
+        """
         def wrapper(self, *args):
             purpose = args[1]
             match purpose:
