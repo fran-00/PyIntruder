@@ -427,6 +427,23 @@ class Player:
             return f"{e}"
 
     def show_appropriate_answer(self, choice, purpose):
+        """Displays the appropriate answer for the given choice and purpose.
+
+        Parameters
+        ----------
+            choice : Item
+                The selected item
+            purpose : str
+                The purpose of the selection
+
+        Returns
+        -------
+            str
+                The appropriate string response for the selected `choice` and
+                `purpose` obtained from item_swapper() if manipulating items,
+                from check_enemy_hp() if fighting or from heal() if player wants
+                to consume an Healer.
+        """
         room = parser.tile_at(self.x, self.y)
         match purpose:
             case "my-inventory":
