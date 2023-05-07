@@ -118,3 +118,15 @@ class MapTile:
             return f"{self.talker.name} doesn't want to trade.", None
         else:
             return "There is no one to trade with.", None
+    
+    def look(self):
+        response = self.description
+        for item in self.inventory:
+            response += f"\nThere is a {item.name} here."
+        if self.talker:
+            response += f"\nThere is {self.talker.name} here."
+        if self.enemy and self.enemy.is_alive():
+            response += f"\nThere is a {self.enemy.name} here, willing to kill you."
+        if self.enemy and not self.enemy.is_alive():
+            response += f"\nThere the corpse of a {self.enemy.name} here."
+        return response
