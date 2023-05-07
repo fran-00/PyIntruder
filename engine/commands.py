@@ -30,6 +30,18 @@ class Commands:
         }
 
     def get_room_description(self):
+        """Show a description for the room Player is currently in.
+
+        Check if there is an enemy in the room and if it is alive or not.
+        If there is no enemy, it return the name and description of the current room. 
+        If there is an enemy, it return a description if is alive and another
+        if is dead.
+
+        Returns
+        -------
+            string
+                A description of the current room or enemy
+        """
         self.room = parser.tile_at(self.player.x, self.player.y)
         if self.room.enemy is None:
             return (f"***{self.room.name}***\n> {self.room.description}")
