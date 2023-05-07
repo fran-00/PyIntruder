@@ -80,12 +80,12 @@ class GameModel(QObject):
         Parameters
         ----------
             game_response : tuple
-                tuple of methods to be processed in the nested loop.
+                Tuple of methods to be processed in the nested loop.
 
         Returns
         -------
             None
-                Emits PyQT signal to Controller for each nested response processed.
+                Emit PyQT signal to Controller for each nested response processed.
         """
         for i, method in enumerate(game_response):
             self.commands.arguments_list.append(self.action)
@@ -105,34 +105,37 @@ class GameModel(QObject):
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
         """
-        Receives a string signal from the controller and sets the user action.
+        Receive a string signal and set user action.
 
-        This method is a slot that receives a string signal from the controller, which represents
-        the user's chosen action. This slot sets the received string to the `action` instance variable
-        and exits the event loop to continue the game execution.
+        This is a slot that receives a string signal from GameController class
+        which represents user's chosen action.
+        Set received string to `action` instance variable and exit event loop 
+        to continue game execution.
 
-        Args:
-            user_action (str): A string representing the user action.
-
+        Parameters
+        ----------
+            user_action : str
+                A string representing the user action.
         """
         self.action = user_action.lower()
         self.event_loop.exit()
 
     def handle_outbound_signal(self, game_response):
-        """Sends the given `game_response` string to the controller as a signal.
+        """Send given `game_response` string to GameController as a signal.
 
-        Args:
-            game_response: A string representing the game response to be sent.
-
+        Parameters
+        ----------
+            game_response : str
+                A string representing the game response to be sent.
         """
         self.model_signal_to_controller.emit(game_response)
 
     def handle_enemy_attack(self):
         """Handle an enemy attack on the player.
 
-        This method calls the `modify_player` method of the `room` object to calculate the enemy attacks on the player.
-        The resulting `enemy_attacks` are emitted to the controller using the `model_signal_to_controller` signal.
-
+        Call the `modify_player` method from MapTile class to calculate enemy
+        attacks on the player. The resulting `enemy_attacks` are emitted to
+        GameController using the `model_signal_to_controller` signal.
         """
         enemy_attacks = self.room.modify_player(self.player)
         self.model_signal_to_controller.emit(enemy_attacks)
