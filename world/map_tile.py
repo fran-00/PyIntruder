@@ -169,6 +169,19 @@ class MapTile:
         return response
     
     def look_at(self, target):
+        """Return the description of the object or item with the given target name in the room.
+        
+        Parameters
+        ----------
+        target: str
+            The name of the object or item to look at.
+        
+        Returns
+        -------
+        str
+            The description of the target object or item, or an error message 
+            if no matching target is found.
+        """
         stuff_in_room = []
         if self.inventory != []:
             stuff_in_room.extend(self.inventory)
