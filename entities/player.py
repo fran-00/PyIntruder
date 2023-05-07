@@ -588,6 +588,8 @@ class Player:
         for item in giver.inventory:
             if target in item.name.lower():
                 self.items_swapper(giver, receiver, item, "get-drop")
+                receiver.sort_inventory()
+                giver.sort_inventory()
                 if purpose == "get":
                     return f"{item.name}: taken."
                 else:
@@ -607,7 +609,6 @@ class Player:
                 response += f"{item.name}: dropped.\n"
         receiver.inventory.extend(giver.inventory)
         giver.inventory.clear()
-        receiver.sort_inventory()
         if response == "":
             return f"There is nothing to {purpose}."
         else:
