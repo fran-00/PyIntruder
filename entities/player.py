@@ -186,6 +186,26 @@ class Player:
         return response
 
     def cast_curse(self, enemy, choice):
+        """Cast a curse on an enemy.
+
+        Called by show_appropriate_answer() method if purpose argument is
+        "Curse". If there is not enough mana to cast the spell, return a string
+        indicating so. Otherwise, subtract the mana cost from the caster's mana
+        pool and the curse's damage from the target's hp.
+
+        Parameters
+        ----------
+            enemy : Enemy
+                The enemy in the current room.
+            choice : Curse
+                The choosen curse returned by choose_item() method.
+
+        Returns
+        -------
+            str
+                Return a formatted string indicating name of the spell cast,
+                damage dealt and remaining mana.
+        """
         if choice.mana_cost > self.mana:
             return f"You don't have enough mana to cast {choice.name}!"
         else:
