@@ -21,8 +21,10 @@ class Commands:
             'RUN': r'^(run|flee|escape)$',
             'TALK TO': r'^(talk to)\s+(.+)$',
             'TRADE': r'^(trade)$',
-            'GET': r'^(get|pick up)\s+(.+)$',
-            'DROP': r'^(drop)\s+(.+)$',
+            'GET ITEM': r'^(get|pick up)\s+(.+)$',
+            'GET FROM LIST': r'^(get|pick up)$',
+            'DROP ITEM': r'^(drop)\s+(.+)$',
+            'DROP FROM LIST': r'^(d(rop)?)$',
             'HEAL': r'^(h(eal)?)$',
             'MAP': r'^(m(ap)?)$'
         }
