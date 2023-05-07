@@ -632,12 +632,16 @@ class Player:
         )
 
     def show_map(self):
-        """Prints a textual representation of the world map, with the current location of the player marked.
+        """Print a visual representation of the world map and player's coordinates.
 
-        The map is defined in the `world_dsl` funcion of `parser` module, and is parsed into a grid of string
-        representations of the different types of map tiles. The `tile_type_dict` dictionary maps each tile type to its
-        corresponding string representation. The map is printed row by row, with each tile represented by a string enclosed
-        in vertical bars.
+        The map is defined in the `world_dsl` funcion of `parser` module, and is
+        parsed into a grid of string representations of the different types of
+        map tiles. The `tile_type_dict` dictionary maps each tile type to its
+        corresponding string representation. The map is printed row by row, with
+        each tile represented by a string enclosed in vertical bars.
+        
+        FIXME: the map is currently printed in the terminal because it is shown
+        truncated in the game window.
         """
 
         Black = "| bs |"
