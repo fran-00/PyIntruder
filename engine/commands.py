@@ -21,6 +21,7 @@ class Commands:
             'CURSE': r'^(c(urse)?)$',
             'RUN': r'^(run|flee|escape)$',
             'TALK TO': r'^(talk to)\s+(.+)$',
+            'TALK': r'^(talk)$',
             'TRADE': r'^(trade)$',
             'GET ITEM': r'^(get|pick up)\s+(.+)$',
             'GET FROM LIST': r'^(get|pick up)$',
@@ -117,16 +118,12 @@ class Commands:
                     else:
                         return "There is nothing to run away from. If you want to escape just quit the game!"
 
-                elif command == "TALK TO":
-                    target = re.match(regex, action).group(2)
-                    if self.room.talker and not self.room.talker.trade:
-                        return ""
-                    else:
-                        self.arguments_list = [None, "talk"]
-                        return (
-                            self.room.check_if_trading,
-                            self.room.dialogue
-                        )
+                elif command == "TALK":
+                    self.arguments_list = [None, "talk"]
+                    return (
+                        self.room.choose_talking_npc,
+                        self.room.dialogue
+                    )
 
                 elif command == "TRADE":
                     if self.room.talker and self.room.talker.trade:
