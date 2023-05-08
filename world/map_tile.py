@@ -196,18 +196,10 @@ class MapTile:
             The description of the target object or item, or a message 
             if no matching target is found.
         """
-        if target in self.name.lower():
-            return self.description
-        elif self.talker and target in self.talker.name:
-            return self.talker.description
-        if self.enemy and target in self.enemy.name:
-           return self.enemy.description
-        for item in self.inventory:
-            if target in item.name.lower():
-                return item.description
-        for item in player.inventory:
-            if target in item.name.lower():
-                return item.description
+        objects_to_check = [self, self.talker, self.enemy] + self.inventory + player.inventory
+        for obj in objects_to_check:
+            if obj and re.search(rf"\b\w*({''.join([f'{c}' for c in target])})\w*\b", obj.name.lower()):
+                return obj.description
         return(f"I can't see any {target} here.")
 
     def open(self, target):
