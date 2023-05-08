@@ -112,12 +112,6 @@ class MapTile:
             f"Oh shit, you have {player.hp} HP remaining..."
         )
 
-    def check_if_trading(self, *args):
-        if args[1] == "trade":
-            self.trade()
-        elif args[1] == "talk":
-            return
-    
     def dialogue(self, *args):
         return "We are talking."
     
