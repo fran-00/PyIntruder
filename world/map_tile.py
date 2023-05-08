@@ -6,6 +6,9 @@ from entities.factories import healers, weapons
 with open('world/data/tiles_data.json') as f:
     tiles_data = json.load(f)
 
+with open('entities/data/npcs_data.json') as nf:
+    npcs_data = json.load(nf)
+
 
 # *** ROOM OF ROOMS ***
 class MapTile:
