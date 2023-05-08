@@ -18,6 +18,9 @@ class MapTile:
         self.description = tiles_data[f"{self.name}".lower()]["description"]
         self.inventory = []
         self.environment = []
+        self.enemy = None
+        self.talker = None
+
         self.world_check = []
         self.choose_random_items()
         self.sort_inventory()
@@ -172,11 +175,15 @@ class MapTile:
         response = self.description
         for item in self.inventory:
             response += f"\nThere is a {item.name} here."
+        print(self.environment)
+        for surrounding in self.environment:
+            response += f"\nThere is a {surrounding} here."
         if self.talker:
             response += f"\nThere is {self.talker.name} here."
+
         if self.enemy and self.enemy.is_alive():
             response += f"\nThere is a {self.enemy.name} here, willing to kill you."
-        if self.enemy and not self.enemy.is_alive():
+        elif self.enemy and not self.enemy.is_alive():
             response += f"\nThere the corpse of a {self.enemy.name} here."
         return response
     
@@ -196,7 +203,7 @@ class MapTile:
             The description of the target object or item, or a message 
             if no matching target is found.
         """
-        objects_to_check = [self, self.talker, self.enemy] + self.inventory + player.inventory
+        objects_to_check = [self, self.talker, self.enemy] + self.inventory + self.environment + player.inventory
         for obj in objects_to_check:
             if obj and re.search(rf"\b\w*({''.join([f'{c}' for c in target])})\w*\b", obj.name.lower()):
                 return obj.description
