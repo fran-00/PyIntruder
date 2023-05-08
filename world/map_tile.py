@@ -1,4 +1,4 @@
-import random, json
+import random, json, re
 
 from entities.factories import healers, weapons
 
