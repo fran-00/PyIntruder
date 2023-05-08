@@ -12,7 +12,7 @@ class EnemyTile_1(MapTile):
         self.seen = False
         self.env_obj = []
         self.water = False
-        self.enemy_list = [Ef().gel_cube, Ef().squirrel, Ef().helicopter]
+        self.enemy_list = [e().gel_cube, e().squirrel, e().helicopter]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
@@ -24,7 +24,7 @@ class EnemyTile_2(MapTile):
         self.examine = None
         self.seen = False
         self.env_obj = []
-        self.enemy_list = [Ef().hunter, Ef().hunter, Ef().eyes]
+        self.enemy_list = [e().hunter, e().hunter, e().eyes]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
@@ -36,7 +36,7 @@ class EnemyTile_3(MapTile):
         self.examine = None
         self.seen = False
         self.env_obj = []
-        self.enemy_list = [Ef().ants, Ef().trog, Ef().uncanny]
+        self.enemy_list = [e().ants, e().trog, e().uncanny]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
@@ -48,7 +48,7 @@ class EnemyTile_4(MapTile):
         self.examine = None
         self.seen = False
         self.env_obj = []
-        self.enemy_list = [Ef().gnome]
+        self.enemy_list = [e().gnome]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 
@@ -60,7 +60,7 @@ class EnemyTile_5(MapTile):
         self.examine = None
         self.seen = False
         self.env_obj = []
-        self.enemy_list = [Ef().ostoyae]
+        self.enemy_list = [e().ostoyae]
         self.enemy = random.choice(self.enemy_list)
         super().__init__(x, y)
 

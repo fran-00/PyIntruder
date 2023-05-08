@@ -15,7 +15,7 @@ class LittleoTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Little(o) Shop'
         self.inventory = []
-        self.talker = NPCf().littleo
+        self.talker = npcs().littleo
         self.enemy = None
         super().__init__(x, y)
 
@@ -24,7 +24,7 @@ class BlacksmithTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Blacksmith'
         self.inventory = []
-        self.talker = NPCf().blacksmith
+        self.talker = npcs().blacksmith
         self.enemy = None
         super().__init__(x, y)
 
@@ -42,7 +42,7 @@ class FernsTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Ferns'
         self.inventory = []
-        self.talker = NPCf().ferns
+        self.talker = npcs().ferns
         self.enemy = None
         super().__init__(x, y)
 
@@ -51,7 +51,7 @@ class IntruderTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Intruder'
         self.inventory = []
-        self.talker = NPCf().intruder
+        self.talker = npcs().intruder
         self.enemy = None
         super().__init__(x, y)
 
@@ -60,7 +60,7 @@ class OakTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Oak'
         self.inventory = []
-        self.talker = NPCf().oak
+        self.talker = npcs().oak
         self.enemy = None
         super().__init__(x, y)
 
@@ -78,7 +78,7 @@ class TempleTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Temple'
         self.inventory = []
-        self.talker = NPCf().monk
+        self.talker = npcs().monk
         self.enemy = None
         super().__init__(x, y)
 

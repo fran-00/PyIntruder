@@ -19,8 +19,8 @@ class MapTile:
         self.sort_inventory()
 
     def choose_random_items(self):
-        healers_list = Hf().get_items_list()
-        weapons_list = Wf().get_items_list()
+        healers_list = healers().get_items_list()
+        weapons_list = weapons().get_items_list()
         n = random.randint(1, 4)
         if n in {1}:
             pass
