@@ -655,7 +655,7 @@ class Player:
             f"> XP : {self.xp}/{self.xp_modifier}\n"
             f"> Weapon equipped : {self.current_weapon}\n"
             f"> Turn : {self.turn}\n"
-            f"> Location : {self.x}.{self.y} - {room.name}\n"
+            f"> Location : {self.x}.{self.y} - {room.name}"
         )
 
     def show_map(self):
