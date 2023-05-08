@@ -135,6 +135,7 @@ class Surrounding(Item):
     
     def __init__(self, name, inventory, collectable=False, marketable=False, openable=False):
         super().__init__(name, collectable, marketable, openable)
+        self.description = items_data["surroundings"][f"{self.name}".lower()]
         self.inventory = inventory
 
 
@@ -142,4 +143,5 @@ class MissionRelatedItem(Item):
 
     def __init__(self, name, collectable=True, marketable=False, openable=False):
         super().__init__(name, collectable, marketable, openable)
+        self.description = items_data["mission related items"][f"{self.name}".lower()]
         self.value = 0
