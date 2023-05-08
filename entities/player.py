@@ -1,11 +1,7 @@
 import random
 
 from .entities_templates import Weapon, Curse, Armor, Healer, MissionRelatedItem
-from .factories.weapons_factory import WeaponsFactory as Wf
-from .factories.curses_factory import CursesFactory as Cf
-from .factories.armors_factory import ArmorsFactory as Af
-from .factories.healers_factory import HealersFactory as Hf
-from .factories.mission_related_items_factory import MissionRelatedItemsFactory as MRIf
+from .factories import weapons, curses, armors, healers
 
 import world.parser as parser
 import world.tiles as world

@@ -1,4 +1,4 @@
-from entities.factories.npcs_factory import NPCsFactory as NPCf
+from entities.factories import npcs
 from world.map_tile import MapTile
 
 
