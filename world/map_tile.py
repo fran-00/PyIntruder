@@ -122,7 +122,18 @@ class MapTile:
             return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk.", None
 
     def dialogue(self, *args):
-        return "We are talking."
+        with open('entities/data/npcs_data.json') as nf:
+            npcs_data = json.load(nf)
+        if self.room.talker and not self.talker.trade:
+            opening_sentence = npcs_data[self.talker.name.lower()]['opening sentence']
+            response = f"{opening_sentence}"
+
+            sentences = npcs_data[self.talker.name.lower()]['dialogue_0']
+            for sentence in list(sentences.values()):
+                response += sentence
+        else:
+            response = "{} ? "
+        return response
     
     def trade(self, *args):
         """Initiates a trade with an npc in the current room that wants to trade,
