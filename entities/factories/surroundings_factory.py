@@ -7,9 +7,11 @@ class SurroundingsFactory:
         
         self.specimen = Surrounding(
             "your car",
+            [],
             openable = True,
         )
         self.specimen = Surrounding(
             "chest",
+            [],
             openable = True,
         )
