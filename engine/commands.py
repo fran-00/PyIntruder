@@ -116,11 +116,7 @@ class Commands:
                         return "There is nothing to run away from. If you want to escape just quit the game!"
 
                 elif command == "TALK":
-                    self.arguments_list = [None, "talk", None]
-                    return (
-                        self.room.choose_talking_npc,
-                        self.room.dialogue
-                    )
+                    return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk."
 
                 elif command == "TALK TO":
                     target = re.match(regex, action).group(2)
