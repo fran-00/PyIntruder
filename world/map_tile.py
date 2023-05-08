@@ -187,11 +187,13 @@ class MapTile:
         ----------
         target: str
             The name of the object or item to look at.
+        player: Player
+            The Player class to examine items in inventory
         
         Returns
         -------
         str
-            The description of the target object or item, or an error message 
+            The description of the target object or item, or a message 
             if no matching target is found.
         """
         if target in self.name.lower():
