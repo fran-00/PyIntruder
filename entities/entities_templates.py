@@ -61,6 +61,7 @@ class Item(Entity):
 
     def __init__(self, name):
         super().__init__(name)
+        self.value = 0
         self.collectable = True
         self.marketable = True
         self.openable = False
@@ -147,7 +148,6 @@ class MissionRelatedItem(Item):
     def __init__(self, name):
         super().__init__(name)
         self.description = items_data["mission related items"][f"{self.name}".lower()]
-        self.value = 0
         self.collectable = True
         self.marketable = False
         self.openable = False
