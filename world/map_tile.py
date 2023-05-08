@@ -112,6 +112,15 @@ class MapTile:
             f"Oh shit, you have {player.hp} HP remaining..."
         )
 
+    def choose_talking_npc(self, *args):
+        if self.talker and not self.talker.trade:
+            return "Who do you want to talk to?"
+        elif self.enemy:
+            # TODO: add enemy dialogues
+            return "Enemy talks", None
+        elif not self.talker and not self.enemy:
+            return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk.", None
+
     def dialogue(self, *args):
         return "We are talking."
     
