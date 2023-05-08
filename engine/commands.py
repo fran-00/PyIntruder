@@ -88,11 +88,7 @@ class Commands:
                     return self.room.look_at(target, self.player)
 
                 elif command == "INVENTORY":
-                    self.arguments_list = [self.player.inventory, "my-inventory"]
-                    return (
-                        self.player.check_inventory,
-                        self.player.choose_item
-                    )
+                    return self.player.check_inventory(self.player.inventory, "my-inventory")
 
                 elif command == "ATTACK":
                     if self.room.enemy and self.room.enemy.is_alive():
