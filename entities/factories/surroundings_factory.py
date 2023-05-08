@@ -10,7 +10,7 @@ class SurroundingsFactory:
             [],
             openable = True,
         )
-        self.specimen = Surrounding(
+        self.chest = Surrounding(
             "chest",
             [],
             openable = True,
