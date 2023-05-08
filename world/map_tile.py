@@ -17,6 +17,7 @@ class MapTile:
         self.y = y
         self.description = tiles_data[f"{self.name}".lower()]["description"]
         self.inventory = []
+        self.environment = []
         self.world_check = []
         self.choose_random_items()
         self.sort_inventory()
