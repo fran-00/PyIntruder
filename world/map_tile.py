@@ -116,8 +116,18 @@ class MapTile:
         )
 
     def choose_talking_npc(self, *args):
-        if self.talker and not self.talker.trade:
-            return "Who do you want to talk to?"
+        target = args[2]
+        if target == None:
+            # TODO:
+            return "Who do you want to talk to?", None
+        elif self.talker.name.lower() == target:
+            response = ""
+            opening_sentece = npcs_data[self.talker.name.lower()]['opening sentence']
+            response += f"{opening_sentece}"
+            player_dialogue = npcs_data[self.talker.name.lower()]['player dialogue 0']
+            for i, sentence in enumerate(list(player_dialogue.values())):
+                response += f"\n{i}: {sentence}"
+            return response
         elif self.enemy:
             # TODO: add enemy dialogues
             return "Enemy talks", None
@@ -125,18 +135,8 @@ class MapTile:
             return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk.", None
 
     def dialogue(self, *args):
-        with open('entities/data/npcs_data.json') as nf:
-            npcs_data = json.load(nf)
-        if self.room.talker and not self.talker.trade:
-            opening_sentence = npcs_data[self.talker.name.lower()]['opening sentence']
-            response = f"{opening_sentence}"
-
-            sentences = npcs_data[self.talker.name.lower()]['dialogue_0']
-            for sentence in list(sentences.values()):
-                response += sentence
-        else:
-            response = "{} ? "
-        return response
+        # TODO: Parse dialogues from npc dialogue 0
+        return
     
     def trade(self, *args):
         """Initiates a trade with an npc in the current room that wants to trade,
