@@ -1,9 +1,6 @@
 import random, json
 
-from entities.factories.weapons_factory import WeaponsFactory as Wf
-from entities.factories.curses_factory import CursesFactory as Cf
-from entities.factories.armors_factory import ArmorsFactory as Af
-from entities.factories.healers_factory import HealersFactory as Hf
+from entities.factories import healers, weapons
 
 
 with open('world/data/tiles_data.json') as f:
