@@ -179,8 +179,8 @@ class Commands:
                 elif command == "MAP":
                     return self.player.show_map()
 
-                else:
-                    return ("I beg your pardon?")
+        else:
+            return ("I beg your pardon?")
 
     def move(self, action):
         """Move the player in the specified direction if possible and return the room description.
