@@ -182,7 +182,7 @@ class MapTile:
             response += f"\nThere the corpse of a {self.enemy.name} here."
         return response
     
-    def look_at(self, target):
+    def look_at(self, target, player):
         """Return the description of the object or item with the given target name in the room.
         
         Parameters
@@ -206,6 +206,9 @@ class MapTile:
         if self.enemy and target in self.enemy.name:
            return self.enemy.description
         for item in self.inventory:
+            if target in item.name.lower():
+                return item.description
+        for item in player.inventory:
             if target in item.name.lower():
                 return item.description
         return(f"I can't see any {target} here.")
