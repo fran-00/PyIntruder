@@ -125,6 +125,11 @@ class Commands:
                         self.room.dialogue
                     )
 
+                elif command == "TALK TO":
+                    target = re.match(regex, action).group(2)
+                    self.arguments_list = [None, "talk"]
+                    return self.room.dialogue # TODO:
+
                 elif command == "TRADE":
                     if self.room.talker and self.room.talker.trade:
                         self.arguments_list = [self.room.talker.inventory, "trade"]
