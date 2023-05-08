@@ -336,7 +336,7 @@ class Player:
             purpose = args[1]
             match purpose:
                 case "my-inventory":
-                    response = f"Your wealth: {self.gold} §\nChoose a number to read an item's description or press Q to quit."
+                    response = f"Your wealth: {self.gold} §"
                 case "trade" if not self.is_selling:
                     response = "Choose a number to buy an item or press Q to quit."
                 case "trade" if self.is_selling:
