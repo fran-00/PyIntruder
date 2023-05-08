@@ -197,9 +197,6 @@ class MapTile:
             The description of the target object or item, or an error message 
             if no matching target is found.
         """
-        stuff_in_room = []
-        if self.inventory != []:
-            stuff_in_room.extend(self.inventory)
         if target in self.name.lower():
             return self.description
         elif self.talker and target in self.talker.name:
