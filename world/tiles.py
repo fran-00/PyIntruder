@@ -6,7 +6,7 @@ class StartTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Clearing'
         self.inventory = []
-        self.environment = [surroundings().chest]
+        self.environment = [surroundings().car]
         self.talker = None
         self.enemy = None
         super().__init__(x, y)
