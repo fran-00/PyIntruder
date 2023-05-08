@@ -437,7 +437,7 @@ class Player:
                     if purpose in ["trade"]:
                         response += f"{index}. - {item} - {item.value}§\n"
                     else:
-                        response += f"> {item.name}\n"
+                        response += f"> {item}\n"
                     index += 1
         return response
 
