@@ -5,98 +5,65 @@ from world.map_tile import MapTile
 class StartTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Clearing'
-        self.inventory = []
-        self.environment = [surroundings().car]
-        self.talker = None
-        self.enemy = None
         super().__init__(x, y)
+        self.environment = [surroundings().car]
 
 
 class LittleoTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Little(o) Shop'
-        self.inventory = []
-        self.environment = []
-        self.talker = npcs().littleo
-        self.enemy = None
         super().__init__(x, y)
+        self.talker = npcs().littleo
 
 
 class BlacksmithTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Blacksmith'
-        self.inventory = []
-        self.environment = []
-        self.talker = npcs().blacksmith
-        self.enemy = None
         super().__init__(x, y)
+        self.talker = npcs().blacksmith
 
 
 class ChestTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Chest'
-        self.inventory = []
-        self.environment = []
-        self.talker = None
-        self.enemy = None
         super().__init__(x, y)
 
 
 class FernsTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Ferns'
-        self.inventory = []
-        self.environment = []
-        self.talker = npcs().ferns
-        self.enemy = None
         super().__init__(x, y)
+        self.talker = npcs().ferns
 
 
 class IntruderTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Intruder'
-        self.inventory = []
-        self.environment = []
-        self.talker = npcs().intruder
-        self.enemy = None
         super().__init__(x, y)
+        self.talker = npcs().intruder
 
 
 class OakTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Oak'
-        self.inventory = []
-        self.environment = []
-        self.talker = npcs().oak
-        self.enemy = None
         super().__init__(x, y)
+        self.talker = npcs().oak
 
 
 class PathTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Path'
-        self.inventory = []
-        self.environment = []
-        self.talker = None
-        self.enemy = None
         super().__init__(x, y)
 
 
 class TempleTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Temple'
-        self.inventory = []
-        self.environment = []
-        self.talker = npcs().monk
-        self.enemy = None
         super().__init__(x, y)
+        self.talker = npcs().monk
 
 
 class VictoryTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Victory'
-        self.inventory = []
-        self.environment = []
-        self.talker = None
-        self.enemy = None
         super().__init__(x, y)
