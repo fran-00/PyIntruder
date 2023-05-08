@@ -6,7 +6,7 @@ class SurroundingsFactory:
     def __init__(self):
         
         self.specimen = Surrounding(
-            "your car",
+            "car",
             [],
             openable = True,
         )
