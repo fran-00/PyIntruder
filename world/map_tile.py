@@ -174,12 +174,10 @@ class MapTile:
         response = self.description
         for item in self.inventory:
             response += f"\nThere is a {item.name} here."
-        print(self.environment)
         for surrounding in self.environment:
             response += f"\nThere is a {surrounding} here."
         if self.talker:
             response += f"\nThere is {self.talker.name} here."
-
         if self.enemy and self.enemy.is_alive():
             response += f"\nThere is a {self.enemy.name} here, willing to kill you."
         elif self.enemy and not self.enemy.is_alive():
