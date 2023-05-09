@@ -146,9 +146,10 @@ class Surrounding(Item):
 
 class MissionRelatedItem(Item):
 
-    def __init__(self, name):
+    def __init__(self, name, openable=False):
+        
         super().__init__(name)
         self.description = items_data["mission related items"][f"{self.name}".lower()]
         self.collectable = True
         self.marketable = False
-        self.openable = False
+        self.openable = openable
