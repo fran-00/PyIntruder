@@ -1,4 +1,4 @@
-from .entities_templates import Armor, Curse, Enemy, Healer, ManaRecharger, MissionRelatedItem, NonPlayableCharacter, Surrounding, Weapon
+from .templates import Armor, Curse, Enemy, Healer, ManaRecharger, MissionRelatedItem, NonPlayableCharacter, Surrounding, Weapon
 
 
 class Factory:
