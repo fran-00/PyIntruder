@@ -3,8 +3,7 @@ import sys
 from PyQt6.QtWidgets import QApplication
 
 import world.parser as parser
-from engine.model import GameModel
-from engine.model import GameThread
+from engine.model import GameModel, GameThread
 from engine.view import GameView
 from engine.controller import GameController
 from entities.player import Player
