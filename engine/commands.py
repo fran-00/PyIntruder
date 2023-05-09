@@ -86,7 +86,7 @@ class Commands:
 
                 elif command == "LOOK AT":
                     target = re.match(regex, action).group(2)
-                    return self.room.look_at(target, self.player)
+                    return self.room.look_at_command_handler(target, self.player)
 
                 elif command == "INVENTORY":
                     return self.player.check_inventory(self.player.inventory, "my-inventory")

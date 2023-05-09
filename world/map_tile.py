@@ -185,7 +185,7 @@ class MapTile:
             response += f"\nThere the corpse of a {self.enemy.name} here."
         return response
     
-    def look_at(self, target, player):
+    def look_at_command_handler(self, target, player):
         """Return the description of the object or item with the given target name in the room.
         
         Parameters
