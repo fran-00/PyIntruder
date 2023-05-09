@@ -93,7 +93,7 @@ class Commands:
 
                 elif command == "ATTACK":
                     if self.room.enemy and self.room.enemy.is_alive():
-                        return self.player.attack()
+                        return self.player.attack_command_handler()
                     else:
                         return "There is no one to attack here!"
 

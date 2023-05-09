@@ -95,7 +95,7 @@ class Player:
         else:
             return None
 
-    def attack(self):
+    def attack_command_handler(self):
         """Attempt to attack an enemy in the current room with the best
         available weapon.
 
