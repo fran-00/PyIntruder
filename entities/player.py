@@ -575,7 +575,7 @@ class Player:
         None
             In any other case.
         """
-        if purpose == "trade" and receiver == self:
+        if purpose == "trade":
             if item.value > receiver.gold:
                 return "<< You don't have enough cash. >>"
             giver.gold += item.value
