@@ -135,13 +135,14 @@ class Armor(Item):
 
 class Surrounding(Item):
     
-    def __init__(self, name, inventory):
+    def __init__(self, name, inventory, openable=False):
+        
         super().__init__(name)
         self.description = items_data["surroundings"][f"{self.name}".lower()]
         self.inventory = inventory
         self.collectable = False
         self.marketable = False
-        self.openable = False
+        self.openable = openable
 
 class MissionRelatedItem(Item):
 
