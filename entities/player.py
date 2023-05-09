@@ -278,7 +278,7 @@ class Player:
     # -------------------------------------------------------------------------|
 
     def sort_inventory(self):
-        """Sorts the inventory in-place based on the item class name and item name."""
+        """Sort inventory in-place based on the item class name and item name."""
         self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
         return
 
@@ -445,7 +445,7 @@ class Player:
         return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
 
     def choose_item(self, *args):
-        """Selects an item from the inventory based on the user's input.
+        """Select an item from the inventory based on the user's input.
 
         Parameters
         ----------
@@ -554,7 +554,7 @@ class Player:
         return f"You use {choice.name}. You now have {self.hp} HP remaining."
 
     def items_swapper(self, giver, receiver, item, purpose):
-        """Moves items between inventories of two Entities or buys/sells items.
+        """Move items between inventories of two Entities or buys/sells items.
         Call sort_inventory method on both Entities when done.
 
         Parameters
@@ -605,7 +605,7 @@ class Player:
         return(f"You can't see any {target} here")
 
     def get_or_drop_all(self, giver, receiver, purpose):
-        """Takes all items from giver's inventory, add them to receiver's inventory
+        """Take all items from giver's inventory, add them to receiver's inventory
         and show appropriate message based on purpose.
         
         Parameters
@@ -645,7 +645,7 @@ class Player:
     # -------------------------------------------------------------------------|
 
     def diagnose_command_handler(self):
-        """Returns a formatted string with the player's current status information."""
+        """Return a formatted string with the player's current status information."""
         room = parser.tile_at(self.x, self.y)
         return (
             f"> Level : {self.lvl}\n"

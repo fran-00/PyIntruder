@@ -55,7 +55,7 @@ class Commands:
             return (f"{self.room.enemy.description_if_dead}")
 
     def choose_action(self, action=str):
-        """Chooses an action based on the given input string and returns its result.
+        """Choose an action based on the given input string and returns its result.
 
         Parameters
         ----------

@@ -140,7 +140,7 @@ class MapTile:
         return
     
     def trade(self, *args):
-        """Initiates a trade with an npc in the current room that wants to trade,
+        """Initiate a trade with an npc in the current room that wants to trade,
         if any.
 
         Parameters
