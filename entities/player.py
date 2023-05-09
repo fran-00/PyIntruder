@@ -227,7 +227,7 @@ class Player:
         self.mana = self.max_mana
         return f"You leveled up! You are now at {self.lvl} LVL."
 
-    def cast_curse(self, enemy, choice):
+    def curse_command_handler(self, enemy, choice):
         """Cast a curse on an enemy.
 
         Called by show_appropriate_answer() method if purpose argument is
@@ -526,7 +526,7 @@ class Player:
                 self.items_swapper(self, room, choice, purpose)
                 return f"{choice.name}: dropped."
             case "Curse":
-                return self.check_enemy_hp(room.enemy, self.cast_curse(room.enemy, choice))
+                return self.check_enemy_hp(room.enemy, self.curse_command_handler(room.enemy, choice))
             case "Healer":
                 return self.heal_command_handler(choice)
             case _:
