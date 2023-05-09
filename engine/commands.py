@@ -153,11 +153,11 @@ class Commands:
 
                 elif command == "GET ITEM":
                     target = re.match(regex, action).group(2)
-                    return self.player.get_or_drop_item(self.room, self.player, target, "get")
+                    return self.player.get_and_drop_command_handler(self.room, self.player, target, "get")
 
                 elif command == "DROP ITEM":
                     target = re.match(regex, action).group(2)
-                    return self.player.get_or_drop_item(self.player, self.room, target, "drop")
+                    return self.player.get_and_drop_command_handler(self.player, self.room, target, "drop")
 
                 elif command == "HEAL":
                     if self.player.hp == self.player.max_hp:
