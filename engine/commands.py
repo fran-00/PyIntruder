@@ -174,7 +174,7 @@ class Commands:
 
                 elif command == "OPEN OBJECT":
                     target = re.match(regex, action).group(2)
-                    return self.room.open(target)
+                    return self.room.open_command_handler(target)
 
                 elif command == "MAP":
                     return self.player.show_map()
