@@ -1,7 +1,7 @@
 import random
 
 from .entities_templates import Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon
-from .factories import armors, curses, healers, manarechargers, missionitems, weapons
+from factory import Factory
 
 import world.parser as parser
 import world.tiles as world
@@ -13,10 +13,10 @@ class Player:
         self.x = parser.start_tile_location[0]
         self.y = parser.start_tile_location[1]
 
-        self.inventory = [curses().veridical,
-                          weapons().wire,
-                          armors().fungine_armor,
-                          healers().ats]
+        self.inventory = [Factory().veridical,
+                          Factory().wire,
+                          Factory().fungine_armor,
+                          Factory().ats]
         self.sort_inventory()
         self.current_weapon = self.best_weapon()
         self.gold = 10000000

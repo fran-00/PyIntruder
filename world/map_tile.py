@@ -1,6 +1,6 @@
 import random, json, re
 
-from entities.factories import healers, manarechargers
+from entities.factory import Factory
 
 
 with open('world/data/tiles_data.json') as f:
