@@ -528,11 +528,11 @@ class Player:
             case "Curse":
                 return self.check_enemy_hp(room.enemy, self.cast_curse(room.enemy, choice))
             case "Healer":
-                return self.heal(choice)
+                return self.heal_command_handler(choice)
             case _:
                 return
 
-    def heal(self, choice):
+    def heal_command_handler(self, choice):
         """Heal Player using chosen item and remove it from the inventory.
 
         Parameters
