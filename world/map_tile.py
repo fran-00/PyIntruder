@@ -1,5 +1,6 @@
 import random, json, re
 
+from entities.templates import Healer, ManaRecharger
 from entities.factory import Factory
 
 
