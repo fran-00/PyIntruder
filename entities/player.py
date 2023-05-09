@@ -1,7 +1,7 @@
 import random
 
-from .entities_templates import Weapon, Curse, Armor, Healer, MissionRelatedItem
-from .factories import weapons, curses, armors, healers
+from .entities_templates import Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon
+from .factories import armors, curses, healers, manarechargers, missionitems, weapons
 
 import world.parser as parser
 import world.tiles as world
