@@ -67,7 +67,7 @@ class Item(Entity):
         self.openable = False
 
     def calculate_value(self, n):
-        range_value = n * 0.1
+        range_value = n * 0.3
         return round(random.uniform(n - range_value, n + range_value), 2)
 
 
