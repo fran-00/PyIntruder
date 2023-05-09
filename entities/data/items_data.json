@@ -50,10 +50,12 @@
         "bandages": ""
     },
     "mana rechargers": {
-        "ginseng": "Sweet and dense.",
-        "campari": "Red passion.",
-        "potion1": "Please, consume in moderation.",
-        "potion2": "Seriously, this stuff is tough. Please consume in moderation."
+        "plasma pop": "Sip on this electrifying soda to supercharge your mana reserves with a jolt of plasma energy! Warning: may cause spontaneous hair-raising.",
+        "dialectic draught": "Sip on this savory brew to sharpen your philosophical reasoning and engage in lively debates with ease. Warning: may lead to endless discussions.",
+        "fractal fizz": "This sparkling beverage imbues the drinker with the power of infinite recursion, fractalizing their mana reserves into an infinitely complex pattern.",
+        "neural network": "This advanced artificial intelligence has been programmed to optimize your mana usage. It can predict your needs before you even know them and can recharge your mana with lightning-fast speed. Just be sure to treat it nicely or it might turn on you.",
+        "schrodinger's solution": "This mysterious solution is both a mana source and a philosophical paradox. It's simultaneously alive and dead, and its effects on your mana levels are unpredictable. Use at your own risk.",
+        "descartes' doubt": "This powerful mana source is based on the philosophical principle of doubt. It encourages you to question everything, including your own mana levels, ultimately leading to a renewed sense of clarity and energy."
     },
     "armors": {
         "rina's armor": "This armor is made of white sheets and solid pieces of broom. It's not very protective but it's better than naked indeed.",
