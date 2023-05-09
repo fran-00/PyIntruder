@@ -644,7 +644,7 @@ class Player:
     # INFO --------------------------------------------------------------------|
     # -------------------------------------------------------------------------|
 
-    def diagnose(self):
+    def diagnose_command_handler(self):
         """Returns a formatted string with the player's current status information."""
         room = parser.tile_at(self.x, self.y)
         return (

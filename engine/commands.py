@@ -79,7 +79,7 @@ class Commands:
                         return ("You can't escape!")
 
                 elif command == "DIAGNOSE":
-                    return self.player.diagnose()
+                    return self.player.diagnose_command_handler()
 
                 elif command == "LOOK":
                     return self.room.look_command_handler()
