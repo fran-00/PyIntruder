@@ -1,6 +1,6 @@
 import random, json, re
 
-from entities.factories import healers, weapons
+from entities.factories import healers, manarechargers
 
 
 with open('world/data/tiles_data.json') as f:
@@ -26,14 +26,14 @@ class MapTile:
 
     def choose_random_items(self):
         healers_list = healers().get_items_list()
-        weapons_list = weapons().get_items_list()
+        manarechargers_list = manarechargers().get_items_list()
         n = random.randint(1, 4)
         if n in {1}:
             pass
         elif n in {2, 3}:
             self.inventory.append(random.choice(healers_list))
         elif n == 4:
-            self.inventory.append(random.choice(weapons_list))
+            self.inventory.append(random.choice(manarechargers_list))
     
     def sort_inventory(self):
         self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
