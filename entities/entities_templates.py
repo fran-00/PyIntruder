@@ -66,7 +66,6 @@ class Item(Entity):
         self.marketable = True
         self.openable = False
 
-
     def calculate_value(self, n):
         range_value = n * 0.1
         return round(random.uniform(n - range_value, n + range_value), 2)
@@ -116,7 +115,7 @@ class ManaRecharger(Item):
         self.description = items_data["mana rechargers"][f"{self.name}".lower()]
         self.mr = mr
         self.value = self.calculate_value(self.mr)
- 
+
     def __str__(self):
         return f"{self.name} - {self.mr} MR"
 
@@ -134,9 +133,9 @@ class Armor(Item):
 
 
 class Surrounding(Item):
-    
+
     def __init__(self, name, inventory, openable=False):
-        
+
         super().__init__(name)
         self.description = items_data["surroundings"][f"{self.name}".lower()]
         self.inventory = inventory
@@ -144,12 +143,12 @@ class Surrounding(Item):
         self.marketable = False
         self.openable = openable
 
+
 class MissionRelatedItem(Item):
 
     def __init__(self, name, openable=False):
-        
+
         super().__init__(name)
         self.description = items_data["mission related items"][f"{self.name}".lower()]
-        self.collectable = True
         self.marketable = False
         self.openable = openable
