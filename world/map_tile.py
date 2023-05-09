@@ -164,7 +164,7 @@ class MapTile:
         else:
             return "There is no one to trade with.", None
     
-    def look(self):
+    def look_command_handler(self):
         """Show a detailed description of the current room's scenario.
 
         Returns

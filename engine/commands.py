@@ -82,7 +82,7 @@ class Commands:
                     return self.player.diagnose()
 
                 elif command == "LOOK":
-                    return self.room.look()
+                    return self.room.look_command_handler()
 
                 elif command == "LOOK AT":
                     target = re.match(regex, action).group(2)
