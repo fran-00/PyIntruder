@@ -91,3 +91,9 @@ class Factory:
         self.chuck = Weapon("Chuck the plant", 60)
         self.attractor = Weapon("Great Attractor", 65)
         self.cube = Weapon("The Soul Cube", 70)
+
+    def get_entities_list(self, cls=None) -> list:
+        if cls is None:
+            return list(self.__dict__.values())
+        else:
+            return [entity for entity in self.__dict__.values() if isinstance(entity, cls)]
