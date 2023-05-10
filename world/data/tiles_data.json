@@ -1,6 +1,15 @@
 {
     "clearing": {
-        "description": "You are in a clearing. You arrived with your car from the west and the road ends in the east, where a path that climbs the mountain begins. A dense network of trees prevents the passage in any other direction. Your car is parked on the north side of the clearing, there is no one else parked."
+        "description": "You are in a clearing. You have arrived in your car from the west and the paved road ends in the east, where a path begins that goes up the mountain. There is a wooden table under the trees south of the clearing and a fire place. A dense network of trees prevents passage in any other direction. Your car is parked on the north side of the clearing."
+    },
+    "path": {
+        "description": "The path is a boring place to stop: usually you just walk over it to go somewhere (wherever it is). This path in particular is uphill and surrounded by tall, green trees. Noises can be heard coming from the trees, maybe you're not alone..."
+    },
+    "fountain": {
+        "description": "You hear the sound of flowing water.\nOn the north side of the trail, the mountain is craggy and steep, and the network of trees is densely packed. On the south side of the path the road widens slightly and there is a mossy stone fountain from which water flows."
+    },
+    "lookout": {
+        "description": "You hear the sound of flowing water.\nOn the north side of the trail, the mountain is craggy and steep, and the network of trees is densely packed. On the south side of the path the road widens slightly and there is a mossy stone fountain from which water flows."
     },
     "little(o) shop": {
         "description": "They say it is only infinitesimally probable to be here."
@@ -19,9 +28,6 @@
     },
     "oak": {
         "description": "There's n Oak here."
-    },
-    "path": {
-        "description": "The path is a boring place to stop: usually you just walk over it to go somewhere (wherever it is). This path in particular is uphill and surrounded by tall, green trees. Noises can be heard coming from the trees, maybe you're not alone..."
     },
     "temple": {
         "description": "You are in a temple. Strange symbols made up of concentric circles adorn the walls. A monk prays in front of an altar filled with a liquid of a strange color."
