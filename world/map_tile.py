@@ -204,8 +204,7 @@ class MapTile:
         """
         objects_to_check = [self, self.talker, self.enemy] + self.inventory + self.environment + player.inventory
         for obj in objects_to_check:
-            # FIXME: strings match even if they have only one letter in common!
-            if obj and re.search(rf"\b\w*({''.join([f'{c}' for c in target])})\w*\b", obj.name.lower()):
+            if obj and re.search(rf"\b\w*({''.join([f'{c}' for c in target])})\w*\b", obj.name.lower()) and len(set(target).intersection(set(obj.name.lower())))>=3:
                 return obj.description
         return(f"I can't see any {target} here.")
 
