@@ -21,6 +21,7 @@ class MapTile:
         self.environment = []
         self.enemy = None
         self.talker = None
+        self.water = False
 
         self.choose_random_items()
         self.sort_inventory()
