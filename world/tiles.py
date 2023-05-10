@@ -36,7 +36,14 @@ class FernsTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Ferns'
         super().__init__(x, y)
-        self.talker = Factory().ferns
+        self.talker = obj.ferns
+
+
+class FountainTile(MapTile):
+    def __init__(self, x, y):
+        self.name = 'Fountain'
+        super().__init__(x, y)
+        self.water = True
 
 
 class IntruderTile(MapTile):
