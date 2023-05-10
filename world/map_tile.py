@@ -219,8 +219,8 @@ class MapTile:
 
         Parameters
         ---------
-            target : str
-                _description_
+        target : str
+            _description_
         """
         for object in self.environment:
             if target == object.name.lower():

@@ -91,15 +91,20 @@ start_tile_location = None
 
 
 def parse_world_dsl():
-    """Parses the given DSL string representing game map, and constructs a 2D world map.
-    
-    The DSL string must be a valid game board, satisfying the conditions specified in the `is_dsl_valid` function.
-    The constructed world map is a 2D list of MapTile objects, where each tile represents a location in the game world.
-    The coordinates of a tile within the world map correspond to its x and y coordinates on the game board.
+    """Parse the given DSL string representing game map, and constructs
+    a grid world.
 
-    Raises:
-    - SyntaxError: If the DSL string is invalid.
-    
+    The DSL string must be a valid game board, satisfying the conditions
+    specified in the `is_dsl_valid` function. The constructed world map is a 2D
+    list of MapTile objects, where each tile represents a location in the game
+    world. The coordinates of a tile within the world map correspond to its x
+    and y coordinates on the game board.
+
+    Raises
+    ------
+    SyntaxError
+        If the DSL string is invalid.
+
     """
     if not is_dsl_valid(world_dsl):
         raise SyntaxError("DSL is invalid!")
@@ -121,18 +126,27 @@ def parse_world_dsl():
 
 
 def tile_at(x, y):
-    """Returns MapTile object at the given (x, y) coordinates within the game world, if it exists.
+    """Return MapTile object at the given (x, y) coordinates within the game
+    world, if it exists.
 
-    If the given (x, y) location is outside the bounds of the game world (i.e., x or y is negative), this function
-    returns None. If the (x, y) location is within the bounds of the game world but there is no tile at that location,
-    this function also returns None.
+    If the given (x, y) location is outside the bounds of the game world
+    (i.e., x or y is negative), this function returns None. If the (x, y)
+    location is within the bounds of the game world but there is no tile at
+    that location, this function also returns None.
 
-    Args:
-    - x (int): The x-coordinate of the location to check.
-    - y (int): The y-coordinate of the location to check.
+    Parameters
+    ----------
+    x : int
+        The x-coordinate of the location to check.
+    y : int
+        The y-coordinate of the location to check.
 
-    Returns:
-    - Optional[Tile]: The Tile object at the given (x, y) coordinates, or None if there is no tile at that location.
+    Returns
+    -------
+    Optional[Tile]
+        The Tile object at the given (x, y) coordinates
+    None
+        If there is no tile at that location.
     """
     if x < 0 or y < 0:
         return None

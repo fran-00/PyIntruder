@@ -8,20 +8,25 @@ class GameController(QObject):
     def __init__(self, view, model, thread):
         """Initialize the controller with the given view, model, and thread.
 
-        Connects signals and slots to enable communication between the different components of the game:
-        - The MODEL signals are connected to the CONTROLLER slots to get game responses, which are then sent to the VIEW via the `on_model_signal` method.
-        - The VIEW signals are connected to the CONTROLLER slots to get user input, which is then sent to the MODEL via the `on_view_signal` method.
-        - The CONTROLLER signals are connected to the MODEL slots to send user actions, which are then handled by the `handle_inbound_signal` method.
-        - The CONTROLLER signals are also connected to the VIEW slots to send game responses, which are then displayed by the `handle_game_response` method.
+        Connect signals and slots to enable communication between the different
+        components of the game:
+        - MODEL signal is connected to CONTROLLER slot to get game responses,
+        which are then sent to VIEW via `on_model_signal` method.
+        - VIEW signal is connected to CONTROLLER slot to get user input, which
+        is then sent to MODEL via `on_view_signal` method.
+        - CONTROLLER signal is connected to MODEL slot to send user actions,
+        which are then handled by `handle_inbound_signal` method.
+        - CONTROLLER signal is connected to the VIEW slots to send game
+        responses, which are then displayed by `handle_game_response` method.
 
-        Args:
-            view (GameView): The view component of the game.
-            model (GameModel): The model component of the game.
-            thread (GameThread): The thread used to run the game loop.
-
-        Returns:
-            None
-
+        Parameters
+        ----------
+        view : GameView
+            The view component of the game.
+        model : GameModel
+            The model component of the game.
+        thread : GameThread
+            The thread used to run the game loop.
         """
         super().__init__()
 

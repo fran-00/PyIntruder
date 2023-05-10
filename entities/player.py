@@ -43,10 +43,10 @@ class Player:
 
         Parameters
         ----------
-            dx : int
-                The change in the x coordinate.
-            dy : int
-                The change in the y coordinate.
+        dx : int
+            The change in the x coordinate.
+        dy : int
+            The change in the y coordinate.
         """
         self.x += dx
         self.y += dy
