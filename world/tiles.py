@@ -2,25 +2,28 @@ from entities.factory import Factory
 from world.map_tile import MapTile
 
 
+obj = Factory()
+
+
 class StartTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Clearing'
         super().__init__(x, y)
-        self.environment = [Factory().car]
+        self.environment = [obj.car, obj.table]
 
 
 class LittleoTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Little(o) Shop'
         super().__init__(x, y)
-        self.talker = Factory().littleo
+        self.talker = obj.littleo
 
 
 class BlacksmithTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Blacksmith'
         super().__init__(x, y)
-        self.talker = Factory().blacksmith
+        self.talker = obj.blacksmith
 
 
 class ChestTile(MapTile):
@@ -40,14 +43,14 @@ class IntruderTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Intruder'
         super().__init__(x, y)
-        self.talker = Factory().intruder
+        self.talker = obj.intruder
 
 
 class OakTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Oak'
         super().__init__(x, y)
-        self.talker = Factory().oak
+        self.talker = obj.oak
 
 
 class PathTile(MapTile):
