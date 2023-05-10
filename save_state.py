@@ -8,41 +8,6 @@ def save(player):
         os.remove("saved_data.pkl")
         print("Deleting old saved data...")
 
-    player_data = {
-        'name': player.name,
-        'x': player.x,
-        'y': player.y,
-        'inventory': player.inventory,
-        'level': player.lvl,
-        'max_hp': player.max_hp,
-        'hp': player.hp,
-        'max_mana': player.max_mana,
-        'mana': player.mana,
-        'xp': player.xp,
-        'xp_modifier': player.xp_modifier,
-        'base_defence': player.base_defence,
-        'current_weapon': player.current_weapon,
-        'carryweight': player.carryweight,
-        'gold': player.gold,
-        'victory': player.victory,
-        'previous_x': player.previous_x,
-        'previous_y': player.previous_y,
-        'turn': player.turn,
-        'verbose': player.verbose,
-        'bottle_full': player.bottle_full,
-
-        'tavern_room_paid': player.tavern_room_paid,
-
-        'ferns_talked': player.ferns_talked,
-        'specimen_received' : player.specimen_received,
-        'ferns_price_received' : player.ferns_price_received,
-
-        'specimen_planted': player.specimen_planted,
-        'oracle_response': player.oracle_response,
-
-        'rina_gift_received': player.rina_gift_received
-    }
-
     # Recreate a list of rooms with no gaps, updating it at the current state 
     player.rooms_list == []
     player.room_list_creator()
@@ -91,37 +56,6 @@ def restore(player):
 
     # PLAYER
     # Replaces player variables with saved ones
-    player.name = player_data['name']
-    player.x = player_data['x']
-    player.y = player_data['y']
-    player.inventory = player_data['inventory']
-    player.lvl = player_data['level']
-    player.max_hp = player_data['max_hp']
-    player.hp = player_data['hp']
-    player.max_mana = player_data['max_mana']
-    player.mana = player_data['mana']
-    player.xp = player_data['xp']
-    player.xp_modifier = player_data['xp_modifier']
-    player.current_weapon = player_data['current_weapon']
-    player.carryweight = player_data['carryweight']
-    player.gold = player_data['gold']
-    player.victory = player_data['victory']
-    player.previous_x = player_data['previous_x']
-    player.previous_y = player_data['previous_y']
-    player.turn = player_data['turn']
-    player.verbose = player_data['verbose']
-    player.bottle_full = player_data['bottle_full']
-
-    player.tavern_room_paid = player_data['tavern_room_paid']
-
-    player.ferns_talked = player_data['ferns_talked']
-    player.specimen_received = player_data['specimen_received']
-    player.ferns_price_received = player_data['ferns_price_received']
-
-    player.specimen_planted = player_data['specimen_planted']
-    player.oracle_response = player_data['oracle_response']
-
-    player.rina_gift_received = player_data['rina_gift_received']
 
     # Check if a list of rooms with no gaps has already been created to avoid duplicates
     if player.rooms_list == []:
