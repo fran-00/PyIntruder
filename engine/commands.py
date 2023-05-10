@@ -2,6 +2,7 @@ import re
 
 import world.parser as parser
 
+
 class Commands:
     def __init__(self, player, room):
         self.player = player
@@ -128,7 +129,8 @@ class Commands:
 
                 elif command == "TRADE":
                     if self.room.talker and self.room.talker.trade:
-                        self.arguments_list = [self.room.talker.inventory, "trade"]
+                        self.arguments_list = [
+                            self.room.talker.inventory, "trade"]
                     else:
                         self.arguments_list = [None]
                     return (

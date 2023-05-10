@@ -125,7 +125,7 @@ class Player:
 
     def calculate_attack_precision(self, enemy, weapon, response):
         """Calculate attack precision and damage multiplier based on a random integer.
-        
+
         Parameters
         ----------
         enemy : Enemy
@@ -134,7 +134,7 @@ class Player:
             Best player's weapon, if any.
         response : str
             A string to add to the response.
-        
+
         Returns
         -------
         func
@@ -254,7 +254,7 @@ class Player:
             enemy.hp -= choice.damage
             self.mana -= choice.mana_cost
             return (f"You cast {choice.name} on {enemy.name}, it does {choice.damage} DMG!\n"
-                   f"You now have {self.mana} Mana remaining.")
+                    f"You now have {self.mana} Mana remaining.")
 
     def flee_from_fight(self):
         room = parser.tile_at(self.x, self.y)
@@ -271,7 +271,7 @@ class Player:
             # parser.tile_at(self.previous_x, self.previous_y)
             return "You flee."
         else:
-            return"You can't escape!"
+            return "You can't escape!"
 
     # -------------------------------------------------------------------------|
     # INVENTORY AND TRADING SYSTEM --------------------------------------------|
@@ -284,7 +284,7 @@ class Player:
 
     def trading_mode(self, *args):
         """Enter trading mode with a non-player character.
-        
+
         Parameters
         ----------
         *args
@@ -332,6 +332,7 @@ class Player:
         function
             A new function that wraps the given function with added functionality.
         """
+
         def wrapper(self, *args):
             purpose = args[1]
             match purpose:
@@ -353,7 +354,7 @@ class Player:
                     ""
             return func(self, *args) + response
         return wrapper
-    
+
     def check_inventory(self, *args):
         """Check if inventory contains any items or items of a specified category
 
@@ -375,10 +376,11 @@ class Player:
         """
         inventory = args[0]
         purpose = args[1]
-        
+
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
             category = globals()[purpose]
-            items_subset = self.sort_items_by_category(self.inventory, category)
+            items_subset = self.sort_items_by_category(
+                self.inventory, category)
             if items_subset == []:
                 return f"You don't have any {purpose} with you", None
             else:
@@ -418,10 +420,11 @@ class Player:
         purpose = args[1]
         index = 1
         response = ""
-        
+
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
             category = globals()[purpose]
-            items_subset = self.sort_items_by_category(self.inventory, category)
+            items_subset = self.sort_items_by_category(
+                self.inventory, category)
             if items_subset != []:
                 for _, item in enumerate(items_subset, index):
                     response += f"{index}. {item}\n"
@@ -460,7 +463,7 @@ class Player:
         str
             Call show_appropriate_answer() passing choosen item and purpose
             as arguments. If action is cancelled, return a message.
-        
+
         Raises
         ------
         Exception
@@ -547,7 +550,7 @@ class Player:
         """
         if (choice.heal + self.hp) > self.max_hp:
             self.hp = self.max_hp
-        else: 
+        else:
             self.hp += choice.heal
         self.inventory.remove(choice)
         self.sort_inventory()
@@ -600,14 +603,14 @@ class Player:
                     return f"{item.name}: dropped."
         # TODO: a different response should be shown if the target is present
         # but cannot be picked up, for example in the case of an NPC, an enemy
-        # or a heavy object. 
+        # or a heavy object.
         # The answer in these cases should be "Not bloody likely."
-        return(f"You can't see any {target} here")
+        return (f"You can't see any {target} here")
 
     def get_or_drop_all(self, giver, receiver, purpose):
         """Take all items from giver's inventory, add them to receiver's inventory
         and show appropriate message based on purpose.
-        
+
         Parameters
         ----------
         giver : Player or Room
@@ -666,7 +669,7 @@ class Player:
         map tiles. The `tile_type_dict` dictionary maps each tile type to its
         corresponding string representation. The map is printed row by row, with
         each tile represented by a string enclosed in vertical bars.
-        
+
         FIXME: the map is currently printed in the terminal because it is shown
         truncated in the game window.
         """

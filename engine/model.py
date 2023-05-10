@@ -47,7 +47,7 @@ class GameModel(QObject):
         self.commands = Commands(self.player, self.room)
         self.model_signal_to_controller.emit("******* PYINTRUDER*******")
         self.model_signal_to_controller.emit(self.commands.get_room_description())
-        
+
         self.event_loop = QEventLoop()
 
         while True:
@@ -91,7 +91,7 @@ class GameModel(QObject):
             self.commands.arguments_list.append(self.action)
             arguments_tuple = tuple(self.commands.arguments_list)
             nested_response = method(*arguments_tuple)
-            
+
             if isinstance(nested_response, tuple) and nested_response[1] == None:
                 self.model_signal_to_controller.emit(nested_response[0])
                 break
@@ -139,4 +139,3 @@ class GameModel(QObject):
         """
         enemy_attacks = self.room.modify_player(self.player)
         self.model_signal_to_controller.emit(enemy_attacks)
-

@@ -1,9 +1,10 @@
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton
 from PyQt6.QtCore import pyqtSignal, pyqtSlot
 
+
 class GameView(QWidget):
     view_signal_to_controller = pyqtSignal(str)
-    
+
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Game Window")
@@ -32,15 +33,14 @@ class GameView(QWidget):
         layout.addWidget(self.log_view)
         layout.addLayout(input_layout)
         self.setLayout(layout)
-        
+
         # Modify Style Sheet
         self.setStyleSheet("color: white; background-color: black;")
-
 
     def handle_user_action(self):
         # Gets user input
         action = self.input_box.text().strip()
-        
+
         # Emits the signal that contains user input
         self.view_signal_to_controller.emit(action)
 
@@ -50,11 +50,9 @@ class GameView(QWidget):
         # Resets the input box
         self.input_box.clear()
         self.input_box.setFocus()
-    
-    
+
     @pyqtSlot(str)
     def handle_game_response(self, response):
         """ Slot that receives a string from controller as a signal """
         # Append game output to log view window
         self.log_view.append(f"> {response}")
-

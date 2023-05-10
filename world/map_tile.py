@@ -1,4 +1,6 @@
-import random, json, re
+import random
+import json
+import re
 
 from entities.templates import Healer, ManaRecharger
 from entities.factory import Factory
@@ -36,7 +38,7 @@ class MapTile:
             self.inventory.append(random.choice(healers_list))
         elif n == 4:
             self.inventory.append(random.choice(manarechargers_list))
-    
+
     def sort_inventory(self):
         self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
         return
@@ -44,11 +46,11 @@ class MapTile:
     def modify_player(self, player):
         """Modify player and enemy based on a random chance of confusion
         and enemy's attack.
-        
+
         Check if the enemy is alive and generate a random number to determine
         if the enemy becomes confused. Calculate damage reduction based on
         player's base defence and call damage_player().
-        
+
         Parameters
         ----------
         player : Player
@@ -124,9 +126,11 @@ class MapTile:
         target = args[2]
         if self.talker.name.lower() == target:
             response = ""
-            opening_sentece = npcs_data[self.talker.name.lower()]['opening sentence']
+            opening_sentece = npcs_data[self.talker.name.lower(
+            )]['opening sentence']
             response += f"{opening_sentece}"
-            player_dialogue = npcs_data[self.talker.name.lower()]['player dialogue 0']
+            player_dialogue = npcs_data[self.talker.name.lower(
+            )]['player dialogue 0']
             for i, sentence in enumerate(list(player_dialogue.values())):
                 response += f"\n{i}: {sentence}"
             return response
@@ -139,7 +143,7 @@ class MapTile:
     def dialogue(self, *args):
         # TODO: Parse dialogues from npc dialogue 0
         return
-    
+
     def trade(self, *args):
         """Initiate a trade with an npc in the current room that wants to trade,
         if any.
@@ -158,13 +162,14 @@ class MapTile:
             If there is no npc in the current room or if npc doesn't want to trade.
         """
         if self.talker and self.talker.trade:
-            sentence = self.talker.get_random_opening_sentence(f"{self.talker.name}")
+            sentence = self.talker.get_random_opening_sentence(
+                f"{self.talker.name}")
             return f"{sentence}\nBuy, Sell or Quit?"
         elif self.talker and not self.talker.trade:
             return f"{self.talker.name} doesn't want to trade.", None
         else:
             return "There is no one to trade with.", None
-    
+
     def look_command_handler(self):
         """Show a detailed description of the current room's scenario.
 
@@ -185,28 +190,29 @@ class MapTile:
         elif self.enemy and not self.enemy.is_alive():
             response += f"\nThere the corpse of a {self.enemy.name} here."
         return response
-    
+
     def look_at_command_handler(self, target, player):
         """Return the description of the object or item with the given target name in the room.
-        
+
         Parameters
         ----------
         target: str
             The name of the object or item to look at.
         player: Player
             The Player class to examine items in inventory
-        
+
         Returns
         -------
         str
             The description of the target object or item, or a message 
             if no matching target is found.
         """
-        objects_to_check = [self, self.talker, self.enemy] + self.inventory + self.environment + player.inventory
+        objects_to_check = [self, self.talker, self.enemy] + \
+            self.inventory + self.environment + player.inventory
         for obj in objects_to_check:
-            if obj and re.search(rf"\b\w*({''.join([f'{c}' for c in target])})\w*\b", obj.name.lower()) and len(set(target).intersection(set(obj.name.lower())))>=3:
+            if obj and re.search(rf"\b\w*({''.join([f'{c}' for c in target])})\w*\b", obj.name.lower()) and len(set(target).intersection(set(obj.name.lower()))) >= 3:
                 return obj.description
-        return(f"I can't see any {target} here.")
+        return (f"I can't see any {target} here.")
 
     def open_command_handler(self, target):
         """_summary_
