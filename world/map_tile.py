@@ -49,7 +49,7 @@ class MapTile:
 
         Check if the enemy is alive and generate a random number to determine
         if the enemy becomes confused. Calculate damage reduction based on
-        player's base defence and call damage_player().
+        player's base defence and call calculate_damage().
 
         Parameters
         ----------
@@ -77,11 +77,11 @@ class MapTile:
         if confusion_chance in [17, 18]:
             return f"{self.enemy.name} is confused!\n{self.enemy.name} misses the shot!"
         if player.base_defence == 0:
-            return self.damage_player(player, self.enemy.damage, None)
+            return self.calculate_damage(player, self.enemy.damage, None)
         damage_reduction = 5 * player.base_defence
-        return self.damage_player(player, self.enemy.damage, damage_reduction)
+        return self.calculate_damage(player, self.enemy.damage, damage_reduction)
 
-    def damage_player(self, player, damage, damage_reduction):
+    def calculate_damage(self, player, damage, damage_reduction):
         """Inflict damage to the player object based on enemy's attack and player's
         damage reduction.
 
