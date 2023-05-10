@@ -75,6 +75,7 @@ class Factory:
         self.stylite = NonPlayableCharacter("Stylite", [], False)
 
         self.car = Surrounding("car", [], openable=True)
+        self.table = Surrounding("table", []),
         self.chest = Surrounding("chest", [], openable=True)
 
         self.manuport = Weapon("Manuport", 5)
