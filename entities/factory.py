@@ -74,9 +74,9 @@ class Factory:
         self.effrafax = NonPlayableCharacter("Effrafax", [], False)
         self.stylite = NonPlayableCharacter("Stylite", [], False)
 
-        self.car = Surrounding("car", [], openable=True)
-        self.table = Surrounding("table", []),
+        self.car = Surrounding("car", [self.bottle], openable=True)
         self.chest = Surrounding("chest", [], openable=True)
+        self.table = Surrounding("wooden table", [])
 
         self.manuport = Weapon("Manuport", 5)
         self.sheet = Weapon("polarized sheet", 10)
