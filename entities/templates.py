@@ -135,7 +135,7 @@ class Armor(Item):
 
 class Surrounding(Item):
 
-    def __init__(self, name, inventory, openable=False):
+    def __init__(self, name, inventory, openable=False, is_open=False, locked=False):
 
         super().__init__(name)
         self.description = items_data["surroundings"][f"{self.name}".lower()]
@@ -143,17 +143,17 @@ class Surrounding(Item):
         self.collectable = False
         self.marketable = False
         self.openable = openable
-        self.open = False
-        self.locked = False
+        self.is_open = is_open
+        self.locked = locked
 
 
 class MissionRelatedItem(Item):
 
-    def __init__(self, name, openable=False):
+    def __init__(self, name, openable=False, is_open=False, locked=False):
 
         super().__init__(name)
         self.description = items_data["mission related items"][f"{self.name}".lower()]
         self.marketable = False
         self.openable = openable
-        self.open = False
-        self.locked = False
+        self.is_open = is_open
+        self.locked = locked
