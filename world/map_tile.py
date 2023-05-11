@@ -218,17 +218,39 @@ class MapTile:
         """_summary_
 
         Parameters
-        ---------
+        ----------
         target : str
             _description_
         """
         for object in self.environment:
             if target == object.name.lower():
                 if object.openable:
-                    return f"You open {object.name}"
+                    return self.check_if_open(object)
                 else:
                     return f"You cannot open it."
             else:
                 return "I beg your pardon?"
         else:
             return "There is nothing to open here."
+
+    def check_if_open(self, obj):
+        """_summary_
+
+        Parameters
+        ----------
+        obj : Entity
+        
+        Returns
+        -------
+        response : str 
+        """
+        response = ""
+        if obj.is_open == False and obj.locked == False:
+            response += f"You open the {obj.name}\n"
+            response += "obj.description_when_opened"
+            obj.is_open = True
+        elif obj.is_open == False and obj.locked == True:
+            response += "You need to use a key to open this {obj.name}"
+        else:
+            response += "It's already open."
+        return response
