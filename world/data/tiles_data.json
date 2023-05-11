@@ -26,6 +26,9 @@
     "intruder": {
         "description": "It shouldn't be here"
     },
+    "river": {
+        "description": "You are on the bank of a river. It is not possible to cross it without getting wet and without risking being dragged by the water current."
+    },
     "oak": {
         "description": "There's n Oak here."
     },
