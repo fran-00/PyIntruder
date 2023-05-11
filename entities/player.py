@@ -204,7 +204,7 @@ class Player:
         str
             The updated response string after earning XP.
         """
-        xp_earned = (enemy.damage // 2)
+        xp_earned = (enemy.damage) # TODO: create a way to calculate XP
         response = f"\nYou earned {xp_earned} XP!"
         self.xp += xp_earned
         if self.xp >= self.xp_modifier:
