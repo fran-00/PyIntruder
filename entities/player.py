@@ -181,7 +181,7 @@ class Player:
         """
         if not enemy.is_alive():
             response += f"\nYEAH! You killed it!"
-            response += self.add_xp(enemy)
+            response += self.calculate_xp_earned(enemy)
             loot = random.randint(10, 200)
             self.gold += loot
             response += f"\n{enemy.name} lost his booty. Now {loot} § are yours!"
@@ -190,7 +190,7 @@ class Player:
             response += f"\n{enemy.name} has {enemy.hp} HP remaining."
         return response
 
-    def add_xp(self, enemy):
+    def calculate_xp_earned(self, enemy):
         """Calculate the earned XP points from killing an enemy, update Player
         level if necessary and return the response string for the XP gain.
 
