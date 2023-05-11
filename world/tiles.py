@@ -53,6 +53,12 @@ class IntruderTile(MapTile):
         self.talker = obj.intruder
 
 
+class RiverTile(MapTile):
+    def __init__(self, x, y):
+        self.name = 'River'
+        super().__init__(x, y)
+
+
 class OakTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Oak'
