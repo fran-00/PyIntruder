@@ -739,3 +739,16 @@ class Player:
                 row.append(map_tile_type)
             print("".join(row))
         print(f'> You are here: ({loc_x},{loc_y})')
+
+
+    def parse_available_directions(self):
+        if parser.tile_at(self.room.x, self.room.y - 1):
+            response += "... north"
+        elif parser.tile_at(self.room.x, self.room.y + 1):
+            response += "... south"
+        elif parser.tile_at(self.room.x + 1, self.room.y):
+            response += "... east"
+        elif parser.tile_at(self.room.x - 1, self.room.y):
+            response += "... west"
+        else:
+            return
