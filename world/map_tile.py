@@ -222,10 +222,10 @@ class MapTile:
         target : str
             _description_
         """
-        for object in self.environment:
-            if target == object.name.lower():
-                if object.openable:
-                    return self.check_if_open(object)
+        for obj in self.environment:
+            if target == obj.name.lower():
+                if obj.openable:
+                    return self.check_if_open(obj)
                 else:
                     return f"You cannot open it."
             else:
