@@ -143,6 +143,8 @@ class Surrounding(Item):
         self.collectable = False
         self.marketable = False
         self.openable = openable
+        self.open = False
+        self.locked = False
 
 
 class MissionRelatedItem(Item):
@@ -153,3 +155,5 @@ class MissionRelatedItem(Item):
         self.description = items_data["mission related items"][f"{self.name}".lower()]
         self.marketable = False
         self.openable = openable
+        self.open = False
+        self.locked = False
