@@ -563,18 +563,19 @@ class Player:
         Parameters
         ----------  
         giver
-            The player instance that is giving the item.
+            The class that is giving the item (Player, NPC or MapTile subclass).
         receiver
-            The player instance that is receiving the item.
+            The class that is is receiving the item.
         item
             The item being transferred or bought/sold.
         purpose
-            A string that specifies the purpose of the transfer. It can have two possible values: 'trade' (when the characters are trading items) or 'buy_sell' (when one character is buying and the other is selling).
+            A string that specifies the purpose of the transfer. If purpose is
+            'trade', remove gold from buyer's inventory and add it to seller's.
 
         Returns
         -------
         str 
-            String that warns if player has no gold. 
+            String that warns if player has no gold.
         None
             In any other case.
         """
