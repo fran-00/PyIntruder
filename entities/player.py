@@ -219,13 +219,13 @@ class Player:
         str
             A string indicating the new player level.
         """
-        self.xp_modifier *= 1.1
+        self.xp_modifier = round((100 + self.xp_modifier) * 1.1)
         self.lvl += 1
-        self.max_hp *= 1.1
+        self.max_hp = round(self.max_hp * 1.1)
         self.hp = self.max_hp
-        self.max_mana *= 1.1
+        self.max_mana = round(self.max_mana * 1.1)
         self.mana = self.max_mana
-        return f"You leveled up! You are now at {self.lvl} LVL."
+        return f" You leveled up! You are now at {self.lvl} LVL."
 
     def curse_command_handler(self, enemy, choice):
         """Cast a curse on an enemy.
