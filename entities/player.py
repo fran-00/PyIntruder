@@ -251,10 +251,18 @@ class Player:
         if choice.mana_cost > self.mana:
             return f"You don't have enough mana to cast {choice.name}!"
         else:
-            enemy.hp -= choice.damage
+            response = ""
+            d20 = random.randint(1, 20)
+            if d20 in [19, 20]:
+                enemy.hp -= choice.damage * 2
+                response += f"Critical hit!\nYou cast {choice.name} on {enemy.name}, it does {choice.damage*2} DMG!\n"
+            else:
+                enemy.hp -= choice.damage
+                response = f"You cast {choice.name} on {enemy.name}, it does {choice.damage} DMG!\n"
+
             self.mana -= choice.mana_cost
-            return (f"You cast {choice.name} on {enemy.name}, it does {choice.damage} DMG!\n"
-                    f"You now have {self.mana} Mana remaining.")
+            response += f"You now have {self.mana} Mana remaining."
+            return response
 
     def flee_from_fight(self):
         room = parser.tile_at(self.x, self.y)
