@@ -89,8 +89,8 @@ class Curse(Item):
     def __init__(self, name, damage):
         super().__init__(name)
         self.description = items_data["curses"][f"{self.name}".lower()]
-        self.damage = damage
-        self.mana_cost = self.damage * 4
+        self.damage = round(random.uniform(2 * damage, damage/3))
+        self.mana_cost = round(random.uniform(self.damage, self.damage * 1.3))
         self.value = self.calculate_value(self.damage)
 
     def __str__(self):
