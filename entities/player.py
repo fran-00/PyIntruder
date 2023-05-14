@@ -618,33 +618,40 @@ class Player:
 
         if purpose == "get":
             for entity in room.environment:
-                if target in entity.name.lower():
+                if self.match_target_name(target, entity):
                     return "Not bloody likely."
             for item in self.inventory:
-                if target in item.name.lower():
+                if self.match_target_name(target, item):
                     return "You already have it..."
-            if room.enemy and room.enemy.is_alive() and target in room.enemy.name.lower():
-                return "I don't know if you noticed, but it's trying to kill you..."
-            elif room.enemy and not room.enemy.is_alive() and target in room.enemy.name.lower():
-                return "The corpse is too heavy to carry."
-            elif target in room.name.lower():
+            if room.enemy and self.match_target_name(target, room.enemy):
+                if room.enemy.is_alive():
+                    return "I don't know if you noticed, but it's trying to kill you..."
+                else:
+                    return "The corpse is too heavy to carry."
+            elif self.match_target_name(target, room):
                 return "Are you sure you're okay?"
             else:
-                return f"You can't see any {target} here."
+                return f"{target.capitalize()} is something I don't recognize."
 
         elif purpose == "drop":
             for entity in room.environment:
-                if target in entity.name.lower():
+                if self.match_target_name(target, entity):
                     return "How is this supposed to work?"
             for item in room.inventory:
-                if target in item.name.lower():
+                if self.match_target_name(target, item):
                     return "You can't drop something you don't own."
-            if room.enemy and target in room.enemy.name.lower():
+            if self.match_target_name(target, room.enemy):
                 return f"Hummm... Ok, {room.enemy.name}: dropped. Now what?"
-            elif target in room.name.lower():
+            if self.match_target_name(target, room):
                 return "I don't even know what to answer..."
             else:
-                return f"You don't have any {target} to drop."
+                return f"{target.capitalize()} is something I don't recognize."
+
+    def match_target_name(self, target, obj):
+        if obj and re.search(rf"\b\w*({''.join([f'{c}' for c in target])})\w*\b", obj.name.lower()) and len(set(target).intersection(set(obj.name.lower()))) >= 3:
+            return True
+        else:
+            return False
 
     def get_or_drop_all(self, giver, receiver, purpose):
         """Take all items from giver's inventory, add them to receiver's inventory
