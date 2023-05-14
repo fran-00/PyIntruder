@@ -1,4 +1,5 @@
 import random
+import re
 
 from .templates import Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon
 from .factory import Factory
