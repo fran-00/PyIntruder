@@ -602,7 +602,7 @@ class Player:
             return self.get_or_drop_all(giver, receiver, purpose)
 
         for item in giver.inventory:
-            if target in item.name.lower():
+            if self.match_target_name(target, item):
                 self.items_swapper(giver, receiver, item, "get-drop")
                 receiver.sort_inventory()
                 giver.sort_inventory()
