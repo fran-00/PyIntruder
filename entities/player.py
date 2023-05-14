@@ -13,10 +13,12 @@ class Player:
         self.x = parser.start_tile_location[0]
         self.y = parser.start_tile_location[1]
 
-        self.inventory = [Factory().veridical,
+        self.inventory = [Factory().stygian_blue,
                           Factory().wire,
-                          Factory().fungine_armor,
-                          Factory().ats]
+                          Factory().hyperbolic_orange,
+                          Factory().ats,
+                          Factory().specimen,
+                          Factory().dialectic_draught]
         self.sort_inventory()
         self.current_weapon = self.best_weapon()
         self.gold = 10000000
