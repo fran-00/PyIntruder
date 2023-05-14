@@ -610,11 +610,41 @@ class Player:
                     return f"{item.name}: taken."
                 else:
                     return f"{item.name}: dropped."
-        # TODO: a different response should be shown if the target is present
-        # but cannot be picked up, for example in the case of an NPC, an enemy
-        # or a heavy object.
-        # The answer in these cases should be "Not bloody likely."
-        return (f"You can't see any {target} here")
+        else:
+            return self.check_if_collectable_or_droppable(target, purpose)
+    
+    def check_if_collectable_or_droppable(self, target, purpose):
+        room = parser.tile_at(self.x, self.y)
+
+        if purpose == "get":
+            for entity in room.environment:
+                if target in entity.name.lower():
+                    return "Not bloody likely."
+            for item in self.inventory:
+                if target in item.name.lower():
+                    return "You already have it..."
+            if room.enemy and room.enemy.is_alive() and target in room.enemy.name.lower():
+                return "I don't know if you noticed, but it's trying to kill you..."
+            elif room.enemy and not room.enemy.is_alive() and target in room.enemy.name.lower():
+                return "The corpse is too heavy to carry."
+            elif target in room.name.lower():
+                return "Are you sure you're okay?"
+            else:
+                return f"You can't see any {target} here."
+
+        elif purpose == "drop":
+            for entity in room.environment:
+                if target in entity.name.lower():
+                    return "How is this supposed to work?"
+            for item in room.inventory:
+                if target in item.name.lower():
+                    return "You can't drop something you don't own."
+            if room.enemy and target in room.enemy.name.lower():
+                return f"Hummm... Ok, {room.enemy.name}: dropped. Now what?"
+            elif target in room.name.lower():
+                return "I don't even know what to answer..."
+            else:
+                return f"You don't have any {target} to drop."
 
     def get_or_drop_all(self, giver, receiver, purpose):
         """Take all items from giver's inventory, add them to receiver's inventory
