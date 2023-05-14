@@ -598,7 +598,7 @@ class Player:
         receiver.sort_inventory()
 
     def get_and_drop_command_handler(self, giver, receiver, target, purpose):
-        if target in "all":
+        if target == "all":
             return self.get_or_drop_all(giver, receiver, purpose)
 
         for item in giver.inventory:
