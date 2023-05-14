@@ -543,27 +543,6 @@ class Player:
             case _:
                 return
 
-    def heal_command_handler(self, choice):
-        """Heal Player using chosen item and remove it from the inventory.
-
-        Parameters
-        ----------
-        choice : Healer
-            The selected item to use for healing. It must have a 'heal' attribute.
-
-        Returns
-        -------
-        str
-            A string providing name of the item used and remaining HP.
-        """
-        if (choice.heal + self.hp) > self.max_hp:
-            self.hp = self.max_hp
-        else:
-            self.hp += choice.heal
-        self.inventory.remove(choice)
-        self.sort_inventory()
-        return f"You use {choice.name}. You now have {self.hp} HP remaining."
-
     def items_swapper(self, giver, receiver, item, purpose):
         """Move items between inventories of two Entities or buys/sells items.
         Call sort_inventory method on both Entities when done.
@@ -692,6 +671,31 @@ class Player:
             return f"There is nothing to {purpose}."
         else:
             return response
+
+    # -------------------------------------------------------------------------|
+    # HEAL AND RECHARGE MANA---------------------------------------------------|
+    # -------------------------------------------------------------------------|
+
+    def heal_command_handler(self, choice):
+        """Heal Player using chosen item and remove it from the inventory.
+
+        Parameters
+        ----------
+        choice : Healer
+            The selected item to use for healing. It must have a 'heal' attribute.
+
+        Returns
+        -------
+        str
+            A string providing name of the item used and remaining HP.
+        """
+        if (choice.heal + self.hp) > self.max_hp:
+            self.hp = self.max_hp
+        else:
+            self.hp += choice.heal
+        self.inventory.remove(choice)
+        self.sort_inventory()
+        return f"You use {choice.name}. You now have {self.hp} HP remaining."
 
     # -------------------------------------------------------------------------|
     # INFO --------------------------------------------------------------------|
