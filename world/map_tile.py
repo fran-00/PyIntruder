@@ -2,7 +2,7 @@ import random
 import json
 import re
 
-from entities.templates import Healer, ManaRecharger
+from entities.templates import Healer, ManaRecharger, Trader
 from entities.factory import ItemsFactory as items
 
 
