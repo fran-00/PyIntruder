@@ -128,11 +128,7 @@ class Commands:
                     )
 
                 elif command == "TRADE":
-                    if self.room.talker and self.room.talker.trade:
-                        self.arguments_list = [
-                            self.room.talker.inventory, "trade"]
-                    else:
-                        self.arguments_list = [None]
+                    self.arguments_list = [self.room.talker.inventory, "trade"]
                     return (
                         self.room.trade,
                         self.player.trading_mode,
