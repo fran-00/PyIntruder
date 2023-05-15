@@ -288,11 +288,6 @@ class Player:
     # INVENTORY AND TRADING SYSTEM --------------------------------------------|
     # -------------------------------------------------------------------------|
 
-    def sort_inventory(self):
-        """Sort inventory in-place based on the item class name and item name."""
-        self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
-        return
-
     def trading_mode(self, *args):
         """Enter trading mode with a non-player character.
 
