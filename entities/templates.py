@@ -23,12 +23,10 @@ class Entity:
 
 class NonPlayableCharacter(Entity):
 
-    def __init__(self, name, inventory, trade):
+    def __init__(self, name, inventory):
         super().__init__(name)
         self.description = npcs_data[f"{self.name}".lower()]["description"]
-        self.gold = 100000
         self.inventory = inventory
-        self.trade = trade
         self.sort_inventory()
 
     def sort_inventory(self):
