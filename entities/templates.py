@@ -34,10 +34,6 @@ class NonPlayableCharacter(Entity):
         self.inventory = inventory
         self.sort_inventory()
 
-    def sort_inventory(self):
-        self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
-        return
-
     def get_random_opening_sentence(self, npc_name=str):
         sentences = npcs_data[npc_name.lower()]['opening sentence']
         opening_sentence = random.choice(list(sentences.values()))
