@@ -8,7 +8,7 @@ import world.parser as parser
 import world.tiles as world
 
 
-class Player:
+class Player(Entity):
     def __init__(self):
         self.name = 'Your Name Here'
         self.x = parser.start_tile_location[0]
@@ -20,7 +20,6 @@ class Player:
                           items().ats,
                           items().specimen,
                           items().dialectic_draught]
-        self.sort_inventory()
         self.current_weapon = self.best_weapon()
         self.gold = 10000000
 
