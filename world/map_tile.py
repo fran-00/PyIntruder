@@ -3,7 +3,7 @@ import json
 import re
 
 from entities.templates import Healer, ManaRecharger
-from entities.factory import Factory
+from entities.factory import ItemsFactory as items
 
 
 with open('world/data/tiles_data.json') as f:
@@ -29,8 +29,8 @@ class MapTile:
         self.sort_inventory()
 
     def choose_random_items(self):
-        healers_list = Factory().get_entities_list(Healer)
-        manarechargers_list = Factory().get_entities_list(ManaRecharger)
+        healers_list = items().get_entities_list(Healer)
+        manarechargers_list = items().get_entities_list(ManaRecharger)
         n = random.randint(1, 4)
         if n in {1}:
             pass
