@@ -2,7 +2,7 @@ import random
 import re
 
 from .templates import Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon
-from .factory import Factory
+from .factory import ItemsFactory as items
 
 import world.parser as parser
 import world.tiles as world
@@ -14,12 +14,12 @@ class Player:
         self.x = parser.start_tile_location[0]
         self.y = parser.start_tile_location[1]
 
-        self.inventory = [Factory().stygian_blue,
-                          Factory().wire,
-                          Factory().hyperbolic_orange,
-                          Factory().ats,
-                          Factory().specimen,
-                          Factory().dialectic_draught]
+        self.inventory = [items().stygian_blue,
+                          items().wire,
+                          items().hyperbolic_orange,
+                          items().ats,
+                          items().specimen,
+                          items().dialectic_draught]
         self.sort_inventory()
         self.current_weapon = self.best_weapon()
         self.gold = 10000000
