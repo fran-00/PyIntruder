@@ -39,6 +39,14 @@ class NonPlayableCharacter(Entity):
         return opening_sentence
 
 
+class Trader(NonPlayableCharacter):
+    def __init__(self, name, inventory, type):
+        super().__init__(name, inventory)
+        self.description = npcs_data[f"{self.name}".lower()]["description"]
+        self.gold = 100000
+        self.type = type
+
+
 class Enemy(Entity):
 
     def __init__(self, name, level, hp, damage):
