@@ -1,7 +1,7 @@
 import random
 import re
 
-from .templates import Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon
+from .templates import Armor, Curse, Entity, Healer, ManaRecharger, MissionRelatedItem, Weapon
 from .factory import ItemsFactory as items
 
 import world.parser as parser
