@@ -162,13 +162,22 @@ class MapTile:
             If there is no npc in the current room or if npc doesn't want to trade.
         """
         if self.talker and isinstance(self.talker, Trader):
-            sentence = self.talker.get_random_opening_sentence(
-                f"{self.talker.name}")
+            self.check_trader_inventory(self.talker.type)
+            self.talker.sort_inventory()
+            sentence = self.talker.get_random_opening_sentence(f"{self.talker.name}")
             return f"{sentence}\nBuy, Sell or Quit?"
         elif self.talker and not isinstance(self.talker, Trader):
             return f"{self.talker.name} doesn't want to trade.", None
         else:
             return "There is no one to trade with.", None
+
+    def check_trader_inventory(self, type):
+        items_list = items().get_entities_list(type)
+        if not self.talker.inventory:
+            self.talker.inventory = self.talker.inventory + random.sample(items_list, k=10)
+        else:
+            pass
+        return
 
     def look_command_handler(self):
         """Show a detailed description of the current room's scenario.
