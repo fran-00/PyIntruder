@@ -1,29 +1,26 @@
-from entities.factory import Factory
+from entities.factory import EntitiesFactory as entites
 from world.map_tile import MapTile
-
-
-obj = Factory()
 
 
 class StartTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Clearing'
         super().__init__(x, y)
-        self.environment = [obj.car, obj.table]
+        self.environment = [entites().car, entites().table]
 
 
 class LittleoTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Little(o) Shop'
         super().__init__(x, y)
-        self.talker = obj.littleo
+        self.talker = entites().littleo
 
 
 class BlacksmithTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Blacksmith'
         super().__init__(x, y)
-        self.talker = obj.blacksmith
+        self.talker = entites().blacksmith
 
 
 class ChestTile(MapTile):
@@ -36,7 +33,7 @@ class FernsTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Ferns'
         super().__init__(x, y)
-        self.talker = obj.ferns
+        self.talker = entites().ferns
 
 
 class FountainTile(MapTile):
@@ -50,7 +47,7 @@ class IntruderTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Intruder'
         super().__init__(x, y)
-        self.talker = obj.intruder
+        self.talker = entites().intruder
 
 
 class RiverTile(MapTile):
@@ -63,7 +60,7 @@ class OakTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Oak'
         super().__init__(x, y)
-        self.talker = obj.oak
+        self.talker = entites().oak
 
 
 class PathTile(MapTile):
@@ -76,7 +73,7 @@ class TempleTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Temple'
         super().__init__(x, y)
-        self.talker = Factory().monk
+        self.talker = entites().monk
 
 
 class VictoryTile(MapTile):
