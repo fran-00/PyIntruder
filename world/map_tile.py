@@ -139,9 +139,8 @@ class MapTile:
     def dialogue(self, *args):
         number_of_dialogues = args[-2]
         current_dialogue = args[-3]
-        print(current_dialogue)
         choice = args[-1]
-        npc_dialogues = list(npcs_data[self.talker.name.lower()]['dialogues'][f'npc {current_dialogue - 1}'].values())
+        npc_dialogues = list(npcs_data[self.talker.name.lower()]['dialogues'][f'npc {current_dialogue}'].values())
         player_dialogue = list(npcs_data[self.talker.name.lower()]['dialogues'][f'player {current_dialogue}'].values())
         response = ""
         try:
@@ -150,9 +149,12 @@ class MapTile:
             response += f"{sentence}\n"
             for i, sentence in enumerate(player_dialogue):
                 response += f"\n{i + 1}: {sentence}"
-            current_dialogue -= 1
+            current_dialogue += 1
             number_of_dialogues -= 1
-            return response, "dialogue", current_dialogue, number_of_dialogues
+            if number_of_dialogues > 0:
+                return response, "dialogue", current_dialogue, number_of_dialogues
+            else:
+                return response, None
         except Exception as e:
             return f"{e}"
 
