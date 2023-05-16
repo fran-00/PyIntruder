@@ -32,7 +32,6 @@ class NonPlayableCharacter(Entity):
         super().__init__(name)
         self.description = npcs_data[f"{self.name}".lower()]["description"]
         self.inventory = inventory
-        self.sort_inventory()
 
     def get_random_opening_sentence(self, npc_name=str):
         sentences = npcs_data[npc_name.lower()]['opening sentence']
