@@ -123,11 +123,9 @@ class MapTile:
         target = args[2]
         if self.talker.name.lower() == target:
             response = ""
-            opening_sentece = npcs_data[self.talker.name.lower(
-            )]['opening sentence']
+            opening_sentece = npcs_data[self.talker.name.lower()]['opening sentence']
             response += f"{opening_sentece}"
-            player_dialogue = npcs_data[self.talker.name.lower(
-            )]['player dialogue 0']
+            player_dialogue = npcs_data[self.talker.name.lower()]['dialogues']['player 0']
             for i, sentence in enumerate(list(player_dialogue.values())):
                 response += f"\n{i}: {sentence}"
             return response
