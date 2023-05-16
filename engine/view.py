@@ -55,4 +55,4 @@ class GameView(QWidget):
     def handle_game_response(self, response):
         """ Slot that receives a string from controller as a signal """
         # Append game output to log view window
-        self.log_view.append(f"> {response}")
+        self.log_view.append(f"{response}")
