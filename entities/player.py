@@ -707,6 +707,21 @@ class Player(Entity):
             return f"{target.capitalize()} is something I don't recognize."
 
     def match_target_name(self, target, obj):
+        """Determine if a given `target` string matches any part of a given
+        object's name using re module.
+
+        Parameters
+        ----------
+        target : str
+            The target string to match.
+        obj : Any
+            The object to check for a name match.
+
+        Returns
+        -------
+        bool
+            True if a match is found, False otherwise.
+        """
         if obj and re.search(rf"\b\w*({''.join([f'{c}' for c in target])})\w*\b", obj.name.lower()) and len(set(target).intersection(set(obj.name.lower()))) >= 3:
             return True
         else:
