@@ -165,6 +165,22 @@ class MapTile:
             return "There is no one to trade with.", None
 
     def check_trader_inventory(self, type):
+        """Retrieve a list of items based on the specified `type` 
+        calling get_entities_list method from Factory class and add 10
+        random items to the trader's inventory if it is empty.
+
+        Parameters
+        ----------
+        type : class
+            The type of items to retrieve, which can be any Item subclass
+            (Curse, Healer, ManaRecharger, Weapon or Armor)
+
+        Returns
+        -------
+        None
+            Add a sample of items matching the specified `type` to trader's
+            inventory if it is empty and return None.
+        """
         items_list = items().get_entities_list(type)
         if not self.talker.inventory:
             self.talker.inventory = self.talker.inventory + random.sample(items_list, k=10)
