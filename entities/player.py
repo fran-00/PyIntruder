@@ -583,16 +583,16 @@ class Player(Entity):
 
         Parameters
         ----------
-        giver: Player or MapTile subclass
+        giver : Player or MapTile subclass
             The entity that will be giving the item: Player if dropping,
             current room if getting.
-        receiver: Player or MapTile subclass
+        receiver : Player or MapTile subclass
             The entity that will be receiving the item: current room if dropping,
             Player if getting.
-        target: str
+        target : str
             Name of the item to be picked up or dropped. Can be 'all' to pick/
             drop all items of the giver.
-        purpose: str
+        purpose : str
             Purpose of the action which can be 'get' or 'drop'.
 
         Returns
