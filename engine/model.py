@@ -97,8 +97,6 @@ class GameModel(QObject):
                 if nested_response[1] == None:
                     break
                 elif nested_response[1] == "dialogue":
-                    # FIXME: it must recall dialogue method
-                    # as long as there are dialogues
                     self.commands.arguments_list.append(nested_response[2])
                     self.commands.arguments_list.append(nested_response[3])
                     self.event_loop.exec()
