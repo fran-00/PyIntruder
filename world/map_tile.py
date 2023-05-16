@@ -183,10 +183,7 @@ class MapTile:
         """
         items_list = items().get_entities_list(type)
         if not self.talker.inventory:
-            self.talker.inventory = self.talker.inventory + random.sample(items_list, k=10)
-        else:
-            pass
-        return
+            self.talker.inventory += random.sample(items_list, k=10)
 
     def look_command_handler(self):
         """Show a detailed description of the current room's scenario.
