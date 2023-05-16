@@ -646,6 +646,21 @@ class Player(Entity):
             return self.handle_when_item_cannot_be_dropped(target, room)
 
     def handle_when_item_cannot_be_picked_up(self, target, room):
+        """
+        Handle the logic of determining why an item cannot be picked up.
+
+        Parameters
+        ----------
+        target : str
+            Name of the item which the player is trying to interact with.
+        room : MapTile subclass
+            The room the player is currently in.
+
+        Returns
+        -------
+        str
+            A message indicating why the specified item cannot be picked up.
+        """
         for entity in room.environment:
             if self.match_target_name(target, entity):
                 return "Not bloody likely."
@@ -663,6 +678,21 @@ class Player(Entity):
             return f"{target.capitalize()} is something I don't recognize."
 
     def handle_when_item_cannot_be_dropped(self, target, room):
+        """
+        Handle the logic of determining why an item cannot be dropped.
+
+        Parameters
+        ----------
+        target : str
+            Name of the item which the player is trying to interact with.
+        room : MapTile subclass
+            The room the player is currently in.
+
+        Returns
+        -------
+        str
+            A message indicating why the specified item cannot be dropped.
+        """
         for entity in room.environment:
             if self.match_target_name(target, entity):
                 return "How is this supposed to work?"
