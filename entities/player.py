@@ -477,8 +477,9 @@ class Player(Entity):
         purpose = args[1]
         action = args[-1]
         room = parser.tile_at(self.x, self.y)
+        
         if purpose == "trade" and not self.is_selling:
-            inventory = args[0]
+            inventory = room.talker.inventory
         elif purpose == "pick-up":
             inventory = room.inventory
         elif purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
