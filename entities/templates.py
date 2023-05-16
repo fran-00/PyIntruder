@@ -21,10 +21,6 @@ class Entity:
     def __str__(self):
         return self.name
 
-    def sort_inventory(self):
-        """Sort inventory in-place based on the item class name and item name."""
-        self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
-        return
 
 class NonPlayableCharacter(Entity):
 
