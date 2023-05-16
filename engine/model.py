@@ -92,9 +92,17 @@ class GameModel(QObject):
             arguments_tuple = tuple(self.commands.arguments_list)
             nested_response = method(*arguments_tuple)
 
-            if isinstance(nested_response, tuple) and nested_response[1] == None:
+            if isinstance(nested_response, tuple):
                 self.model_signal_to_controller.emit(nested_response[0])
-                break
+                if nested_response[1] == None:
+                    break
+                elif nested_response[1] == "dialogue":
+                    # FIXME: it must recall dialogue method
+                    # as long as there are dialogues
+                    self.commands.arguments_list.append(nested_response[2])
+                    self.commands.arguments_list.append(nested_response[3])
+                    self.event_loop.exec()
+
             else:
                 self.model_signal_to_controller.emit(nested_response)
                 if i == len(game_response) - 1:
