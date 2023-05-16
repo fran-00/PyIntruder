@@ -698,14 +698,14 @@ class Player(Entity):
         """Return a formatted string with the player's current status information."""
         room = parser.tile_at(self.x, self.y)
         return (
-            f"> Level : {self.lvl}\n"
-            f"> HP : {self.hp}/{self.max_hp}\n"
-            f"> Mana : {self.mana}/{self.max_mana}\n"
-            f"> § : {self.gold}\n"
-            f"> XP : {self.xp}/{self.xp_modifier}\n"
-            f"> Weapon equipped : {self.current_weapon}\n"
-            f"> Turn : {self.turn}\n"
-            f"> Location : {self.x}.{self.y} - {room.name}"
+            f"Level : {self.lvl}\n"
+            f"HP : {self.hp}/{self.max_hp}\n"
+            f"Mana : {self.mana}/{self.max_mana}\n"
+            f"§ : {self.gold}\n"
+            f"XP : {self.xp}/{self.xp_modifier}\n"
+            f"Weapon equipped : {self.current_weapon}\n"
+            f"Turn : {self.turn}\n"
+            f"Location : {self.x}.{self.y} - {room.name}"
         )
 
     def show_map(self):
@@ -785,7 +785,7 @@ class Player(Entity):
                 map_tile_type = tile_type_dict[dsl_cell]
                 row.append(map_tile_type)
             print("".join(row))
-        print(f'> You are here: ({loc_x},{loc_y})')
+        print(f'You are here: ({loc_x},{loc_y})')
 
 
     def parse_available_directions(self):

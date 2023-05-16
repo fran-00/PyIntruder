@@ -49,7 +49,7 @@ class Commands:
         """
         self.room = parser.tile_at(self.player.x, self.player.y)
         if self.room.enemy is None:
-            return (f"***{self.room.name}***\n> {self.room.description}")
+            return (f"***{self.room.name}***\n{self.room.description}")
         elif self.room.enemy.is_alive():
             return (f"{self.room.enemy.description_if_alive}")
         elif not self.room.enemy.is_alive():
