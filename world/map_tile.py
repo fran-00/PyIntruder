@@ -24,9 +24,7 @@ class MapTile:
         self.enemy = None
         self.talker = None
         self.water = False
-
         self.choose_random_items()
-        self.sort_inventory()
 
     def choose_random_items(self):
         healers_list = items().get_entities_list(Healer)
@@ -38,10 +36,6 @@ class MapTile:
             self.inventory.append(random.choice(healers_list))
         elif n == 4:
             self.inventory.append(random.choice(manarechargers_list))
-
-    def sort_inventory(self):
-        self.inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
-        return
 
     def modify_player(self, player):
         """Modify player and enemy based on a random chance of confusion
@@ -163,7 +157,6 @@ class MapTile:
         """
         if self.talker and isinstance(self.talker, Trader):
             self.check_trader_inventory(self.talker.type)
-            self.talker.sort_inventory()
             sentence = self.talker.get_random_opening_sentence(f"{self.talker.name}")
             return f"{sentence}\nBuy, Sell or Quit?"
         elif self.talker and not isinstance(self.talker, Trader):
