@@ -579,6 +579,33 @@ class Player(Entity):
     # -------------------------------------------------------------------------|
 
     def get_and_drop_command_handler(self, giver, receiver, target, purpose):
+        """Handle the logic of getting and dropping items between two entities.
+
+        Parameters
+        ----------
+        giver: Player or MapTile subclass
+            The entity that will be giving the item: Player if dropping,
+            current room if getting.
+        receiver: Player or MapTile subclass
+            The entity that will be receiving the item: current room if dropping,
+            Player if getting.
+        target: str
+            Name of the item to be picked up or dropped. Can be 'all' to pick/
+            drop all items of the giver.
+        purpose: str
+            Purpose of the action which can be 'get' or 'drop'.
+
+        Returns
+        -------
+        str
+            If the target is 'all', return a string containing the status of the
+            get/drop all operation, otherwise the string will indicate whether
+            the specified item was successfully taken or dropped. 
+            If the specified  item is not in the giver's inventory or it cannot
+            be collected/dropped because is not an item but another kind of entity,
+            return a string detailing the reason why it's not possible provided
+            by show_why_is_not_collectable_or_droppable method.
+        """
         if target == "all":
             return self.get_or_drop_all(giver, receiver, purpose)
 
