@@ -126,9 +126,10 @@ class MapTile:
             opening_sentece = npcs_data[self.talker.name.lower()]['opening sentence']
             response += f"{opening_sentece}"
             player_dialogue = npcs_data[self.talker.name.lower()]['dialogues']['player 0']
-            for i, sentence in enumerate(list(player_dialogue.values())):
-                response += f"\n{i}: {sentence}"
-            return response
+            for current_dialogue, sentence in enumerate(list(player_dialogue.values())):
+                response += f"\n{current_dialogue + 1}: {sentence}"
+            number_of_dialogues = len(npcs_data[self.talker.name.lower()]['dialogues'])
+            return response, "dialogue", current_dialogue, number_of_dialogues
         elif self.enemy:
             # TODO: add enemy dialogues
             return "Enemy talks", None
@@ -136,8 +137,24 @@ class MapTile:
             return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk.", None
 
     def dialogue(self, *args):
-        # TODO: Parse dialogues from npc dialogue 0
-        return
+        number_of_dialogues = args[-2]
+        current_dialogue = args[-3]
+        print(current_dialogue)
+        choice = args[-1]
+        npc_dialogues = list(npcs_data[self.talker.name.lower()]['dialogues'][f'npc {current_dialogue - 1}'].values())
+        player_dialogue = list(npcs_data[self.talker.name.lower()]['dialogues'][f'player {current_dialogue}'].values())
+        response = ""
+        try:
+            choice_index = int(choice)
+            sentence = npc_dialogues[choice_index - 1]
+            response += f"{sentence}\n"
+            for i, sentence in enumerate(player_dialogue):
+                response += f"\n{i + 1}: {sentence}"
+            current_dialogue -= 1
+            number_of_dialogues -= 1
+            return response, "dialogue", current_dialogue, number_of_dialogues
+        except Exception as e:
+            return f"{e}"
 
     def trade(self, *args):
         """Initiate a trade with an npc in the current room that wants to trade,
