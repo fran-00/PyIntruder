@@ -594,37 +594,41 @@ class Player(Entity):
     
     def check_if_collectable_or_droppable(self, target, purpose):
         room = parser.tile_at(self.x, self.y)
-
         if purpose == "get":
-            for entity in room.environment:
-                if self.match_target_name(target, entity):
-                    return "Not bloody likely."
-            for item in self.inventory:
-                if self.match_target_name(target, item):
-                    return "You already have it..."
-            if room.enemy and self.match_target_name(target, room.enemy):
-                if room.enemy.is_alive():
-                    return "I don't know if you noticed, but it's trying to kill you..."
-                else:
-                    return "The corpse is too heavy to carry."
-            elif self.match_target_name(target, room):
-                return "Are you sure you're okay?"
-            else:
-                return f"{target.capitalize()} is something I don't recognize."
-
+            return self.handle_when_item_cannot_be_picked_up(target, room)
         elif purpose == "drop":
-            for entity in room.environment:
-                if self.match_target_name(target, entity):
-                    return "How is this supposed to work?"
-            for item in room.inventory:
-                if self.match_target_name(target, item):
-                    return "You can't drop something you don't own."
-            if self.match_target_name(target, room.enemy):
-                return f"Hummm... Ok, {room.enemy.name}: dropped. Now what?"
-            if self.match_target_name(target, room):
-                return "I don't even know what to answer..."
+            return self.handle_when_item_cannot_be_dropped(target, room)
+
+    def handle_when_item_cannot_be_picked_up(self, target, room):
+        for entity in room.environment:
+            if self.match_target_name(target, entity):
+                return "Not bloody likely."
+        for item in self.inventory:
+            if self.match_target_name(target, item):
+                return "You already have it..."
+        if room.enemy and self.match_target_name(target, room.enemy):
+            if room.enemy.is_alive():
+                return "I don't know if you noticed, but it's trying to kill you..."
             else:
-                return f"{target.capitalize()} is something I don't recognize."
+                return "The corpse is too heavy to carry."
+        elif self.match_target_name(target, room):
+            return "Are you sure you're okay?"
+        else:
+            return f"{target.capitalize()} is something I don't recognize."
+
+    def handle_when_item_cannot_be_dropped(self, target, room):
+        for entity in room.environment:
+            if self.match_target_name(target, entity):
+                return "How is this supposed to work?"
+        for item in room.inventory:
+            if self.match_target_name(target, item):
+                return "You can't drop something you don't own."
+        if self.match_target_name(target, room.enemy):
+            return f"Hummm... Ok, {room.enemy.name}: dropped. Now what?"
+        if self.match_target_name(target, room):
+            return "I don't even know what to answer..."
+        else:
+            return f"{target.capitalize()} is something I don't recognize."
 
     def match_target_name(self, target, obj):
         if obj and re.search(rf"\b\w*({''.join([f'{c}' for c in target])})\w*\b", obj.name.lower()) and len(set(target).intersection(set(obj.name.lower()))) >= 3:
