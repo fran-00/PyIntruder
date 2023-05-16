@@ -620,8 +620,7 @@ class Player(Entity):
             return self.show_why_is_not_collectable_or_droppable(target, purpose)
     
     def show_why_is_not_collectable_or_droppable(self, target, purpose):
-        """
-        Call two other methods to determine why an item cannot be collected or
+        """Call two other methods to determine why an item cannot be collected or
         dropped.
 
         Parameters
@@ -646,8 +645,7 @@ class Player(Entity):
             return self.handle_when_item_cannot_be_dropped(target, room)
 
     def handle_when_item_cannot_be_picked_up(self, target, room):
-        """
-        Handle the logic of determining why an item cannot be picked up.
+        """Handle the logic of determining why an item cannot be picked up.
 
         Parameters
         ----------
@@ -678,8 +676,7 @@ class Player(Entity):
             return f"{target.capitalize()} is something I don't recognize."
 
     def handle_when_item_cannot_be_dropped(self, target, room):
-        """
-        Handle the logic of determining why an item cannot be dropped.
+        """Handle the logic of determining why an item cannot be dropped.
 
         Parameters
         ----------
