@@ -436,10 +436,12 @@ class Player(Entity):
                     index += 1
         else:
             for parent in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
+                words = re.findall('[A-Z][^A-Z]*', parent.__name__)
+                parent_name = ' '.join(words) + "s" + ":"
                 items_subset = self.sort_items_by_category(inventory, parent)
 
                 if items_subset:
-                    response += f">> {parent.__name__.upper()}S:\n"
+                    response += f"{parent_name}\n"
 
                 for _, item in enumerate(items_subset, index):
                     if purpose in ["trade"]:
