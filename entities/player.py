@@ -571,8 +571,6 @@ class Player(Entity):
             receiver.gold -= item.value
         giver.inventory.remove(item)
         receiver.inventory.append(item)
-        giver.sort_inventory()
-        receiver.sort_inventory()
 
     # -------------------------------------------------------------------------|
     # GET/ DROP----------------------------------------------------------------|
@@ -585,8 +583,6 @@ class Player(Entity):
         for item in giver.inventory:
             if self.match_target_name(target, item):
                 self.items_swapper(giver, receiver, item, "get-drop")
-                receiver.sort_inventory()
-                giver.sort_inventory()
                 if purpose == "get":
                     return f"{item.name}: taken."
                 else:
@@ -692,7 +688,6 @@ class Player(Entity):
         else:
             self.hp += choice.heal
         self.inventory.remove(choice)
-        self.sort_inventory()
         return f"You use {choice.name}. You now have {self.hp} HP remaining."
 
     # -------------------------------------------------------------------------|
