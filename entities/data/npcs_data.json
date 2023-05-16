@@ -67,17 +67,35 @@
                 "2": "<< We are young and inexperienced in mountain matters. We're fine here but it's been a few days since some strange yellowish protuberances have started to appear on our green leaves. It started with just a few of us, but now the unknown disease has affected practically all of us. We don't know what's happening to us. >"
             },
             "player 1": {
-                "1": "<<2.1>>",
-                "2": "<<2.2>>",
-                "3": "<<2.3>>"
+                "1": "<<player 1 - 1>>",
+                "2": "<<player 1 - 2>>",
+                "3": "<<player 1 - 3>>",
+                "4": "<<player 1 - 4>>",
+                "5": "<<player 1 - 5>>"
             },
             "npc 1": {
-                "1": "<< >>",
-                "2": "<< >>"
+                "1": "<<npc 1 - 1>>",
+                "2": "<<npc 1 - 2>>",
+                "3": "<<npc 1 - 3>>",
+                "4": "<<npc 1 - 4>>",
+                "5": "<<npc 1 - 5>>",
+                "6": "<<npc 1 - 6>>"
+            },
+            "player 2": {
+                "1": "<<player 2 - 1>>",
+                "2": "<<player 2 - 2>>",
+                "3": "<<player 2 - 3>>",
+                "4": "<<player 2 - 4>>",
+                "5": "<<player 2 - 5>>"
+            },
+            "npc 2": {
+                "1": "<<npc 2 - 1>>",
+                "2": "<<npc 2 - 2>>",
+                "3": "<<npc 2 - 3>>",
+                "4": "<<npc 2 - 4>>",
+                "5": "<<npc 2 - 5>>",
+                "6": "<<npc 2 - 6>>"
             }
-        },
-        "player_responses": {
-
         }
     },
     "rina": {
