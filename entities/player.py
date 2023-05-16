@@ -445,7 +445,7 @@ class Player(Entity):
                     if purpose in ["trade"]:
                         response += f"{index}. - {item} - {item.value}§\n"
                     else:
-                        response += f"> {item}\n"
+                        response += f"{index}. - {item}\n"
                     index += 1
         return response
 
