@@ -620,6 +620,25 @@ class Player(Entity):
             return self.show_why_is_not_collectable_or_droppable(target, purpose)
     
     def show_why_is_not_collectable_or_droppable(self, target, purpose):
+        """
+        Call two other methods to determine why an item cannot be collected or
+        dropped.
+
+        Parameters
+        ----------
+        target : str
+            Name of the item which the player is trying to interact with.
+        purpose: str
+            Type of interaction, which can be 'get' or 'drop'.
+
+        Returns
+        -------
+        str
+            A string message indicating why the specified item cannot be
+            collected or dropped by the player obtained by calling
+            handle_when_item_cannot_be_picked_up and handle_when_item_cannot_be_dropped
+            methods.
+        """
         room = parser.tile_at(self.x, self.y)
         if purpose == "get":
             return self.handle_when_item_cannot_be_picked_up(target, room)
