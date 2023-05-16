@@ -27,6 +27,9 @@ class MapTile:
         self.choose_random_items()
 
     def choose_random_items(self):
+        """Choose one or two random items from either the Healer or ManaRecharger
+        entities lists and add them to room's inventory.
+        """
         healers_list = items().get_entities_list(Healer)
         manarechargers_list = items().get_entities_list(ManaRecharger)
         n = random.randint(1, 4)
