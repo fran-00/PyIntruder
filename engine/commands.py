@@ -124,6 +124,10 @@ class Commands:
                     self.arguments_list = [None, "talk", target]
                     return (
                         self.room.choose_talking_npc,
+                        self.room.dialogue,
+                        self.room.dialogue,
+                        self.room.dialogue,
+                        self.room.dialogue,
                         self.room.dialogue
                     )
 
