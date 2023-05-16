@@ -590,9 +590,9 @@ class Player(Entity):
                 else:
                     return f"{item.name}: dropped."
         else:
-            return self.check_if_collectable_or_droppable(target, purpose)
+            return self.show_why_is_not_collectable_or_droppable(target, purpose)
     
-    def check_if_collectable_or_droppable(self, target, purpose):
+    def show_why_is_not_collectable_or_droppable(self, target, purpose):
         room = parser.tile_at(self.x, self.y)
         if purpose == "get":
             return self.handle_when_item_cannot_be_picked_up(target, room)
