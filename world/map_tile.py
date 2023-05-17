@@ -248,7 +248,7 @@ class MapTile:
                 return obj.description
         return (f"I can't see any {target} here.")
 
-    def open_command_handler(self, target):
+    def open_command_handler(self, *args):
         """_summary_
 
         Parameters
@@ -256,6 +256,7 @@ class MapTile:
         target : str
             _description_
         """
+        target = args[1]
         for obj in self.environment:
             if target == obj.name.lower():
                 if obj.openable:
