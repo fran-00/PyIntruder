@@ -27,6 +27,65 @@ class ChestTile(MapTile):
     def __init__(self, x, y):
         self.name = 'Chest'
         super().__init__(x, y)
+        self.environment = [entities().chest]
+
+    def handle_chest_event(self, *args):
+        player = args[0]
+        action = args[-1]
+        response = ""
+
+        match action.lower():
+            case "n" | "no":
+                return "Ok, this chest will remain closed."
+            case "y" | "yes":
+                response += "You roll the dice..."
+            case _:
+                return "Invalid choice."
+                
+        ico = random.randint(1, 20)
+        match ico:
+            case 20:
+                gold = 1000
+                response += (
+                    f"Dice says 20! IT'S INCREDIBLE!!!\n"
+                    f"You found {gold}§ inside of it!\n"
+                    )
+            case x if 15 < x < 20:
+                gold = random.randint(300, 499)
+                response += ( 
+                    f"Dice says {ico}! Not bad!\n"
+                    f"You found {gold}§ inside of it!\n"
+                    )
+            case x if 11 < x < 16:
+                gold = random.randint(150, 299)
+                response += (
+                    f"Dice says {ico}! Good!\n"
+                    f"You found {gold}§ inside of it!\n"
+                    )
+            case x if 7 < x < 12:
+                gold = random.randint(50, 149)
+                response += (
+                    f"> Dice says {ico}! Hmmm...\n"
+                    f"Only {gold}§...\n"
+                    )
+            case x if 3 < x < 8:
+                gold = random.randint(0, 50)
+                response += (
+                    f"{ico}!"
+                    )
+            case x if 4 < x < 0:
+                gold = 0
+                response += (
+                    f"{ico}!"
+                    )
+            case 0:
+                gold = 0
+                response += (
+                    f"{ico}!"
+                )
+        player.gold += gold
+        response += f"You now have {player.gold}§."
+        return response
 
 
 class FernsTile(MapTile):
