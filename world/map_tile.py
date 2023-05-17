@@ -134,8 +134,11 @@ class MapTile:
             number_of_dialogues = len(npcs_data[self.talker.name.lower()]['dialogues'])
             return response, "dialogue", current_dialogue, number_of_dialogues
         elif self.enemy:
-            # TODO: add enemy dialogues
-            return "Enemy talks", None
+            if self.enemy.is_alive():
+                response = enemies_data[self.enemy.name.lower()]['talk_alive']
+            else:
+                response = enemies_data[self.enemy.name.lower()]['talk_dead']
+            return response, None
         elif not self.talker and not self.enemy:
             return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk.", None
 
