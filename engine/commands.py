@@ -121,7 +121,7 @@ class Commands:
 
                 elif command == "TALK TO":
                     target = re.match(regex, action).group(2)
-                    self.arguments_list = [target]
+                    self.arguments_list = [self.player, target]
                     return (
                         self.room.choose_talking_npc,
                         self.room.dialogue,
