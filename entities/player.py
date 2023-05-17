@@ -261,13 +261,13 @@ class Player(Entity):
                     f"Critical hit!\n"
                     f"You cast {choice.name} on {enemy.name}, "
                     f"it does {choice.damage*2} DMG!\n"
-                    )
+                )
             else:
                 enemy.hp -= choice.damage
                 response = (
                     f"You cast {choice.name} on {enemy.name}, "
                     f"it does {choice.damage} DMG!\n"
-                    )
+                )
             self.mana -= choice.mana_cost
             response += f"You now have {self.mana} Mana remaining."
             return response
