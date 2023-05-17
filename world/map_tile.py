@@ -151,6 +151,8 @@ class MapTile:
         if number_of_dialogues == current_dialogue:
             return None, None
         choice = args[-1]
+        if choice.lower() in ["quit", "q", "exit"]:
+            return "Action cancelled.", None
         npc_dialogues = list(npcs_data[self.talker.name.lower()]['dialogues'][f'npc {current_dialogue}'].values())
         player_dialogue = list(npcs_data[self.talker.name.lower()]['dialogues'][f'player {current_dialogue}'].values())
         response = ""
