@@ -257,11 +257,17 @@ class Player(Entity):
             d20 = random.randint(1, 20)
             if d20 in [19, 20]:
                 enemy.hp -= choice.damage * 2
-                response += f"Critical hit!\nYou cast {choice.name} on {enemy.name}, it does {choice.damage*2} DMG!\n"
+                response += (
+                    f"Critical hit!\n"
+                    f"You cast {choice.name} on {enemy.name}, "
+                    f"it does {choice.damage*2} DMG!\n"
+                    )
             else:
                 enemy.hp -= choice.damage
-                response = f"You cast {choice.name} on {enemy.name}, it does {choice.damage} DMG!\n"
-
+                response = (
+                    f"You cast {choice.name} on {enemy.name}, "
+                    f"it does {choice.damage} DMG!\n"
+                    )
             self.mana -= choice.mana_cost
             response += f"You now have {self.mana} Mana remaining."
             return response
