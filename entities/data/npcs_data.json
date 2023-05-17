@@ -56,7 +56,10 @@
     },
     "ferns": {
         "description": "Cool",
-        "opening sentence": "<< Please, oh wanderer, help us! >>",
+        "opening sentence": {
+            "1": "<< Please, oh wanderer, help us! >>",
+            "2": "<< Over here! We need help! >>"
+        },
         "dialogues": {
             "player 0": {
                 "1": "Who are you?",
