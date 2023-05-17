@@ -126,24 +126,28 @@ class MapTile:
         )
 
     def choose_talking_npc(self, *args):
-        target = args[2]
-        if self.talker and self.talker.name.lower() == target:
-            response = ""
-            opening_sentece = npcs_data[self.talker.name.lower()]['opening sentence']
-            response += f"{opening_sentece}"
-            player_dialogue = npcs_data[self.talker.name.lower()]['dialogues']['player 0']
-            for current_dialogue, sentence in enumerate(list(player_dialogue.values())):
-                response += f"\n{current_dialogue + 1}: {sentence}"
-            number_of_dialogues = len(npcs_data[self.talker.name.lower()]['dialogues'])
-            return response, "dialogue", current_dialogue, number_of_dialogues
-        elif self.enemy:
+        player = args[0]
+        target = args[1]
+        response = ""
+        if self.talker and player.match_target_name(target, self.talker):
+            response += self.talker.get_random_opening_sentence(f"{self.talker.name}")
+            if isinstance(self.talker, Trader):
+                return response, None
+            else:
+                player_dialogue = npcs_data[self.talker.name.lower()]['dialogues']['player 0']
+                for current_dialogue, sentence in enumerate(list(player_dialogue.values())):
+                    response += f"\n{current_dialogue + 1}: {sentence}"
+                number_of_dialogues = len(npcs_data[self.talker.name.lower()]['dialogues'])
+                return response, "dialogue", current_dialogue, number_of_dialogues
+        elif self.enemy and player.match_target_name(target, self.enemy):
             if self.enemy.is_alive():
                 response = enemies_data[self.enemy.name.lower()]['talk_alive']
             else:
                 response = enemies_data[self.enemy.name.lower()]['talk_dead']
             return response, None
-        elif not self.talker and not self.enemy:
-            return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk.", None
+        else:
+            response = "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk."
+            return response, None
 
     def dialogue(self, *args):
         number_of_dialogues = args[-2]
