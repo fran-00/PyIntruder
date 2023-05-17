@@ -34,17 +34,18 @@ class ChestTile(MapTile):
     def handle_event(self, *args):
         player = args[0]
         action = args[-1]
-        response = ""
 
         match action.lower():
             case "n" | "no":
                 return "Ok, this chest will remain closed."
             case "y" | "yes":
-                response += "You roll the dice..."
+                return self.random_chest_event(player)
             case _:
                 return "Invalid choice."
-                
+    
+    def random_chest_event(self, player):
         ico = random.randint(1, 20)
+        response = "You roll the dice...\n"
         match ico:
             case 20:
                 gold = 1000
