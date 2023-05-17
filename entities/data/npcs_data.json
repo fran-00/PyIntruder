@@ -67,22 +67,19 @@
             },
             "npc 1": {
                 "1": "<< We are the ferns! We grow all over the mountain! We've been popping up for a few months and honestly this world seems really absurd and incomprehensible to us. >>",
-                "2": "<< We are young and inexperienced in mountain matters. We're fine here but it's been a few days since some strange yellowish protuberances have started to appear on our green leaves. It started with just a few of us, but now the unknown disease has affected practically all of us. We don't know what's happening to us. >"
+                "2": "<< We are young and inexperienced in mountain matters. We're fine here, but since the intruder was spotted on the river bank, a worrying disease has hit most of us, causing concern and discontent among our ranks.\n\nIt's been a few days since some strange yellowish protuberances have started to appear on our green leaves. It started with just a few of us, but now the unknown disease has affected practically all of us. We don't know what's happening to us.\n\nWe are not entirely sure that a human being can understand our medical and scientific tribulations, but we are really desperate and we have decided to rely on you: you have an unusually powerful aura. >>>"
             },
             "player 1": {
-                "1": "<<player 1 - 1>>",
-                "2": "<<player 1 - 2>>",
-                "3": "<<player 1 - 3>>",
-                "4": "<<player 1 - 4>>",
-                "5": "<<player 1 - 5>>"
+                "1": "What kind of disease is affecting you?",
+                "2": "Who can be the cause of all this?",
+                "3": "Who is this intruder?",
+                "4": "How can I help you?"
             },
             "npc 2": {
-                "1": "<<npc 2 - 1>>",
-                "2": "<<npc 2 - 2>>",
-                "3": "<<npc 2 - 3>>",
-                "4": "<<npc 2 - 4>>",
-                "5": "<<npc 2 - 5>>",
-                "6": "<<npc 2 - 6>>"
+                "1": "<< We don't know, it's something that has never happened to us before. Our leaves, once green, smooth and luxuriant, are now covered with annoying dark swellings: with each passing day the situation gets worse and we are desperate and worried. >>",
+                "2": "<< It may be that the mushrooms have somehow to do with all this: they are infinitely ahead in the path of awareness while we have just taken the first steps. We held a windy general gathering of all the sisters and many of us are afraid that they have contaminated us to study us or worse: to steal our lifeblood for their mysterious purposes. They always seemed sus to us but we didn't think they could come up with such a mean plan. >>",
+                "3": "<< The Intruder shouldn't be here. That's all we know. >>",
+                "4": "<< Here is a sample of the perfection of my lineage. Its leaves are green, full of light and immaculate: help us to ensure that the light reaches our roots by illuminating our consciences with the awareness of ourselves and of how to remedy the evils that afflict us. >>"
             },
             "player 2": {
                 "1": "<<player 2 - 1>>",
@@ -90,22 +87,6 @@
                 "3": "<<player 2 - 3>>",
                 "4": "<<player 2 - 4>>",
                 "5": "<<player 2 - 5>>"
-            },
-            "npc 3": {
-                "1": "<<npc 3 - 1>>",
-                "2": "<<npc 3 - 2>>",
-                "3": "<<npc 3 - 3>>",
-                "4": "<<npc 3 - 4>>",
-                "5": "<<npc 3 - 5>>",
-                "6": "<<npc 3 - 6>>"
-            },
-            "player 3": {
-                "1": "<<player 3 - 1>>",
-                "2": "<<player 3 - 2>>",
-                "3": "<<player 3 - 3>>",
-                "4": "<<player 3 - 4>>",
-                "5": "<<player 3 - 5>>",
-                "6": "<<player 3 - 6>>"
             }
         }
     },
