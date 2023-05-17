@@ -1,3 +1,5 @@
+import random
+
 from entities.factory import EntitiesFactory as entities
 from world.map_tile import MapTile
 
