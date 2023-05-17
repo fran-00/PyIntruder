@@ -126,6 +126,27 @@ class MapTile:
         )
 
     def choose_talking_npc(self, *args):
+        """Choose which NPC to talk to based on target and on which entities
+        are in the current room.
+
+        Parameters
+        ----------
+        *args
+            A tuple that contains two arguments:
+            *args[0]: The Player class
+                Is passed as an argument to call match_target_name() method.
+            *args[1]: The target
+                String representing who the player wants to talk to.
+
+        Returns
+        -------
+        tuple : (str, None)
+            A specific dialogue string in case of merchant or enemy and None
+            value to break model's game loop.
+        tuple : (str, str, int, int)
+            If the player is talking to an npc that has nested dialogs, provide
+            arguments to pass to dialogue() method and enter dialogue loop.
+        """
         player = args[0]
         target = args[1]
         response = ""
