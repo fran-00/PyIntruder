@@ -12,6 +12,9 @@ with open('world/data/tiles_data.json') as f:
 with open('entities/data/npcs_data.json') as nf:
     npcs_data = json.load(nf)
 
+with open('entities/data/enemies_data.json') as ef:
+    enemies_data = json.load(ef)
+
 
 # *** ROOM OF ROOMS ***
 class MapTile:
