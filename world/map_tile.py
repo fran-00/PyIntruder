@@ -171,6 +171,45 @@ class MapTile:
             return response, None
 
     def dialogue(self, *args):
+        """Show NPC and player dialogues based on the current dialogue count,
+        total number of dialogues and player's choice.
+
+        Parameters
+        ----------
+        *args (any):
+            A tuple that contains five arguments:
+            *args[0]: Player (class)
+                The player class, passed as an argument due to how model's
+                process_nested_loop method works, is used by choose_talking_npc()
+                to call match_target_name()
+            *args[1]: target (str)
+                String representing who the player wants to talk to, is used
+                by choose_talking_npc()
+            *args[2]: current_dialogue (int)
+                Integer representing the current dialogue number.
+            *args[3]: number_of_dialogues (int)
+                An integer representing the total number of dialogues.
+            *args[4]: choice (str)
+                String representing the player's dialogue choice which must be
+                converted to int type.
+
+        Returns
+        -------
+        tuple : (str, str, int, int)
+            If current_dialogue < number_of_dialogues, provide
+            arguments to pass to the next dialogue() method call.
+        tuple : (str, None)
+            If the player exits the dialogue, return a tuple with a message as
+            first argument and None as second argument to break game loop.
+        tuple : (None, None)
+            If dialogues are over return a tuple None as second argument to
+            break game loop.
+
+        Raises
+        ------
+        Exception
+            In case of invalid player choice, raise an exception with an error message.
+        """
         number_of_dialogues = args[-2]
         current_dialogue = args[-3]
         if number_of_dialogues == current_dialogue:
