@@ -283,12 +283,15 @@ class MapTile:
         response : str 
         """
         response = ""
-        if obj.is_open == False and obj.locked == False:
+        if obj.is_open == False and obj.name == "chest":
+            response += "It's locked... Do you want to throw the Icosahedron and try to unlock it? Yes or No?"
+            return response
+        elif obj.is_open == False and obj.locked == False:
             response += f"You open the {obj.name}\n"
             response += "obj.description_when_opened"
             obj.is_open = True
         elif obj.is_open == False and obj.locked == True:
-            response += "You need to use a key to open this {obj.name}"
+            response += f"You need to use a key to open this {obj.name}"
         else:
-            response += "It's already open."
-        return response
+            response += f"This {obj.name} is already open."
+        return response, None
