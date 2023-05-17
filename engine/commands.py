@@ -176,8 +176,11 @@ class Commands:
 
                 elif command == "OPEN OBJECT":
                     target = re.match(regex, action).group(2)
-                    return self.room.open_command_handler(target)
-
+                    self.arguments_list = [self.player, target]
+                    return (
+                        self.room.open_command_handler,
+                        self.room.handle_chest_event
+                    )
                 elif command == "MAP":
                     return self.player.show_map()
 
