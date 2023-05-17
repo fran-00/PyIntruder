@@ -124,7 +124,7 @@ class MapTile:
 
     def choose_talking_npc(self, *args):
         target = args[2]
-        if self.talker.name.lower() == target:
+        if self.talker and self.talker.name.lower() == target:
             response = ""
             opening_sentece = npcs_data[self.talker.name.lower()]['opening sentence']
             response += f"{opening_sentece}"
