@@ -31,7 +31,7 @@ class ChestTile(MapTile):
         super().__init__(x, y)
         self.environment = [entities().chest]
 
-    def handle_chest_event(self, *args):
+    def handle_event(self, *args):
         player = args[0]
         action = args[-1]
         response = ""

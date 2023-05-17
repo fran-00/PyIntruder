@@ -179,7 +179,7 @@ class Commands:
                     self.arguments_list = [self.player, target]
                     return (
                         self.room.open_command_handler,
-                        self.room.handle_chest_event
+                        self.room.handle_event
                     )
                 elif command == "MAP":
                     return self.player.show_map()
