@@ -350,19 +350,24 @@ class Player(Entity):
                 case "my-inventory":
                     response = f"Your wealth: {self.gold} §"
                 case "trade" if not self.is_selling:
-                    response = "Choose a number to buy an item or press Q to quit."
+                    response = "What do you want to buy?"
                 case "trade" if self.is_selling:
-                    response = "Choose a number to sell an item or press Q to quit."
+                    response = "What do you want to buy?"
                 case "pick-up":
-                    response = "What do you want to pick up?\nChoose an item or press Q to quit."
+                    response = "What do you want to pick up?"
                 case "drop":
-                    response = "What do you want to drop?\nChoose an item or press Q to quit."
+                    response = "What do you want to drop?"
                 case "Curse":
-                    response = f"Ok, what curse do you want to cast? You have {self.mana} Mana."
+                    response = (
+                        f"Ok, what curse do you want to cast?\n"
+                        f"You have {self.mana} Mana."
+                    )
                 case "Healer":
-                    response = f"Your health is {self.hp}/{self.max_hp}. Choose what you want to cure yourself with or type (Q) to exit."
-                case _:
-                    ""
+                    response = (
+                        f"Your health is {self.hp}/{self.max_hp}.\n"
+                        "what do you want to treat yourself with?"
+                    )
+            response += "\nChoose an item or press Q to quit."
             return func(self, *args) + response
         return wrapper
 
