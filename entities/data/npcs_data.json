@@ -65,7 +65,7 @@
                 "1": "Who are you?",
                 "2": "What happens? Why do you need help?"
             },
-            "npc 1": {
+            "npc 0": {
                 "1": "<< We are the ferns! We grow all over the mountain! We've been popping up for a few months and honestly this world seems really absurd and incomprehensible to us. >>",
                 "2": "<< We are young and inexperienced in mountain matters. We're fine here, but since the intruder was spotted on the river bank, a worrying disease has hit most of us, causing concern and discontent among our ranks.\n\nIt's been a few days since some strange yellowish protuberances have started to appear on our green leaves. It started with just a few of us, but now the unknown disease has affected practically all of us. We don't know what's happening to us.\n\nWe are not entirely sure that a human being can understand our medical and scientific tribulations, but we are really desperate and we have decided to rely on you: you have an unusually powerful aura. >>>"
             },
@@ -75,7 +75,7 @@
                 "3": "Who is this intruder?",
                 "4": "How can I help you?"
             },
-            "npc 2": {
+            "npc 1": {
                 "1": "<< We don't know, it's something that has never happened to us before. Our leaves, once green, smooth and luxuriant, are now covered with annoying dark swellings: with each passing day the situation gets worse and we are desperate and worried. >>",
                 "2": "<< It may be that the mushrooms have somehow to do with all this: they are infinitely ahead in the path of awareness while we have just taken the first steps. We held a windy general gathering of all the sisters and many of us are afraid that they have contaminated us to study us or worse: to steal our lifeblood for their mysterious purposes. They always seemed sus to us but we didn't think they could come up with such a mean plan. >>",
                 "3": "<< The Intruder shouldn't be here. That's all we know. >>",
