@@ -46,6 +46,10 @@ class MapTile:
         elif n == 4:
             self.inventory.append(random.choice(manarechargers_list))
 
+    # -------------------------------------------------------------------------|
+    # COMBAT ------------------------------------------------------------------|
+    # -------------------------------------------------------------------------|
+
     def modify_player(self, player):
         """Modify player and enemy based on a random chance of confusion
         and enemy's attack.
@@ -124,6 +128,10 @@ class MapTile:
             f"{self.enemy.name} inflicts {damage} DMG to you. "
             f"Oh shit, you have {player.hp} HP remaining..."
         )
+
+    # -------------------------------------------------------------------------|
+    # DIALOGUES ---------------------------------------------------------------|
+    # -------------------------------------------------------------------------|
 
     def choose_talking_npc(self, *args):
         """Choose which NPC to talk to based on target and on which entities
@@ -232,6 +240,10 @@ class MapTile:
         except Exception as e:
             return f"{e}"
 
+    # -------------------------------------------------------------------------|
+    # TRADING -----------------------------------------------------------------|
+    # -------------------------------------------------------------------------|
+
     def trade(self, *args):
         """Initiate a trade with an npc in the current room that wants to trade,
         if any.
@@ -279,6 +291,10 @@ class MapTile:
         if not self.talker.inventory:
             self.talker.inventory += random.sample(items_list, k=10)
 
+    # -------------------------------------------------------------------------|
+    # LOOK --------------------------------------------------------------------|
+    # -------------------------------------------------------------------------|
+
     def look_command_handler(self):
         """Show a detailed description of the current room's scenario.
 
@@ -322,6 +338,10 @@ class MapTile:
             if obj and re.search(rf"\b\w*({''.join([f'{c}' for c in target])})\w*\b", obj.name.lower()) and len(set(target).intersection(set(obj.name.lower()))) >= 3:
                 return obj.description
         return (f"I can't see any {target} here.")
+
+    # -------------------------------------------------------------------------|
+    # OPEN - ------------------------------------------------------------------|
+    # -------------------------------------------------------------------------|
 
     def open_command_handler(self, *args):
         """_summary_
