@@ -354,7 +354,7 @@ class Player(Entity):
                     response = f"Your wealth: {self.gold} §"
                     return func(self, *args) + response
                 case "trade" if not self.is_selling:
-                    response = "What do you want to buy?\nYou have {self.gold} §."
+                    response = f"What do you want to buy?\nYou have {self.gold} §."
                 case "trade" if self.is_selling:
                     response = "What do you want to sell?"
                 case "pick-up":
