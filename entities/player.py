@@ -356,7 +356,7 @@ class Player(Entity):
                 case "trade" if not self.is_selling:
                     response = "What do you want to buy?\nYou have {self.gold} §."
                 case "trade" if self.is_selling:
-                    response = "What do you want to buy?"
+                    response = "What do you want to sell?"
                 case "pick-up":
                     response = "What do you want to pick up?"
                 case "drop":
