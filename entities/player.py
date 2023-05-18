@@ -352,6 +352,7 @@ class Player(Entity):
             match purpose:
                 case "my-inventory":
                     response = f"Your wealth: {self.gold} §"
+                    return func(self, *args) + response
                 case "trade" if not self.is_selling:
                     response = "What do you want to buy?"
                 case "trade" if self.is_selling:
