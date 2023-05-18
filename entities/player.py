@@ -504,6 +504,7 @@ class Player(Entity):
         else:
             inventory = self.inventory
 
+        inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
         if action in ('q', 'exit', 'no'):
             return "Ok. Action cancelled."
         try:
