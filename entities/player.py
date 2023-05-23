@@ -396,7 +396,7 @@ class Player(Entity):
         """
         inventory = args[0]
         purpose = args[1]
-        inventory.sort(key=lambda x: (x.__class__.__name__, x.name))
+        inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
             category = globals()[purpose]
             items_subset = self.sort_items_by_category(
