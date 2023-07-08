@@ -28,16 +28,20 @@ Weapon attacks can miss, while curses cannot but each curse cast consumes a vary
 
 If there is an NPC in the room, his presence is signaled and it is possible to talk to him with TALK command. If the NPC is willing to trade, he announces it and you can choose to Buy, Sell or Quit.
 
-## Upcoming Fixes
+## Changelog (2020 - 2023)
 
-- [x]: Generalize Player methods code that could be reused:
-  - **choose_item()** method in **Player** class must also be usable for pick up, drop and examine actions, as well as to trade with an npc.
+- [x]: Add MVC architecture to play via PyQt6 GUI instead of using CLI.
+- [x]: Add a system of signals and slots to connect model, view and controller.
+- [x]: Add a new way to handle game loop using QThread to process user input received from View without breaking it.
+- [x]: Update the signal strings parsing system by implementing **regular expressions**.
+- [x]: Update NPC creation organization with a better use of **OOP**.
+- [x]: Complete refactoring of player.py code, which had very long and unusable methods in the first version of the project.
+- [x]: Generalize Player methods code that could be reused: **choose_item()** method in **Player** class must also be usable for pick up, drop and examine actions, as well as to trade with an npc.
 - [ ]: Update with improved exception handling: create ad hoc errors to break the game loop or resume it depending on exception's type.
-
-## Upcoming Features
-
-- The game window divided into at least three parts, one of which will show the description of the current room.
-- Printout of the world map, which is probably too large to be contained in a signal as a string. Maybe i'll try putting the string into a JSON file.
-- Text with a color scheme to highlight character names, commands, and more.
-- An image generated shown in one of the game windows, probably via OpenAI API.
-- Complete refactoring of player.py code, which has very long and unusable methods in the current version of the project.
+- [ ]: Improve GUI and add menu bar.
+- [ ]: Add save and restore functionality. It was present in the original version of the game but the code needs to be adapted to the changes made since then.
+- [ ]: The game window divided into at least three parts, one of which will show the description of the current room.
+- [ ]: Printout of the world map, which is probably too large to be contained in a signal as a string. Maybe i'll try putting the string into a JSON file.
+- [ ]: Text with a color scheme to highlight character names, commands, and more.
+- [ ]: An image generated shown in one of the game windows.
+- [ ]: Improve algorithms used to calculate item stats so that gameplay is as balanced as possible.
