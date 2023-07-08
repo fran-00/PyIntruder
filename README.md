@@ -2,18 +2,18 @@
 
 ## How to Play
 
-You can move around the map and interact with game world by entering commands into the text input line at the bottom of the interface. 
-To move to an adjacent room, simply enter one of the four cardinal points (N, S, W, E).
+You can move around the map and interact with game world by entering commands into the text input line at the bottom of the interface.
+To move to an adjacent room, simply enter one of the four cardinal points (**N**, **S**, **W**, **E**).
 
-You can see the world map by typing the (M) command (it will be shown in the terminal *for now*) and change it in *world.pareser.py* file via the DSL.
+You can see the world map by typing the (**M**) command (it will be shown in the terminal *for now*) and change it in *world.pareser.py* file via the **DSL**.
 
-When player enters a room where there is a living enemy, they will automatically be attacked and can respond with a physical attack (A) by using a weapon or by casting a curse (C).
+When player enters a room where there is a living enemy, they will automatically be attacked and can respond with a physical attack (**A**) by using a weapon or by casting a curse (**C**).
 Weapon attacks can miss, while curses cannot but each curse cast consumes a varying amount of Mana.
 
-You shall pay attention to the amount of hp and mana: if the hp reaches 0, game is over. If your Mana reaches zero, you will no longer be able to cast curses.
-With the appropriate command you can consume an item to heal yourself or to restore mana: while wandering around the map, you may find a lot of useful stuff around you if you take a good look around. You can pick up items from the environment and drop items from your inventory.
+You shall pay attention to your amount of **HP**(**Heakth Points**) and **MANA**: if **HP** parameter reaches 0, the game is over. If your **MANA** reaches zero, you will no longer be able to cast curses.
+With the appropriate command you can consume an item to heal (**HEAL**) yourself or to restore mana (not yet implemented) : while wandering around the map, you may find a lot of useful stuff around you if you take a good look around. You can pick up items from the environment and drop items from your inventory.
 
-If there is an NPC in the room, their presence is signaled and it is possible to talk to them with talk command (T). If NPC is willing to trade, they announces it and you can choose to Buy, Sell or Quit.
+If there is an NPC in the room, their presence is signaled and it is possible to talk to them with talk command (**Talk**). If NPC is willing to trade, they announces it and you can choose to Buy, Sell or Quit.
 
 ## Game Commands
 
