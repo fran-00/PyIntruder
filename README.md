@@ -10,7 +10,7 @@ You can see the world map by typing the (**M**) command (it will be shown in the
 When player enters a room where there is a living enemy, they will automatically be attacked and can respond with a physical attack (**A**) by using a weapon or by casting a curse (**C**).
 Weapon attacks can miss, while curses cannot but each curse cast consumes a varying amount of Mana.
 
-You shall pay attention to your amount of **HP**(**Heakth Points**) and **MANA**: if **HP** parameter reaches 0, the game is over. If your **MANA** reaches zero, you will no longer be able to cast curses.
+You shall pay attention to your amount of **HP** (**Health Points**) and **MANA**: if **HP** parameter reaches 0, the game is over. If your **MANA** reaches zero, you will no longer be able to cast curses.
 With the appropriate command you can consume an item to heal (**HEAL**) yourself or to restore mana (not yet implemented) : while wandering around the map, you may find a lot of useful stuff around you if you take a good look around. You can pick up items from the environment and drop items from your inventory.
 
 If there is an NPC in the room, their presence is signaled and it is possible to talk to them with talk command (**Talk**). If NPC is willing to trade, they announces it and you can choose to Buy, Sell or Quit.
