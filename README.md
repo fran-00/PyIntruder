@@ -2,7 +2,21 @@
 
 ## How to Play
 
-The player can move around the world map by entering commands into the text input line at the bottom of the interface. You can see the world map by typing the M command (it will be shown in the terminal) and change it in *world.pareser.py* file via the DSL.
+You can move around the map and interact with game world by entering commands into the text input line at the bottom of the interface. 
+To move to an adjacent room, simply enter one of the four cardinal points (N, S, W, E).
+
+You can see the world map by typing the (M) command (it will be shown in the terminal *for now*) and change it in *world.pareser.py* file via the DSL.
+
+When player enters a room where there is a living enemy, they will automatically be attacked and can respond with a physical attack (A) by using a weapon or by casting a curse (C).
+Weapon attacks can miss, while curses cannot but each curse cast consumes a varying amount of Mana.
+
+You shall pay attention to the amount of hp and mana: if the hp reaches 0, game is over. If your Mana reaches zero, you will no longer be able to cast curses.
+With the appropriate command you can consume an item to heal yourself or to restore mana: while wandering around the map, you may find a lot of useful stuff around you if you take a good look around. You can pick up items from the environment and drop items from your inventory.
+
+If there is an NPC in the room, their presence is signaled and it is possible to talk to them with talk command (T). If NPC is willing to trade, they announces it and you can choose to Buy, Sell or Quit.
+
+## Game Commands
+
 The recognized commands case insensitive:
 
 - **NORTH**, **SOUTH**, **WEST**, **EAST** - Move to one of the adjacent rooms, if any.
@@ -22,11 +36,6 @@ The recognized commands case insensitive:
 - **HEAL** - Select an item from inventory to restore HP.
 - **OPEN OBJECT** - Open the indicated object if it is openable.
 - **MAP** - Show world map.
-
-When the player enters a room where there is a living enemy, he will automatically be attacked and can respond with a physical attack by using a weapon or by casting a curse.
-Weapon attacks can miss, while curses cannot but each curse cast consumes a varying amount of Mana.
-
-If there is an NPC in the room, his presence is signaled and it is possible to talk to him with TALK command. If the NPC is willing to trade, he announces it and you can choose to Buy, Sell or Quit.
 
 ## Changelog (2020 - 2023)
 
