@@ -629,8 +629,7 @@ class Player(Entity):
                     return f"{item.name}: taken."
                 else:
                     return f"{item.name}: dropped."
-        else:
-            return self.show_why_is_not_collectable_or_droppable(target, purpose)
+        return self.show_why_is_not_collectable_or_droppable(target, purpose)
     
     def show_why_is_not_collectable_or_droppable(self, target, purpose):
         """Call two other methods to determine why an item cannot be collected or
