@@ -363,8 +363,7 @@ class MapTile:
                     return f"You cannot open it."
             else:
                 return "I beg your pardon?"
-        else:
-            return "There is nothing to open here."
+        return "There is nothing to open here."
 
     def check_if_open(self, obj):
         """_summary_
