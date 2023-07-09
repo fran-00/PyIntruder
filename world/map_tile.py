@@ -312,10 +312,11 @@ class MapTile:
             response += f"\nThere is a {surrounding.name} here."
         if self.talker:
             response += f"\nThere is {self.talker.name} here."
-        if self.enemy and self.enemy.is_alive():
-            response += f"\nThere is a {self.enemy.name} here, willing to kill you."
-        elif self.enemy and not self.enemy.is_alive():
-            response += f"\nThere the corpse of a {self.enemy.name} here."
+        if self.enemy:
+            if self.enemy.is_alive():
+                response += f"\nThere is a {self.enemy.name} here, willing to kill you."
+            elif not self.enemy.is_alive():
+                response += f"\nThere the corpse of a {self.enemy.name} here."
         return response
 
     def look_at_command_handler(self, target, player):
