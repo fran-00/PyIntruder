@@ -728,10 +728,14 @@ class Player(Entity):
         bool
             True if a match is found, False otherwise.
         """
-        if obj and re.search(rf"\b\w*({''.join([f'{c}' for c in target])})\w*\b", obj.name.lower()) and len(set(target).intersection(set(obj.name.lower()))) >= 3:
-            return True
-        else:
-            return False
+        return bool(
+            obj
+            and re.search(
+                rf"\b\w*({''.join([f'{c}' for c in target])})\w*\b",
+                obj.name.lower(),
+            )
+            and len(set(target).intersection(set(obj.name.lower()))) >= 3
+        )
 
     def get_or_drop_all(self, giver, receiver, purpose):
         """Take all items from giver's inventory, add them to receiver's inventory
@@ -764,10 +768,7 @@ class Player(Entity):
         )
         receiver.inventory.extend(giver.inventory)
         giver.inventory.clear()
-        if response == "":
-            return f"There is nothing to {purpose}."
-        else:
-            return response
+        return f"There is nothing to {purpose}." if not response else response
 
     # -------------------------------------------------------------------------|
     # HEAL AND RECHARGE MANA---------------------------------------------------|
