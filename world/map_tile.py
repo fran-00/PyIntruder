@@ -357,10 +357,7 @@ class MapTile:
         target = args[1]
         for obj in self.environment:
             if target == obj.name.lower():
-                if obj.openable:
-                    return self.check_if_open(obj)
-                else:
-                    return f"You cannot open it."
+                return self.check_if_open(obj) if obj.openable else "You cannot open it."
             else:
                 return "I beg your pardon?"
         return "There is nothing to open here."
