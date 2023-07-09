@@ -881,13 +881,11 @@ class Player(Entity):
         loc_y = str(self.y)
         dsl_lines = parser.world_dsl.splitlines()
         dsl_lines = [x for x in dsl_lines if x]
-        for _, dsl_row in enumerate(dsl_lines):
+        for dsl_row in dsl_lines:
             row = []
             dsl_cells = dsl_row.split("|")
             dsl_cells = [c for c in dsl_cells if c]
-            for dsl_cell in dsl_cells:
-                map_tile_type = tile_type_dict[dsl_cell]
-                row.append(map_tile_type)
+            row.extend(tile_type_dict[dsl_cell] for dsl_cell in dsl_cells)
             print("".join(row))
         print(f'You are here: ({loc_x},{loc_y})')
 
