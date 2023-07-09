@@ -159,15 +159,7 @@ class MapTile:
         target = args[1]
         response = ""
         if self.talker and player.match_target_name(target, self.talker):
-            response += self.talker.get_random_opening_sentence(f"{self.talker.name}")
-            if isinstance(self.talker, Trader):
-                return response, None
-            else:
-                player_dialogue = npcs_data[self.talker.name.lower()]['dialogues']['player 0']
-                for current_dialogue, sentence in enumerate(list(player_dialogue.values())):
-                    response += f"\n{current_dialogue + 1}: {sentence}"
-                number_of_dialogues = len(npcs_data[self.talker.name.lower()]['dialogues'])
-                return response, "dialogue", current_dialogue, number_of_dialogues
+            return self.dialogue_starter(response)
         elif self.enemy and player.match_target_name(target, self.enemy):
             if self.enemy.is_alive():
                 response = enemies_data[self.enemy.name.lower()]['talk_alive']
@@ -177,6 +169,16 @@ class MapTile:
         else:
             response = "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk."
             return response, None
+
+    def dialogue_starter(self, response):
+        response += self.talker.get_random_opening_sentence(f"{self.talker.name}")
+        if isinstance(self.talker, Trader):
+            return response, None
+        player_dialogue = npcs_data[self.talker.name.lower()]['dialogues']['player 0']
+        for current_dialogue, sentence in enumerate(list(player_dialogue.values())):
+            response += f"\n{current_dialogue + 1}: {sentence}"
+        number_of_dialogues = len(npcs_data[self.talker.name.lower()]['dialogues'])
+        return response, "dialogue", current_dialogue, number_of_dialogues
 
     def dialogue(self, *args):
         """Show NPC and player dialogues based on the current dialogue count,
