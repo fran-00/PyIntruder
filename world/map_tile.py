@@ -81,7 +81,7 @@ class MapTile:
                 f"(Deals {self.enemy.damage} DMG and has {self.enemy.hp} HP remaining.)"
             )
 
-        if confusion_chance in [17, 18]:
+        if confusion_chance in {17, 18}:
             return f"{self.enemy.name} is confused!\n{self.enemy.name} misses the shot!"
         if player.base_defence == 0:
             return self.calculate_damage(player, self.enemy.damage, None)
