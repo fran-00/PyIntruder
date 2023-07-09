@@ -280,16 +280,15 @@ class Player(Entity):
         if d20 == 20:
             room.enemy.alive = False
             return "No need to do this. Enemy is dead!"
-        if d20 > 15 and d20 < 20:
-            self.x = self.previous_x
-            self.y = self.previous_y
-            # FIXME: it doesn't work! Enemy still attacks because loop is
-            # still running and an AttributeError is raised if attacking again
-            # when you call tile_at method from parser:
-            # parser.tile_at(self.previous_x, self.previous_y)
-            return "You flee."
-        else:
+        if d20 <= 15 or d20 >= 20:
             return "You can't escape!"
+        self.x = self.previous_x
+        self.y = self.previous_y
+        # FIXME: it doesn't work! Enemy still attacks because loop is
+        # still running and an AttributeError is raised if attacking again
+        # when you call tile_at method from parser:
+        # parser.tile_at(self.previous_x, self.previous_y)
+        return "You flee."
 
     # -------------------------------------------------------------------------|
     # INVENTORY AND TRADING SYSTEM --------------------------------------------|
