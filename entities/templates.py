@@ -31,8 +31,7 @@ class NonPlayableCharacter(Entity):
 
     def get_random_opening_sentence(self, npc_name=str):
         sentences = npcs_data[npc_name.lower()]['opening sentence']
-        opening_sentence = random.choice(list(sentences.values()))
-        return opening_sentence
+        return random.choice(list(sentences.values()))
 
 
 class Trader(NonPlayableCharacter):
