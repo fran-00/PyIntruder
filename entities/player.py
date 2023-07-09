@@ -756,12 +756,12 @@ class Player(Entity):
             the operation (taken/dropped).
 
         """
-        response = ""
-        for item in giver.inventory:
-            if purpose == "get":
-                response += f"{item.name}: taken.\n"
-            else:
-                response += f"{item.name}: dropped.\n"
+        response = "".join(
+            f"{item.name}: taken.\n"
+            if purpose == "get"
+            else f"{item.name}: dropped.\n"
+            for item in giver.inventory
+        )
         receiver.inventory.extend(giver.inventory)
         giver.inventory.clear()
         if response == "":
