@@ -625,10 +625,7 @@ class Player(Entity):
         for item in giver.inventory:
             if self.match_target_name(target, item):
                 self.items_swapper(giver, receiver, item, "get-drop")
-                if purpose == "get":
-                    return f"{item.name}: taken."
-                else:
-                    return f"{item.name}: dropped."
+                return f"{item.name}: taken." if purpose == "get" else f"{item.name}: dropped."
         return self.show_why_is_not_collectable_or_droppable(target, purpose)
     
     def show_why_is_not_collectable_or_droppable(self, target, purpose):
