@@ -404,21 +404,20 @@ class Player(Entity):
                 return f"You don't have any {purpose} with you", None
             else:
                 return self.show_inventory(inventory, purpose)
+        elif inventory == []:
+            match purpose:
+                case "my-inventory":
+                    return f"Your inventory is empty!\n You have {self.gold} §.", None
+                case "trade" if self.is_selling:
+                    return "You don't have anything to sell!", None
+                case "trade" if not self.is_selling:
+                    return "Out of stock! Come back later!", None
+                case "pick-up":
+                    return "There is nothing to pick up.", None
+                case "drop":
+                    return "You don't have anything to drop.", None
         else:
-            if inventory == []:
-                match purpose:
-                    case "my-inventory":
-                        return f"Your inventory is empty!\n You have {self.gold} §.", None
-                    case "trade" if self.is_selling:
-                        return "You don't have anything to sell!", None
-                    case "trade" if not self.is_selling:
-                        return "Out of stock! Come back later!", None
-                    case "pick-up":
-                        return "There is nothing to pick up.", None
-                    case "drop":
-                        return "You don't have anything to drop.", None
-            else:
-                return self.show_inventory(inventory, purpose)
+            return self.show_inventory(inventory, purpose)
 
     @show_instructions
     def show_inventory(self, *args):
