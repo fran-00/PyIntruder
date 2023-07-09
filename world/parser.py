@@ -58,10 +58,7 @@ def is_dsl_valid(dsl):
     lines = dsl.splitlines()
     lines = [l for l in lines if l]
     pipe_counts = [line.count("|") for line in lines]
-    for count in pipe_counts:
-        if count != pipe_counts[0]:
-            return False
-    return True
+    return all(count == pipe_counts[0] for count in pipe_counts)
 
 
 tile_type_dict = {"BS": BlacksmithTile,
