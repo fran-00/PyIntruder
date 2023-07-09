@@ -267,7 +267,7 @@ class MapTile:
             self.check_trader_inventory(self.talker.type)
             sentence = self.talker.get_random_opening_sentence(f"{self.talker.name}")
             return f"{sentence}\nBuy, Sell or Quit?"
-        elif self.talker and not isinstance(self.talker, Trader):
+        elif self.talker:
             return f"{self.talker.name} doesn't want to trade.", None
         else:
             return "There is no one to trade with.", None
