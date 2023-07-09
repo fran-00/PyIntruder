@@ -768,7 +768,7 @@ class Player(Entity):
         )
         receiver.inventory.extend(giver.inventory)
         giver.inventory.clear()
-        return f"There is nothing to {purpose}." if not response else response
+        return response or f"There is nothing to {purpose}."
 
     # -------------------------------------------------------------------------|
     # HEAL AND RECHARGE MANA---------------------------------------------------|
