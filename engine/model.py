@@ -30,7 +30,7 @@ class GameModel(QObject):
         Start game loop, check if there's a living enemy in the current room
         and if so call handle_enemy_attack method from MapTile class.
         Then allow user to choose an action, passing the signal received from
-        GameControlelr as argument to choose_action method from Command class.
+        GameController as argument to choose_action method from Command class.
         The result of this operation may be a string or a tuple.
         If it is a string, it is emitted as a signal to Controller.
         if it is a tuple, it means that several methods of Player class must be 
