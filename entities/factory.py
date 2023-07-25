@@ -15,11 +15,12 @@ class Factory:
 class ItemsFactory(Factory):
 
     def __init__(self):
+        # ARMORS: name, defence value
         self.rinas_armor = Armor("Rina's Armor", 10)
         self.fungine_armor = Armor("Fungine Armor", 20)
         self.iron_armor = Armor("Iron Armor", 30)
         self.tesla_armor = Armor("Tesla Armor", 40)
-
+        # CURSES: name, damage
         self.red = Curse("Self-Luminous Red", 5)
         self.hyperbolic_orange = Curse("Hyperbolic Orange", 10)
         self.stygian_blue = Curse("Stygian Blue", 15)
@@ -39,7 +40,7 @@ class ItemsFactory(Factory):
         self.insult = Curse("Ultimate Insult", 85)
         self.briefcase = Curse("Briefcase", 90)
         self.riemann = Curse("Riemann zeta function", 95)
-
+        # HEALERS: name, heal power
         self.ats = Healer("Advanced Tea Substitute", 10)
         self.gommo = Healer("Gommo", 20)
         self.yellow_liquid = Healer("Suspicious Yellow Liquid", 30)
@@ -48,17 +49,17 @@ class ItemsFactory(Factory):
         self.bandages = Healer("Bandages", 60)
         self.gummy_bears = Healer("Gummy Bears", 70)
         self.mushrooms = Healer("Mushrooms", 80)
-
+        # MANA RECHARGERS: name, mana recharge
         self.plasma_pop = ManaRecharger("Plasma Pop", 10)
         self.dialectic_draught = ManaRecharger("Dialectic Draught", 20)
         self.fractal_fizz = ManaRecharger("Fractal Fizz", 30)
         self.neural_network = ManaRecharger("Neural Network", 140)
         self.schrodinger_solution = ManaRecharger("Schrodinger's Solution", 50)
         self.descartes_doubt = ManaRecharger("Descartes' Doubt", 60)
-
+        # MISSION ITEMS: name (optional: openable, is_open, locked)
         self.specimen = MissionRelatedItem("The Specimen")
         self.bottle = MissionRelatedItem("bottle", openable=True)
-
+        # WEAPONS: name, damage
         self.manuport = Weapon("Manuport", 5)
         self.sheet = Weapon("polarized sheet", 10)
         self.polyhedron = Weapon("Sharp Polyhedron", 15)
@@ -77,6 +78,7 @@ class ItemsFactory(Factory):
 
 class EntitiesFactory(Factory):
     def __init__(self):
+        # ENEMIES: name, LVL, HP, damage
         self.gel_cube = Enemy("Gelatinous Cube", 1, 20, 10)
         self.squirrel = Enemy("Ravenous Squirrel", 1, 30, 15)
         self.helicopter = Enemy("Helicopter", 1, 40, 20)
@@ -88,13 +90,13 @@ class EntitiesFactory(Factory):
         self.uncanny = Enemy("Uncanny Valley", 4, 100, 50)
         self.gnome = Enemy("Gnome armed with an ax", 4, 120, 60)
         self.ostoyae = Enemy("Armillaria Ostoyae", 5, 150, 75)
-
+        # TRADERS: name, inventory, type of items sold
         self.littleo = Trader("Little(o)", [], Curse)
         self.blacksmith = Trader("Blacksmith", [], Weapon)
         self.innkeeper = Trader("Innkeeper", [], Healer)
         self.monk = Trader("Monk", [], ManaRecharger)
         self.merchant = Trader("Merchant", [], None)
-
+        # NPCS: name, inventory
         self.ferns = NonPlayableCharacter("Ferns", [])
         self.rina = NonPlayableCharacter("Rina", [])
         self.intruder = NonPlayableCharacter("Intruder", [])
@@ -103,7 +105,7 @@ class EntitiesFactory(Factory):
         self.priamo = NonPlayableCharacter("Priamo", [])
         self.effrafax = NonPlayableCharacter("Effrafax", [])
         self.stylite = NonPlayableCharacter("Stylite", [])
-
+        # SURROUNDING ITEMS: name, inventory (optional: openable, is_opem, locked)
         self.car = Surrounding("car", [ItemsFactory().bottle], openable=True)
         self.chest = Surrounding("chest", [], openable=True)
         self.table = Surrounding("wooden table", [])
