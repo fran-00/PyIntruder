@@ -49,7 +49,7 @@ class GameView(QMainWindow):
         self.view_signal_to_controller.emit(action)
 
         # Append user input to log view window
-        self.log_view.append(f">>> {action}")
+        self.log_view.append(f"<p style='color:#ffdc7d; font-weight:600'>>>> {action}</p>")
 
         # Resets the input box
         self.input_box.clear()
