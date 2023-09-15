@@ -125,7 +125,7 @@ class Player(Entity):
         if enemy is None or not enemy.is_alive():
             return
 
-        response += f"You try to hit {enemy.name} with {weapon.name}!"
+        response += f"You try to hit {enemy.colored_name()} with {weapon.name}!"
         return self.calculate_attack_precision(enemy, weapon, response)
 
     def calculate_attack_precision(self, enemy, weapon, response):
@@ -189,10 +189,10 @@ class Player(Entity):
             response += self.calculate_xp_earned(enemy)
             loot = random.randint(10, 200)
             self.gold += loot
-            response += f"\n{enemy.name} lost his booty. Now {loot} § are yours!"
+            response += f"\n{enemy.colored_name()} lost his booty. Now {loot} § are yours!"
 
         else:
-            response += f"\n{enemy.name} has {enemy.hp} HP remaining."
+            response += f"\n{enemy.colored_name()} has {enemy.hp} HP remaining."
         return response
 
     def calculate_xp_earned(self, enemy):
@@ -261,13 +261,13 @@ class Player(Entity):
             enemy.hp -= choice.damage * 2
             response += (
                 f"Critical hit!\n"
-                f"You cast {choice.name} on {enemy.name}, "
+                f"You cast {choice.name} on {enemy.colored_name()}, "
                 f"it does {choice.damage*2} DMG!\n"
             )
         else:
             enemy.hp -= choice.damage
             response = (
-                f"You cast {choice.name} on {enemy.name}, "
+                f"You cast {choice.name} on {enemy.colored_name()}, "
                 f"it does {choice.damage} DMG!\n"
             )
         self.mana -= choice.mana_cost
@@ -705,7 +705,7 @@ class Player(Entity):
             if self.match_target_name(target, item):
                 return "You can't drop something you don't own."
         if self.match_target_name(target, room.enemy):
-            return f"Hummm... Ok, {room.enemy.name}: dropped. Now what?"
+            return f"Hummm... Ok, {room.enemy.colored_name()}: dropped. Now what?"
         if self.match_target_name(target, room):
             return "I don't even know what to answer..."
         else:
