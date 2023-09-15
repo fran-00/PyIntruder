@@ -46,10 +46,10 @@ class GameView(QWidget):
 
     def on_movements_buttons(self):
         """Add buttons for cardinal directions to game GUI"""
-        button_north = QPushButton("North")
-        button_south = QPushButton("South")
-        button_east = QPushButton("East")
-        button_west = QPushButton("West")
+        button_north = QPushButton("🡅")
+        button_south = QPushButton("🡇")
+        button_east = QPushButton("🡆")
+        button_west = QPushButton("🡄")
 
         buttons = [button_north, button_south, button_east, button_west]
         for button in buttons:
