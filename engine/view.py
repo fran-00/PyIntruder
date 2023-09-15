@@ -1,10 +1,10 @@
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton
+from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton
 from PyQt6.QtCore import pyqtSignal, pyqtSlot
-
+from PyQt6.QtGui import QAction, QIcon
 from gui.widgets import GameButtons
 
 
-class GameView(QWidget):
+class GameView(QMainWindow):
     view_signal_to_controller = pyqtSignal(str)
 
     def __init__(self):
@@ -12,15 +12,26 @@ class GameView(QWidget):
         self.setWindowTitle("Game Window")
         self.resize(600, 400)
         self.create_layout()
+        self.create_menu()
+
+    def create_menu(self):
+        menubar = self.menuBar()
+        file_menu = menubar.addMenu("File")
+
+        exit_action = QAction("Exit", self)
+        exit_action.triggered.connect(self.close)
+        file_menu.addAction(exit_action)
 
     def create_layout(self):
         """Create a vertical layout for the window"""
-        layout = QVBoxLayout()
+        central_widget = QWidget(self)
+        self.setCentralWidget(central_widget)
+
+        layout = QVBoxLayout(central_widget)
         layout.addWidget(self.on_log_view())
         layout.addLayout(self.on_input_layout())
         layout.addLayout(GameButtons(self).on_movements_buttons())
         layout.addLayout(GameButtons(self).on_actions_buttons())
-        self.setLayout(layout)
 
     def on_log_view(self):
         """Add widget for displaying inputs and outputs"""
