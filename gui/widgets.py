@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QHBoxLayout, QPushButton
+from PyQt6.QtWidgets import QHBoxLayout, QPushButton, QLineEdit
 
 class GameButtons:
     def __init__(self, game_view):
@@ -41,3 +41,26 @@ class GameButtons:
     def assign_css_class(self, buttons_list, class_name):
         for button in buttons_list:
             button.setProperty("class", class_name)
+
+
+class GameEntry:
+    def __init__(self, game_view):
+        self.game_view = game_view
+
+    def on_input_layout(self):
+        """Add horizzontal input box and a send button to submit"""
+        self.game_view.input_box = QLineEdit()
+        self.game_view.input_box.returnPressed.connect(lambda: self.game_view.handle_user_action("none"))
+
+        # Button to submit input
+        send_button = QPushButton("Enter")
+        send_button.setProperty("class", "enter_button")
+        send_button.clicked.connect(lambda: self.game_view.handle_user_action("none"))
+
+        # Horizontal layout for input box and button
+        input_layout = QHBoxLayout()
+        input_layout.setProperty("class", "input_layout")
+        input_layout.addWidget(self.game_view.input_box)
+        input_layout.addWidget(send_button)
+
+        return input_layout
