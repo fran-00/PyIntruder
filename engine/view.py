@@ -23,7 +23,23 @@ class GameView(QWidget):
         self.send_button = QPushButton("Enter")
         self.send_button.clicked.connect(self.handle_user_action)
 
-        # Buttons for cardinal directions
+        # Horizontal layout for input box and button
+        input_layout = QHBoxLayout()
+        input_layout.addWidget(self.input_box)
+        input_layout.addWidget(self.send_button)
+
+        # Vertical layout for the window
+        layout = QVBoxLayout()
+        layout.addWidget(self.log_view)
+        layout.addLayout(input_layout)
+        layout.addLayout(self.on_movements_buttons())
+        self.setLayout(layout)
+
+        # Modify Style Sheet
+        self.setStyleSheet("color: white; background-color: black;")
+
+    def on_movements_buttons(self):
+        """Add buttons for cardinal directions to game GUI"""
         self.button_north = QPushButton("North")
         self.button_south = QPushButton("South")
         self.button_east = QPushButton("East")
@@ -35,27 +51,14 @@ class GameView(QWidget):
         self.button_east.clicked.connect(lambda: self.view_signal_to_controller.emit("e"))
         self.button_west.clicked.connect(lambda: self.view_signal_to_controller.emit("w"))
 
-        # Horizontal layout for input box and button
-        input_layout = QHBoxLayout()
-        input_layout.addWidget(self.input_box)
-        input_layout.addWidget(self.send_button)
-
         # Horizontal layout for direction buttons
         direction_layout = QHBoxLayout()
         direction_layout.addWidget(self.button_north)
         direction_layout.addWidget(self.button_south)
         direction_layout.addWidget(self.button_east)
         direction_layout.addWidget(self.button_west)
-
-        # Vertical layout for the window
-        layout = QVBoxLayout()
-        layout.addWidget(self.log_view)
-        layout.addLayout(input_layout)
-        layout.addLayout(direction_layout)
-        self.setLayout(layout)
-
-        # Modify Style Sheet
-        self.setStyleSheet("color: white; background-color: black;")
+        
+        return(direction_layout)
 
     def handle_user_action(self):
         # Gets user input
