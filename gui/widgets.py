@@ -1,8 +1,11 @@
 from PyQt6.QtWidgets import QHBoxLayout, QPushButton, QLineEdit
 
-class GameButtons:
+from .game_gui import GameGUI
+
+
+class GameButtons(GameGUI):
     def __init__(self, game_view):
-        self.game_view = game_view
+        super().__init__(game_view)
     
     def on_movements_buttons(self):
         """Add buttons for cardinal directions to game GUI"""
@@ -39,9 +42,9 @@ class GameButtons:
         buttons_list.append(button)
 
 
-class GameEntry:
+class GameEntry(GameGUI):
     def __init__(self, game_view):
-        self.game_view = game_view
+        super().__init__(game_view)
 
     def on_input_layout(self):
         """Add horizzontal input box and a send button to submit"""

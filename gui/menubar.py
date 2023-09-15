@@ -1,8 +1,11 @@
 from PyQt6.QtGui import QAction, QIcon
 
-class GameMenu:
+from .game_gui import GameGUI
+
+
+class GameMenu(GameGUI):
     def __init__(self, game_view):
-        self.game_view = game_view
+        super().__init__(game_view)
         self.menubar = self.game_view.menuBar()
 
     def create_file_menu(self):
