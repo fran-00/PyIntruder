@@ -29,6 +29,12 @@ class GameButtons:
         
         return direction_layout
     
+    def add_button(self, text, command, layout, buttons_list):
+        button = QPushButton(text)
+        button.clicked.connect(lambda: self.game_view.handle_user_action(command))
+        layout.addWidget(button)
+        buttons_list.append(button)
+    
     def on_actions_buttons(self):
         """Add buttons for actions to game GUI"""
         button_attack = QPushButton("Attack")
