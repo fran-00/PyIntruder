@@ -12,10 +12,10 @@ class GameButtons(GameGUI):
         buttons = []
         directions_layout = QHBoxLayout()
 
-        self.add_button("🡅", "n", directions_layout, buttons)
-        self.add_button("🡇", "s", directions_layout, buttons)
-        self.add_button("🡆", "e", directions_layout, buttons)
-        self.add_button("🡄", "w", directions_layout, buttons)
+        self.add_button("🡅", "go north", directions_layout, buttons)
+        self.add_button("🡇", "go south", directions_layout, buttons)
+        self.add_button("🡆", "go east", directions_layout, buttons)
+        self.add_button("🡄", "go west", directions_layout, buttons)
 
         self.assign_css_class(buttons, "cardinal_directions")
 
@@ -26,9 +26,9 @@ class GameButtons(GameGUI):
         buttons = []
         actions_layout = QHBoxLayout()
 
-        self.add_button("Attack", "a", actions_layout, buttons)
-        self.add_button("Cast Curse", "c", actions_layout, buttons)
-        self.add_button("Inventory", "i", actions_layout, buttons)
+        self.add_button("Attack", "attack", actions_layout, buttons)
+        self.add_button("Cast Curse", "curse", actions_layout, buttons)
+        self.add_button("Inventory", "inventory", actions_layout, buttons)
         self.add_button("Diagnose", "diagnose", actions_layout, buttons)
 
         self.assign_css_class(buttons, "action_buttons")
