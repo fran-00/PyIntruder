@@ -13,7 +13,7 @@ class GameView(QMainWindow):
         self.setWindowTitle("PyIntruder")
         self.resize(1024, 768)
         self.create_layout()
-        GameMenu(self).create_menu()
+        GameMenu(self).create_file_menu()
 
     def create_layout(self):
         """Create a vertical layout for the window"""
