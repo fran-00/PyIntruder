@@ -27,9 +27,9 @@ class GameView(QMainWindow):
         layout.addLayout(GameButtons(self).on_movements_buttons())
         layout.addLayout(GameButtons(self).on_actions_buttons())
 
-        # Add player health bar
-        prograss_bar = HealthBar(self).crete_health_bar()
-        layout.addWidget(prograss_bar)
+        # TODO: Add player health bar
+        # prograss_bar = HealthBar(self).crete_health_bar()
+        # layout.addWidget(prograss_bar)
 
     def on_log_view(self):
         """Add widget for displaying inputs and outputs"""
