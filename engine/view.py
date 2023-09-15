@@ -56,10 +56,10 @@ class GameView(QWidget):
             button.setProperty("class", "cardinal_directions")
 
         # Connect direction buttons to a common handler
-        button_north.clicked.connect(lambda: self.emit_command_from_button("n"))
-        button_south.clicked.connect(lambda: self.emit_command_from_button("s"))
-        button_east.clicked.connect(lambda: self.emit_command_from_button("e"))
-        button_west.clicked.connect(lambda: self.emit_command_from_button("w"))
+        button_north.clicked.connect(lambda: self.handle_user_action("n"))
+        button_south.clicked.connect(lambda: self.handle_user_action("s"))
+        button_east.clicked.connect(lambda: self.handle_user_action("e"))
+        button_west.clicked.connect(lambda: self.handle_user_action("w"))
 
         # Horizontal layout for direction buttons
         direction_layout = QHBoxLayout()
@@ -77,10 +77,10 @@ class GameView(QWidget):
         button_inventory = QPushButton("Inventory")
         button_diagnose = QPushButton("Diagnose")
 
-        button_attack.clicked.connect(lambda: self.emit_command_from_button("a"))
-        button_curse.clicked.connect(lambda: self.emit_command_from_button("c"))
-        button_inventory.clicked.connect(lambda: self.emit_command_from_button("i"))
-        button_diagnose.clicked.connect(lambda: self.emit_command_from_button("diagnose"))
+        button_attack.clicked.connect(lambda: self.handle_user_action("a"))
+        button_curse.clicked.connect(lambda: self.handle_user_action("c"))
+        button_inventory.clicked.connect(lambda: self.handle_user_action("i"))
+        button_diagnose.clicked.connect(lambda: self.handle_user_action("diagnose"))
 
         command_layout = QHBoxLayout()
         command_layout.addWidget(button_attack)
@@ -103,10 +103,6 @@ class GameView(QWidget):
         # Resets the input box
         self.input_box.clear()
         self.input_box.setFocus()
-    
-    def emit_command_from_button(self, command):
-        self.view_signal_to_controller.emit(command)
-        self.log_view.append(f">>> {command}")
 
     @pyqtSlot(str)
     def handle_game_response(self, response):
