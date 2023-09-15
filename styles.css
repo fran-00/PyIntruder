@@ -4,6 +4,10 @@ QWidget {
     font-size: 14px;
 }
 
+QTextEdit {
+    padding: 10px 20px;
+}
+
 QPushButton {
     border: 2px solid #FFF;
     font-size: 16px;
