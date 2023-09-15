@@ -40,23 +40,23 @@ class GameView(QWidget):
 
     def on_movements_buttons(self):
         """Add buttons for cardinal directions to game GUI"""
-        self.button_north = QPushButton("North")
-        self.button_south = QPushButton("South")
-        self.button_east = QPushButton("East")
-        self.button_west = QPushButton("West")
+        button_north = QPushButton("North")
+        button_south = QPushButton("South")
+        button_east = QPushButton("East")
+        button_west = QPushButton("West")
         
         # Connect direction buttons to a common handler
-        self.button_north.clicked.connect(lambda: self.view_signal_to_controller.emit("n"))
-        self.button_south.clicked.connect(lambda: self.view_signal_to_controller.emit("s"))
-        self.button_east.clicked.connect(lambda: self.view_signal_to_controller.emit("e"))
-        self.button_west.clicked.connect(lambda: self.view_signal_to_controller.emit("w"))
+        button_north.clicked.connect(lambda: self.view_signal_to_controller.emit("n"))
+        button_south.clicked.connect(lambda: self.view_signal_to_controller.emit("s"))
+        button_east.clicked.connect(lambda: self.view_signal_to_controller.emit("e"))
+        button_west.clicked.connect(lambda: self.view_signal_to_controller.emit("w"))
 
         # Horizontal layout for direction buttons
         direction_layout = QHBoxLayout()
-        direction_layout.addWidget(self.button_north)
-        direction_layout.addWidget(self.button_south)
-        direction_layout.addWidget(self.button_east)
-        direction_layout.addWidget(self.button_west)
+        direction_layout.addWidget(button_north)
+        direction_layout.addWidget(button_south)
+        direction_layout.addWidget(button_east)
+        direction_layout.addWidget(button_west)
         
         return(direction_layout)
 
