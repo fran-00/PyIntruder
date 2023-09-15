@@ -1,6 +1,5 @@
-from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton
+from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QTextEdit
 from PyQt6.QtCore import pyqtSignal, pyqtSlot
-from PyQt6.QtGui import QAction, QIcon
 
 from gui.widgets import GameButtons, GameEntry
 from gui.menubar import GameMenu
