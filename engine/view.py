@@ -18,9 +18,6 @@ class GameView(QWidget):
         layout.addLayout(self.on_actions_buttons())
         self.setLayout(layout)
 
-        # Modify Style Sheet
-        self.setStyleSheet("color: white; background-color: black;")
-
     def on_log_view(self):
         """Add widget for displaying inputs and outputs"""
         self.log_view = QTextEdit()
