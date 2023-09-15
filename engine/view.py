@@ -90,9 +90,11 @@ class GameView(QWidget):
         
         return command_layout
 
-    def handle_user_action(self):
-        # Gets user input
-        action = self.input_box.text().strip()
+    def handle_user_action(self, command):
+        if command == "none":
+            action = self.input_box.text().strip()
+        else:
+            action = command
 
         # Emits the signal that contains user input
         self.view_signal_to_controller.emit(action)
