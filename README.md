@@ -54,3 +54,15 @@ The recognized commands case insensitive:
 - [ ]: Text with a color scheme to highlight character names, commands, and more.
 - [ ]: An image generated shown in one of the game windows.
 - [ ]: Improve algorithms used to calculate item stats so that gameplay is as balanced as possible.
+
+## Notes
+
+On Linux (in my case on Ubuntu 20.04.6 LTS) you will probably encounter this issue:
+
+    qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found.
+    This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+    Available platform plugins are: xcb, linuxfb, offscreen, eglfs, vkkhrdisplay, wayland, wayland-egl, minimal, vnc, minimalegl."
+
+To solve it, run this command:
+
+    sudo apt-get install '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
