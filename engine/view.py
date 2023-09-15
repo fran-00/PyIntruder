@@ -3,6 +3,7 @@ from PyQt6.QtCore import pyqtSignal, pyqtSlot
 
 from gui.widgets import GameButtons, GameEntry
 from gui.menubar import GameMenu
+from gui.status_bars import HealthBar
 
 
 class GameView(QMainWindow):
@@ -25,6 +26,10 @@ class GameView(QMainWindow):
         layout.addLayout(GameEntry(self).on_input_layout())
         layout.addLayout(GameButtons(self).on_movements_buttons())
         layout.addLayout(GameButtons(self).on_actions_buttons())
+
+        # Add player health bar
+        prograss_bar = HealthBar(self).crete_health_bar()
+        layout.addWidget(prograss_bar)
 
     def on_log_view(self):
         """Add widget for displaying inputs and outputs"""
