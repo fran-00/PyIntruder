@@ -15,6 +15,7 @@ class GameView(QWidget):
         layout.addWidget(self.on_log_view())
         layout.addLayout(self.on_input_layout())
         layout.addLayout(self.on_movements_buttons())
+        layout.addLayout(self.on_actions_buttons())
         self.setLayout(layout)
 
         # Modify Style Sheet
@@ -65,6 +66,26 @@ class GameView(QWidget):
         direction_layout.addWidget(button_west)
         
         return direction_layout
+    
+    def on_actions_buttons(self):
+        """Add buttons for actions to game GUI"""
+        button_attack = QPushButton("Attack")
+        button_curse = QPushButton("Cast Curse")
+        button_inventory = QPushButton("Inventory")
+        button_diagnose = QPushButton("Diagnose")
+
+        button_attack.clicked.connect(lambda: self.view_signal_to_controller.emit("a"))
+        button_curse.clicked.connect(lambda: self.view_signal_to_controller.emit("c"))
+        button_inventory.clicked.connect(lambda: self.view_signal_to_controller.emit("i"))
+        button_diagnose.clicked.connect(lambda: self.view_signal_to_controller.emit("diagnose"))
+
+        command_layout = QHBoxLayout()
+        command_layout.addWidget(button_attack)
+        command_layout.addWidget(button_curse)
+        command_layout.addWidget(button_inventory)
+        command_layout.addWidget(button_diagnose)
+        
+        return command_layout
 
     def handle_user_action(self):
         # Gets user input
