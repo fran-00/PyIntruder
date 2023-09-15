@@ -38,10 +38,6 @@ class GameButtons:
         layout.addWidget(button)
         buttons_list.append(button)
 
-    def assign_css_class(self, buttons_list, class_name):
-        for button in buttons_list:
-            button.setProperty("class", class_name)
-
 
 class GameEntry:
     def __init__(self, game_view):
