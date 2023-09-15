@@ -13,6 +13,8 @@ if __name__ == '__main__':
     parser.parse_world_dsl()
     player = Player()
     view = GameView()
+    with open("styles.css","r") as file:
+        view.setStyleSheet(file.read())
     model = GameModel(player)
     thread = GameThread(model)
     controller = GameController(view, model, thread)
