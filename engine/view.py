@@ -3,6 +3,7 @@ from PyQt6.QtCore import pyqtSignal, pyqtSlot
 from PyQt6.QtGui import QAction, QIcon
 
 from gui.widgets import GameButtons, GameEntry
+from gui.menubar import GameMenu
 
 
 class GameView(QMainWindow):
@@ -13,15 +14,7 @@ class GameView(QMainWindow):
         self.setWindowTitle("Game Window")
         self.resize(600, 400)
         self.create_layout()
-        self.create_menu()
-
-    def create_menu(self):
-        menubar = self.menuBar()
-        file_menu = menubar.addMenu("File")
-
-        exit_action = QAction("Exit", self)
-        exit_action.triggered.connect(self.close)
-        file_menu.addAction(exit_action)
+        GameMenu(self).create_menu()
 
     def create_layout(self):
         """Create a vertical layout for the window"""
