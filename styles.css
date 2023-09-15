@@ -35,3 +35,19 @@ QLineEdit {
     background-color: #ffdc7d;
     color: #000;
 }
+
+QMenuBar {
+    background-color: #000;
+    color: #fff;
+    border-bottom: 2px solid #FFF;
+}
+
+QMenuBar::item {
+    border: 2px solid #FFF;
+    padding: 2px 10px;
+}
+
+QMenuBar::item:pressed { /* when selected using mouse or keyboard */
+    background-color: #ffdc7d;
+    color: #000;
+}
