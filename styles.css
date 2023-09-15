@@ -1,14 +1,37 @@
 QWidget {
     background-color: #000;
-    color: #FFF;
+    color: #ffffff;
+    font-size: 14px;
 }
+
 QPushButton {
     border: 2px solid #FFF;
-    font-size: 12px;
+    font-size: 16px;
     background-color: #000;
+}
+
+QPushButton:hover {
+    border: 2px solid #a3a3a3;
+    color: #000;
+    background-color: #ffffff;
 }
 
 QLineEdit {
     background-color: #000;
     color: #FFF;
+}
+
+.enter_button {
+    padding: 20px 20px;
+}
+
+.cardinal_directions {
+    color: #ffdc7d;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.cardinal_directions:hover {
+    background-color: #ffdc7d;
+    color: #000;
 }
