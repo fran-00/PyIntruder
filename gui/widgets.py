@@ -12,8 +12,7 @@ class GameButtons:
         button_west = QPushButton("🡄")
 
         buttons = [button_north, button_south, button_east, button_west]
-        for button in buttons:
-            button.setProperty("class", "cardinal_directions")
+        self.assign_css_class(buttons, "cardinal_directions")
 
         # Connect direction buttons to a common handler
         button_north.clicked.connect(lambda: self.game_view.handle_user_action("n"))
@@ -37,6 +36,9 @@ class GameButtons:
         button_inventory = QPushButton("Inventory")
         button_diagnose = QPushButton("Diagnose")
 
+        buttons = [button_attack, button_curse, button_inventory, button_diagnose]
+        self.assign_css_class(buttons, "player_commands")
+
         button_attack.clicked.connect(lambda: self.game_view.handle_user_action("a"))
         button_curse.clicked.connect(lambda: self.game_view.handle_user_action("c"))
         button_inventory.clicked.connect(lambda: self.game_view.handle_user_action("i"))
@@ -49,3 +51,7 @@ class GameButtons:
         command_layout.addWidget(button_diagnose)
         
         return command_layout
+    
+    def assign_css_class(self, buttons_list, class_name):
+        for button in buttons_list:
+            button.setProperty("class", class_name)
