@@ -29,12 +29,12 @@ class GameView(QWidget):
     def on_input_layout(self):
         """Add horizzontal input box and a send button to submit"""
         self.input_box = QLineEdit()
-        self.input_box.returnPressed.connect(self.handle_user_action)
+        self.input_box.returnPressed.connect(lambda: self.handle_user_action("none"))
 
         # Button to submit input
         send_button = QPushButton("Enter")
         send_button.setProperty("class", "enter_button")
-        send_button.clicked.connect(self.handle_user_action)
+        send_button.clicked.connect(lambda: self.handle_user_action("none"))
 
         # Horizontal layout for input box and button
         input_layout = QHBoxLayout()
