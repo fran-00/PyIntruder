@@ -15,28 +15,31 @@ class GameView(QWidget):
         self.log_view.setReadOnly(True)
         self.log_view.ensureCursorVisible()
 
-        # Input widgets
-        self.input_box = QLineEdit()
-        self.input_box.returnPressed.connect(self.handle_user_action)
-
-        # Button to submit input
-        self.send_button = QPushButton("Enter")
-        self.send_button.clicked.connect(self.handle_user_action)
-
-        # Horizontal layout for input box and button
-        input_layout = QHBoxLayout()
-        input_layout.addWidget(self.input_box)
-        input_layout.addWidget(self.send_button)
-
         # Vertical layout for the window
         layout = QVBoxLayout()
         layout.addWidget(self.log_view)
-        layout.addLayout(input_layout)
+        layout.addLayout(self.on_input_layout())
         layout.addLayout(self.on_movements_buttons())
         self.setLayout(layout)
 
         # Modify Style Sheet
         self.setStyleSheet("color: white; background-color: black;")
+    
+    def on_input_layout(self):
+        """Add horizzontal input box and a send button to submit"""
+        self.input_box = QLineEdit()
+        self.input_box.returnPressed.connect(self.handle_user_action)
+
+        # Button to submit input
+        send_button = QPushButton("Enter")
+        send_button.clicked.connect(self.handle_user_action)
+
+        # Horizontal layout for input box and button
+        input_layout = QHBoxLayout()
+        input_layout.addWidget(self.input_box)
+        input_layout.addWidget(send_button)
+
+        return(input_layout)
 
     def on_movements_buttons(self):
         """Add buttons for cardinal directions to game GUI"""
