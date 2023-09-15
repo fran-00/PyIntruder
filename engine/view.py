@@ -11,7 +11,7 @@ class GameView(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("PyIntruder")
-        self.resize(600, 400)
+        self.resize(1024, 768)
         self.create_layout()
         GameMenu(self).create_menu()
 
