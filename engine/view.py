@@ -42,7 +42,7 @@ class GameView(QWidget):
         input_layout.addWidget(self.input_box)
         input_layout.addWidget(send_button)
 
-        return(input_layout)
+        return input_layout
 
     def on_movements_buttons(self):
         """Add buttons for cardinal directions to game GUI"""
@@ -64,7 +64,7 @@ class GameView(QWidget):
         direction_layout.addWidget(button_east)
         direction_layout.addWidget(button_west)
         
-        return(direction_layout)
+        return direction_layout
 
     def handle_user_action(self):
         # Gets user input
