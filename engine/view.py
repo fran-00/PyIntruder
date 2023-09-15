@@ -33,10 +33,12 @@ class GameView(QWidget):
 
         # Button to submit input
         send_button = QPushButton("Enter")
+        send_button.setProperty("class", "enter_button")
         send_button.clicked.connect(self.handle_user_action)
 
         # Horizontal layout for input box and button
         input_layout = QHBoxLayout()
+        input_layout.setProperty("class", "input_layout")
         input_layout.addWidget(self.input_box)
         input_layout.addWidget(send_button)
 
@@ -48,7 +50,11 @@ class GameView(QWidget):
         button_south = QPushButton("South")
         button_east = QPushButton("East")
         button_west = QPushButton("West")
-        
+
+        buttons = [button_north, button_south, button_east, button_west]
+        for button in buttons:
+            button.setProperty("class", "cardinal_directions")
+
         # Connect direction buttons to a common handler
         button_north.clicked.connect(lambda: self.emit_command_from_button("n"))
         button_south.clicked.connect(lambda: self.emit_command_from_button("s"))
