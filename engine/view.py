@@ -11,8 +11,10 @@ class GameView(QWidget):
         super().__init__()
         self.setWindowTitle("Game Window")
         self.resize(600, 400)
+        self.create_layout()
 
-        # Vertical layout for the window
+    def create_layout(self):
+        """Create a vertical layout for the window"""
         layout = QVBoxLayout()
         layout.addWidget(self.on_log_view())
         layout.addLayout(self.on_input_layout())
