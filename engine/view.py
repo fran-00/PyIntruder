@@ -10,21 +10,24 @@ class GameView(QWidget):
         self.setWindowTitle("Game Window")
         self.resize(600, 400)
 
-        # Widget for displaying inputs and outputs
-        self.log_view = QTextEdit()
-        self.log_view.setReadOnly(True)
-        self.log_view.ensureCursorVisible()
-
         # Vertical layout for the window
         layout = QVBoxLayout()
-        layout.addWidget(self.log_view)
+        layout.addWidget(self.on_log_view())
         layout.addLayout(self.on_input_layout())
         layout.addLayout(self.on_movements_buttons())
         self.setLayout(layout)
 
         # Modify Style Sheet
         self.setStyleSheet("color: white; background-color: black;")
-    
+
+    def on_log_view(self):
+        """Add widget for displaying inputs and outputs"""
+        self.log_view = QTextEdit()
+        self.log_view.setReadOnly(True)
+        self.log_view.ensureCursorVisible()
+
+        return self.log_view
+
     def on_input_layout(self):
         """Add horizzontal input box and a send button to submit"""
         self.input_box = QLineEdit()
