@@ -23,15 +23,35 @@ class GameView(QWidget):
         self.send_button = QPushButton("Enter")
         self.send_button.clicked.connect(self.handle_user_action)
 
+        # Buttons for cardinal directions
+        self.button_north = QPushButton("North")
+        self.button_south = QPushButton("South")
+        self.button_east = QPushButton("East")
+        self.button_west = QPushButton("West")
+        
+        # Connect direction buttons to a common handler
+        self.button_north.clicked.connect(lambda: self.view_signal_to_controller.emit("n"))
+        self.button_south.clicked.connect(lambda: self.view_signal_to_controller.emit("s"))
+        self.button_east.clicked.connect(lambda: self.view_signal_to_controller.emit("e"))
+        self.button_west.clicked.connect(lambda: self.view_signal_to_controller.emit("w"))
+
         # Horizontal layout for input box and button
         input_layout = QHBoxLayout()
         input_layout.addWidget(self.input_box)
         input_layout.addWidget(self.send_button)
 
+        # Horizontal layout for direction buttons
+        direction_layout = QHBoxLayout()
+        direction_layout.addWidget(self.button_north)
+        direction_layout.addWidget(self.button_south)
+        direction_layout.addWidget(self.button_east)
+        direction_layout.addWidget(self.button_west)
+
         # Vertical layout for the window
         layout = QVBoxLayout()
         layout.addWidget(self.log_view)
         layout.addLayout(input_layout)
+        layout.addLayout(direction_layout)
         self.setLayout(layout)
 
         # Modify Style Sheet
