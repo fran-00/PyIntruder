@@ -1,7 +1,8 @@
 from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QLineEdit, QPushButton
 from PyQt6.QtCore import pyqtSignal, pyqtSlot
 from PyQt6.QtGui import QAction, QIcon
-from gui.widgets import GameButtons
+
+from gui.widgets import GameButtons, GameEntry
 
 
 class GameView(QMainWindow):
@@ -29,7 +30,7 @@ class GameView(QMainWindow):
 
         layout = QVBoxLayout(central_widget)
         layout.addWidget(self.on_log_view())
-        layout.addLayout(self.on_input_layout())
+        layout.addLayout(GameEntry(self).on_input_layout())
         layout.addLayout(GameButtons(self).on_movements_buttons())
         layout.addLayout(GameButtons(self).on_actions_buttons())
 
@@ -40,24 +41,6 @@ class GameView(QMainWindow):
         self.log_view.ensureCursorVisible()
 
         return self.log_view
-
-    def on_input_layout(self):
-        """Add horizzontal input box and a send button to submit"""
-        self.input_box = QLineEdit()
-        self.input_box.returnPressed.connect(lambda: self.handle_user_action("none"))
-
-        # Button to submit input
-        send_button = QPushButton("Enter")
-        send_button.setProperty("class", "enter_button")
-        send_button.clicked.connect(lambda: self.handle_user_action("none"))
-
-        # Horizontal layout for input box and button
-        input_layout = QHBoxLayout()
-        input_layout.setProperty("class", "input_layout")
-        input_layout.addWidget(self.input_box)
-        input_layout.addWidget(send_button)
-
-        return input_layout
 
     def handle_user_action(self, command):
         if command == "none":
