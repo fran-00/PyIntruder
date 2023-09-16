@@ -129,7 +129,7 @@ class Player(Entity):
         response += f"You try to hit {enemy.styled_name()} with {weapon.name}!"
         return self.calculate_attack_precision(enemy, weapon, response)
 
-    @green
+    @green_text
     def calculate_attack_precision(self, enemy, weapon, response):
         """Calculate attack precision and damage multiplier based on a random integer.
 
@@ -171,7 +171,7 @@ class Player(Entity):
         enemy.hp -= weapon.damage * damage_multiplier
         return self.check_enemy_hp(enemy, response)
 
-    @green
+    @green_text
     def check_enemy_hp(self, enemy, response):
         """Check the HP of an enemy and responds accordingly.
 

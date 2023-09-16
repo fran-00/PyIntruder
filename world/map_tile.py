@@ -51,7 +51,7 @@ class MapTile:
     # COMBAT ------------------------------------------------------------------|
     # -------------------------------------------------------------------------|
 
-    @red
+    @red_text
     def modify_player(self, player):
         """Modify player and enemy based on a random chance of confusion
         and enemy's attack.

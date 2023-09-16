@@ -60,9 +60,9 @@ class Enemy(Entity):
     def is_alive(self):
         return self.hp > 0
 
-    @bold
-    @underline
-    @white
+    @bold_text
+    @underline_text
+    @white_text
     def styled_name(self):
         return f"{self.name}"
 
