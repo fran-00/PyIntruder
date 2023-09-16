@@ -1,6 +1,8 @@
 import json
 import random
 
+from styles.decorators import *
+
 
 with open('entities/data/items_data.json') as f:
     items_data = json.load(f)
@@ -58,8 +60,10 @@ class Enemy(Entity):
     def is_alive(self):
         return self.hp > 0
 
+    @bold
+    @underline
     def styled_name(self):
-        return f"<b style='text-decoration: underline;'>{self.name}</b>"
+        return f"{self.name}"
 
 
 class Item(Entity):
