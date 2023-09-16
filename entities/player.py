@@ -447,7 +447,7 @@ class Player(Entity):
                 self.inventory, category)
             if items_subset != []:
                 for _, item in enumerate(items_subset, index):
-                    response += f"<p><span style='color: #ffdc7d;'>{index}</span>. <b>{item}</b></p>"
+                    response += f"<p><span style='color: #1296d3;'>{index},</span> <b>{item}</b></p>"
                     index += 1
         else:
             for parent in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
@@ -456,13 +456,13 @@ class Player(Entity):
                 items_subset = self.sort_items_by_category(inventory, parent)
 
                 if items_subset:
-                    response += f"<p style='margin: 5px 0; color: #ffdc7d;'>{parent_name}</p>"
+                    response += f"<p style='margin: 5px 0; color: #1296d3;'>{parent_name}</p>"
 
                 for _, item in enumerate(items_subset, index):
                     if purpose in ["trade"]:
-                        response += f"<p><span style='color: #ffdc7d;'>{index}</span>. - <b>{item}</b> - {item.value}§</p>"
+                        response += f"<p><span style='color: #1296d3;'>{index}.</span> - <b>{item}</b> - {item.value}§</p>"
                     else:
-                        response += f"<p><span style='color: #ffdc7d;'>{index}</span>. - <b>{item}</b></p>"
+                        response += f"<p><span style='color: #1296d3;'>{index}.</span> - <b>{item}</b></p>"
                     index += 1
         return response
 
