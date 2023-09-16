@@ -45,7 +45,7 @@ class GameButtons(GameGUI):
     def on_actions_buttons(self):
         """Add buttons for actions to game GUI"""
         buttons = []
-        actions_layout = QHBoxLayout()
+        actions_layout = QVBoxLayout()
 
         self.add_button("Attack", "attack", actions_layout, buttons)
         self.add_button("Cast Curse", "curse", actions_layout, buttons)
