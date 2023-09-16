@@ -126,7 +126,7 @@ class Player(Entity):
         if enemy is None or not enemy.is_alive():
             return
 
-        response += f"You try to hit {enemy.styled_name()} with {weapon.name}!"
+        response += f"<p>You try to hit {enemy.styled_name()} with {weapon.name}!</p>"
         return self.calculate_attack_precision(enemy, weapon, response)
 
     @green_text
@@ -152,21 +152,21 @@ class Player(Entity):
             case 20:
                 damage_multiplier = 2
                 response += (
-                    f"Critical hit!"
-                    f"You deal {weapon.damage * damage_multiplier} DMG!"
+                    f"<p>Critical hit!</p>"
+                    f"<p>You deal {weapon.damage * damage_multiplier} DMG!</p>"
                 )
             case 17 | 18 | 19:
                 damage_multiplier = 1.5
                 response += (
-                    f"Good hit!"
-                    f"You deal {weapon.damage * damage_multiplier} DMG!"
+                    f"<p>Good hit!</p>"
+                    f"<p>You deal {weapon.damage * damage_multiplier} DMG!</p>"
                 )
             case 3 | 2 | 1:
-                response += "Missed!"
+                response += "<p>Missed!</p>"
                 return response
             case _:
                 damage_multiplier = 1
-                response += f"You deal {weapon.damage} DMG!"
+                response += f"<p>You deal {weapon.damage} DMG!</p>"
 
         enemy.hp -= weapon.damage * damage_multiplier
         return self.check_enemy_hp(enemy, response)
@@ -188,14 +188,14 @@ class Player(Entity):
             The updated response string after checking the enemy's HP.
         """
         if not enemy.is_alive():
-            response += f"YEAH! You killed it!"
+            response += f"<p>YEAH! You killed it!</p>"
             response += self.calculate_xp_earned(enemy)
             loot = random.randint(10, 200)
             self.gold += loot
-            response += f"{enemy.styled_name()} lost his booty. Now {loot} § are yours!"
+            response += f"<p>{enemy.styled_name()} lost his booty. Now {loot} § are yours!</p>"
 
         else:
-            response += f"{enemy.styled_name()} has {enemy.hp} HP remaining."
+            response += f"<p>{enemy.styled_name()} has {enemy.hp} HP remaining.</p>"
         return response
 
     def calculate_xp_earned(self, enemy):
@@ -213,7 +213,7 @@ class Player(Entity):
             The updated response string after earning XP.
         """
         xp_earned = (enemy.damage) # TODO: create a way to calculate XP
-        response = f"You earned {xp_earned} XP!"
+        response = f"<p>You earned {xp_earned} XP!</p>"
         self.xp += xp_earned
         if self.xp >= self.xp_modifier:
             response += self.level_up()

@@ -78,15 +78,15 @@ class MapTile:
         if confusion_chance >= 19 and self.enemy.damage < self.enemy.hp:
             self.enemy.hp -= self.enemy.damage
             return (
-                f"{self.enemy.styled_name()} is confused!<br>"
-                f"It hurts itself in its confusion!"
-                f"(Deals {self.enemy.damage} DMG and has {self.enemy.hp} HP remaining.)"
+                f"<p>{self.enemy.styled_name()} is confused!</p>"
+                f"<p>It hurts itself in its confusion!</p>"
+                f"<p>(Deals {self.enemy.damage} DMG and has {self.enemy.hp} HP remaining.)</p>"
             )
 
         if confusion_chance in {17, 18}:
             return (
-                f"{self.enemy.styled_name()} is confused!"
-                f"{self.enemy.styled_name()} misses the shot!"
+                f"<p>{self.enemy.styled_name()} is confused!</p>"
+                f"<p>{self.enemy.styled_name()} misses the shot!</p>"
             )
         if player.base_defence == 0:
             return self.calculate_damage(player, self.enemy.damage, None)
@@ -120,18 +120,18 @@ class MapTile:
 
         if player.hp <= 0:
             return (
-                f"{self.enemy.styled_name()} inflicts {damage} DMG to you."
-                f"Your armor reduce the damage by {damage_reduction or 0} but you died anyway..."
+                f"<p>{self.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
+                f"<p>Your armor reduce the damage by {damage_reduction or 0} but you died anyway...</p>"
             )
         if damage_reduction is not None:
             return (
-                f"{self.enemy.styled_name()} inflicts {damage} DMG to you."
-                f"But your armor reduce the damage by {damage_reduction}."
-                f"You now have {player.hp} HP remaining..."
+                f"<p>{self.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
+                f"<p>But your armor reduce the damage by {damage_reduction}.</p>"
+                f"<p>You now have {player.hp} HP remaining...</p>"
             )
         return (
-            f"{self.enemy.styled_name()} inflicts {damage} DMG to you."
-            f"Oh shit, you have {player.hp} HP remaining..."
+            f"<p>{self.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
+            f"<p>Oh shit, you have {player.hp} HP remaining...</p>"
         )
 
     # -------------------------------------------------------------------------|
