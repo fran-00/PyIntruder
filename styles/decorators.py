@@ -1,3 +1,9 @@
+def white(func):
+    def wrapper(*args, **kwargs):
+        string = func(*args, **kwargs)
+        return f"<span style='color: white;'>{string}</span>"
+    return wrapper
+
 def red(func):
     def wrapper(*args, **kwargs):
         string = func(*args, **kwargs)
