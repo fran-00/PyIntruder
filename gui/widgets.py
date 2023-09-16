@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QHBoxLayout, QPushButton, QLineEdit
+from PyQt6.QtWidgets import QHBoxLayout, QVBoxLayout, QPushButton, QLineEdit
 
 from .game_gui import GameGUI
 
