@@ -152,21 +152,21 @@ class Player(Entity):
             case 20:
                 damage_multiplier = 2
                 response += (
-                    f"\nCritical hit! "
+                    f"Critical hit!"
                     f"You deal {weapon.damage * damage_multiplier} DMG!"
                 )
             case 17 | 18 | 19:
                 damage_multiplier = 1.5
                 response += (
-                    f"\nGood hit! "
+                    f"Good hit!"
                     f"You deal {weapon.damage * damage_multiplier} DMG!"
                 )
             case 3 | 2 | 1:
-                response += "\nMissed!"
+                response += "Missed!"
                 return response
             case _:
                 damage_multiplier = 1
-                response += f"\nYou deal {weapon.damage} DMG!"
+                response += f"You deal {weapon.damage} DMG!"
 
         enemy.hp -= weapon.damage * damage_multiplier
         return self.check_enemy_hp(enemy, response)
@@ -188,14 +188,14 @@ class Player(Entity):
             The updated response string after checking the enemy's HP.
         """
         if not enemy.is_alive():
-            response += f"\nYEAH! You killed it!"
+            response += f"YEAH! You killed it!"
             response += self.calculate_xp_earned(enemy)
             loot = random.randint(10, 200)
             self.gold += loot
-            response += f"\n{enemy.styled_name()} lost his booty. Now {loot} § are yours!"
+            response += f"{enemy.styled_name()} lost his booty. Now {loot} § are yours!"
 
         else:
-            response += f"\n{enemy.styled_name()} has {enemy.hp} HP remaining."
+            response += f"{enemy.styled_name()} has {enemy.hp} HP remaining."
         return response
 
     def calculate_xp_earned(self, enemy):
@@ -213,7 +213,7 @@ class Player(Entity):
             The updated response string after earning XP.
         """
         xp_earned = (enemy.damage) # TODO: create a way to calculate XP
-        response = f"\nYou earned {xp_earned} XP!"
+        response = f"You earned {xp_earned} XP!"
         self.xp += xp_earned
         if self.xp >= self.xp_modifier:
             response += self.level_up()
@@ -233,7 +233,7 @@ class Player(Entity):
         self.hp = self.max_hp
         self.max_mana = round(self.max_mana * 1.1)
         self.mana = self.max_mana
-        return f" You leveled up! You are now at {self.lvl} LVL."
+        return f"You leveled up! You are now at {self.lvl} LVL."
 
     def curse_command_handler(self, enemy, choice):
         """Cast a curse on an enemy.
@@ -263,15 +263,15 @@ class Player(Entity):
         if d20 in {19, 20}:
             enemy.hp -= choice.damage * 2
             response += (
-                f"Critical hit!\n"
-                f"You cast {choice.name} on {enemy.styled_name()}, "
-                f"it does {choice.damage*2} DMG!\n"
+                f"Critical hit!"
+                f"You cast {choice.name} on {enemy.styled_name()}."
+                f"It does {choice.damage*2} DMG!"
             )
         else:
             enemy.hp -= choice.damage
             response = (
-                f"You cast {choice.name} on {enemy.styled_name()}, "
-                f"it does {choice.damage} DMG!\n"
+                f"You cast {choice.name} on {enemy.styled_name()}."
+                f"It does {choice.damage} DMG!"
             )
         self.mana -= choice.mana_cost
         response += f"You now have {self.mana} Mana remaining."
@@ -355,7 +355,7 @@ class Player(Entity):
                     response = f"Your wealth: {self.gold} §"
                     return func(self, *args) + response
                 case "trade" if not self.is_selling:
-                    response = f"What do you want to buy?\nYou have {self.gold} §."
+                    response = f"What do you want to buy? You have {self.gold} §."
                 case "trade" if self.is_selling:
                     response = "What do you want to sell?"
                 case "pick-up":
@@ -364,15 +364,15 @@ class Player(Entity):
                     response = "What do you want to drop?"
                 case "Curse":
                     response = (
-                        f"Ok, what curse do you want to cast?\n"
+                        f"Ok, what curse do you want to cast?"
                         f"You have {self.mana} Mana."
                     )
                 case "Healer":
                     response = (
-                        f"Your health is {self.hp}/{self.max_hp}.\n"
-                        "what do you want to treat yourself with?"
+                        f"Your health is {self.hp}/{self.max_hp}."
+                        "What do you want to treat yourself with?"
                     )
-            response += "\nChoose an item or press Q to quit."
+            response += "Choose an item or press Q to quit."
             return func(self, *args) + response
         return wrapper
 
@@ -409,7 +409,7 @@ class Player(Entity):
         elif inventory == []:
             match purpose:
                 case "my-inventory":
-                    return f"Your inventory is empty!\n You have {self.gold} §.", None
+                    return f"Your inventory is empty! You have {self.gold} §.", None
                 case "trade" if self.is_selling:
                     return "You don't have anything to sell!", None
                 case "trade" if not self.is_selling:
@@ -447,7 +447,7 @@ class Player(Entity):
                 self.inventory, category)
             if items_subset != []:
                 for _, item in enumerate(items_subset, index):
-                    response += f"{index}. {item}\n"
+                    response += f"{index}. {item}"
                     index += 1
         else:
             for parent in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
@@ -456,13 +456,13 @@ class Player(Entity):
                 items_subset = self.sort_items_by_category(inventory, parent)
 
                 if items_subset:
-                    response += f"{parent_name}\n"
+                    response += f"{parent_name}"
 
                 for _, item in enumerate(items_subset, index):
                     if purpose in ["trade"]:
-                        response += f"{index}. - {item} - {item.value}§\n"
+                        response += f"{index}. - {item} - {item.value}§"
                     else:
-                        response += f"{index}. - {item}\n"
+                        response += f"{index}. - {item}"
                     index += 1
         return response
 
@@ -537,7 +537,7 @@ class Player(Entity):
             return f"You can't sell {choice.name}!"
         match purpose:
             case "my-inventory":
-                return f"{choice}: \n{choice.description}"
+                return f"{choice}: {choice.description}"
             case "trade" if self.is_selling:
                 self.items_swapper(self, room.talker, choice, purpose)
                 self.is_selling = False
