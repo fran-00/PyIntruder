@@ -46,13 +46,11 @@ The recognized commands case insensitive:
 - [x]: Update NPC creation organization with a better use of **OOP**.
 - [x]: Complete refactoring of player.py code, which had very long and unusable methods in the first version of the project.
 - [x]: Generalize Player methods code that could be reused: **choose_item()** method in **Player** class must also be usable for pick up, drop and examine actions, as well as to trade with an npc.
-- [ ]: Update with improved exception handling: create ad hoc errors to break the game loop or resume it depending on exception's type.
-- [ ]: Improve GUI and add menu bar.
+- [x]: Improve GUI adding action buttons and a menu bar.
+- [x]: Update QWidgets style using [QSS](https://doc.qt.io/qtforpython-6/overviews/stylesheet-examples.html).
+- [x]: Text with a color scheme to highlight character names, commands, and more using inline CSS.
 - [ ]: Add save and restore functionality. It was present in the original version of the game but the code needs to be adapted to the changes made since then.
-- [ ]: The game window divided into at least three parts, one of which will show the description of the current room.
 - [ ]: Printout of the world map, which is probably too large to be contained in a signal as a string. Maybe i'll try putting the string into a JSON file.
-- [ ]: Text with a color scheme to highlight character names, commands, and more.
-- [ ]: An image generated shown in one of the game windows.
 - [ ]: Improve algorithms used to calculate item stats so that gameplay is as balanced as possible.
 
 ## Notes
