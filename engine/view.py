@@ -24,8 +24,7 @@ class GameView(QMainWindow):
         layout = QVBoxLayout(central_widget)
         layout.addWidget(self.on_log_view())
         layout.addLayout(GameEntry(self).on_input_layout())
-        layout.addLayout(GameButtons(self).on_movements_buttons())
-        layout.addLayout(GameButtons(self).on_actions_buttons())
+        layout.addLayout(GameButtons(self).on_parent_buttons_layout())
 
         # TODO: Add player health bar
         # prograss_bar = HealthBar(self).crete_health_bar()
