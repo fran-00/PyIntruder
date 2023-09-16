@@ -41,8 +41,17 @@ QLineEdit:hover {
     font-size: 40px;
 }
 
+.inactive_buttons {
+    border: none;
+}
+
+.inactive_buttons:hover {
+    background-color: #000;
+    color: #000; 
+}
+
 .action_buttons {
-    padding: 20px 0;
+    padding: 5px 0;
 }
 
 QMenuBar {
@@ -61,13 +70,4 @@ QMenuBar::item {
 QMenuBar::item:pressed {
     background-color: #ffdc7d;
     color: #000;
-}
-
-.inactive_buttons {
-    border: none;
-}
-
-.inactive_buttons:hover {
-    background-color: #000;
-    color: #000; 
 }
