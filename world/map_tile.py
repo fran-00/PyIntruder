@@ -310,18 +310,18 @@ class MapTile:
         str
             A detailed description of the current room and its features
         """
-        response = self.description
+        response = f"<p>{self.description}</p>"
         for item in self.inventory:
-            response += f"\nThere is a {item.name} here."
+            response += f"<p>There is a {item.name} here.</p>"
         for surrounding in self.environment:
-            response += f"\nThere is a {surrounding.name} here."
+            response += f"<p>There is a {surrounding.name} here.</p>"
         if self.talker:
-            response += f"\nThere is {self.talker.name} here."
+            response += f"<p>There is {self.talker.name} here.</p>"
         if self.enemy:
             if self.enemy.is_alive():
-                response += f"\nThere is a {self.enemy.styled_name()} here, willing to kill you."
+                response += f"<p>There is a {self.enemy.styled_name()} here, willing to kill you.</p>"
             elif not self.enemy.is_alive():
-                response += f"\nThere the corpse of a {self.enemy.styled_name()} here."
+                response += f"<p>There the corpse of a {self.enemy.styled_name()} here.</p>"
         return response
 
     def look_at_command_handler(self, target, player):
