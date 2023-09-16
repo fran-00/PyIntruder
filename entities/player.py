@@ -263,18 +263,18 @@ class Player(Entity):
         if d20 in {19, 20}:
             enemy.hp -= choice.damage * 2
             response += (
-                f"Critical hit!"
-                f"You cast {choice.name} on {enemy.styled_name()}."
-                f"It does {choice.damage*2} DMG!"
+                f"<p>Critical hit!</p>"
+                f"<p>You cast {choice.name} on {enemy.styled_name()}.</p>"
+                f"<p>It does {choice.damage*2} DMG!</p>"
             )
         else:
             enemy.hp -= choice.damage
             response = (
-                f"You cast {choice.name} on {enemy.styled_name()}."
-                f"It does {choice.damage} DMG!"
+                f"<p>You cast {choice.name} on {enemy.styled_name()}.</p>"
+                f"<p>It does {choice.damage} DMG!"
             )
         self.mana -= choice.mana_cost
-        response += f"You now have {self.mana} Mana remaining."
+        response += f"<p>You now have {self.mana} Mana remaining.</p>"
         return response
 
     def flee_from_fight(self):
@@ -352,7 +352,7 @@ class Player(Entity):
             purpose = args[1]
             match purpose:
                 case "my-inventory":
-                    response = f"Your wealth: {self.gold} §"
+                    response = f"<p>Your wealth: {self.gold} §</p>"
                     return func(self, *args) + response
                 case "trade" if not self.is_selling:
                     response = f"What do you want to buy? You have {self.gold} §."
@@ -364,15 +364,15 @@ class Player(Entity):
                     response = "What do you want to drop?"
                 case "Curse":
                     response = (
-                        f"Ok, what curse do you want to cast?"
-                        f"You have {self.mana} Mana."
+                        f"<p>Ok, what curse do you want to cast?</p>"
+                        f"<p>You have {self.mana} Mana.</p>"
                     )
                 case "Healer":
                     response = (
-                        f"Your health is {self.hp}/{self.max_hp}."
-                        "What do you want to treat yourself with?"
+                        f"<p>Your health is {self.hp}/{self.max_hp}.</p>"
+                        "<p>What do you want to treat yourself with?</p>"
                     )
-            response += "Choose an item or press Q to quit."
+            response += "<p>Choose an item or press Q to quit.</p>"
             return func(self, *args) + response
         return wrapper
 
