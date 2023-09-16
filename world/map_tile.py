@@ -76,13 +76,13 @@ class MapTile:
         if confusion_chance >= 19 and self.enemy.damage < self.enemy.hp:
             self.enemy.hp -= self.enemy.damage
             return (
-                f"{self.enemy.colored_name()} is confused!"
+                f"{self.enemy.styled_name()} is confused!"
                 f"It hurts itself in its confusion! "
                 f"(Deals {self.enemy.damage} DMG and has {self.enemy.hp} HP remaining.)"
             )
 
         if confusion_chance in {17, 18}:
-            return f"{self.enemy.colored_name()} is confused!<br>{self.enemy.colored_name()} misses the shot!"
+            return f"{self.enemy.styled_name()} is confused!<br>{self.enemy.styled_name()} misses the shot!"
         if player.base_defence == 0:
             return self.calculate_damage(player, self.enemy.damage, None)
         damage_reduction = 5 * player.base_defence
@@ -115,17 +115,17 @@ class MapTile:
 
         if player.hp <= 0:
             return (
-                f"{self.enemy.colored_name()} inflicts {damage} DMG to you, "
+                f"{self.enemy.styled_name()} inflicts {damage} DMG to you, "
                 f"your armor reduce the damage by {damage_reduction or 0} but you died anyway..."
             )
         if damage_reduction is not None:
             return (
-                f"{self.enemy.colored_name()} inflicts {damage} DMG to you, "
+                f"{self.enemy.styled_name()} inflicts {damage} DMG to you, "
                 f"but your armor reduce the damage by {damage_reduction}, "
                 f"so you have {player.hp} HP remaining..."
             )
         return (
-            f"{self.enemy.colored_name()} inflicts {damage} DMG to you. "
+            f"{self.enemy.styled_name()} inflicts {damage} DMG to you. "
             f"Oh shit, you have {player.hp} HP remaining..."
         )
 
@@ -314,9 +314,9 @@ class MapTile:
             response += f"\nThere is {self.talker.name} here."
         if self.enemy:
             if self.enemy.is_alive():
-                response += f"\nThere is a {self.enemy.colored_name()} here, willing to kill you."
+                response += f"\nThere is a {self.enemy.styled_name()} here, willing to kill you."
             elif not self.enemy.is_alive():
-                response += f"\nThere the corpse of a {self.enemy.colored_name()} here."
+                response += f"\nThere the corpse of a {self.enemy.styled_name()} here."
         return response
 
     def look_at_command_handler(self, target, player):

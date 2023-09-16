@@ -58,8 +58,8 @@ class Enemy(Entity):
     def is_alive(self):
         return self.hp > 0
 
-    def colored_name(self):
-        return f"<span style='color:#ff0000;'>{self.name}</span>"
+    def styled_name(self):
+        return f"<b style='text-decoration: underline;'>{self.name}</b>"
 
 
 class Item(Entity):
