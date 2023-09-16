@@ -62,6 +62,7 @@ class Enemy(Entity):
 
     @bold
     @underline
+    @white
     def styled_name(self):
         return f"{self.name}"
 
