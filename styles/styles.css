@@ -41,6 +41,10 @@ QLineEdit:hover {
     font-size: 40px;
 }
 
+.action_buttons {
+    padding: 20px 0;
+}
+
 QMenuBar {
     background-color: #000;
     color: #ffdc7d;
