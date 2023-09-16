@@ -38,7 +38,7 @@ class GameButtons(GameGUI):
         directions_layout.addLayout(lower_container)
 
         self.assign_css_class(buttons, "cardinal_directions")
-        self.assign_css_class(buttons, "inactive_buttons")
+        self.assign_css_class(inactive_buttons, "inactive_buttons")
 
         return directions_layout
     
