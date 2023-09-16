@@ -6,6 +6,12 @@ from .game_gui import GameGUI
 class GameButtons(GameGUI):
     def __init__(self, game_view):
         super().__init__(game_view)
+
+    def on_parent_buttons_layout(self):
+        parent_layout = QHBoxLayout()
+        parent_layout.addLayout(self.on_movements_buttons())
+        parent_layout.addLayout(self.on_actions_buttons())
+        return parent_layout
     
     def on_movements_buttons(self):
         """Add buttons for cardinal directions to game GUI"""
