@@ -23,15 +23,15 @@ class GameButtons(GameGUI):
         middle_container = QHBoxLayout()
         lower_container = QHBoxLayout()
 
-        self.add_inactive_button("  ", " ", upper_container, inactive_buttons)
+        self.add_inactive_button("  ", upper_container, inactive_buttons)
         self.add_button("🡅", "go north", upper_container, buttons)
-        self.add_inactive_button("  ", " ", upper_container, inactive_buttons)
+        self.add_inactive_button("  ", upper_container, inactive_buttons)
         self.add_button("🡄", "go west", middle_container, buttons)
-        self.add_inactive_button("  ", " ", middle_container, inactive_buttons)
+        self.add_inactive_button("  ", middle_container, inactive_buttons)
         self.add_button("🡆", "go east", middle_container, buttons)
-        self.add_inactive_button("  ", " ", lower_container, inactive_buttons)
+        self.add_inactive_button("  ", lower_container, inactive_buttons)
         self.add_button("🡇", "go south", lower_container, buttons)
-        self.add_inactive_button("  ", " ", lower_container, inactive_buttons)
+        self.add_inactive_button("  ", lower_container, inactive_buttons)
 
         directions_layout.addLayout(upper_container)
         directions_layout.addLayout(middle_container)
@@ -62,6 +62,10 @@ class GameButtons(GameGUI):
         layout.addWidget(button)
         buttons_list.append(button)
 
+    def add_inactive_button(self, text, layout, buttons_list):
+        button = QPushButton(text)
+        layout.addWidget(button)
+        buttons_list.append(button)
 
 class GameEntry(GameGUI):
     def __init__(self, game_view):
