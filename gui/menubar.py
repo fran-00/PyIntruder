@@ -14,6 +14,7 @@ class GameMenu(GameGUI):
         self.add_menu_action(file_menu, self.on_save, "Save")
         self.add_menu_action(file_menu, self.on_save_as, "Save As...")
         self.add_menu_action(file_menu, self.on_reload, "Reload")
+        self.add_menu_action(file_menu, self.on_export_game, "Export Game")
         self.add_menu_action(file_menu, self.game_view.close, "Exit")
 
     def add_menu_action(self, menu, action, text):
@@ -28,6 +29,9 @@ class GameMenu(GameGUI):
         pass
 
     def on_save_as(self):
+        pass
+
+    def on_export_game(self):
         pass
 
     def on_reload(self):
