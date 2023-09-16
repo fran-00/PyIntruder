@@ -4,6 +4,7 @@ import re
 
 from entities.templates import Healer, ManaRecharger, Trader
 from entities.factory import ItemsFactory as items
+from styles.decorators import *
 
 
 with open('world/data/tiles_data.json') as f:
@@ -50,6 +51,7 @@ class MapTile:
     # COMBAT ------------------------------------------------------------------|
     # -------------------------------------------------------------------------|
 
+    @red
     def modify_player(self, player):
         """Modify player and enemy based on a random chance of confusion
         and enemy's attack.
