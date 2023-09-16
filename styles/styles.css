@@ -5,9 +5,37 @@ QWidget {
     font-size: 14px;
 }
 
+QMenuBar {
+    background-color: #000;
+    color: #ffdc7d;
+    border: 2px solid #FFF;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+QMenuBar::item {
+    border-right: 2px solid #FFF;
+    padding: 2px 10px;
+}
+
+QMenuBar::item:pressed {
+    background-color: #ffdc7d;
+    color: #000;
+}
+
 QTextEdit {
     padding: 10px 20px;
     border: 2px solid #ffffff;
+}
+
+QLineEdit {
+    border: 2px solid #fff;
+    background-color: #000;
+    color: #FFF;
+}
+
+QLineEdit:hover {
+    border: 2px solid #cccccc;
 }
 
 QPushButton {
@@ -21,16 +49,6 @@ QPushButton {
 QPushButton:hover {
     background-color: #ffdc7d;
     color: #000; 
-}
-
-QLineEdit {
-    border: 2px solid #fff;
-    background-color: #000;
-    color: #FFF;
-}
-
-QLineEdit:hover {
-    border: 2px solid #cccccc;
 }
 
 .enter_button {
@@ -52,22 +70,4 @@ QLineEdit:hover {
 
 .action_buttons {
     padding: 5px 0;
-}
-
-QMenuBar {
-    background-color: #000;
-    color: #ffdc7d;
-    border: 2px solid #FFF;
-    font-size: 16px;
-    font-weight: 700;
-}
-
-QMenuBar::item {
-    border-right: 2px solid #FFF;
-    padding: 2px 10px;
-}
-
-QMenuBar::item:pressed {
-    background-color: #ffdc7d;
-    color: #000;
 }
