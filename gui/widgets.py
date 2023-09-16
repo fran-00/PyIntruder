@@ -16,14 +16,29 @@ class GameButtons(GameGUI):
     def on_movements_buttons(self):
         """Add buttons for cardinal directions to game GUI"""
         buttons = []
-        directions_layout = QHBoxLayout()
+        inactive_buttons = []
+        directions_layout = QVBoxLayout()
 
-        self.add_button("🡅", "go north", directions_layout, buttons)
-        self.add_button("🡇", "go south", directions_layout, buttons)
-        self.add_button("🡆", "go east", directions_layout, buttons)
-        self.add_button("🡄", "go west", directions_layout, buttons)
+        upper_container = QHBoxLayout()
+        middle_container = QHBoxLayout()
+        lower_container = QHBoxLayout()
+
+        self.add_inactive_button("  ", " ", upper_container, inactive_buttons)
+        self.add_button("🡅", "go north", upper_container, buttons)
+        self.add_inactive_button("  ", " ", upper_container, inactive_buttons)
+        self.add_button("🡄", "go west", middle_container, buttons)
+        self.add_inactive_button("  ", " ", middle_container, inactive_buttons)
+        self.add_button("🡆", "go east", middle_container, buttons)
+        self.add_inactive_button("  ", " ", lower_container, inactive_buttons)
+        self.add_button("🡇", "go south", lower_container, buttons)
+        self.add_inactive_button("  ", " ", lower_container, inactive_buttons)
+
+        directions_layout.addLayout(upper_container)
+        directions_layout.addLayout(middle_container)
+        directions_layout.addLayout(lower_container)
 
         self.assign_css_class(buttons, "cardinal_directions")
+        self.assign_css_class(buttons, "inactive_buttons")
 
         return directions_layout
     
