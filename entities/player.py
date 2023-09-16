@@ -760,9 +760,9 @@ class Player(Entity):
 
         """
         response = "".join(
-            f"{item.name}: taken.\n"
+            f"{item.name}: taken."
             if purpose == "get"
-            else f"{item.name}: dropped.\n"
+            else f"{item.name}: dropped."
             for item in giver.inventory
         )
         receiver.inventory.extend(giver.inventory)
