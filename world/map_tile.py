@@ -384,6 +384,7 @@ class MapTile:
             return response
         elif obj.is_open == False and obj.locked == False:
             response += f"You open the {obj.name}\n"
+            # TODO: add description when object is opened
             response += "obj.description_when_opened"
             obj.is_open = True
         elif obj.is_open == False and obj.locked == True:
