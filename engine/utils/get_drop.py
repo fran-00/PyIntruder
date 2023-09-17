@@ -1,6 +1,8 @@
+import re
 from dataclasses import dataclass
 
 from engine.utils.inventory import Inventory
+import world.parser as parser
 
 
 @dataclass
