@@ -18,8 +18,10 @@ class Inventory:
         match action:
             case "b":
                 trader.is_selling = True
+                player.is_selling = False
                 return Inventory.check_someone_inventory(trader, "trade-trader")
             case "s":
+                trader.is_selling = False
                 player.is_selling = True
                 return Inventory.check_someone_inventory(player, "trade-player")
             case "q":
