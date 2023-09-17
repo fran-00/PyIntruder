@@ -119,6 +119,8 @@ class MapTile:
         player.hp -= damage
 
         if player.hp <= 0:
+            # prevents HP from dropping below 0
+            player.hp = 0
             return (
                 f"<p>{self.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
                 f"<p>Your armor reduce the damage by {damage_reduction or 0} but you died anyway...</p>"
