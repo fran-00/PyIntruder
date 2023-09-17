@@ -199,7 +199,8 @@ class Combat:
         return response
 
     @red_text
-    def modify_player(self, player):
+    @staticmethod
+    def modify_player(room, player):
         """Modify player and enemy based on a random chance of confusion
         and enemy's attack.
 
@@ -219,28 +220,29 @@ class Combat:
         None
             If the enemy is dead or the attack misses.
         """
-        if self.enemy is None or not self.enemy.is_alive():
+        if room.enemy is None or not room.enemy.is_alive():
             return
         confusion_chance = random.randint(1, 20)
-        if confusion_chance >= 19 and self.enemy.damage < self.enemy.hp:
-            self.enemy.hp -= self.enemy.damage
+        if confusion_chance >= 19 and room.enemy.damage < room.enemy.hp:
+            room.enemy.hp -= room.enemy.damage
             return (
-                f"<p>{self.enemy.styled_name()} is confused!</p>"
-                f"<p>It hurts itself in its confusion!</p>"
-                f"<p>(Deals {self.enemy.damage} DMG and has {self.enemy.hp} HP remaining.)</p>"
+                f"<p>{room.enemy.styled_name()} is confused!</p>"
+                f"<p>It hurts itroom in its confusion!</p>"
+                f"<p>(Deals {room.enemy.damage} DMG and has {room.enemy.hp} HP remaining.)</p>"
             )
 
         if confusion_chance in {17, 18}:
             return (
-                f"<p>{self.enemy.styled_name()} is confused!</p>"
-                f"<p>{self.enemy.styled_name()} misses the shot!</p>"
+                f"<p>{room.enemy.styled_name()} is confused!</p>"
+                f"<p>{room.enemy.styled_name()} misses the shot!</p>"
             )
         if player.base_defence == 0:
-            return self.calculate_damage(player, self.enemy.damage, None)
+            return Combat.calculate_damage(room, player, room.enemy.damage, None)
         damage_reduction = 5 * player.base_defence
-        return self.calculate_damage(player, self.enemy.damage, damage_reduction)
+        return Combat.calculate_damage(room, player, room.enemy.damage, damage_reduction)
 
-    def calculate_damage(self, player, damage, damage_reduction):
+    @staticmethod
+    def calculate_damage(room, player, damage, damage_reduction):
         """Inflict damage to the player object based on enemy's attack and player's
         damage reduction.
 
@@ -269,16 +271,16 @@ class Combat:
             # prevents HP from dropping below 0
             player.hp = 0
             return (
-                f"<p>{self.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
+                f"<p>{room.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
                 f"<p>Your armor reduce the damage by {damage_reduction or 0} but you died anyway...</p>"
             )
         if damage_reduction is not None:
             return (
-                f"<p>{self.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
+                f"<p>{room.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
                 f"<p>But your armor reduce the damage by {damage_reduction}.</p>"
                 f"<p>You now have {player.hp} HP remaining...</p>"
             )
         return (
-            f"<p>{self.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
+            f"<p>{room.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
             f"<p>Oh shit, you have {player.hp} HP remaining...</p>"
         )

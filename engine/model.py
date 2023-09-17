@@ -2,6 +2,7 @@ from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
 import world.parser as parser
 from .commands import Commands
+from engine.combat_system import Combat
 
 
 class GameThread(QThread):
@@ -133,7 +134,7 @@ class GameModel(QObject):
         attacks on the player. The resulting `enemy_attacks` are emitted to
         GameController using the `model_signal_to_controller` signal.
         """
-        enemy_attacks = self.room.modify_player(self.player)
+        enemy_attacks = Combat.modify_player(self.room, self.player)
         self.handle_player_status_signal(
             self.player.hp,
             self.player.max_hp,
