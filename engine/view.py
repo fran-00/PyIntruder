@@ -3,7 +3,7 @@ from PyQt6.QtCore import pyqtSignal, pyqtSlot
 
 from gui.widgets import GameButtons, GameEntry
 from gui.menubar import GameMenu
-from gui.status_bars import HealthBar
+from gui.status_bars import GameProgressBars
 
 
 class GameView(QMainWindow):
@@ -25,7 +25,7 @@ class GameView(QMainWindow):
         log_view = self.on_log_view()
         input_layout = GameEntry(self).on_input_layout()
         buttons_layout = GameButtons(self).on_parent_buttons_layout()
-        self.health_bar = HealthBar(self).crete_health_bar()
+        self.health_bar = GameProgressBars(self).crete_health_bar()
 
         main_layout = QVBoxLayout(central_widget)
         main_layout.addWidget(self.health_bar)
