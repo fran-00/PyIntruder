@@ -169,7 +169,7 @@ class Commands:
                 elif command == "TRADE":
                     self.arguments_list = [self.player, self.room.talker, "trade"]
                     return (
-                        self.room.trade,
+                        Inventory.initialize_trade,
                         Inventory.trading_mode,
                         Inventory.choose_item,
                     )
