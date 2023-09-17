@@ -25,7 +25,9 @@ class GameModel(QObject):
         super().__init__()
 
     def play(self):
-        """Start game loop and allow user to move and perform actions within a
+        """
+        TODO: UPDATE DOCSTRING
+        Start game loop and allow user to move and perform actions within a
         grid-based map connecting player, game world and all game features
         through Commands class.
 
@@ -65,7 +67,7 @@ class GameModel(QObject):
             self.process_main_loop()
     
     def process_main_loop(self):
-        """TODO"""
+        """TODO:"""
         self.room = parser.tile_at(self.player.x, self.player.y)
         if self.room.enemy and self.room.enemy.is_alive():
             self.process_enemy_attack()
@@ -79,7 +81,9 @@ class GameModel(QObject):
             self.model_signal_to_controller.emit(game_response)
 
     def process_nested_loop(self, game_response):
-        """Process a tuple of methods in a for loop.
+        """
+        TODO: UPDATE DOCSTRING
+        Process a tuple of methods in a for loop.
 
         First add action to be processed to argument_list attribute of Commands
         class (a list of arguments to be passed to the methods processed in the loop
