@@ -99,10 +99,10 @@ class Inventory:
             return Inventory.compose_string_with_inventory_sorted_by_category(inventory, purpose)
     
     @staticmethod
-    def compose_string_with_inventory_subset(player, purpose):
+    def compose_string_with_inventory_subset(someone, purpose):
         response = ""
         category = globals()[purpose]
-        items_subset = Inventory.sort_items_by_category(player.inventory, category)
+        items_subset = Inventory.sort_items_by_category(someone.inventory, category)
         if items_subset != []:
             index = 1
             for _, item in enumerate(items_subset, index):
