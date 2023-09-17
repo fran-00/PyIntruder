@@ -9,6 +9,5 @@ class HealthBar(GameGUI):
         super().__init__(game_view)
 
     def crete_health_bar(self):
-        self.health_bar = QProgressBar(self.game_view)
-        self.health_bar.setObjectName("health_bar")
+        self.health_bar = QProgressBar(self.game_view, objectName="health_bar")
         return self.health_bar
