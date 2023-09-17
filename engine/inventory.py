@@ -114,32 +114,41 @@ class Inventory:
 
     @show_instructions
     def show_inventory(player, inventory, purpose):
+        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
+            return Inventory.compose_string_with_inventory_subset(player, purpose)
+        else:
+            return Inventory.compose_string_with_inventory_sorted_by_category(inventory, purpose)
+    
+    @staticmethod
+    def compose_string_with_inventory_subset(player, purpose):
+        response = ""
+        category = globals()[purpose]
+        items_subset = Inventory.sort_items_by_category(player.inventory, category)
+        if items_subset != []:
+            index = 1
+            for _, item in enumerate(items_subset, index):
+                response += f"<p><span style='color: #1296d3;'>{index},</span> <b>{item}</b></p>"
+                index += 1
+        return response
+
+    @staticmethod
+    def compose_string_with_inventory_sorted_by_category(inventory, purpose):
         index = 1
         response = ""
+        for parent in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
+            words = re.findall('[A-Z][^A-Z]*', parent.__name__)
+            parent_name = ' '.join(words) + "s" + ":"
+            items_subset = Inventory.sort_items_by_category(inventory, parent)
 
-        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
-            category = globals()[purpose]
-            items_subset = Inventory.sort_items_by_category(
-                player.inventory, category)
-            if items_subset != []:
-                for _, item in enumerate(items_subset, index):
-                    response += f"<p><span style='color: #1296d3;'>{index},</span> <b>{item}</b></p>"
-                    index += 1
-        else:
-            for parent in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
-                words = re.findall('[A-Z][^A-Z]*', parent.__name__)
-                parent_name = ' '.join(words) + "s" + ":"
-                items_subset = Inventory.sort_items_by_category(inventory, parent)
+            if items_subset:
+                response += f"<p style='margin: 5px 0; color: #1296d3;'>{parent_name}</p>"
 
-                if items_subset:
-                    response += f"<p style='margin: 5px 0; color: #1296d3;'>{parent_name}</p>"
-
-                for _, item in enumerate(items_subset, index):
-                    if purpose in ["trade"]:
-                        response += f"<p><span style='color: #1296d3;'>{index}.</span> - <b>{item}</b> - {item.value}§</p>"
-                    else:
-                        response += f"<p><span style='color: #1296d3;'>{index}.</span> - <b>{item}</b></p>"
-                    index += 1
+            for _, item in enumerate(items_subset, index):
+                if purpose in ["trade"]:
+                    response += f"<p><span style='color: #1296d3;'>{index}.</span> - <b>{item}</b> - {item.value}§</p>"
+                else:
+                    response += f"<p><span style='color: #1296d3;'>{index}.</span> - <b>{item}</b></p>"
+                index += 1
         return response
 
     @staticmethod
