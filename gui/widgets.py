@@ -78,12 +78,12 @@ class GameEntry(GameGUI):
 
         # Button to submit input
         send_button = QPushButton("Enter")
-        send_button.setProperty("class", "enter_button")
+        send_button.setObjectName("enter_button")
         send_button.clicked.connect(lambda: self.game_view.handle_user_action("none"))
 
         # Horizontal layout for input box and button
         input_layout = QHBoxLayout()
-        input_layout.setProperty("class", "input_layout")
+        input_layout.setObjectName("input_layout")
         input_layout.addWidget(self.game_view.input_box)
         input_layout.addWidget(send_button)
 

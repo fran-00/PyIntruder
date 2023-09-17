@@ -38,6 +38,10 @@ QLineEdit:hover {
     border: 2px solid #cccccc;
 }
 
+QPushButton#enter_button {
+    padding: 5px 20px;
+}
+
 QPushButton {
     background-color: #000;
     color: #ffdc7d;
@@ -49,10 +53,6 @@ QPushButton {
 QPushButton:hover {
     background-color: #ffdc7d;
     color: #000; 
-}
-
-.enter_button {
-    padding: 5px 20px;
 }
 
 .cardinal_directions {
