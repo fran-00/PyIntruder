@@ -48,14 +48,17 @@ class GameModel(QObject):
         self.commands = Commands(self.player, self.room)
         self.model_signal_to_controller.emit("<h1>PYINTRUDER</h1>")
         self.model_signal_to_controller.emit(self.commands.get_room_description())
+        # Emit player status before game loop to update health bar on GUI
+        # which will then be handled by handle_enemy_attack to update it just
+        # right when player gets damage
+        self.handle_player_status_signal(
+            self.player.hp,
+            self.player.max_hp
+        )
 
         self.event_loop = QEventLoop()
 
         while True:
-            self.handle_player_status_signal(
-                self.player.hp,
-                self.player.max_hp
-            )
             self.process_main_loop()
     
     def process_main_loop(self):
@@ -125,6 +128,10 @@ class GameModel(QObject):
         GameController using the `model_signal_to_controller` signal.
         """
         enemy_attacks = self.room.modify_player(self.player)
+        self.handle_player_status_signal(
+            self.player.hp,
+            self.player.max_hp
+        )
         self.model_signal_to_controller.emit(enemy_attacks)
 
     @pyqtSlot(str)
