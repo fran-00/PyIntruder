@@ -19,7 +19,7 @@ class GameModel(QObject):
     def __init__(self, player):
         self.player = player
         self.action = None
-        self.room = parser.tile_at(self.player.x, self.player.y)
+        self.room = None
         super().__init__()
 
     def play(self):
