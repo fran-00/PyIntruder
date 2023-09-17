@@ -51,17 +51,21 @@ class GameModel(QObject):
         self.event_loop = QEventLoop()
 
         while True:
-            self.room = parser.tile_at(self.player.x, self.player.y)
-            if self.room.enemy and self.room.enemy.is_alive():
-                self.handle_enemy_attack()
+            self.process_main_loop()
+    
+    def process_main_loop(self):
+        """TODO"""
+        self.room = parser.tile_at(self.player.x, self.player.y)
+        if self.room.enemy and self.room.enemy.is_alive():
+            self.handle_enemy_attack()
 
-            self.event_loop.exec()
-            game_response = self.commands.choose_action(self.action)
+        self.event_loop.exec()
+        game_response = self.commands.choose_action(self.action)
 
-            if isinstance(game_response, tuple):
-                self.process_nested_loop(game_response)
-            else:
-                self.model_signal_to_controller.emit(game_response)
+        if isinstance(game_response, tuple):
+            self.process_nested_loop(game_response)
+        else:
+            self.model_signal_to_controller.emit(game_response)
 
     def process_nested_loop(self, game_response):
         """Process a tuple of methods in a for loop.
