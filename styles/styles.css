@@ -74,5 +74,9 @@ QPushButton:hover {
 
 QProgressBar#health_bar {
     border-radius: 6px;
-    background-color: #009688;
+    background-color: #F00;
+}
+QProgressBar#health_bar::chunk {
+    border-radius: 6px;
+    background-color: #1cb379;
 }
