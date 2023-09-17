@@ -14,3 +14,6 @@ class HealthBar(GameGUI):
         health_bar.setValue(self.player.max_hp)
 
         return health_bar
+
+    def process_player_data(self, player_hp, player_max_hp):
+        pass
