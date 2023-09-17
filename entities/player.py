@@ -88,7 +88,6 @@ class Player(Entity):
         self.mana = self.max_mana
         return f"You leveled up! You are now at {self.lvl} LVL."
 
-
     def flee_from_fight(self):
         room = parser.tile_at(self.x, self.y)
         d20 = random.randint(1, 20)
@@ -104,6 +103,40 @@ class Player(Entity):
         # when you call tile_at method from parser:
         # parser.tile_at(self.previous_x, self.previous_y)
         return "You flee."
+
+    def heal_command_handler(self, choice):
+        """Heal Player using chosen item and remove it from the inventory.
+
+        Parameters
+        ----------
+        choice : Healer
+            The selected item to use for healing. It must have a 'heal' attribute.
+
+        Returns
+        -------
+        str
+            A string providing name of the item used and remaining HP.
+        """
+        if (choice.heal + self.hp) > self.max_hp:
+            self.hp = self.max_hp
+        else:
+            self.hp += choice.heal
+        self.inventory.remove(choice)
+        return f"You use {choice.name}. You now have {self.hp} HP remaining."
+
+    def diagnose_command_handler(self):
+        """Return a formatted string with the player's current status information."""
+        room = parser.tile_at(self.x, self.y)
+        return (
+            f"<b>Level</b> : {self.lvl}<br>"
+            f"<b>HP</b> : {self.hp}/{self.max_hp}<br>"
+            f"<b>Mana</b> : {self.mana}/{self.max_mana}<br>"
+            f"<b>§</b> : {self.gold}<br>"
+            f"<b>XP</b> : {self.xp}/{self.xp_modifier}<br>"
+            f"<b>Weapon equipped</b> : {self.current_weapon}<br>"
+            f"<b>Turn</b> : {self.turn}<br>"
+            f"<b>Location</b> : {self.x}.{self.y} - {room.name}"
+        )
 
     # -------------------------------------------------------------------------|
     # GET/ DROP----------------------------------------------------------------|
@@ -287,48 +320,6 @@ class Player(Entity):
         receiver.inventory.extend(giver.inventory)
         giver.inventory.clear()
         return response or f"There is nothing to {purpose}."
-
-    # -------------------------------------------------------------------------|
-    # HEAL AND RECHARGE MANA---------------------------------------------------|
-    # -------------------------------------------------------------------------|
-
-    def heal_command_handler(self, choice):
-        """Heal Player using chosen item and remove it from the inventory.
-
-        Parameters
-        ----------
-        choice : Healer
-            The selected item to use for healing. It must have a 'heal' attribute.
-
-        Returns
-        -------
-        str
-            A string providing name of the item used and remaining HP.
-        """
-        if (choice.heal + self.hp) > self.max_hp:
-            self.hp = self.max_hp
-        else:
-            self.hp += choice.heal
-        self.inventory.remove(choice)
-        return f"You use {choice.name}. You now have {self.hp} HP remaining."
-
-    # -------------------------------------------------------------------------|
-    # INFO --------------------------------------------------------------------|
-    # -------------------------------------------------------------------------|
-
-    def diagnose_command_handler(self):
-        """Return a formatted string with the player's current status information."""
-        room = parser.tile_at(self.x, self.y)
-        return (
-            f"<b>Level</b> : {self.lvl}<br>"
-            f"<b>HP</b> : {self.hp}/{self.max_hp}<br>"
-            f"<b>Mana</b> : {self.mana}/{self.max_mana}<br>"
-            f"<b>§</b> : {self.gold}<br>"
-            f"<b>XP</b> : {self.xp}/{self.xp_modifier}<br>"
-            f"<b>Weapon equipped</b> : {self.current_weapon}<br>"
-            f"<b>Turn</b> : {self.turn}<br>"
-            f"<b>Location</b> : {self.x}.{self.y} - {room.name}"
-        )
 
     def show_map(self):
         """Print a visual representation of the world map and player's coordinates.
