@@ -11,23 +11,6 @@ class Inventory:
 
     @staticmethod
     def trading_mode(*args):
-        """Enter trading mode with a non-player character.
-
-        Parameters
-        ----------
-        *args
-            Accepts any number of arguments.
-            *args[-1] (str): [Required] User's action
-        Returns
-        -------
-        str
-            if action is "B" or "S", return the result of calling
-            check_inventory() passing as argument player's inventory
-            (if selling) or trader's inventory (if buying).
-        tuple : str, None
-            if action is q or is not recognizedm return a tuple with a
-            message and None value to break play() loop.
-        """
         player = args[0]
         talker = args[1]
         action = args[-1]
@@ -43,25 +26,6 @@ class Inventory:
                 return "Invalid choice, try again.", None
 
     def show_instructions(func):
-        """Decorator: add a response string to decorated function, based on its argument.
-
-        The wrapper function determines the functionality based on the second
-        argument of the decorated function, "purpose": a message is
-        created and appended to the result of the called function.
-        If no matching value is encountered, no message is added.
-
-        Parameters
-        ----------
-        func : function
-            The function to be decorated. It must have a string argument 
-            with the string "purpose".
-
-        Returns
-        -------
-        function
-            A new function that wraps the given function with added functionality.
-        """
-
         def wrapper(*args):
             print(*args)
             player = args[0]
@@ -94,24 +58,6 @@ class Inventory:
 
     @staticmethod
     def check_inventory(*args):
-        """Check if inventory contains any items or items of a specified category
-
-        Parameters
-        ----------
-        *args
-            A tuple of positional arguments.
-            *args[0] (list): [Required] The inventory to show.
-            *args[1] (str): [Required] The purpose of the inventory check.
-
-        Returns
-        -------
-        tuple
-            If no items are found, a tuple that contains a string with 
-            informative message and None value
-        str
-            If items are found, call show_inventory() method passing inventory
-            and purpose as arguments
-        """
         player = args[0]
         purpose = args[1]
         inventory = player.inventory
@@ -141,19 +87,6 @@ class Inventory:
 
     @show_instructions
     def show_inventory(*args):
-        """Display an inventory based on purpose.
-
-        Parameters
-        ----------
-        *args
-            Arguments to customize the display of an inventory:
-            *args[0]: [Required] The inventory to show.
-            *args[1]: [Required] The purpose of the retrieval.
-        Returns
-        -------
-        response : str
-            A formatted string containing the inventory.
-        """
         inventory = args[0]
         purpose = args[2]
         index = 1
@@ -190,27 +123,6 @@ class Inventory:
 
     @staticmethod
     def choose_item(*args):
-        """Select an item from the inventory based on the user's input.
-
-        Parameters
-        ----------
-        *args
-            The arguments to customize the behavior of the method:
-            *args[0]: The inventory to use for trade purposes or None
-            *args[1]: The purpose of the item selection
-            *args[-1]: The action to perform
-
-        Returns
-        -------
-        str
-            Call show_appropriate_answer() passing choosen item and purpose
-            as arguments. If action is cancelled, return a message.
-
-        Raises
-        ------
-        Exception
-            If action is not a valid number or if choice index is out of range
-        """
         player = args[0]
         purpose = args[2]
         action = args[-1]
@@ -237,23 +149,6 @@ class Inventory:
 
     @staticmethod
     def show_appropriate_answer(player, choice, purpose):
-        """Displays the appropriate answer for the given choice and purpose.
-
-        Parameters
-        ----------
-        choice : Item
-            The selected item
-        purpose : str
-            The purpose of the selection
-
-        Returns
-        -------
-        str
-            The appropriate string response for the selected `choice` and
-            `purpose` obtained from item_swapper() if manipulating items,
-            from check_enemy_hp() if fighting or from heal() if player wants
-            to consume an Healer.
-        """
         room = parser.tile_at(player.x, player.y)
         if choice.marketable == False:
             return f"You can't sell {choice.name}!"
@@ -282,28 +177,6 @@ class Inventory:
 
     @staticmethod
     def items_swapper(giver, receiver, item, purpose):
-        """Move items between inventories of two Entities or buys/sells items.
-        Call sort_inventory method on both Entities when done.
-
-        Parameters
-        ----------  
-        giver
-            The class that is giving the item (Player, NPC or MapTile subclass).
-        receiver
-            The class that is is receiving the item.
-        item
-            The item being transferred or bought/sold.
-        purpose
-            A string that specifies the purpose of the transfer. If purpose is
-            'trade', remove gold from buyer's inventory and add it to seller's.
-
-        Returns
-        -------
-        str 
-            String that warns if player has no gold.
-        None
-            In any other case.
-        """
         if purpose == "trade":
             if item.value > receiver.gold:
                 return "<< You don't have enough cash. >>"
