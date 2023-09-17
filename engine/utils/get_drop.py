@@ -39,12 +39,12 @@ class GetDrop:
         """
         if target == "all":
             return GetDrop.get_or_drop_all(giver, receiver, purpose)
-
+        player = receiver if target == "get" else giver
         for item in giver.inventory:
             if GetDrop.match_target_name(target, item):
                 Inventory.items_swapper(giver, receiver, item, "get-drop")
                 return f"{item.name}: taken." if purpose == "get" else f"{item.name}: dropped."
-        return GetDrop.show_why_is_not_collectable_or_droppable(target, purpose)
+        return GetDrop.show_why_is_not_collectable_or_droppable(player, target, purpose)
 
     @staticmethod
     def show_why_is_not_collectable_or_droppable(player, target, purpose):
