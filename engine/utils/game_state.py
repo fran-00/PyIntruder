@@ -8,8 +8,7 @@ from world.parser import get_world_map
 
 
 class Save:
-    def __init__(self, player):
-        self.player = player
+    def __init__(self):
         self.player_data = []
         self.rooms_list = []
         self.rooms_inventories = []
@@ -65,8 +64,7 @@ class Save:
 
 
 class Reload:
-    def __init__(self, player):
-        self.player = player
+    def __init__(self):
         self.player_data = []
         self.rooms_inventories = []
         self.world_enemies = []
