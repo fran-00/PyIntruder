@@ -45,32 +45,32 @@ class ChestTile(MapTile):
     
     def random_chest_event(self, player):
         ico = random.randint(1, 20)
-        response = "You roll the dice...\n"
+        response = "You roll the dice..."
         gold = 0
         match ico:
             case 20:
                 gold += 1000
                 response += (
-                    f"Dice says 20! IT'S INCREDIBLE!!!\n"
-                    f"You found {gold} § inside of it!\n"
+                    f"Dice says 20! IT'S INCREDIBLE!!!"
+                    f"You found {gold} § inside of it!"
                     )
             case x if 15 < x < 20:
                 gold += random.randint(300, 499)
                 response += ( 
-                    f"Dice says {ico}! Not bad!\n"
-                    f"You found {gold} § inside of it!\n"
+                    f"Dice says {ico}! Not bad!"
+                    f"You found {gold} § inside of it!"
                     )
             case x if 11 < x < 16:
                 gold += random.randint(150, 299)
                 response += (
-                    f"Dice says {ico}! Good!\n"
-                    f"You found {gold} § inside of it!\n"
+                    f"Dice says {ico}! Good!"
+                    f"You found {gold} § inside of it!"
                     )
             case x if 7 < x < 12:
                 gold += random.randint(50, 149)
                 response += (
-                    f"> Dice says {ico}! Hmmm...\n"
-                    f"Only {gold} §...\n"
+                    f"> Dice says {ico}! Hmmm..."
+                    f"Only {gold} §..."
                     )
             case x if 3 < x < 8:
                 gold += random.randint(0, 50)
