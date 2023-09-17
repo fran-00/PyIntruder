@@ -15,6 +15,7 @@ class GameThread(QThread):
 
 class GameModel(QObject):
     model_signal_to_controller = pyqtSignal(str)
+    player_status_signal = pyqtSignal(tuple)
 
     def __init__(self, player):
         self.player = player
@@ -51,6 +52,10 @@ class GameModel(QObject):
         self.event_loop = QEventLoop()
 
         while True:
+            self.handle_player_status_signal(
+                self.player.hp,
+                self.player.max_hp
+            )
             self.process_main_loop()
     
     def process_main_loop(self):
@@ -149,3 +154,9 @@ class GameModel(QObject):
                 A string representing the game response to be sent.
         """
         self.model_signal_to_controller.emit(game_response)
+
+    def handle_player_status_signal(self, player_hp, player_max_hp):
+        """
+        """
+        player_data = player_hp, player_max_hp
+        self.player_status_signal.emit(player_data)
