@@ -1,3 +1,4 @@
+/* Main Widget */
 QWidget {
     background-color: #000;
     color: #ffffff;
@@ -5,6 +6,7 @@ QWidget {
     font-size: 14px;
 }
 
+/* Menu Bar */
 QMenuBar {
     background-color: #000;
     color: #ffdc7d;
@@ -23,6 +25,7 @@ QMenuBar::item:pressed {
     color: #000;
 }
 
+/* Progress Bars */
 QProgressBar#health_bar {
     border-radius: 6px;
     background-color: #ad4040;
@@ -43,11 +46,13 @@ QProgressBar#mana_bar::chunk {
     background-color: #1950b8;
 }
 
+/* Log View */
 QTextEdit {
     padding: 10px 20px;
     border: 2px solid #ffffff;
 }
 
+/* Input Line */
 QLineEdit {
     border: 2px solid #fff;
     background-color: #000;
@@ -58,10 +63,12 @@ QLineEdit:hover {
     border: 2px solid #cccccc;
 }
 
+/* Send Button */
 QPushButton#enter_button {
     padding: 5px 20px;
 }
 
+/* Generic Button */
 QPushButton {
     background-color: #000;
     color: #ffdc7d;
@@ -75,10 +82,16 @@ QPushButton:hover {
     color: #000; 
 }
 
+/* Directions and Actions Buttons */
 .cardinal_directions {
     font-size: 40px;
 }
 
+.action_buttons {
+    padding: 5px 0;
+}
+
+/* Inactive Buttons */
 .inactive_buttons {
     border: none;
 }
@@ -86,8 +99,4 @@ QPushButton:hover {
 .inactive_buttons:hover {
     background-color: #000;
     color: #000; 
-}
-
-.action_buttons {
-    padding: 5px 0;
 }
