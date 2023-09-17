@@ -154,7 +154,7 @@ class Inventory:
 
     @staticmethod
     def choose_queued_inventory(player, room, purpose):
-        if purpose == "trade-trader":
+        if purpose == "trade" and not player.is_selling:
             inventory = room.talker.inventory
         elif purpose == "pick-up":
             inventory = room.inventory
