@@ -4,7 +4,7 @@ import world.parser as parser
 from engine.utils.combat_system import Combat
 from engine.utils.inventory import Inventory
 from engine.utils.get_drop import GetDrop
-
+from engine.utils.game_state import Save
 
 class Commands:
     def __init__(self, player, room):
@@ -34,7 +34,8 @@ class Commands:
             'HEAL': r'^(h(eal)?)$',
             'OPEN OBJECT': r'^(open)\s+(.+)$',
             'OPEN': r'^(open)$',
-            'MAP': r'^(m(ap)?)$'
+            'MAP': r'^(m(ap)?)$',
+            'SAVE': r'^(save)$'
         }
 
     def get_room_description(self):
@@ -152,7 +153,9 @@ class Commands:
                         return "No need to escape, the enemy is dead!"
                     else:
                         return "There is nothing to run away from. If you want to escape just quit the game!"
-
+                elif command == "SAVE":
+                    Save().save_state(self.player)
+                    return "Your game has been saved."
                 elif command == "TALK TO":
                     target = re.match(regex, action)[2]
                     self.arguments_list = [self.player, target]
