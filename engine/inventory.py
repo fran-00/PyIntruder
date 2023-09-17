@@ -177,11 +177,9 @@ class Inventory:
                 return f"{choice}: {choice.description}"
             case "trade" if player.is_selling:
                 Inventory.items_swapper(player, room.talker, choice, purpose)
-                player.is_selling = False
                 return f"Bye {choice.name}!"
             case "trade" if not player.is_selling:
                 Inventory.items_swapper(room.talker, player, choice, purpose)
-                room.talker.is_selling = False
                 return f"Good! Now {choice.name} is yours!"
             case "pick-up":
                 Inventory.items_swapper(room, player, choice, purpose)
