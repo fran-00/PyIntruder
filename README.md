@@ -49,8 +49,7 @@ The recognized commands case insensitive:
 - [x]: Improve GUI adding action buttons and a menu bar using OOP composition.
 - [x]: Update QWidgets style using [QSS](https://doc.qt.io/qtforpython-6/overviews/stylesheet-examples.html).
 - [x]: Text with a color scheme to highlight character names, commands, and more using inline CSS.
-- [x]: Add new Inventory and Combat dataclass implementation to improve composition:  large Player class methods related to inventory manipulation and combat system have been moved to Inventory and Combat 
-respectively and made staticmethods.
+- [x]: Add new Inventory and Combat dataclass implementation to improve composition:  large Player class methods related to inventory manipulation and combat system have been moved to Inventory and Combat respectively and made staticmethods.
 - [ ]: Add save and restore functionality. It was present in the original version of the game but the code needs to be adapted to the changes made since then.
 - [ ]: Printout of the world map, which is probably too large to be contained in a signal as a string. Maybe i'll try putting the string into a JSON file.
 - [ ]: Improve algorithms used to calculate item stats so that gameplay is as balanced as possible.
