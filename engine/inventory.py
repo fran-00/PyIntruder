@@ -57,7 +57,34 @@ class Inventory:
         return wrapper
 
     @staticmethod
-    def check_inventory(*args):
+    def check_player_inventory(player, purpose):
+        inventory = player.inventory
+        inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
+        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
+            category = globals()[purpose]
+            items_subset = Inventory.sort_items_by_category(
+                player.inventory, category)
+            if items_subset == []:
+                return f"You don't have any {purpose} with you", None
+            else:
+                return Inventory.show_inventory(player, inventory, purpose)
+        elif inventory == []:
+            match purpose:
+                case "my-inventory":
+                    return f"Your inventory is empty! You have {player.gold} §.", None
+                case "trade" if player.is_selling:
+                    return "You don't have anything to sell!", None
+                case "trade" if not player.is_selling:
+                    return "Out of stock! Come back later!", None
+                case "pick-up":
+                    return "There is nothing to pick up.", None
+                case "drop":
+                    return "You don't have anything to drop.", None
+        else:
+            return Inventory.show_inventory(player, inventory, purpose)
+
+    @staticmethod
+    def check_trader_inventory(**args):
         player = args[0]
         purpose = args[1]
         inventory = player.inventory
