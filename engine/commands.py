@@ -82,7 +82,7 @@ class Commands:
                         else "There is no one to attack here!"
                     )
                 elif command == "CURSE":
-                    self.arguments_list = [self.player.inventory, "Curse"]
+                    self.arguments_list = [self.player, "Curse"]
                     return (
                         (Inventory.check_inventory, Inventory.choose_item)
                         if self.room.enemy and self.room.enemy.is_alive()
@@ -98,7 +98,7 @@ class Commands:
                         else "You can't escape!"
                     )
                 elif command == "DROP FROM LIST":
-                    self.arguments_list = [self.player.inventory, "drop"]
+                    self.arguments_list = [self.player, "drop"]
                     return (
                         Inventory.check_inventory,
                         Inventory.choose_item
@@ -107,7 +107,7 @@ class Commands:
                     target = re.match(regex, action)[2]
                     return self.player.get_and_drop_command_handler(self.player, self.room, target, "drop")
                 elif command == "GET FROM LIST":
-                    self.arguments_list = [self.room.inventory, "pick-up"]
+                    self.arguments_list = [self.room, "pick-up"]
                     return (
                         Inventory.check_inventory,
                         Inventory.choose_item
@@ -118,13 +118,13 @@ class Commands:
                 elif command == "HEAL":
                     if self.player.hp == self.player.max_hp:
                         return "You are already in good health."
-                    self.arguments_list = [self.player.inventory, "Healer"]
+                    self.arguments_list = [self.player, "Healer"]
                     return (
                         Inventory.check_inventory,
                         Inventory.choose_item
                     )
                 elif command == "INVENTORY":
-                    return Inventory.check_inventory(self.player.inventory, "my-inventory")
+                    return Inventory.check_inventory(self.player, "my-inventory")
 
                 elif command == "LOOK AT":
                     target = re.match(regex, action)[2]
