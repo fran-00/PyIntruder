@@ -64,3 +64,13 @@ class GameView(QMainWindow):
         """ Slot that receives a string from controller as a signal """
         # Append game output to log view window
         self.log_view.append(f"{response}")
+
+    @pyqtSlot(tuple)
+    def update_game_bars(self, player_data):
+        """
+        Slot that receives a tuple from controller to update status bars
+        with player infos.
+        """
+        player_hp = player_data[0]
+        player_max_hp = player_data[1]
+        HealthBar(self).process_player_data(player_hp, player_max_hp)
