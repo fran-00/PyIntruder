@@ -8,7 +8,7 @@ import world.parser as parser
 import world.tiles as world
 from engine.utils.combat_system import Combat
 from engine.utils.inventory import Inventory
-from styles.decorators import *
+from gui.styles.decorators import *
 
 
 class Player(Entity):

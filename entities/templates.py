@@ -1,7 +1,7 @@
 import json
 import random
 
-from styles.decorators import *
+from gui.styles.decorators import *
 
 
 with open('entities/data/items_data.json') as f:

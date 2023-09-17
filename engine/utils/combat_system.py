@@ -2,7 +2,7 @@ import random
 from dataclasses import dataclass
 
 from entities.templates import Weapon
-from styles.decorators import *
+from gui.styles.decorators import *
 
 
 @dataclass

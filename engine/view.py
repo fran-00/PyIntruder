@@ -56,7 +56,7 @@ class GameView(QMainWindow):
         self.input_box.setFocus()
 
     def load_css_file(self):
-        with open("styles/styles.css","r") as file:
+        with open("gui/styles/styles.css","r") as file:
             return file.read()
 
     @pyqtSlot(str)
