@@ -167,7 +167,7 @@ class Commands:
                     return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk."
 
                 elif command == "TRADE":
-                    self.arguments_list = [self.player, self.room.talker.inventory, "trade"]
+                    self.arguments_list = [self.player, self.room.talker, "trade"]
                     return (
                         self.room.trade,
                         Inventory.trading_mode,

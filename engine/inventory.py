@@ -10,13 +10,16 @@ import world.tiles as world
 class Inventory:
 
     @staticmethod
-    def trading_mode(player, talker, action):
+    def trading_mode(*args):
+        player = args[0]
+        trader = args[1]
+        action = args[-1]
         match action:
             case "b":
-                return Inventory.check_inventory(talker, "trade")
+                return Inventory.check_player_inventory(trader, "trade-trader")
             case "s":
                 player.is_selling = True
-                return Inventory.check_inventory(player, "trade")
+                return Inventory.check_trader_inventory(player, "trade-player")
             case "q":
                 return "Come back when you want to trade!", None
             case _:
@@ -30,9 +33,9 @@ class Inventory:
                 case "my-inventory":
                     response = f"<p>Your wealth: {player.gold} §</p>"
                     return func(*args) + response
-                case "trade" if not player.is_selling:
+                case "trade-trader":
                     response = f"What do you want to buy? You have {player.gold} §."
-                case "trade" if player.is_selling:
+                case "trade-player":
                     response = "What do you want to sell?"
                 case "pick-up":
                     response = "What do you want to pick up?"
@@ -88,37 +91,35 @@ class Inventory:
 
     @staticmethod
     def check_trader_inventory(trader, purpose):
-        player = args[0]
-        purpose = args[1]
-        inventory = player.inventory
+        inventory = trader.inventory
         inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
             category = globals()[purpose]
             items_subset = Inventory.sort_items_by_category(
-                player.inventory, category)
+                trader.inventory, category)
             if items_subset == []:
                 return f"You don't have any {purpose} with you", None
             else:
-                return Inventory.show_inventory(player, inventory, purpose)
+                return Inventory.show_inventory(trader, inventory, purpose)
         elif inventory == []:
             match purpose:
                 case "my-inventory":
-                    return f"Your inventory is empty! You have {player.gold} §.", None
-                case "trade" if player.is_selling:
+                    return "Your inventory is empty!", None
+                case "trade" if trader == "trade-player":
                     return "You don't have anything to sell!", None
-                case "trade" if not player.is_selling:
+                case "trade" if trader == "trade-trader":
                     return "Out of stock! Come back later!", None
                 case "pick-up":
                     return "There is nothing to pick up.", None
                 case "drop":
                     return "You don't have anything to drop.", None
         else:
-            return Inventory.show_inventory(player, inventory, purpose)
+            return Inventory.show_inventory(trader, inventory, purpose)
 
     @show_instructions
-    def show_inventory(player, inventory, purpose):
+    def show_inventory(shower, inventory, purpose):
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
-            return Inventory.compose_string_with_inventory_subset(player, purpose)
+            return Inventory.compose_string_with_inventory_subset(shower, purpose)
         else:
             return Inventory.compose_string_with_inventory_sorted_by_category(inventory, purpose)
     
