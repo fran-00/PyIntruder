@@ -3,6 +3,7 @@ import re
 import world.parser as parser
 from engine.utils.combat_system import Combat
 from engine.utils.inventory import Inventory
+from engine.utils.get_drop import GetDrop
 
 
 class Commands:
@@ -105,7 +106,7 @@ class Commands:
                     )
                 elif command == "DROP ITEM":
                     target = re.match(regex, action)[2]
-                    return self.player.get_and_drop_command_handler(self.player, self.room, target, "drop")
+                    return GetDrop.get_and_drop_command_handler(self.player, self.room, target, "drop")
                 elif command == "GET FROM LIST":
                     self.arguments_list = [self.room, "pick-up"]
                     return (
@@ -114,7 +115,7 @@ class Commands:
                     )
                 elif command == "GET ITEM":
                     target = re.match(regex, action)[2]
-                    return self.player.get_and_drop_command_handler(self.room, self.player, target, "get")
+                    return GetDrop.get_and_drop_command_handler(self.room, self.player, target, "get")
                 elif command == "HEAL":
                     if self.player.hp == self.player.max_hp:
                         return "You are already in good health."
