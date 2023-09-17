@@ -188,7 +188,7 @@ class Player(Entity):
             The updated response string after checking the enemy's HP.
         """
         if not enemy.is_alive():
-            response += f"<p>YEAH! You killed it!</p>"
+            response += "<p>YEAH! You killed it!</p>"
             response += self.calculate_xp_earned(enemy)
             loot = random.randint(10, 200)
             self.gold += loot
