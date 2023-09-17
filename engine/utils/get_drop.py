@@ -1,5 +1,8 @@
 from dataclasses import dataclass
 
+from engine.utils.inventory import Inventory
+
+
 @dataclass
 class GetDrop:
 
