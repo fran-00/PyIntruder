@@ -38,6 +38,9 @@ class Player(Entity):
         self.previous_x = None
         self.previous_y = None
 
+    def get_player_data(self):
+        return list(self.__dict__.values())
+
     def is_alive(self):
         return self.hp > 0
 
