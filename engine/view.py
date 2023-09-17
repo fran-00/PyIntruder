@@ -27,11 +27,11 @@ class GameView(QMainWindow):
         buttons_layout = GameButtons(self).on_parent_buttons_layout()
         self.health_bar = HealthBar(self).crete_health_bar()
 
-        layout = QVBoxLayout(central_widget)
-        layout.addWidget(self.health_bar)
-        layout.addWidget(log_view)
-        layout.addLayout(input_layout)
-        layout.addLayout(buttons_layout)
+        main_layout = QVBoxLayout(central_widget)
+        main_layout.addWidget(self.health_bar)
+        main_layout.addWidget(log_view)
+        main_layout.addLayout(input_layout)
+        main_layout.addLayout(buttons_layout)
 
     def on_log_view(self):
         """Add widget for displaying inputs and outputs"""
