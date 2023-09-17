@@ -91,6 +91,7 @@ class Commands:
                         if self.room.enemy and self.room.enemy.is_alive()
                         else "There is no one to curse here!"
                     )
+
                 elif command == "DIAGNOSE":
                     return self.player.diagnose_command_handler()
 
@@ -100,24 +101,29 @@ class Commands:
                         if not self.room.enemy or not self.room.enemy.is_alive()
                         else "You can't escape!"
                     )
+
                 elif command == "DROP FROM LIST":
                     self.arguments_list = [self.player, "drop"]
                     return (
                         Inventory.check_someone_inventory,
                         Inventory.choose_item
                     )
+
                 elif command == "DROP ITEM":
                     target = re.match(regex, action)[2]
                     return GetDrop.get_and_drop_command_handler(self.player, self.room, target, "drop")
+
                 elif command == "GET FROM LIST":
                     self.arguments_list = [self.room, "pick-up"]
                     return (
                         Inventory.check_someone_inventory,
                         Inventory.choose_item
                     )
+
                 elif command == "GET ITEM":
                     target = re.match(regex, action)[2]
                     return GetDrop.get_and_drop_command_handler(self.room, self.player, target, "get")
+
                 elif command == "HEAL":
                     if self.player.hp == self.player.max_hp:
                         return "You are already in good health."
@@ -126,8 +132,10 @@ class Commands:
                         Inventory.check_someone_inventory,
                         Inventory.choose_item
                     )
+
                 elif command == "INVENTORY":
                     return Inventory.check_someone_inventory(self.player, "my-inventory")
+
                 elif command == "LOOK AT":
                     target = re.match(regex, action)[2]
                     return self.room.look_at_command_handler(target, self.player)
@@ -137,6 +145,7 @@ class Commands:
 
                 elif command == "MAP":
                     return self.player.show_map()
+
                 elif command == "OPEN OBJECT":
                     target = re.match(regex, action)[2]
                     self.arguments_list = [self.player, target]
@@ -144,11 +153,14 @@ class Commands:
                         self.room.open_command_handler,
                         self.room.handle_event
                     )
+
                 elif command == "OPEN":
                     return "What do you want to open?"
+
                 elif command == "RELOAD":
                     Reload.load_state(self.player)
                     return "Your game has been loaded."
+
                 elif command == "RUN":
                     if self.room.enemy and self.room.enemy.is_alive():
                         return self.player.flee_from_fight()
@@ -156,9 +168,11 @@ class Commands:
                         return "No need to escape, the enemy is dead!"
                     else:
                         return "There is nothing to run away from. If you want to escape just quit the game!"
+
                 elif command == "SAVE":
                     Save().save_state(self.player)
                     return "Your game has been saved."
+
                 elif command == "TALK TO":
                     target = re.match(regex, action)[2]
                     self.arguments_list = [self.player, target]
@@ -170,6 +184,7 @@ class Commands:
                         self.room.dialogue,
                         self.room.dialogue
                     )
+
                 elif command == "TALK":
                     return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk."
 
