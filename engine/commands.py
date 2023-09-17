@@ -76,7 +76,7 @@ class Commands:
             if re.match(regex, action):
                 if command == "ATTACK":
                     return (
-                        Combat.attack_command_handler(self.player)
+                        Combat.attack_command_handler(self.player, self.room)
                         if self.room.enemy and self.room.enemy.is_alive()
                         else "There is no one to attack here!"
                     )

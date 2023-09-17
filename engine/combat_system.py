@@ -2,7 +2,6 @@ import random
 from dataclasses import dataclass
 
 from entities.templates import Weapon
-import world.parser as parser
 from styles.decorators import *
 
 
@@ -34,7 +33,7 @@ class Combat:
             return None
 
     @staticmethod
-    def attack_command_handler(player):
+    def attack_command_handler(player, room):
         """Attempt to attack an enemy in the current room with the best
         available weapon.
 
@@ -49,7 +48,6 @@ class Combat:
             If there is no living enemy in the room, return None.
         """
         weapon = Combat.best_weapon(player.inventory)
-        room = parser.tile_at(player.x, player.y)
         enemy = room.enemy
         response = ""
 
