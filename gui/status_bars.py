@@ -7,7 +7,6 @@ from entities.player import Player
 class HealthBar(GameGUI):
     def __init__(self, game_view):
         super().__init__(game_view)
-        self.player = Player()
 
     def crete_health_bar(self):
         health_bar = QProgressBar(self.game_view)
