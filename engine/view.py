@@ -48,17 +48,17 @@ class GameView(QMainWindow):
             action = self.input_box.text().strip()
         else:
             action = command
+        return self.process_action(action)
 
+    def process_action(self, action):
         # Emits the signal that contains user input
         self.view_signal_to_controller.emit(action)
-
         # Append user input to log view window
         self.log_view.append(f"<p style='color:#ffdc7d; font-weight:600'>>>> {action}</p>")
-
         # Resets the input box
         self.input_box.clear()
         self.input_box.setFocus()
-    
+
     def load_css_file(self):
         with open("styles/styles.css","r") as file:
             return file.read()
