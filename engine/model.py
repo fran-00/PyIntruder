@@ -132,7 +132,9 @@ class GameModel(QObject):
         enemy_attacks = self.room.modify_player(self.player)
         self.handle_player_status_signal(
             self.player.hp,
-            self.player.max_hp
+            self.player.max_hp,
+            self.player.mana,
+            self.player.max_mana
         )
         self.model_signal_to_controller.emit(enemy_attacks)
 
