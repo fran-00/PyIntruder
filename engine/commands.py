@@ -100,7 +100,7 @@ class Commands:
                 elif command == "DROP FROM LIST":
                     self.arguments_list = [self.player, "drop"]
                     return (
-                        Inventory.check_inventory,
+                        Inventory.check_player_inventory,
                         Inventory.choose_item
                     )
                 elif command == "DROP ITEM":
@@ -120,7 +120,7 @@ class Commands:
                         return "You are already in good health."
                     self.arguments_list = [self.player, "Healer"]
                     return (
-                        Inventory.check_inventory,
+                        Inventory.check_player_inventory,
                         Inventory.choose_item
                     )
                 elif command == "INVENTORY":
