@@ -46,11 +46,19 @@ class GameButtons(GameGUI):
         """Add buttons for actions to game GUI"""
         buttons = []
         actions_parent_layout = QVBoxLayout(objectName="actions_parent_layout")
+        
+        left_container = QVBoxLayout()
+        right_container = QVBoxLayout()
 
-        self.add_button("Attack", "attack", actions_parent_layout, buttons)
-        self.add_button("Cast Curse", "curse", actions_parent_layout, buttons)
-        self.add_button("Inventory", "inventory", actions_parent_layout, buttons)
-        self.add_button("Diagnose", "diagnose", actions_parent_layout, buttons)
+        self.add_button("Attack", "attack", left_container, buttons)
+        self.add_button("Cast Curse", "curse", left_container, buttons)
+        self.add_button("Drop", "drop", left_container, buttons)
+        self.add_button("Pick Up", "pick up", right_container, buttons)
+        self.add_button("Inventory", "inventory", right_container, buttons)
+        self.add_button("Diagnose", "diagnose", right_container, buttons)
+
+        actions_parent_layout.addLayout(left_container)
+        actions_parent_layout.addLayout(right_container)
 
         self.assign_css_class(buttons, "action_buttons")
 
