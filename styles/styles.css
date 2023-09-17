@@ -23,6 +23,26 @@ QMenuBar::item:pressed {
     color: #000;
 }
 
+QProgressBar#health_bar {
+    border-radius: 6px;
+    background-color: #ad4040;
+}
+
+QProgressBar#health_bar::chunk {
+    border-radius: 6px;
+    background-color: #1cb379;
+}
+
+QProgressBar#mana_bar {
+    border-radius: 6px;
+    background-color: #747474;
+}
+
+QProgressBar#mana_bar::chunk {
+    border-radius: 6px;
+    background-color: #1950b8;
+}
+
 QTextEdit {
     padding: 10px 20px;
     border: 2px solid #ffffff;
@@ -70,22 +90,4 @@ QPushButton:hover {
 
 .action_buttons {
     padding: 5px 0;
-}
-
-QProgressBar#health_bar {
-    border-radius: 6px;
-    background-color: #ad4040;
-}
-QProgressBar#health_bar::chunk {
-    border-radius: 6px;
-    background-color: #1cb379;
-}
-
-QProgressBar#mana_bar {
-    border-radius: 6px;
-    background-color: #747474;
-}
-QProgressBar#mana_bar::chunk {
-    border-radius: 6px;
-    background-color: #1950b8;
 }
