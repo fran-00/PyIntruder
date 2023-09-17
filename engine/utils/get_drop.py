@@ -8,7 +8,8 @@ import world.parser as parser
 @dataclass
 class GetDrop:
 
-    def get_and_drop_command_handler(self, giver, receiver, target, purpose):
+    @staticmethod
+    def get_and_drop_command_handler(giver, receiver, target, purpose):
         """Handle the logic of getting and dropping items between two entities.
 
         Parameters
@@ -37,15 +38,16 @@ class GetDrop:
             by show_why_is_not_collectable_or_droppable method.
         """
         if target == "all":
-            return self.get_or_drop_all(giver, receiver, purpose)
+            return GetDrop.get_or_drop_all(giver, receiver, purpose)
 
         for item in giver.inventory:
-            if self.match_target_name(target, item):
+            if GetDrop.match_target_name(target, item):
                 Inventory.items_swapper(giver, receiver, item, "get-drop")
                 return f"{item.name}: taken." if purpose == "get" else f"{item.name}: dropped."
-        return self.show_why_is_not_collectable_or_droppable(target, purpose)
-    
-    def show_why_is_not_collectable_or_droppable(self, target, purpose):
+        return GetDrop.show_why_is_not_collectable_or_droppable(target, purpose)
+
+    @staticmethod
+    def show_why_is_not_collectable_or_droppable(player, target, purpose):
         """Call two other methods to determine why an item cannot be collected or
         dropped.
 
@@ -64,13 +66,14 @@ class GetDrop:
             handle_when_item_cannot_be_picked_up and handle_when_item_cannot_be_dropped
             methods.
         """
-        room = parser.tile_at(self.x, self.y)
+        room = parser.tile_at(player.x, player.y)
         if purpose == "get":
-            return self.handle_when_item_cannot_be_picked_up(target, room)
+            return GetDrop.handle_when_item_cannot_be_picked_up(player, target, room)
         elif purpose == "drop":
-            return self.handle_when_item_cannot_be_dropped(target, room)
+            return GetDrop.handle_when_item_cannot_be_dropped(target, room)
 
-    def handle_when_item_cannot_be_picked_up(self, target, room):
+    @staticmethod
+    def handle_when_item_cannot_be_picked_up(player, target, room):
         """Handle the logic of determining why an item cannot be picked up.
 
         Parameters
@@ -86,22 +89,23 @@ class GetDrop:
             A message indicating why the specified item cannot be picked up.
         """
         for entity in room.environment:
-            if self.match_target_name(target, entity):
+            if GetDrop.match_target_name(target, entity):
                 return "Not bloody likely."
-        for item in self.inventory:
-            if self.match_target_name(target, item):
+        for item in player.inventory:
+            if GetDrop.match_target_name(target, item):
                 return "You already have it..."
-        if room.enemy and self.match_target_name(target, room.enemy):
+        if room.enemy and GetDrop.match_target_name(target, room.enemy):
             if room.enemy.is_alive():
                 return "I don't know if you noticed, but it's trying to kill you..."
             else:
                 return "The corpse is too heavy to carry."
-        elif self.match_target_name(target, room):
+        elif GetDrop.match_target_name(target, room):
             return "Are you sure you're okay?"
         else:
             return f"{target.capitalize()} is something I don't recognize."
 
-    def handle_when_item_cannot_be_dropped(self, target, room):
+    @staticmethod
+    def handle_when_item_cannot_be_dropped(target, room):
         """Handle the logic of determining why an item cannot be dropped.
 
         Parameters
@@ -117,19 +121,20 @@ class GetDrop:
             A message indicating why the specified item cannot be dropped.
         """
         for entity in room.environment:
-            if self.match_target_name(target, entity):
+            if GetDrop.match_target_name(target, entity):
                 return "How is this supposed to work?"
         for item in room.inventory:
-            if self.match_target_name(target, item):
+            if GetDrop.match_target_name(target, item):
                 return "You can't drop something you don't own."
-        if self.match_target_name(target, room.enemy):
+        if GetDrop.match_target_name(target, room.enemy):
             return f"Hummm... Ok, {room.enemy.styled_name()}: dropped. Now what?"
-        if self.match_target_name(target, room):
+        if GetDrop.match_target_name(target, room):
             return "I don't even know what to answer..."
         else:
             return f"{target.capitalize()} is something I don't recognize."
 
-    def match_target_name(self, target, obj):
+    @staticmethod
+    def match_target_name(target, obj):
         """Determine if a given `target` string matches any part of a given
         object's name using re module.
 
@@ -154,7 +159,8 @@ class GetDrop:
             and len(set(target).intersection(set(obj.name.lower()))) >= 3
         )
 
-    def get_or_drop_all(self, giver, receiver, purpose):
+    @staticmethod
+    def get_or_drop_all(giver, receiver, purpose):
         """Take all items from giver's inventory, add them to receiver's inventory
         and show appropriate message based on purpose.
 
