@@ -1,3 +1,4 @@
+import os
 import pickle
 
 from world.map_tile import MapTile
@@ -9,16 +10,25 @@ from world.parser import get_world_map
 class Save:
     def __init__(self, player):
         self.player = player
-        self.player_data = self.create_player_data(self.player)
-        self.rooms_list = self.create_room_list()
+        self.player_data = []
+        self.rooms_list = []
         self.rooms_inventories = []
         self.world_enemies = []
         self.world_npcs = []
         self.world_env_objs = []
         self.world_npcs = []
+    
+    def save_state(self, player):
+        self.delete_old_save()
+        self.player_data = player.get_player_data()
+        self.create_room_list()
+        self.split_room_list()
+        self.write_on_file()
 
-    def create_player_data(self, player):
-        return player.get_player_data()
+    def delete_old_save(self):
+        if os.path.isfile('saved_data.pkl'):
+            os.remove("saved_data.pkl")
+            print("> Deleting old saved data...")
 
     def create_room_list(self):
         rooms_list_with_empty_spaces = []
@@ -43,7 +53,7 @@ class Save:
             self.chest_rooms = [room for room in self.rooms_list
                    if isinstance(room, ChestTile)]
 
-    def save_on_file(self):
+    def write_on_file(self):
         with open('saved_data.pkl', 'wb') as write:
             pickle.dump(self.player_data, write)
             pickle.dump(self.rooms_inventories, write)
