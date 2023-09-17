@@ -11,7 +11,6 @@ class Inventory:
 
     @staticmethod
     def trading_mode(*args):
-        print(args)
         player = args[0]
         trader = args[1]
         action = args[-1]
