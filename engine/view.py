@@ -2,8 +2,7 @@ from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QTextEdit
 from PyQt6.QtCore import pyqtSignal, pyqtSlot
 
 from gui.widgets import GameButtons, GameEntry
-from gui.menubar import GameMenu
-from gui.status_bars import GameProgressBars
+from gui.game_bars import GameMenu, GameProgressBars
 
 
 class GameView(QMainWindow):
