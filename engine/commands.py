@@ -1,6 +1,7 @@
 import re
 
 import world.parser as parser
+from engine.combat_system import Combat
 
 
 class Commands:
@@ -75,7 +76,7 @@ class Commands:
             if re.match(regex, action):
                 if command == "ATTACK":
                     return (
-                        self.player.attack_command_handler()
+                        Combat.attack_command_handler(self.player)
                         if self.room.enemy and self.room.enemy.is_alive()
                         else "There is no one to attack here!"
                     )
