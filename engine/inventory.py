@@ -161,16 +161,7 @@ class Inventory:
     @staticmethod
     def choose_item(player, purpose, action):
         room = parser.tile_at(player.x, player.y)
-        
-        if purpose == "trade" and not player.is_selling:
-            inventory = room.talker.inventory
-        elif purpose == "pick-up":
-            inventory = room.inventory
-        elif purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
-            category = globals()[purpose]
-            inventory = Inventory.sort_items_by_category(player.inventory, category)
-        else:
-            inventory = player.inventory
+        inventory = Inventory.choose_queued_inventory(player, room, purpose)
 
         if action in ('q', 'exit', 'no'):
             return "Ok. Action cancelled."
@@ -180,6 +171,19 @@ class Inventory:
             return Inventory.show_appropriate_answer(choice, purpose)
         except Exception as e:
             return f"{e}"
+
+    @staticmethod
+    def choose_queued_inventory(player, room, purpose):
+        if purpose == "trade" and not player.is_selling:
+            inventory = room.talker.inventory
+        elif purpose == "pick-up":
+            inventory = room.inventory
+        elif purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
+            category = globals()[purpose]
+            inventory = Inventory.sort_items_by_category(player.inventory, category)
+        else:
+            inventory = player.inventory
+        return inventory
 
     @staticmethod
     def show_appropriate_answer(player, choice, purpose):
