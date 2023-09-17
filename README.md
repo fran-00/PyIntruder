@@ -39,19 +39,19 @@ The recognized commands case insensitive:
 
 ## Changelog (2020 - 2023)
 
-- [x]: Add MVC architecture to play via PyQt6 GUI instead of using CLI.
-- [x]: Add a system of signals and slots to connect model, view and controller.
-- [x]: Add a new way to handle game loop using QThread to process user input received from View without breaking it.
-- [x]: Update the signal strings parsing system by implementing **regular expressions**.
-- [x]: Update NPC creation organization with a better use of **OOP**.
-- [x]: Complete refactoring of player.py code, which had very long and unusable methods in the first version of the project.
-- [x]: Generalize Player methods code that could be reused: **choose_item()** method in **Player** class must also be usable for pick up, drop and examine actions, as well as to trade with an npc.
-- [x]: Improve GUI adding action buttons and a menu bar using OOP composition.
-- [x]: Update QWidgets style using [QSS](https://doc.qt.io/qtforpython-6/overviews/stylesheet-examples.html).
-- [x]: Text with a color scheme to highlight character names, commands, and more using inline CSS.
-- [x]: Add new Inventory and Combat dataclass implementation to improve composition:  large Player class methods related to inventory manipulation and combat system have been moved to Inventory and Combat respectively and made staticmethods.
-- [ ]: Add save and restore functionality. It was present in the original version of the game but the code needs to be adapted to the changes made since then.
-- [ ]: Printout of the world map, which is probably too large to be contained in a signal as a string. Maybe i'll try putting the string into a JSON file.
+- [x]: Added MVC architecture to play via PyQt6 GUI instead of using CLI.
+- [x]: Added a system of signals and slots to connect model, view and controller.
+- [x]: Added a new way to handle game loop using QThread to process user input received from View without breaking it.
+- [x]: Updated the signal strings parsing system by implementing **regular expressions**, now commands are in a separate class.
+- [x]: Updated Entities creation organization with a better use of **OOP**.
+- [x]: A complete refactoring of player.py code was made, which had too long methods in the first version of the project.
+- [x]: Extracted large methods and added an utilities module to handle game mechanics.
+- [x]: Improved GUI with action buttons and a menu bar using OOP composition.
+- [x]: Updated QWidgets style using [QSS](https://doc.qt.io/qtforpython-6/overviews/stylesheet-examples.html).
+- [x]: Now text has a color scheme to highlight character names and commands using inline CSS and decorators.
+- [x]: Add new dataclass implementation to improve composition: layer class was way too large and now methods related to inventory manipulation, actions and combat system have been moved into dataclasses and made staticmethods.
+- [ ]: Add save, reload and restart functionalities. They were present in the original version of the game but the code needs to be adapted to all the changes made since then.
+- [ ]: Show the world map, which is probably too large to be contained in a signal as a string. Maybe I'll try creating a widget for it.
 - [ ]: Improve algorithms used to calculate item stats so that gameplay is as balanced as possible.
 
 ## Notes
