@@ -27,9 +27,9 @@ class GameView(QMainWindow):
         layout.addLayout(GameEntry(self).on_input_layout())
         layout.addLayout(GameButtons(self).on_parent_buttons_layout())
 
-        # TODO: Add player health bar
-        # prograss_bar = HealthBar(self).crete_health_bar()
-        # layout.addWidget(prograss_bar)
+        # Add player health bar
+        self.health_bar = HealthBar(self).crete_health_bar()
+        layout.addWidget(self.health_bar)
 
     def on_log_view(self):
         """Add widget for displaying inputs and outputs"""
@@ -73,4 +73,5 @@ class GameView(QMainWindow):
         """
         player_hp = player_data[0]
         player_max_hp = player_data[1]
-        HealthBar(self).process_player_data(player_hp, player_max_hp)
+        self.health_bar.setMaximum(player_max_hp)
+        self.health_bar.setValue(player_hp)
