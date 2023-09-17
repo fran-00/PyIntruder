@@ -371,7 +371,7 @@ class Player(Entity):
                 self.items_swapper(self, room, choice, purpose)
                 return f"{choice.name}: dropped."
             case "Curse":
-                return Combat.check_enemy_hp(room.enemy, Combat.curse_command_handler(self, room.enemy, choice))
+                return Combat.check_enemy_hp(self, room.enemy, Combat.curse_command_handler(self, room.enemy, choice))
             case "Healer":
                 return self.heal_command_handler(choice)
             case _:
