@@ -147,3 +147,6 @@ def tile_at(x, y):
         return world_map[y][x]
     except IndexError:
         return None
+
+def world_map():
+    return world_map
