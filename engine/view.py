@@ -13,6 +13,7 @@ class GameView(QMainWindow):
         super().__init__()
         self.setWindowTitle("PyIntruder")
         self.resize(1024, 768)
+        self.setStyleSheet(self.load_css_file())
         self.create_layout()
         GameMenu(self).create_file_menu()
 
@@ -53,6 +54,10 @@ class GameView(QMainWindow):
         # Resets the input box
         self.input_box.clear()
         self.input_box.setFocus()
+    
+    def load_css_file(self):
+        with open("styles/styles.css","r") as file:
+            return file.read()
 
     @pyqtSlot(str)
     def handle_game_response(self, response):
