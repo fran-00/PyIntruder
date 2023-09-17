@@ -18,10 +18,10 @@ class Inventory:
         match action:
             case "b":
                 trader.is_selling = True
-                return Inventory.check_trader_inventory(trader, "trade-trader")
+                return Inventory.check_someone_inventory(trader, "trade-trader")
             case "s":
                 player.is_selling = True
-                return Inventory.check_player_inventory(player, "trade-player")
+                return Inventory.check_someone_inventory(player, "trade-player")
             case "q":
                 return "Come back when you want to trade!", None
             case _:
@@ -58,26 +58,15 @@ class Inventory:
         return wrapper
 
     @staticmethod
-    def check_player_inventory(player, purpose):
-        inventory = player.inventory
+    def check_someone_inventory(someone, purpose):
+        inventory = someone.inventory
         inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
-            return Inventory.handle_showing_only_an_inventory_subset(player, purpose)
+            return Inventory.handle_showing_only_an_inventory_subset(someone, purpose)
         elif inventory == []:
-            Inventory.check_inventory_call_purpose(player, purpose)
+            Inventory.check_inventory_call_purpose(someone, purpose)
         else:
-            return Inventory.show_inventory(player, inventory, purpose)
-
-    @staticmethod
-    def check_trader_inventory(trader, purpose):
-        inventory = trader.inventory
-        inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
-        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
-            return Inventory.handle_showing_only_an_inventory_subset(trader, purpose)
-        elif inventory == []:
-            Inventory.check_inventory_call_purpose(trader, purpose)
-        else:
-            return Inventory.show_inventory(trader, inventory, purpose)
+            return Inventory.show_inventory(someone, inventory, purpose)
 
     @staticmethod
     def handle_showing_only_an_inventory_subset(player, purpose):
@@ -103,9 +92,9 @@ class Inventory:
                 return "You don't have anything to drop.", None
 
     @show_instructions
-    def show_inventory(shower, inventory, purpose):
+    def show_inventory(someone, inventory, purpose):
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
-            return Inventory.compose_string_with_inventory_subset(shower, purpose)
+            return Inventory.compose_string_with_inventory_subset(someone, purpose)
         else:
             return Inventory.compose_string_with_inventory_sorted_by_category(inventory, purpose)
     
