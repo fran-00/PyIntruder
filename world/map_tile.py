@@ -183,7 +183,8 @@ class MapTile:
             return response, None
         player_dialogue = npcs_data[self.talker.name.lower()]['dialogues']['player 0']
         for current_dialogue, sentence in enumerate(list(player_dialogue.values())):
-            response += f"\n{current_dialogue + 1}: {sentence}"
+            # TODO: add new line
+            response += f" {current_dialogue + 1}: {sentence}"
         number_of_dialogues = len(npcs_data[self.talker.name.lower()]['dialogues'])
         return response, "dialogue", current_dialogue, number_of_dialogues
 
@@ -242,7 +243,8 @@ class MapTile:
             sentence = npc_dialogues[choice_index - 1]
             response += f"{sentence}"
             for i, sentence in enumerate(player_dialogue):
-                response += f"\n{i + 1}: {sentence}"
+                # TODO: add new line
+                response += f" {i + 1}: {sentence}"
             current_dialogue += 1
             number_of_dialogues -= 1
             return response, "dialogue", current_dialogue, number_of_dialogues
@@ -386,7 +388,7 @@ class MapTile:
             response += "It's locked... Do you want to throw the Icosahedron and try to unlock it? Yes or No?"
             return response
         elif obj.is_open == False and obj.locked == False:
-            response += f"You open the {obj.name}\n"
+            response += f"You open the {obj.name} "
             # TODO: add description when object is opened
             response += "obj.description_when_opened"
             obj.is_open = True
