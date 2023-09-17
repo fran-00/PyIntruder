@@ -57,17 +57,20 @@ class Inventory:
         inventory = player.inventory
         inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
-            category = globals()[purpose]
-            items_subset = Inventory.sort_items_by_category(
-                player.inventory, category)
-            if items_subset == []:
-                return f"You don't have any {purpose} with you", None
-            else:
-                return Inventory.show_inventory(player, inventory, purpose)
+            return Inventory.handle_showing_only_an_inventory_subset(player, purpose)
         elif inventory == []:
             Inventory.check_inventory_call_purpose(player, purpose)
         else:
             return Inventory.show_inventory(player, inventory, purpose)
+
+    @staticmethod
+    def handle_showing_only_an_inventory_subset(player, purpose):
+        category = globals()[purpose]
+        items_subset = Inventory.sort_items_by_category(player.inventory, category)
+        if items_subset == []:
+            return f"You don't have any {purpose} with you", None
+        else:
+            return Inventory.show_inventory(player, player.inventory, purpose)
     
     @staticmethod
     def check_inventory_call_purpose(player, purpose):
