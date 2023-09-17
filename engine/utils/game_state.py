@@ -84,5 +84,5 @@ class Reload:
     def check_if_file_exists(self):
         return bool(os.path.isfile('./saved_data.pkl'))
 
-    def load_player_data(self):
+    def load_player_data(self, player):
         pass
