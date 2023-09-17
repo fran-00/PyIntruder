@@ -87,7 +87,8 @@ class Inventory:
 
     @show_instructions
     def show_inventory(*args):
-        inventory = args[0]
+        player = args[0]
+        inventory = args[1]
         purpose = args[2]
         index = 1
         response = ""
@@ -124,7 +125,7 @@ class Inventory:
     @staticmethod
     def choose_item(*args):
         player = args[0]
-        purpose = args[2]
+        purpose = args[1]
         action = args[-1]
         room = parser.tile_at(player.x, player.y)
         
