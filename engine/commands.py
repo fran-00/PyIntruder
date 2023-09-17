@@ -73,41 +73,75 @@ class Commands:
 
         for command, regex in self.commands_dict.items():
             if re.match(regex, action):
-                if command == "DIRECTIONS":
-                    if not self.room.enemy or not self.room.enemy.is_alive():
-                        return (self.move(action))
-                    else:
-                        return ("You can't escape!")
-
+                if command == "ATTACK":
+                    return (
+                        self.player.attack_command_handler()
+                        if self.room.enemy and self.room.enemy.is_alive()
+                        else "There is no one to attack here!"
+                    )
+                elif command == "CURSE":
+                    self.arguments_list = [self.player.inventory, "Curse"]
+                    return (
+                        (self.player.check_inventory, self.player.choose_item)
+                        if self.room.enemy and self.room.enemy.is_alive()
+                        else "There is no one to curse here!"
+                    )
                 elif command == "DIAGNOSE":
                     return self.player.diagnose_command_handler()
+
+                elif command == "DIRECTIONS":
+                    return (
+                        (self.move(action))
+                        if not self.room.enemy or not self.room.enemy.is_alive()
+                        else "You can't escape!"
+                    )
+                elif command == "DROP FROM LIST":
+                    self.arguments_list = [self.player.inventory, "drop"]
+                    return (
+                        self.player.check_inventory,
+                        self.player.choose_item
+                    )
+                elif command == "DROP ITEM":
+                    target = re.match(regex, action)[2]
+                    return self.player.get_and_drop_command_handler(self.player, self.room, target, "drop")
+                elif command == "GET FROM LIST":
+                    self.arguments_list = [self.room.inventory, "pick-up"]
+                    return (
+                        self.player.check_inventory,
+                        self.player.choose_item
+                    )
+                elif command == "GET ITEM":
+                    target = re.match(regex, action)[2]
+                    return self.player.get_and_drop_command_handler(self.room, self.player, target, "get")
+                elif command == "HEAL":
+                    if self.player.hp == self.player.max_hp:
+                        return "You are already in good health."
+                    self.arguments_list = [self.player.inventory, "Healer"]
+                    return (
+                        self.player.check_inventory,
+                        self.player.choose_item
+                    )
+                elif command == "INVENTORY":
+                    return self.player.check_inventory(self.player.inventory, "my-inventory")
+
+                elif command == "LOOK AT":
+                    target = re.match(regex, action)[2]
+                    return self.room.look_at_command_handler(target, self.player)
 
                 elif command == "LOOK":
                     return self.room.look_command_handler()
 
-                elif command == "LOOK AT":
-                    target = re.match(regex, action).group(2)
-                    return self.room.look_at_command_handler(target, self.player)
-
-                elif command == "INVENTORY":
-                    return self.player.check_inventory(self.player.inventory, "my-inventory")
-
-                elif command == "ATTACK":
-                    if self.room.enemy and self.room.enemy.is_alive():
-                        return self.player.attack_command_handler()
-                    else:
-                        return "There is no one to attack here!"
-
-                elif command == "CURSE":
-                    self.arguments_list = [self.player.inventory, "Curse"]
-                    if self.room.enemy and self.room.enemy.is_alive():
-                        return (
-                            self.player.check_inventory,
-                            self.player.choose_item
-                        )
-                    else:
-                        return "There is no one to curse here!"
-
+                elif command == "MAP":
+                    return self.player.show_map()
+                elif command == "OPEN OBJECT":
+                    target = re.match(regex, action)[2]
+                    self.arguments_list = [self.player, target]
+                    return (
+                        self.room.open_command_handler,
+                        self.room.handle_event
+                    )
+                elif command == "OPEN":
+                    return "What do you want to open?"
                 elif command == "RUN":
                     if self.room.enemy and self.room.enemy.is_alive():
                         return self.player.flee_from_fight()
@@ -116,11 +150,8 @@ class Commands:
                     else:
                         return "There is nothing to run away from. If you want to escape just quit the game!"
 
-                elif command == "TALK":
-                    return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk."
-
                 elif command == "TALK TO":
-                    target = re.match(regex, action).group(2)
+                    target = re.match(regex, action)[2]
                     self.arguments_list = [self.player, target]
                     return (
                         self.room.choose_talking_npc,
@@ -130,6 +161,8 @@ class Commands:
                         self.room.dialogue,
                         self.room.dialogue
                     )
+                elif command == "TALK":
+                    return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk."
 
                 elif command == "TRADE":
                     self.arguments_list = [self.room.talker.inventory, "trade"]
@@ -138,54 +171,7 @@ class Commands:
                         self.player.trading_mode,
                         self.player.choose_item,
                     )
-
-                elif command == "GET FROM LIST":
-                    self.arguments_list = [self.room.inventory, "pick-up"]
-                    return (
-                        self.player.check_inventory,
-                        self.player.choose_item
-                    )
-
-                elif command == "DROP FROM LIST":
-                    self.arguments_list = [self.player.inventory, "drop"]
-                    return (
-                        self.player.check_inventory,
-                        self.player.choose_item
-                    )
-
-                elif command == "GET ITEM":
-                    target = re.match(regex, action).group(2)
-                    return self.player.get_and_drop_command_handler(self.room, self.player, target, "get")
-
-                elif command == "DROP ITEM":
-                    target = re.match(regex, action).group(2)
-                    return self.player.get_and_drop_command_handler(self.player, self.room, target, "drop")
-
-                elif command == "HEAL":
-                    if self.player.hp == self.player.max_hp:
-                        return f"You are already in good health."
-                    else:
-                        self.arguments_list = [self.player.inventory, "Healer"]
-                        return (
-                            self.player.check_inventory,
-                            self.player.choose_item
-                        )
-
-                elif command == "OPEN":
-                    return "What do you want to open?"
-
-                elif command == "OPEN OBJECT":
-                    target = re.match(regex, action).group(2)
-                    self.arguments_list = [self.player, target]
-                    return (
-                        self.room.open_command_handler,
-                        self.room.handle_event
-                    )
-                elif command == "MAP":
-                    return self.player.show_map()
-
-        else:
-            return ("I beg your pardon?")
+        return ("I beg your pardon?")
 
     def move(self, action):
         """Move the player in the specified direction if possible and return the room description.
