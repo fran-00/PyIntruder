@@ -86,3 +86,6 @@ class Reload:
 
     def load_player_data(self, player):
         pass
+
+    def load_state(self):
+        pass
