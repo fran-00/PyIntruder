@@ -2,6 +2,7 @@ import re
 
 import world.parser as parser
 from engine.combat_system import Combat
+from engine.inventory import Inventory
 
 
 class Commands:
@@ -83,7 +84,7 @@ class Commands:
                 elif command == "CURSE":
                     self.arguments_list = [self.player.inventory, "Curse"]
                     return (
-                        (self.player.check_inventory, self.player.choose_item)
+                        (Inventory.check_inventory, Inventory.choose_item)
                         if self.room.enemy and self.room.enemy.is_alive()
                         else "There is no one to curse here!"
                     )
@@ -99,8 +100,8 @@ class Commands:
                 elif command == "DROP FROM LIST":
                     self.arguments_list = [self.player.inventory, "drop"]
                     return (
-                        self.player.check_inventory,
-                        self.player.choose_item
+                        Inventory.check_inventory,
+                        Inventory.choose_item
                     )
                 elif command == "DROP ITEM":
                     target = re.match(regex, action)[2]
@@ -108,8 +109,8 @@ class Commands:
                 elif command == "GET FROM LIST":
                     self.arguments_list = [self.room.inventory, "pick-up"]
                     return (
-                        self.player.check_inventory,
-                        self.player.choose_item
+                        Inventory.check_inventory,
+                        Inventory.choose_item
                     )
                 elif command == "GET ITEM":
                     target = re.match(regex, action)[2]
@@ -119,11 +120,11 @@ class Commands:
                         return "You are already in good health."
                     self.arguments_list = [self.player.inventory, "Healer"]
                     return (
-                        self.player.check_inventory,
-                        self.player.choose_item
+                        Inventory.check_inventory,
+                        Inventory.choose_item
                     )
                 elif command == "INVENTORY":
-                    return self.player.check_inventory(self.player.inventory, "my-inventory")
+                    return Inventory.check_inventory(self.player.inventory, "my-inventory")
 
                 elif command == "LOOK AT":
                     target = re.match(regex, action)[2]
@@ -170,7 +171,7 @@ class Commands:
                     return (
                         self.room.trade,
                         self.player.trading_mode,
-                        self.player.choose_item,
+                        Inventory.choose_item,
                     )
         return ("I beg your pardon?")
 
