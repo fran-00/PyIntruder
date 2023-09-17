@@ -11,15 +11,17 @@ class Inventory:
 
     @staticmethod
     def trading_mode(*args):
+        print(args)
         player = args[0]
         trader = args[1]
         action = args[-1]
         match action:
             case "b":
-                return Inventory.check_player_inventory(trader, "trade-trader")
+                trader.is_selling = True
+                return Inventory.check_trader_inventory(trader, "trade-trader")
             case "s":
                 player.is_selling = True
-                return Inventory.check_trader_inventory(player, "trade-player")
+                return Inventory.check_player_inventory(player, "trade-player")
             case "q":
                 return "Come back when you want to trade!", None
             case _:
@@ -102,17 +104,7 @@ class Inventory:
             else:
                 return Inventory.show_inventory(trader, inventory, purpose)
         elif inventory == []:
-            match purpose:
-                case "my-inventory":
-                    return "Your inventory is empty!", None
-                case "trade" if trader == "trade-player":
-                    return "You don't have anything to sell!", None
-                case "trade" if trader == "trade-trader":
-                    return "Out of stock! Come back later!", None
-                case "pick-up":
-                    return "There is nothing to pick up.", None
-                case "drop":
-                    return "You don't have anything to drop.", None
+            Inventory.check_inventory_call_purpose(trader, purpose)
         else:
             return Inventory.show_inventory(trader, inventory, purpose)
 
@@ -160,7 +152,11 @@ class Inventory:
         return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
 
     @staticmethod
-    def choose_item(player, purpose, action):
+    def choose_item(*args):
+        # dobbiamo beccare quale args è trade-player
+        player = args[0]
+        purpose = args[3]
+        action = args[5]
         room = parser.tile_at(player.x, player.y)
         inventory = Inventory.choose_queued_inventory(player, room, purpose)
 
@@ -169,13 +165,13 @@ class Inventory:
         try:
             item_index = int(action)
             choice = inventory[item_index - 1]
-            return Inventory.show_appropriate_answer(choice, purpose)
+            return Inventory.show_appropriate_answer(player, choice, purpose)
         except Exception as e:
             return f"{e}"
 
     @staticmethod
     def choose_queued_inventory(player, room, purpose):
-        if purpose == "trade" and not player.is_selling:
+        if purpose == "trade-trader":
             inventory = room.talker.inventory
         elif purpose == "pick-up":
             inventory = room.inventory
@@ -200,6 +196,7 @@ class Inventory:
                 return f"Bye {choice.name}!"
             case "trade" if not player.is_selling:
                 Inventory.items_swapper(room.talker, player, choice, purpose)
+                room.talker.is_selling = False
                 return f"Good! Now {choice.name} is yours!"
             case "pick-up":
                 Inventory.items_swapper(room, player, choice, purpose)
