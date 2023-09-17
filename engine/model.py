@@ -112,6 +112,16 @@ class GameModel(QObject):
                 else:
                     self.event_loop.exec()
 
+    def handle_enemy_attack(self):
+        """Handle an enemy attack on the player.
+
+        Call the `modify_player` method from MapTile class to calculate enemy
+        attacks on the player. The resulting `enemy_attacks` are emitted to
+        GameController using the `model_signal_to_controller` signal.
+        """
+        enemy_attacks = self.room.modify_player(self.player)
+        self.model_signal_to_controller.emit(enemy_attacks)
+
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
         """
@@ -139,13 +149,3 @@ class GameModel(QObject):
                 A string representing the game response to be sent.
         """
         self.model_signal_to_controller.emit(game_response)
-
-    def handle_enemy_attack(self):
-        """Handle an enemy attack on the player.
-
-        Call the `modify_player` method from MapTile class to calculate enemy
-        attacks on the player. The resulting `enemy_attacks` are emitted to
-        GameController using the `model_signal_to_controller` signal.
-        """
-        enemy_attacks = self.room.modify_player(self.player)
-        self.model_signal_to_controller.emit(enemy_attacks)
