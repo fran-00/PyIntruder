@@ -37,11 +37,12 @@ class NonPlayableCharacter(Entity):
 
 
 class Trader(NonPlayableCharacter):
-    def __init__(self, name, inventory, type):
+    def __init__(self, name, inventory, type, is_selling=False):
         super().__init__(name, inventory)
         self.description = npcs_data[f"{self.name}".lower()]["description"]
         self.gold = 100000
         self.type = type
+        self.is_selling = is_selling
 
 
 class Enemy(Entity):
