@@ -24,7 +24,6 @@ class Inventory:
 
     def show_instructions(func):
         def wrapper(*args):
-            print(*args)
             player = args[0]
             purpose = args[2]
             match purpose:
