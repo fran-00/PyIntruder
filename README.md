@@ -46,7 +46,7 @@ The recognized commands case insensitive:
 - [x]: Update NPC creation organization with a better use of **OOP**.
 - [x]: Complete refactoring of player.py code, which had very long and unusable methods in the first version of the project.
 - [x]: Generalize Player methods code that could be reused: **choose_item()** method in **Player** class must also be usable for pick up, drop and examine actions, as well as to trade with an npc.
-- [x]: Improve GUI adding action buttons and a menu bar.
+- [x]: Improve GUI adding action buttons and a menu bar using OOP composition.
 - [x]: Update QWidgets style using [QSS](https://doc.qt.io/qtforpython-6/overviews/stylesheet-examples.html).
 - [x]: Text with a color scheme to highlight character names, commands, and more using inline CSS.
 - [ ]: Add save and restore functionality. It was present in the original version of the game but the code needs to be adapted to the changes made since then.
