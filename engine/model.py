@@ -119,7 +119,7 @@ class GameModel(QObject):
     def process_dialogue(self, nested_response):
         """TODO"""
         self.model_signal_to_controller.emit(nested_response[0])
-        if nested_response[1] == None:
+        if nested_response[1] is None:
             return
         elif nested_response[1] == "dialogue":
             self.commands.arguments_list.append(nested_response[2])
