@@ -65,19 +65,23 @@ class Inventory:
             else:
                 return Inventory.show_inventory(player, inventory, purpose)
         elif inventory == []:
-            match purpose:
-                case "my-inventory":
-                    return f"Your inventory is empty! You have {player.gold} §.", None
-                case "trade" if player.is_selling:
-                    return "You don't have anything to sell!", None
-                case "trade" if not player.is_selling:
-                    return "Out of stock! Come back later!", None
-                case "pick-up":
-                    return "There is nothing to pick up.", None
-                case "drop":
-                    return "You don't have anything to drop.", None
+            Inventory.check_inventory_call_purpose(player, purpose)
         else:
             return Inventory.show_inventory(player, inventory, purpose)
+    
+    @staticmethod
+    def check_inventory_call_purpose(player, purpose):
+        match purpose:
+            case "my-inventory":
+                return f"Your inventory is empty! You have {player.gold} §.", None
+            case "trade" if player.is_selling:
+                return "You don't have anything to sell!", None
+            case "trade" if not player.is_selling:
+                return "Out of stock! Come back later!", None
+            case "pick-up":
+                return "There is nothing to pick up.", None
+            case "drop":
+                return "You don't have anything to drop.", None
 
     @staticmethod
     def check_trader_inventory(trader, purpose):
