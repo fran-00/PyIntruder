@@ -124,7 +124,7 @@ class Commands:
                         Inventory.choose_item
                     )
                 elif command == "INVENTORY":
-                    return Inventory.check_inventory(self.player, "my-inventory")
+                    return Inventory.check_player_inventory(self.player, "my-inventory")
 
                 elif command == "LOOK AT":
                     target = re.match(regex, action)[2]
