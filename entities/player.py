@@ -6,6 +6,7 @@ from .factory import ItemsFactory as items
 
 import world.parser as parser
 import world.tiles as world
+from engine.combat_system import Combat
 from styles.decorators import *
 
 
@@ -21,7 +22,7 @@ class Player(Entity):
                           items().ats,
                           items().specimen,
                           items().dialectic_draught]
-        self.current_weapon = self.best_weapon()
+        self.current_weapon = Combat.best_weapon(self.inventory)
         self.gold = 10000000
 
         self.turn = 0
@@ -78,147 +79,6 @@ class Player(Entity):
     # COMBAT ------------------------------------------------------------------|
     # -------------------------------------------------------------------------|
 
-    def best_weapon(self):
-        """Find the best weapon in the player's inventory and return it.
-
-        Returns
-        -------
-        best_weapon : Weapon
-            The weapon in the player's inventory with higher damage attribute
-        None
-            The player has no weapons.
-        """
-        max_damage = 0
-        best_weapon = None
-        if weapons := [
-            item for item in self.inventory if isinstance(item, Weapon)
-        ]:
-            for _, item in enumerate(weapons, 1):
-                if item.damage > max_damage:
-                    best_weapon = item
-                    max_damage = item.damage
-            return best_weapon
-        else:
-            return None
-
-    def attack_command_handler(self):
-        """Attempt to attack an enemy in the current room with the best
-        available weapon.
-
-        Returns
-        -------
-        str
-            Return the result of calling calculate_attack_precision() with
-            arguments for the enemy, weapon, and a message about the attack
-            attempt.
-            If the player has no weapon, return a message stating this.
-        None
-            If there is no living enemy in the room, return None.
-        """
-        weapon = self.best_weapon()
-        room = parser.tile_at(self.x, self.y)
-        enemy = room.enemy
-        response = ""
-
-        if weapon is None:
-            return "You don't have any weapon with you."
-
-        if enemy is None or not enemy.is_alive():
-            return
-
-        response += f"<p>You try to hit {enemy.styled_name()} with {weapon.name}!</p>"
-        return self.calculate_attack_precision(enemy, weapon, response)
-
-    @green_text
-    def calculate_attack_precision(self, enemy, weapon, response):
-        """Calculate attack precision and damage multiplier based on a random integer.
-
-        Parameters
-        ----------
-        enemy : Enemy
-            An Enemy class instance alive in the current room.
-        weapon : Weapon
-            Best player's weapon, if any.
-        response : str
-            A string to add to the response.
-
-        Returns
-        -------
-        func
-            Call check_enemy_hp() passing enemy and response string as arguments
-        """
-        precision = random.randint(1, 20)
-        match precision:
-            case 20:
-                damage_multiplier = 2
-                response += (
-                    f"<p>Critical hit!</p>"
-                    f"<p>You deal {weapon.damage * damage_multiplier} DMG!</p>"
-                )
-            case 17 | 18 | 19:
-                damage_multiplier = 1.5
-                response += (
-                    f"<p>Good hit!</p>"
-                    f"<p>You deal {weapon.damage * damage_multiplier} DMG!</p>"
-                )
-            case 3 | 2 | 1:
-                response += "<p>Missed!</p>"
-                return response
-            case _:
-                damage_multiplier = 1
-                response += f"<p>You deal {weapon.damage} DMG!</p>"
-
-        enemy.hp -= weapon.damage * damage_multiplier
-        return self.check_enemy_hp(enemy, response)
-
-    @green_text
-    def check_enemy_hp(self, enemy, response):
-        """Check the HP of an enemy and responds accordingly.
-
-        Parameters
-        ----------
-        enemy : Enemy
-            An instance of Enemy class representing the enemy being checked.
-        response : str
-            The current response string that is being built.
-
-        Returns
-        -------
-        str
-            The updated response string after checking the enemy's HP.
-        """
-        if not enemy.is_alive():
-            response += "<p>YEAH! You killed it!</p>"
-            response += self.calculate_xp_earned(enemy)
-            loot = random.randint(10, 200)
-            self.gold += loot
-            response += f"<p>{enemy.styled_name()} lost his booty. Now {loot} § are yours!</p>"
-
-        else:
-            response += f"<p>{enemy.styled_name()} has {enemy.hp} HP remaining.</p>"
-        return response
-
-    def calculate_xp_earned(self, enemy):
-        """Calculate the earned XP points from killing an enemy, update Player
-        level if necessary and return the response string for the XP gain.
-
-        Parameters
-        ----------
-        enemy : Enemy
-            An instance of Enemy class representing killed enemy.
-
-        Returns
-        -------
-        str
-            The updated response string after earning XP.
-        """
-        xp_earned = (enemy.damage) # TODO: create a way to calculate XP
-        response = f"<p>You earned {xp_earned} XP!</p>"
-        self.xp += xp_earned
-        if self.xp >= self.xp_modifier:
-            response += self.level_up()
-        return response
-
     def level_up(self):
         """Increase Player level and updates the maximum health and mana points.
 
@@ -235,47 +95,6 @@ class Player(Entity):
         self.mana = self.max_mana
         return f"You leveled up! You are now at {self.lvl} LVL."
 
-    def curse_command_handler(self, enemy, choice):
-        """Cast a curse on an enemy.
-
-        Called by show_appropriate_answer() method if purpose argument is
-        "Curse". If there is not enough mana to cast the spell, return a string
-        indicating so. Otherwise, subtract the mana cost from the caster's mana
-        pool and the curse's damage from the target's hp.
-
-        Parameters
-        ----------
-        enemy : Enemy
-            The enemy in the current room.
-        choice : Curse
-            The choosen curse returned by choose_item() method.
-
-        Returns
-        -------
-        str
-            Return a formatted string indicating name of the spell cast,
-            damage dealt and remaining mana.
-        """
-        if choice.mana_cost > self.mana:
-            return f"You don't have enough mana to cast {choice.name}!"
-        response = ""
-        d20 = random.randint(1, 20)
-        if d20 in {19, 20}:
-            enemy.hp -= choice.damage * 2
-            response += (
-                f"<p>Critical hit!</p>"
-                f"<p>You cast {choice.name} on {enemy.styled_name()}.</p>"
-                f"<p>It does {choice.damage*2} DMG!</p>"
-            )
-        else:
-            enemy.hp -= choice.damage
-            response = (
-                f"<p>You cast {choice.name} on {enemy.styled_name()}.</p>"
-                f"<p>It does {choice.damage} DMG!"
-            )
-        self.mana -= choice.mana_cost
-        response += f"<p>You now have {self.mana} Mana remaining.</p>"
-        return response
 
     def flee_from_fight(self):
         room = parser.tile_at(self.x, self.y)
@@ -552,7 +371,7 @@ class Player(Entity):
                 self.items_swapper(self, room, choice, purpose)
                 return f"{choice.name}: dropped."
             case "Curse":
-                return self.check_enemy_hp(room.enemy, self.curse_command_handler(room.enemy, choice))
+                return Combat.check_enemy_hp(room.enemy, Combat.curse_command_handler(self, room.enemy, choice))
             case "Healer":
                 return self.heal_command_handler(choice)
             case _:
