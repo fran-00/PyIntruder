@@ -163,58 +163,6 @@ class MapTile:
             return f"{e}"
 
     # -------------------------------------------------------------------------|
-    # TRADING -----------------------------------------------------------------|
-    # -------------------------------------------------------------------------|
-
-    def trade(self, *args):
-        """Initiate a trade with an npc in the current room that wants to trade,
-        if any.
-
-        Parameters
-        ----------
-        *args (tuple)
-            An optional tuple passed because play() method in GameModel
-            class expects arguments to be passed.
-
-        Returns
-        -------
-        str
-            Prompt for the user to choose from the trade options.
-        None
-            If there is no npc in the current room or if npc doesn't want to trade.
-        """
-        if self.talker and isinstance(self.talker, Trader):
-            self.check_trader_inventory(self.talker.type)
-            sentence = self.talker.get_random_opening_sentence(f"{self.talker.name}")
-            # FIXME: sentence is not shown
-            return f"<p>{sentence}<p><p>(B)uy, (S)ell or (Q)uit?</p>"
-        elif self.talker:
-            return f"{self.talker.name} doesn't want to trade.", None
-        else:
-            return "There is no one to trade with.", None
-
-    def check_trader_inventory(self, type):
-        """Retrieve a list of items based on the specified `type` 
-        calling get_entities_list method from Factory class and add 10
-        random items to the trader's inventory if it is empty.
-
-        Parameters
-        ----------
-        type : class
-            The type of items to retrieve, which can be any Item subclass
-            (Curse, Healer, ManaRecharger, Weapon or Armor)
-
-        Returns
-        -------
-        None
-            Add a sample of items matching the specified `type` to trader's
-            inventory if it is empty and return None.
-        """
-        items_list = items().get_entities_list(type)
-        if not self.talker.inventory:
-            self.talker.inventory += random.sample(items_list, k=10)
-
-    # -------------------------------------------------------------------------|
     # LOOK --------------------------------------------------------------------|
     # -------------------------------------------------------------------------|
 
