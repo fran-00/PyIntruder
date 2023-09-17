@@ -17,6 +17,7 @@ class Save:
         self.world_npcs = []
         self.world_env_objs = []
         self.world_npcs = []
+        self.chest_rooms = []
     
     def save_state(self, player):
         self.delete_old_save()
