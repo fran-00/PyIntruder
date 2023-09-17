@@ -29,7 +29,7 @@ class GameModel(QObject):
         through Commands class.
 
         Start game loop, check if there's a living enemy in the current room
-        and if so call handle_enemy_attack method from MapTile class.
+        and if so call process_enemy_attack method from MapTile class.
         Then allow user to choose an action, passing the signal received from
         GameController as argument to choose_action method from Command class.
         The result of this operation may be a string or a tuple.
@@ -49,7 +49,7 @@ class GameModel(QObject):
         self.model_signal_to_controller.emit("<h1>PYINTRUDER</h1>")
         self.model_signal_to_controller.emit(self.commands.get_room_description())
         # Emit player status before game loop to update health bar on GUI
-        # which will then be handled by handle_enemy_attack to update it just
+        # which will then be handled by process_enemy_attack to update it just
         # right when player gets damage
         self.handle_player_status_signal(
             self.player.hp,
@@ -67,7 +67,7 @@ class GameModel(QObject):
         """TODO"""
         self.room = parser.tile_at(self.player.x, self.player.y)
         if self.room.enemy and self.room.enemy.is_alive():
-            self.handle_enemy_attack()
+            self.process_enemy_attack()
 
         self.event_loop.exec()
         game_response = self.commands.choose_action(self.action)
@@ -126,7 +126,7 @@ class GameModel(QObject):
             self.commands.arguments_list.append(nested_response[3])
             self.event_loop.exec()
 
-    def handle_enemy_attack(self):
+    def process_enemy_attack(self):
         """Handle an enemy attack on the player.
 
         Call the `modify_player` method from MapTile class to calculate enemy
