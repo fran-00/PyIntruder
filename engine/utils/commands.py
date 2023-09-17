@@ -4,7 +4,7 @@ import world.parser as parser
 from engine.utils.combat_system import Combat
 from engine.utils.inventory import Inventory
 from engine.utils.get_drop import GetDrop
-from engine.utils.game_state import Save
+from engine.utils.game_state import Save, Reload
 
 class Commands:
     def __init__(self, player, room):
@@ -35,7 +35,8 @@ class Commands:
             'OPEN OBJECT': r'^(open)\s+(.+)$',
             'OPEN': r'^(open)$',
             'MAP': r'^(m(ap)?)$',
-            'SAVE': r'^(save)$'
+            'SAVE': r'^(save)$',
+            'RELOAD': r'^(re(load)?)$',
         }
 
     def get_room_description(self):
@@ -127,7 +128,6 @@ class Commands:
                     )
                 elif command == "INVENTORY":
                     return Inventory.check_someone_inventory(self.player, "my-inventory")
-
                 elif command == "LOOK AT":
                     target = re.match(regex, action)[2]
                     return self.room.look_at_command_handler(target, self.player)
@@ -146,6 +146,9 @@ class Commands:
                     )
                 elif command == "OPEN":
                     return "What do you want to open?"
+                elif command == "RELOAD":
+                    Reload.load_state(self.player)
+                    return "Your game has been loaded."
                 elif command == "RUN":
                     if self.room.enemy and self.room.enemy.is_alive():
                         return self.player.flee_from_fight()
