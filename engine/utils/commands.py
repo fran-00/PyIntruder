@@ -1,8 +1,8 @@
 import re
 
 import world.parser as parser
-from engine.combat_system import Combat
-from engine.inventory import Inventory
+from engine.utils.combat_system import Combat
+from engine.utils.inventory import Inventory
 
 
 class Commands:

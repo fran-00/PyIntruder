@@ -1,8 +1,8 @@
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
 import world.parser as parser
-from .commands import Commands
-from engine.combat_system import Combat
+from .utils.commands import Commands
+from engine.utils.combat_system import Combat
 
 
 class GameThread(QThread):
