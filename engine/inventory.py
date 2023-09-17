@@ -60,7 +60,9 @@ class Inventory:
         return wrapper
 
     @staticmethod
-    def check_someone_inventory(someone, purpose):
+    def check_someone_inventory(*args):
+        someone = args[0]
+        purpose = args[1]
         inventory = someone.inventory
         inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
@@ -138,10 +140,11 @@ class Inventory:
 
     @staticmethod
     def choose_item(*args):
-        # dobbiamo beccare quale args è trade-player
         player = args[0]
-        purpose = args[3]
-        action = args[5]
+        # -This is the only way to use this method for many purposes because
+        # if used for trading or gathering it has a different number of arguments
+        purpose = args[-3]
+        action = args[-1]
         room = parser.tile_at(player.x, player.y)
         inventory = Inventory.choose_queued_inventory(player, room, purpose)
 
@@ -192,7 +195,7 @@ class Inventory:
             case "Healer":
                 return player.heal_command_handler(choice)
             case _:
-                return
+                return "Problems"
 
     @staticmethod
     def items_swapper(giver, receiver, item, purpose):
