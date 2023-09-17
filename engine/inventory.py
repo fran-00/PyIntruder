@@ -69,6 +69,17 @@ class Inventory:
             return Inventory.show_inventory(player, inventory, purpose)
 
     @staticmethod
+    def check_trader_inventory(trader, purpose):
+        inventory = trader.inventory
+        inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
+        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
+            return Inventory.handle_showing_only_an_inventory_subset(trader, purpose)
+        elif inventory == []:
+            Inventory.check_inventory_call_purpose(trader, purpose)
+        else:
+            return Inventory.show_inventory(trader, inventory, purpose)
+
+    @staticmethod
     def handle_showing_only_an_inventory_subset(player, purpose):
         category = globals()[purpose]
         items_subset = Inventory.sort_items_by_category(player.inventory, category)
@@ -90,23 +101,6 @@ class Inventory:
                 return "There is nothing to pick up.", None
             case "drop":
                 return "You don't have anything to drop.", None
-
-    @staticmethod
-    def check_trader_inventory(trader, purpose):
-        inventory = trader.inventory
-        inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
-        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
-            category = globals()[purpose]
-            items_subset = Inventory.sort_items_by_category(
-                trader.inventory, category)
-            if items_subset == []:
-                return f"You don't have any {purpose} with you", None
-            else:
-                return Inventory.show_inventory(trader, inventory, purpose)
-        elif inventory == []:
-            Inventory.check_inventory_call_purpose(trader, purpose)
-        else:
-            return Inventory.show_inventory(trader, inventory, purpose)
 
     @show_instructions
     def show_inventory(shower, inventory, purpose):
