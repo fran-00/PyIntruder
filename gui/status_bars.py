@@ -9,10 +9,5 @@ class HealthBar(GameGUI):
         super().__init__(game_view)
 
     def crete_health_bar(self):
-        health_bar = QProgressBar(self.game_view)
-        health_bar.setValue(self.player.max_hp)
-
-        return health_bar
-
-    def process_player_data(self, player_hp, player_max_hp):
-        pass
+        self.health_bar = QProgressBar(self.game_view)
+        return self.health_bar
