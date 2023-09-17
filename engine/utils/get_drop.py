@@ -92,6 +92,7 @@ class GetDrop:
             if GetDrop.match_target_name(target, entity):
                 return "Not bloody likely."
         for item in player.inventory:
+            # FIXME: it doesn't work
             if GetDrop.match_target_name(target, item):
                 return "You already have it..."
         if room.enemy and GetDrop.match_target_name(target, room.enemy):
