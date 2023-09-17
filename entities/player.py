@@ -41,10 +41,6 @@ class Player(Entity):
     def is_alive(self):
         return self.hp > 0
 
-    # -------------------------------------------------------------------------|
-    # MOVEMENT ----------------------------------------------------------------|
-    # -------------------------------------------------------------------------|
-
     def move(self, dx, dy):
         """Update Player's coordinates within the game map.
 
@@ -74,10 +70,6 @@ class Player(Entity):
 
     def move_west(self):
         self.get_coordinates(-1, 0)
-
-    # -------------------------------------------------------------------------|
-    # COMBAT ------------------------------------------------------------------|
-    # -------------------------------------------------------------------------|
 
     def level_up(self):
         """Increase Player level and updates the maximum health and mana points.
