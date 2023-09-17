@@ -21,11 +21,15 @@ class GameView(QMainWindow):
         """Create a vertical layout for the window"""
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)
+        
+        log_view = self.on_log_view()
+        input_layout = GameEntry(self).on_input_layout()
+        buttons_layout = GameButtons(self).on_parent_buttons_layout()
 
         layout = QVBoxLayout(central_widget)
-        layout.addWidget(self.on_log_view())
-        layout.addLayout(GameEntry(self).on_input_layout())
-        layout.addLayout(GameButtons(self).on_parent_buttons_layout())
+        layout.addWidget(log_view)
+        layout.addLayout(input_layout)
+        layout.addLayout(buttons_layout)
 
         # Add player health bar
         self.health_bar = HealthBar(self).crete_health_bar()
