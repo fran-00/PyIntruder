@@ -26,9 +26,11 @@ class GameView(QMainWindow):
         input_layout = GameEntry(self).on_input_layout()
         buttons_layout = GameButtons(self).on_parent_buttons_layout()
         self.health_bar = GameProgressBars(self).crete_health_bar()
+        self.mana_bar = GameProgressBars(self).crete_mana_bar()
 
         main_layout = QVBoxLayout(central_widget)
         main_layout.addWidget(self.health_bar)
+        main_layout.addWidget(self.mana_bar)
         main_layout.addWidget(log_view)
         main_layout.addLayout(input_layout)
         main_layout.addLayout(buttons_layout)
@@ -75,5 +77,9 @@ class GameView(QMainWindow):
         """
         player_hp = player_data[0]
         player_max_hp = player_data[1]
+        player_mana = player_data[2]
+        player_max_mana = player_data[3]
         self.health_bar.setMaximum(player_max_hp)
         self.health_bar.setValue(player_hp)
+        self.mana_bar.setMaximum(player_max_mana)
+        self.mana_bar.setValue(player_mana)

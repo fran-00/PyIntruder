@@ -53,7 +53,9 @@ class GameModel(QObject):
         # right when player gets damage
         self.handle_player_status_signal(
             self.player.hp,
-            self.player.max_hp
+            self.player.max_hp,
+            self.player.mana,
+            self.player.max_mana
         )
 
         self.event_loop = QEventLoop()
@@ -162,8 +164,8 @@ class GameModel(QObject):
         """
         self.model_signal_to_controller.emit(game_response)
 
-    def handle_player_status_signal(self, player_hp, player_max_hp):
+    def handle_player_status_signal(self, player_hp, player_max_hp, player_mana, player_max_mana):
         """
         """
-        player_data = player_hp, player_max_hp
+        player_data = player_hp, player_max_hp, player_mana, player_max_mana
         self.player_status_signal.emit(player_data)
