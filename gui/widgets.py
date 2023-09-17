@@ -8,16 +8,16 @@ class GameButtons(GameGUI):
         super().__init__(game_view)
 
     def on_parent_buttons_layout(self):
-        parent_layout = QHBoxLayout()
-        parent_layout.addLayout(self.on_movements_buttons())
-        parent_layout.addLayout(self.on_actions_buttons())
-        return parent_layout
+        buttons_parent_layout = QHBoxLayout(objectName="buttons_parent_layout")
+        buttons_parent_layout.addLayout(self.on_movements_buttons())
+        buttons_parent_layout.addLayout(self.on_actions_buttons())
+        return buttons_parent_layout
     
     def on_movements_buttons(self):
         """Add buttons for cardinal directions to game GUI"""
         buttons = []
         inactive_buttons = []
-        directions_layout = QVBoxLayout()
+        directions_layout = QVBoxLayout(objectName="directions_layout")
 
         upper_container = QHBoxLayout()
         middle_container = QHBoxLayout()
@@ -45,16 +45,16 @@ class GameButtons(GameGUI):
     def on_actions_buttons(self):
         """Add buttons for actions to game GUI"""
         buttons = []
-        actions_layout = QVBoxLayout()
+        actions_parent_layout = QVBoxLayout(objectName="actions_parent_layout")
 
-        self.add_button("Attack", "attack", actions_layout, buttons)
-        self.add_button("Cast Curse", "curse", actions_layout, buttons)
-        self.add_button("Inventory", "inventory", actions_layout, buttons)
-        self.add_button("Diagnose", "diagnose", actions_layout, buttons)
+        self.add_button("Attack", "attack", actions_parent_layout, buttons)
+        self.add_button("Cast Curse", "curse", actions_parent_layout, buttons)
+        self.add_button("Inventory", "inventory", actions_parent_layout, buttons)
+        self.add_button("Diagnose", "diagnose", actions_parent_layout, buttons)
 
         self.assign_css_class(buttons, "action_buttons")
 
-        return actions_layout
+        return actions_parent_layout
 
     def add_button(self, text, command, layout, buttons_list):
         button = QPushButton(text)
