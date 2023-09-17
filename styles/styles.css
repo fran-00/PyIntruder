@@ -71,3 +71,8 @@ QPushButton:hover {
 .action_buttons {
     padding: 5px 0;
 }
+
+QProgressBar#health_bar {
+    border-radius: 6px;
+    background-color: #009688;
+}
