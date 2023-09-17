@@ -4,6 +4,7 @@ from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
 class GameController(QObject):
     controller_signal_to_model = pyqtSignal(str)
     controller_signal_to_view = pyqtSignal(str)
+    player_status_signal = pyqtSignal(tuple)
 
     def __init__(self, view, model, thread):
         """Initialize the controller with the given view, model, and thread.
@@ -34,6 +35,9 @@ class GameController(QObject):
         view.view_signal_to_controller.connect(self.on_view_signal)
         self.controller_signal_to_model.connect(model.handle_inbound_signal)
         self.controller_signal_to_view.connect(view.handle_game_response)
+        # Connect to a signal that holds player status
+        model.player_status_signal.connect(self.on_player_status)
+        self.player_status_signal.connect(view.update_game_bars)
 
         # Starts Game threads
         thread.start()
@@ -47,3 +51,8 @@ class GameController(QObject):
     def on_view_signal(self, data):
         """ Process data received from the VIEW and send it to MODEL"""
         self.controller_signal_to_model.emit(data)
+
+    @pyqtSlot(tuple)
+    def on_player_status(self, data):
+        """ Process data received from the PLAYER and send it to VIEW"""
+        self.player_status_signal.emit(data)
