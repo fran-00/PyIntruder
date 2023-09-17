@@ -10,10 +10,7 @@ import world.tiles as world
 class Inventory:
 
     @staticmethod
-    def trading_mode(*args):
-        player = args[0]
-        talker = args[1]
-        action = args[-1]
+    def trading_mode(player, talker, action):
         match action:
             case "b":
                 return Inventory.check_inventory(talker, "trade")
@@ -84,7 +81,7 @@ class Inventory:
             return Inventory.show_inventory(player, inventory, purpose)
 
     @staticmethod
-    def check_trader_inventory(**args):
+    def check_trader_inventory(trader, purpose):
         player = args[0]
         purpose = args[1]
         inventory = player.inventory
@@ -113,10 +110,7 @@ class Inventory:
             return Inventory.show_inventory(player, inventory, purpose)
 
     @show_instructions
-    def show_inventory(*args):
-        player = args[0]
-        inventory = args[1]
-        purpose = args[2]
+    def show_inventory(player, inventory, purpose):
         index = 1
         response = ""
 
@@ -150,10 +144,7 @@ class Inventory:
         return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
 
     @staticmethod
-    def choose_item(*args):
-        player = args[0]
-        purpose = args[1]
-        action = args[-1]
+    def choose_item(player, purpose, action):
         room = parser.tile_at(player.x, player.y)
         
         if purpose == "trade" and not player.is_selling:
