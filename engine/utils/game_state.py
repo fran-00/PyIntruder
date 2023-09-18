@@ -70,8 +70,6 @@ class Reload:
         self.rooms_inventories = []
         self.world_enemies = []
         self.world_npcs = []
-        self.world_env_objs = []
-        self.chest_rooms = []
 
     def read_from_file(self):
         with open('saved_data.pkl', 'rb') as read:
@@ -79,8 +77,6 @@ class Reload:
             self.rooms_inventories = pickle.load(read)
             self.world_enemies = pickle.load(read)
             self.world_npcs = pickle.load(read)
-            self.world_env_objs = pickle.load(read)
-            self.chest_rooms = pickle.load(read)
     
     def check_if_file_exists(self):
         return bool(os.path.isfile('./saved_data.pkl'))
