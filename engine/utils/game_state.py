@@ -31,13 +31,13 @@ class Save:
             print("> Deleting old saved data...")
 
     def create_room_list(self):
-        rooms_list_with_empty_spaces = []
+        rooms_list_with_nested_lists = []
         tiles = get_world_map()
         for tile in tiles:
-            rooms_list_with_empty_spaces.extend(tile)
+            rooms_list_with_nested_lists.extend(tile)
         return [
             room
-            for room in rooms_list_with_empty_spaces
+            for room in rooms_list_with_nested_lists
             if isinstance(room, MapTile)
         ]
 
