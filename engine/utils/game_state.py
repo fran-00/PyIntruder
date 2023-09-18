@@ -19,9 +19,7 @@ class Save:
         self.delete_old_save()
         self.player_data = player.get_player_data()
         self.room_list = self.create_room_list()
-        self.save_rooms_inventories()
-        self.save_rooms_enemies()
-        self.save_rooms_npcs()
+        self.save_rooms_data()
         self.write_on_file()
 
     def delete_old_save(self):
@@ -40,21 +38,10 @@ class Save:
             if isinstance(room, MapTile)
         ]
 
-    # def save_rooms_inventories(self):
-    #     return [room.inventory for room in self.rooms_list]
-    def save_rooms_inventories(self):
-        for room in self.room_list:
-            self.rooms_inventories.append(room.inventory)
-
-    def save_rooms_enemies(self):
-        for room in self.room_list:
-            if room.enemy:
-                self.rooms_enemies.append(room.enemy)
-
-    def save_rooms_npcs(self):
-        for room in self.room_list:
-            if room.enemy:
-                self.rooms_npcs.append(room.talker)
+    def save_rooms_data(self):
+        self.rooms_enemies.extend(room.enemy for room in self.room_list if room.enemy)
+        self.rooms_inventories.extend(room.inventory for room in self.room_list if room.inventory)
+        self.rooms_npcs.extend(room.talker for room in self.room_list if room.talker)
 
     def write_on_file(self):
         with open('saved_data.pkl', 'wb') as write:
