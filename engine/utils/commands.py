@@ -87,7 +87,7 @@ class Commands:
                 elif command == "CURSE":
                     self.arguments_list = [self.player, "Curse"]
                     return (
-                        (Inventory.check_inventory, Inventory.choose_item)
+                        (Inventory.check_someone_inventory, Inventory.choose_item)
                         if self.room.enemy and self.room.enemy.is_alive()
                         else "There is no one to curse here!"
                     )
