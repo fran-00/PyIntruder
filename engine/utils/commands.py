@@ -36,7 +36,7 @@ class Commands:
             'OPEN': r'^(open)$',
             'MAP': r'^(m(ap)?)$',
             'SAVE': r'^(save)$',
-            'RELOAD': r'^(reload)?)$',
+            'RELOAD': r'^(reload)$',
         }
 
     def get_room_description(self):
