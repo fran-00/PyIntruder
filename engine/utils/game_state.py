@@ -68,7 +68,6 @@ class Reload:
     def load_state(self, player):
         self.read_from_file()
         self.override_player_data(player)
-        print(self.world_npcs)
 
     def check_if_file_exists(self):
         return bool(os.path.isfile('./saved_data.pkl'))
