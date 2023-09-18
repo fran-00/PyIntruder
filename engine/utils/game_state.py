@@ -85,4 +85,4 @@ class Reload:
         pass
 
     def load_state(self):
-        pass
+        self.read_from_file()
