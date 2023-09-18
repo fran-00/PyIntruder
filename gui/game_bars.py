@@ -23,9 +23,9 @@ class GameMenu:
     def create_file_menu(self):
         file_menu = self.menubar.addMenu("File")
         self.add_menu_action(file_menu, self.new_game, "New Game")
-        self.add_menu_action(file_menu, lambda: self.game_view.handle_user_action("Save"), "Save")
+        self.add_menu_action(file_menu, lambda: self.game_view.handle_user_action("save"), "Save")
         self.add_menu_action(file_menu, self.on_save_as, "Save As...")
-        self.add_menu_action(file_menu, lambda: self.game_view.handle_user_action("Reload"), "Reload")
+        self.add_menu_action(file_menu, lambda: self.game_view.handle_user_action("reload"), "Reload")
         self.add_menu_action(file_menu, self.on_export_game, "Export Game")
         self.add_menu_action(file_menu, self.game_view.close, "Exit")
 
