@@ -64,12 +64,15 @@ class Reload:
             self.rooms_inventories = pickle.load(read)
             self.world_enemies = pickle.load(read)
             self.world_npcs = pickle.load(read)
-    
+
+    def load_state(self, player):
+        self.read_from_file()
+        self.override_player_data(player)
+        print(self.world_npcs)
+
     def check_if_file_exists(self):
         return bool(os.path.isfile('./saved_data.pkl'))
 
-    def load_player_data(self, player):
-        pass
-
-    def load_state(self):
-        self.read_from_file()
+    def override_player_data(self, player):
+        for attr, value in zip(vars(player), self.player_data):
+            setattr(player, attr, value)
