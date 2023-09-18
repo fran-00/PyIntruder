@@ -112,7 +112,13 @@ class GameModel(QObject):
             nested_response = method(*arguments_tuple)
 
             if isinstance(nested_response, tuple):
-                self.process_dialogue(nested_response)
+                self.model_signal_to_controller.emit(nested_response[0])
+                if nested_response[1] is None:
+                    break
+                elif nested_response[1] == "dialogue":
+                    self.commands.arguments_list.append(nested_response[2])
+                    self.commands.arguments_list.append(nested_response[3])
+                    self.event_loop.exec()
 
             else:
                 self.model_signal_to_controller.emit(nested_response)
@@ -120,16 +126,6 @@ class GameModel(QObject):
                     break
                 else:
                     self.event_loop.exec()
-
-    def process_dialogue(self, nested_response):
-        """TODO"""
-        self.model_signal_to_controller.emit(nested_response[0])
-        if nested_response[1] is None:
-            return
-        elif nested_response[1] == "dialogue":
-            self.commands.arguments_list.append(nested_response[2])
-            self.commands.arguments_list.append(nested_response[3])
-            self.event_loop.exec()
 
     def process_enemy_attack(self):
         """Handle an enemy attack on the player.
