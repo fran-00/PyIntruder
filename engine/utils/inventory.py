@@ -116,7 +116,7 @@ class Inventory:
                 return "You don't have anything to drop.", None
 
     @show_instructions
-    def show_inventory(someone, inventory, purpose):
+    def show_inventory(someone, purpose):
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
             return Inventory.compose_string_with_inventory_subset(someone, purpose)
         else:
