@@ -46,6 +46,7 @@ class Save:
     def write_on_file(self):
         with open('saved_data.pkl', 'wb') as write:
             pickle.dump(self.player_data, write)
+            pickle.dump(self.room_list, write)
             pickle.dump(self.rooms_inventories, write)
             pickle.dump(self.rooms_enemies, write)
             pickle.dump(self.rooms_npcs, write)
@@ -54,6 +55,7 @@ class Save:
 class Reload:
     def __init__(self):
         self.player_data = []
+        self.rooms_list = []
         self.rooms_inventories = []
         self.world_enemies = []
         self.world_npcs = []
@@ -61,6 +63,7 @@ class Reload:
     def read_from_file(self):
         with open('saved_data.pkl', 'rb') as read:
             self.player_data = pickle.load(read)
+            self.rooms_list = pickle.load(read)
             self.rooms_inventories = pickle.load(read)
             self.world_enemies = pickle.load(read)
             self.world_npcs = pickle.load(read)
