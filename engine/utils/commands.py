@@ -36,7 +36,7 @@ class Commands:
             'OPEN': r'^(open)$',
             'MAP': r'^(m(ap)?)$',
             'SAVE': r'^(save)$',
-            'RELOAD': r'^(re(load)?)$',
+            'RELOAD': r'^(reload)?)$',
         }
 
     def get_room_description(self):
@@ -158,8 +158,10 @@ class Commands:
                     return "What do you want to open?"
 
                 elif command == "RELOAD":
-                    Reload.load_state(self.player)
-                    return "Your game has been loaded."
+                    if Reload().check_if_file_exists():
+                        Reload().load_state()
+                        return "Your game has been loaded."
+                    return("File does not exists.")
 
                 elif command == "RUN":
                     if self.room.enemy and self.room.enemy.is_alive():
