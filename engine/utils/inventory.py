@@ -88,7 +88,7 @@ class Inventory:
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
             return Inventory.handle_showing_only_an_inventory_subset(someone, purpose)
         elif inventory == []:
-            Inventory.check_inventory_call_purpose(someone, purpose)
+            Inventory.handle_if_inventory_is_empty(someone, purpose)
         else:
             return Inventory.show_inventory(someone, inventory, purpose)
 
@@ -102,7 +102,7 @@ class Inventory:
             return Inventory.show_inventory(player, player.inventory, purpose)
     
     @staticmethod
-    def check_inventory_call_purpose(player, purpose):
+    def handle_if_inventory_is_empty(player, purpose):
         match purpose:
             case "my-inventory":
                 return f"Your inventory is empty! You have {player.gold} §.", None
