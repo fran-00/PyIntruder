@@ -10,6 +10,27 @@ import world.tiles as world
 
 @dataclass
 class Inventory:
+    
+    @staticmethod
+    def show_generic_inventory(inventory, category):
+        inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
+        response = ""
+        if inventory == []:
+            response += "This inventory is empty"
+        else:
+            index = 1
+            for item_category in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
+                words = re.findall('[A-Z][^A-Z]*', item_category.__name__)
+                parent_name = ' '.join(words) + "s" + ":"
+                items_subset = Inventory.sort_items_by_category(inventory, item_category)
+
+                if items_subset:
+                    response += f"<p style='margin: 5px 0; color: #1296d3;'>{parent_name}</p>"
+
+                for _, item in enumerate(items_subset, index):
+                    response += f"<p><span style='color: #1296d3;'>{index}.</span> - <b>{item}</b></p>"
+                    index += 1
+        return response
 
     @staticmethod
     def trading_mode(*args):
@@ -121,11 +142,12 @@ class Inventory:
                 return "Error"
 
     @show_instructions
-    def show_inventory(someone, purpose):
+    @staticmethod
+    def show_inventory(someone, inventory, purpose):
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
             return Inventory.compose_string_with_inventory_subset(someone, purpose)
         else:
-            return Inventory.compose_string_with_inventory_sorted_by_category(inventory, purpose)
+            return Inventory.compose_string_with_inventory_sorted_by_category(someone.inventory, purpose)
     
     @staticmethod
     def compose_string_with_inventory_subset(someone, purpose):
