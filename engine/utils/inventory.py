@@ -8,9 +8,13 @@ import world.parser as parser
 import world.tiles as world
 
 
-@dataclass
 class Inventory:
-    
+    def __init__(self):
+        self.player = None
+        self.npc = None
+        self.scope = None
+        self.action = None
+
     @staticmethod
     def show_generic_inventory(inventory, category):
         inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
