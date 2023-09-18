@@ -103,17 +103,22 @@ class Inventory:
     
     @staticmethod
     def handle_if_inventory_is_empty(player, purpose):
+        # FIXME: mostra sempre "invalid literal for int() with base 10: 'pick up'""
+        # perché viene eseguita choose_item immediatamente dopo anche quando non
+        # dovrebbe. In pratica il loop non viene interrotto correttamenre
         match purpose:
             case "my-inventory":
                 return f"Your inventory is empty! You have {player.gold} §.", None
-            case "trade" if player.is_selling:
+            case "trade-player":
                 return "You don't have anything to sell!", None
-            case "trade" if not player.is_selling:
+            case "trade-trader":
                 return "Out of stock! Come back later!", None
             case "pick-up":
                 return "There is nothing to pick up.", None
             case "drop":
                 return "You don't have anything to drop.", None
+            case _:
+                return "Error"
 
     @show_instructions
     def show_inventory(someone, purpose):
