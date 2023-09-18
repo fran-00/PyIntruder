@@ -39,6 +39,8 @@ The recognized commands case insensitive:
 
 ## Changelog (2020 - 2023)
 
+![Game Structure](game_structure.png)
+
 - [x]: Added MVC architecture to play via PyQt6 GUI instead of using CLI.
 - [x]: Added a system of signals and slots to connect model, view and controller.
 - [x]: Added a new way to handle game loop using QThread to process user input received from View without breaking it.
