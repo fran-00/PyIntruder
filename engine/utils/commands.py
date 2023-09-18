@@ -159,7 +159,7 @@ class Commands:
 
                 elif command == "RELOAD":
                     if Reload().check_if_file_exists():
-                        Reload().load_state()
+                        Reload().load_state(self.player)
                         return "Your game has been loaded."
                     return("File does not exists.")
 
