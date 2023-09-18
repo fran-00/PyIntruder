@@ -12,14 +12,16 @@ class Save:
         self.player_data = []
         self.rooms_list = []
         self.rooms_inventories = []
-        self.world_enemies = []
-        self.world_npcs = []
+        self.rooms_enemies = []
+        self.rooms_npcs = []
     
     def save_state(self, player):
         self.delete_old_save()
         self.player_data = player.get_player_data()
-        self.create_room_list()
-        self.split_room_list()
+        self.room_list = self.create_room_list()
+        self.save_rooms_inventories()
+        self.save_rooms_enemies()
+        self.save_rooms_npcs()
         self.write_on_file()
 
     def delete_old_save(self):
@@ -38,26 +40,28 @@ class Save:
             if isinstance(room, MapTile)
         ]
 
-    def split_room_list(self):
-        for room in self.rooms_list:
+    # def save_rooms_inventories(self):
+    #     return [room.inventory for room in self.rooms_list]
+    def save_rooms_inventories(self):
+        for room in self.room_list:
             self.rooms_inventories.append(room.inventory)
+
+    def save_rooms_enemies(self):
+        for room in self.room_list:
             if room.enemy:
-                self.world_enemies.append(room.enemy)
-            if room.talker:
-                self.world_npcs.append(room.talker)
-            if room.env_obj:
-                self.world_env_objs.append(room.env_obj)
-            self.chest_rooms = [room for room in self.rooms_list
-                   if isinstance(room, ChestTile)]
+                self.rooms_enemies.append(room.enemy)
+
+    def save_rooms_npcs(self):
+        for room in self.room_list:
+            if room.enemy:
+                self.rooms_npcs.append(room.talker)
 
     def write_on_file(self):
         with open('saved_data.pkl', 'wb') as write:
             pickle.dump(self.player_data, write)
             pickle.dump(self.rooms_inventories, write)
-            pickle.dump(self.world_enemies, write)
-            pickle.dump(self.world_npcs, write)
-            pickle.dump(self.world_env_objs, write)
-            pickle.dump(self.chest_rooms, write)
+            pickle.dump(self.rooms_enemies, write)
+            pickle.dump(self.rooms_npcs, write)
 
 
 class Reload:
