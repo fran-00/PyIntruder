@@ -11,61 +11,58 @@ import world.tiles as world
 class Inventory:
     def __init__(self):
         self.player = None
+        self.owner = None
         self.npc = None
-        self.scope = None
+        self.purpose = None
         self.action = None
 
-    @staticmethod
-    def show_generic_inventory(inventory, category):
-        inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
+    def collect_request_data(self, player, owner, purpose, category):
+        self.player = player
+        self.owner = owner
+        self.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
+        self.purpose = purpose
+        self.category = category
+        if self.category is None:
+            return self.show_inventory()
+        return self.show_inventory_subset()
+
+    def show_inventory(self):
+        if self.owner.inventory == []:
+            return "This inventory is empty"
         response = ""
-        if inventory == []:
-            response += "This inventory is empty"
-        else:
-            index = 1
-            for item_category in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
-                words = re.findall('[A-Z][^A-Z]*', item_category.__name__)
-                parent_name = ' '.join(words) + "s" + ":"
-                items_subset = Inventory.sort_items_by_category(inventory, item_category)
+        index = 1
+        for parent in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
+            words = re.findall('[A-Z][^A-Z]*', parent.__name__)
+            parent_name = ' '.join(words) + "s" + ":"
+            items_subset = sorted([item for item in self.owner.inventory if isinstance(item, parent)], key=lambda item: item.name.lower())
 
-                if items_subset:
-                    response += f"<p style='margin: 5px 0; color: #1296d3;'>{parent_name}</p>"
+            if items_subset:
+                response += f"<p style='margin: 5px 0; color: #1296d3;'>{parent_name}</p>"
 
+            for _, item in enumerate(items_subset, index):
+                response += f"<p><span style='color: #1296d3;'>{index}.</span> - <b>{item}</b></p>"
+                index += 1
+        return response
+
+    def show_inventory_subset(self):
+        if self.category in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
+            response = ""
+            category = globals()[self.category]
+            items_subset = sorted([item for item in self.owner.inventory if isinstance(item, category)], key=lambda item: item.name.lower())
+            if items_subset != []:
+                index = 1
                 for _, item in enumerate(items_subset, index):
-                    response += f"<p><span style='color: #1296d3;'>{index}.</span> - <b>{item}</b></p>"
+                    response += f"<p><span style='color: #1296d3;'>{index},</span> <b>{item}</b></p>"
                     index += 1
         return response
 
-    @staticmethod
-    def check_someone_inventory(*args):
-        someone = args[0]
-        purpose = args[1]
-        inventory = someone.inventory
-        inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
-        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__,  MissionRelatedItem.__name__, Weapon.__name__]:
-            return Inventory.handle_showing_only_an_inventory_subset(someone, purpose)
-        elif inventory == []:
-            Inventory.handle_if_inventory_is_empty(someone, purpose)
-        else:
-            return Inventory.show_inventory(someone, inventory, purpose)
-
-    @staticmethod
-    def handle_showing_only_an_inventory_subset(player, purpose):
-        category = globals()[purpose]
-        items_subset = Inventory.sort_items_by_category(player.inventory, category)
-        if items_subset == []:
-            return f"You don't have any {purpose} with you", None
-        else:
-            return Inventory.show_inventory(player, player.inventory, purpose)
-    
-    @staticmethod
-    def handle_if_inventory_is_empty(player, purpose):
+    def handle_if_inventory_is_empty(self):
         # FIXME: mostra sempre "invalid literal for int() with base 10: 'pick up'""
         # perché viene eseguita choose_item immediatamente dopo anche quando non
         # dovrebbe. In pratica il loop non viene interrotto correttamenre
-        match purpose:
+        match self.purpose:
             case "my-inventory":
-                return f"Your inventory is empty! You have {player.gold} §.", None
+                return f"Your inventory is empty! You have {self.player.gold} §.", None
             case "trade-player":
                 return "You don't have anything to sell!", None
             case "trade-trader":
@@ -76,49 +73,6 @@ class Inventory:
                 return "You don't have anything to drop.", None
             case _:
                 return "Error"
-
-    @staticmethod
-    def show_inventory(someone, inventory, purpose):
-        if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
-            return Inventory.compose_string_with_inventory_subset(someone, purpose)
-        else:
-            return Inventory.compose_string_with_inventory_sorted_by_category(someone.inventory, purpose)
-    
-    @staticmethod
-    def compose_string_with_inventory_subset(someone, purpose):
-        response = ""
-        category = globals()[purpose]
-        items_subset = Inventory.sort_items_by_category(someone.inventory, category)
-        if items_subset != []:
-            index = 1
-            for _, item in enumerate(items_subset, index):
-                response += f"<p><span style='color: #1296d3;'>{index},</span> <b>{item}</b></p>"
-                index += 1
-        return response
-
-    @staticmethod
-    def compose_string_with_inventory_sorted_by_category(inventory, purpose):
-        index = 1
-        response = ""
-        for parent in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
-            words = re.findall('[A-Z][^A-Z]*', parent.__name__)
-            parent_name = ' '.join(words) + "s" + ":"
-            items_subset = Inventory.sort_items_by_category(inventory, parent)
-
-            if items_subset:
-                response += f"<p style='margin: 5px 0; color: #1296d3;'>{parent_name}</p>"
-
-            for _, item in enumerate(items_subset, index):
-                if purpose in ["trade"]:
-                    response += f"<p><span style='color: #1296d3;'>{index}.</span> - <b>{item}</b> - {item.value}§</p>"
-                else:
-                    response += f"<p><span style='color: #1296d3;'>{index}.</span> - <b>{item}</b></p>"
-                index += 1
-        return response
-
-    @staticmethod
-    def sort_items_by_category(inventory, category):
-        return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
 
     @staticmethod
     def choose_item(*args):
