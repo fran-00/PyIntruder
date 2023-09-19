@@ -74,62 +74,60 @@ class Inventory:
             case _:
                 return "Error"
 
-    @staticmethod
-    def choose_item(*args):
-        player = args[0]
-        # -This is the only way to use this method for many purposes because
-        # if used for trading or gathering it has a different number of arguments
-        purpose = args[-3]
+    def choose_item(self, *args):
+        self.player = args[0]
+        self.owner = args[1]
+        self.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
+        self.purpose = args[2]
+        self.category = args[3]
         action = args[-1]
-        room = parser.tile_at(player.x, player.y)
-        inventory = Inventory.choose_queued_inventory(player, room, purpose)
-
+        inventory = self.choose_queued_inventory()
         if action in ('q', 'exit', 'no'):
             return "Ok. Action cancelled."
         try:
             item_index = int(action)
             choice = inventory[item_index - 1]
-            return Inventory.show_appropriate_answer(player, choice, purpose)
+            return self.show_appropriate_answer(choice)
         except Exception as e:
             return f"{e}"
 
-    @staticmethod
-    def choose_queued_inventory(player, room, purpose):
-        if purpose == "trade" and not player.is_selling:
+    def choose_queued_inventory(self):
+        room = parser.tile_at(self.player.x, self.player.y)
+        # TODO:
+        if self.purpose == "trade" and not self.player.is_selling:
             inventory = room.talker.inventory
-        elif purpose == "pick-up":
+        elif self.purpose == "pick-up":
             inventory = room.inventory
-        elif purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
-            category = globals()[purpose]
-            inventory = Inventory.sort_items_by_category(player.inventory, category)
+        elif self.purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
+            category = globals()[self.purpose]
+            inventory = sorted([item for item in self.owner.inventory if isinstance(item, category)], key=lambda item: item.name.lower())
         else:
-            inventory = player.inventory
+            inventory = self.player.inventory
         return inventory
 
-    @staticmethod
-    def show_appropriate_answer(player, choice, purpose):
-        room = parser.tile_at(player.x, player.y)
+    def show_appropriate_answer(self, choice):
+        room = parser.tile_at(self.player.x, self.player.y)
         if choice.marketable == False:
             return f"You can't sell {choice.name}!"
-        match purpose:
+        match self.purpose:
             case "my-inventory":
                 return f"{choice}: {choice.description}"
-            case "trade" if player.is_selling:
-                Inventory.items_swapper(player, room.talker, choice, purpose)
+            case "trade" if self.player.is_selling:
+                Inventory.items_swapper(self.splayer, room.talker, choice, self.purpose)
                 return f"Bye {choice.name}!"
-            case "trade" if not player.is_selling:
-                Inventory.items_swapper(room.talker, player, choice, purpose)
+            case "trade" if not self.player.is_selling:
+                Inventory.items_swapper(room.talker, self.player, choice, self.purpose)
                 return f"Good! Now {choice.name} is yours!"
             case "pick-up":
-                Inventory.items_swapper(room, player, choice, purpose)
+                Inventory.items_swapper(room, self.player, choice, self.purpose)
                 return f"{choice.name}: taken."
             case "drop":
-                Inventory.items_swapper(player, room, choice, purpose)
+                Inventory.items_swapper(self.player, room, choice, self.purpose)
                 return f"{choice.name}: dropped."
             case "Curse":
-                return player.check_enemy_hp(room.enemy, player.curse_command_handler(room.enemy, choice))
-            case "Healer":
-                return player.heal_command_handler(choice)
+                return self.player.check_enemy_hp(room.enemy, self.player.curse_command_handler(room.enemy, choice))
+            case "heal":
+                return self.player.heal_command_handler(choice)
             case _:
                 return "Problems"
 
