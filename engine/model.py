@@ -67,22 +67,9 @@ class GameModel(QObject):
             self.process_main_loop()
     
     def process_main_loop(self):
-        """TODO:"""
-        self.room = WorldCreator.tile_at(self.player.x, self.player.y)
-        if self.room.enemy and self.room.enemy.is_alive():
-            self.process_enemy_attack()
-
-        self.event_loop.exec()
-        game_response = self.commands.choose_action(self.action)
-
-        if isinstance(game_response, tuple):
-            self.process_nested_loop(game_response)
-        else:
-            self.model_signal_to_controller.emit(game_response)
-
-    def process_nested_loop(self, game_response):
         """
-        TODO: UPDATE DOCSTRING
+        TODO: Update docstring after methods extraction.
+        
         Process a tuple of methods in a for loop.
 
         First add action to be processed to argument_list attribute of Commands
@@ -106,6 +93,19 @@ class GameModel(QObject):
         None
             Emit PyQT signal to Controller for each nested response processed.
         """
+        self.room = WorldCreator.tile_at(self.player.x, self.player.y)
+        if self.room.enemy and self.room.enemy.is_alive():
+            self.process_enemy_attack()
+
+        self.event_loop.exec()
+        game_response = self.commands.choose_action(self.action)
+
+        if isinstance(game_response, tuple):
+            self.process_nested_loop(game_response)
+        else:
+            self.model_signal_to_controller.emit(game_response)
+
+    def process_nested_loop(self, game_response):
         for i, method in enumerate(game_response):
             self.commands.arguments_list.append(self.action)
             arguments_tuple = tuple(self.commands.arguments_list)
