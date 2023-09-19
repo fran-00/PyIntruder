@@ -12,7 +12,7 @@ class Inventory:
     def __init__(self):
         self.player = None
         self.owner = None
-        self.npc = None
+        self.room = None
         self.purpose = None
         self.action = None
 
@@ -111,6 +111,7 @@ class Inventory:
 
     def choose_item(self, *args):
         self.player = args[0]
+        self.room = parser.tile_at(self.player.x, self.player.y) # This must be set here: when commands calls choose_item a new instance of this class is created
         self.owner = args[1]
         self.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
         self.purpose = args[2]
@@ -127,12 +128,10 @@ class Inventory:
             return f"{e}"
 
     def choose_queued_inventory(self):
-        room = parser.tile_at(self.player.x, self.player.y)
-        # TODO:
         if self.purpose == "trade" and not self.player.is_selling:
-            inventory = room.talker.inventory
+            inventory = self.room.talker.inventory
         elif self.purpose == "pick-up":
-            inventory = room.inventory
+            inventory = self.room.inventory
         elif self.purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
             category = globals()[self.purpose]
             inventory = sorted([item for item in self.owner.inventory if isinstance(item, category)], key=lambda item: item.name.lower())
@@ -141,26 +140,25 @@ class Inventory:
         return inventory
 
     def show_appropriate_answer(self, choice):
-        room = parser.tile_at(self.player.x, self.player.y)
         if choice.marketable == False:
             return f"You can't sell {choice.name}!"
         match self.purpose:
             case "my-inventory":
                 return f"{choice}: {choice.description}"
             case "trade" if self.player.is_selling:
-                Inventory.items_swapper(self.splayer, room.talker, choice, self.purpose)
+                Inventory.items_swapper(self.splayer, self.room.talker, choice, self.purpose)
                 return f"Bye {choice.name}!"
             case "trade" if not self.player.is_selling:
-                Inventory.items_swapper(room.talker, self.player, choice, self.purpose)
+                Inventory.items_swapper(self.room.talker, self.player, choice, self.purpose)
                 return f"Good! Now {choice.name} is yours!"
             case "pick-up":
-                Inventory.items_swapper(room, self.player, choice, self.purpose)
+                Inventory.items_swapper(self.room, self.player, choice, self.purpose)
                 return f"{choice.name}: taken."
             case "drop":
-                Inventory.items_swapper(self.player, room, choice, self.purpose)
+                Inventory.items_swapper(self.player, self.room, choice, self.purpose)
                 return f"{choice.name}: dropped."
             case "curse":
-                return Combat.check_enemy_hp(self.player, room.enemy, Combat.curse_command_handler(self.player, room.enemy, choice))
+                return Combat.check_enemy_hp(self.player, self.room.enemy, Combat.curse_command_handler(self.player, room.enemy, choice))
             case "heal":
                 return self.player.heal_command_handler(choice)
             case _:
