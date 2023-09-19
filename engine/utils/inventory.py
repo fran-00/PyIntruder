@@ -1,7 +1,9 @@
 import re
+import random
 
 from engine.utils.combat_system import Combat
 from entities.templates import Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon, Trader
+from entities.factory import ItemsFactory
 import world.parser as parser
 import world.tiles as world
 
@@ -100,10 +102,10 @@ class Inventory:
                 return "You don't have anything to cure yourself with.", None
             case "curse":
                 return "You don't have any curse.", None
-            # case "trade-player":
-            #     return "You don't have anything to sell!", None
-            # case "trade-trader":
-            #     return "Out of stock! Come back later!", None
+            case "trade-player":
+                return "You don't have anything to sell!", None
+            case "trade-trader":
+                return "Out of stock! Come back later!", None
             case _:
                 return "Error"
 
@@ -174,40 +176,40 @@ class Inventory:
         giver.inventory.remove(item)
         receiver.inventory.append(item)
 
-    # @staticmethod
-    # def trading_mode(*args):
-    #     player = args[0]
-    #     trader = args[1]
-    #     action = args[-1]
-    #     match action:
-    #         case "b":
-    #             trader.is_selling = True
-    #             player.is_selling = False
-    #             return Inventory.check_someone_inventory(trader, "trade-trader")
-    #         case "s":
-    #             trader.is_selling = False
-    #             player.is_selling = True
-    #             return Inventory.check_someone_inventory(player, "trade-player")
-    #         case "q":
-    #             return "Come back when you want to trade!", None
-    #         case _:
-    #             return "Invalid choice, try again.", None
+    @staticmethod
+    def initialize_trade(*args):
+        talker = args[1]
+        if talker and isinstance(talker, Trader):
+            Inventory.fill_trader_inventory(talker)
+            sentence = talker.get_random_opening_sentence(f"{talker.name}")
+            # FIXME: sentence is not shown
+            return f"<p>{sentence}<p><p>(B)uy, (S)ell or (Q)uit?</p>"
+        elif talker:
+            return f"{talker.name} doesn't want to trade.", None
+        else:
+            return "There is no one to trade with.", None
 
-    # @staticmethod
-    # def initialize_trade(*args):
-    #     talker = args[1]
-    #     if talker and isinstance(talker, Trader):
-    #         Inventory.fill_trader_inventory(talker)
-    #         sentence = talker.get_random_opening_sentence(f"{talker.name}")
-    #         # FIXME: sentence is not shown
-    #         return f"<p>{sentence}<p><p>(B)uy, (S)ell or (Q)uit?</p>"
-    #     elif talker:
-    #         return f"{talker.name} doesn't want to trade.", None
-    #     else:
-    #         return "There is no one to trade with.", None
+    @staticmethod
+    def trading_mode(*args):
+        player = args[0]
+        trader = args[1]
+        action = args[-1]
+        match action:
+            case "b":
+                trader.is_selling = True
+                player.is_selling = False
+                return Inventory.check_someone_inventory(trader, "trade-trader")
+            case "s":
+                trader.is_selling = False
+                player.is_selling = True
+                return Inventory.check_someone_inventory(player, "trade-player")
+            case "q":
+                return "Come back when you want to trade!", None
+            case _:
+                return "Invalid choice, try again.", None
 
-    # @staticmethod
-    # def fill_trader_inventory(talker):
-    #     items_list = ItemsFactory().get_entities_list(talker.type)
-    #     if not talker.inventory:
-    #         talker.inventory += random.sample(items_list, k=10)
+    @staticmethod
+    def fill_trader_inventory(talker):
+        items_list = ItemsFactory().get_entities_list(talker.type)
+        if not talker.inventory:
+            talker.inventory += random.sample(items_list, k=10)
