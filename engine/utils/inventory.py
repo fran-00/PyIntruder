@@ -119,7 +119,7 @@ class Inventory:
         self.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
         self.purpose = args[2]
         action = args[-1]
-        inventory = self.choose_queued_inventory()
+        inventory = self.choose_requested_inventory()
         if action in ('q', 'exit', 'no'):
             return "Ok. Action cancelled."
         try:
@@ -129,7 +129,7 @@ class Inventory:
         except Exception as e:
             return f"{e}"
 
-    def choose_queued_inventory(self):
+    def choose_requested_inventory(self):
         if self.purpose == "trade" and not self.player.is_selling:
             inventory = self.room.talker.inventory
         elif self.purpose == "pick-up":
