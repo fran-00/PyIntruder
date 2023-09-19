@@ -26,9 +26,9 @@ class Inventory:
                 case "player-inventory":
                     response = f"<p>Your wealth: {player.gold} §</p>"
                     return func(*args) + response
-                case "trade-trader":
+                case "trade" if not player.is_selling:
                     response = f"What do you want to buy? You have {player.gold} §."
-                case "trade-player":
+                case "trade" if player.is_selling:
                     response = "What do you want to sell?"
                 case "pick-up":
                     response = "What do you want to pick up?"
@@ -105,9 +105,9 @@ class Inventory:
                 return "You don't have anything to cure yourself with.", None
             case "curse":
                 return "You don't have any curse.", None
-            case "trade-player":
+            case "trade" if self.player.is_selling:
                 return "You don't have anything to sell!", None
-            case "trade-trader":
+            case "trade" if not self.player.is_selling:
                 return "Out of stock! Come back later!", None
             case _:
                 return "Error"
