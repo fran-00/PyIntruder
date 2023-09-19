@@ -17,8 +17,9 @@ class Save:
     def save_state(self, player):
         self.delete_old_save()
         self.player_data = player.get_player_data()
-        self.room_list = self.create_room_list()
-        self.save_rooms_data()
+        self.world_copy = WorldCreator.world_map
+        self.list_with_all_rooms = self.create_room_list()
+        self.rooms_data = self.save_rooms_data()
         self.write_on_file()
 
     def delete_old_save(self):
@@ -38,17 +39,18 @@ class Save:
         ]
 
     def save_rooms_data(self):
-        self.rooms_enemies.extend(room.enemy for room in self.room_list if room.enemy)
-        self.rooms_inventories.extend(room.inventory for room in self.room_list if room.inventory)
-        self.rooms_npcs.extend(room.talker for room in self.room_list if room.talker)
+        rooms_data = []
+        for room in self.list_with_all_rooms:
+            room_data = room.get_room_data()
+            rooms_data.append(room_data)
+        return rooms_data
 
     def write_on_file(self):
         with open('saved_data.pkl', 'wb') as write:
             pickle.dump(self.player_data, write)
-            pickle.dump(self.room_list, write)
-            pickle.dump(self.rooms_inventories, write)
-            pickle.dump(self.rooms_enemies, write)
-            pickle.dump(self.rooms_npcs, write)
+            pickle.dump(self.world_copy, write)
+            pickle.dump(self.list_with_all_rooms, write)
+            pickle.dump(self.rooms_data, write)
 
 
 class Reload:
