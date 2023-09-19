@@ -14,6 +14,39 @@ class Inventory:
         self.purpose = None
         self.action = None
 
+    def show_instructions(func):
+        def wrapper(*args):
+            player = args[1] # The first argument of collect_request_data is self!
+            purpose = args[3]
+            print(purpose)
+            response = ""
+            match purpose:
+                case "player-inventory":
+                    response = f"<p>Your wealth: {player.gold} §</p>"
+                    return func(*args) + response
+                case "trade-trader":
+                    response = f"What do you want to buy? You have {player.gold} §."
+                case "trade-player":
+                    response = "What do you want to sell?"
+                case "pick-up":
+                    response = "What do you want to pick up?"
+                case "drop":
+                    response = "What do you want to drop?"
+                case "curse":
+                    response = (
+                        f"<p>Ok, what curse do you want to cast?</p>"
+                        f"<p>You have {player.mana} Mana.</p>"
+                    )
+                case "Healer":
+                    response = (
+                        f"<p>Your health is {player.hp}/{player.max_hp}.</p>"
+                        "<p>What do you want to treat yourplayer with?</p>"
+                    )
+            response += "<p>Choose an item or press Q to quit.</p>"
+            return func(*args) + response
+        return wrapper
+
+    @show_instructions
     def collect_request_data(self, *args):
         self.player = args[0]
         self.owner = args[1]
@@ -178,33 +211,3 @@ class Inventory:
     #     items_list = ItemsFactory().get_entities_list(talker.type)
     #     if not talker.inventory:
     #         talker.inventory += random.sample(items_list, k=10)
-
-    # def show_instructions(func):
-    #     def wrapper(*args):
-    #         player = args[0]
-    #         purpose = args[2]
-    #         match purpose:
-    #             case "my-inventory":
-    #                 response = f"<p>Your wealth: {player.gold} §</p>"
-    #                 return func(*args) + response
-    #             case "trade-trader":
-    #                 response = f"What do you want to buy? You have {player.gold} §."
-    #             case "trade-player":
-    #                 response = "What do you want to sell?"
-    #             case "pick-up":
-    #                 response = "What do you want to pick up?"
-    #             case "drop":
-    #                 response = "What do you want to drop?"
-    #             case "Curse":
-    #                 response = (
-    #                     f"<p>Ok, what curse do you want to cast?</p>"
-    #                     f"<p>You have {player.mana} Mana.</p>"
-    #                 )
-    #             case "Healer":
-    #                 response = (
-    #                     f"<p>Your health is {player.hp}/{player.max_hp}.</p>"
-    #                     "<p>What do you want to treat yourplayer with?</p>"
-    #                 )
-    #         response += "<p>Choose an item or press Q to quit.</p>"
-    #         return func(*args) + response
-    #     return wrapper
