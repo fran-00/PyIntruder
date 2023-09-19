@@ -85,9 +85,9 @@ class Commands:
                         else "There is no one to attack here!"
                     )
                 elif command == "CURSE":
-                    self.arguments_list = [self.player, "Curse"]
+                    self.arguments_list = [self.player, self.player, "Curse", "Curse"]
                     return (
-                        (Inventory.check_someone_inventory, Inventory.choose_item)
+                        (Inventory().collect_request_data, Inventory().choose_item)
                         if self.room.enemy and self.room.enemy.is_alive()
                         else "There is no one to curse here!"
                     )
@@ -103,10 +103,10 @@ class Commands:
                     )
 
                 elif command == "DROP FROM LIST":
-                    self.arguments_list = [self.player, "drop"]
+                    self.arguments_list = [self.player, self.player, "drop", None]
                     return (
-                        Inventory.check_someone_inventory,
-                        Inventory.choose_item
+                        Inventory().collect_request_data,
+                        Inventory().choose_item
                     )
 
                 elif command == "DROP ITEM":
@@ -114,10 +114,10 @@ class Commands:
                     return GetDrop.get_and_drop_command_handler(self.player, self.room, target, "drop")
 
                 elif command == "GET FROM LIST":
-                    self.arguments_list = [self.room, "pick-up"]
+                    self.arguments_list = [self.player, self.room, "pick-up", None]
                     return (
-                        Inventory.check_someone_inventory,
-                        Inventory.choose_item
+                        Inventory().collect_request_data,
+                        Inventory().choose_item
                     )
 
                 elif command == "GET ITEM":
@@ -127,14 +127,14 @@ class Commands:
                 elif command == "HEAL":
                     if self.player.hp == self.player.max_hp:
                         return "You are already in good health."
-                    self.arguments_list = [self.player, "Healer"]
+                    self.arguments_list = [self.player, self.player, "heal", "Healer"]
                     return (
-                        Inventory.check_someone_inventory,
-                        Inventory.choose_item
+                        Inventory().collect_request_data,
+                        Inventory().choose_item
                     )
 
                 elif command == "INVENTORY":
-                    return Inventory.check_someone_inventory(self.player, "my-inventory")
+                    return Inventory().collect_request_data(self.player, self.player, None, None)
 
                 elif command == "LOOK AT":
                     target = re.match(regex, action)[2]
@@ -191,6 +191,7 @@ class Commands:
                     return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk."
 
                 elif command == "TRADE":
+                    # TODO
                     self.arguments_list = [self.player, self.room.talker, "trade"]
                     return (
                         Inventory.initialize_trade,
