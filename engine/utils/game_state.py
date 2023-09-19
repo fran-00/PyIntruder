@@ -2,7 +2,6 @@ import os
 import pickle
 
 from world.map_tile import MapTile
-from world.tiles import ChestTile
 from world.parser import WorldCreator
 
 
