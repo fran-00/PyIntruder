@@ -4,7 +4,7 @@ import re
 from .templates import Entity
 from .factory import ItemsFactory as items
 
-import world.parser as parser
+from world.parser import WorldCreator
 import world.tiles as world
 from engine.utils.combat_system import Combat
 from gui.styles.decorators import *
@@ -13,8 +13,8 @@ from gui.styles.decorators import *
 class Player(Entity):
     def __init__(self):
         self.name = 'Your Name Here'
-        self.x = parser.start_tile_location[0]
-        self.y = parser.start_tile_location[1]
+        self.x = WorldCreator.start_tile_location[0]
+        self.y = WorldCreator.start_tile_location[1]
 
         self.inventory = [items().stygian_blue,
                           items().wire,
@@ -91,7 +91,7 @@ class Player(Entity):
         return f"You leveled up! You are now at {self.lvl} LVL."
 
     def flee_from_fight(self):
-        room = parser.tile_at(self.x, self.y)
+        room = WorldCreator.tile_at(self.x, self.y)
         d20 = random.randint(1, 20)
         if d20 == 20:
             room.enemy.alive = False
@@ -128,7 +128,7 @@ class Player(Entity):
 
     def diagnose_command_handler(self):
         """Return a formatted string with the player's current status information."""
-        room = parser.tile_at(self.x, self.y)
+        room = WorldCreator.tile_at(self.x, self.y)
         return (
             f"<b>Level</b> : {self.lvl}<br>"
             f"<b>HP</b> : {self.hp}/{self.max_hp}<br>"
@@ -207,7 +207,7 @@ class Player(Entity):
 
         loc_x = str(self.x)
         loc_y = str(self.y)
-        dsl_lines = parser.world_dsl.splitlines()
+        dsl_lines = WorldCreator.world_dsl.splitlines()
         dsl_lines = [x for x in dsl_lines if x]
         for dsl_row in dsl_lines:
             row = []
@@ -219,13 +219,13 @@ class Player(Entity):
 
 
     def parse_available_directions(self):
-        if parser.tile_at(self.room.x, self.room.y - 1):
+        if WorldCreator.tile_at(self.room.x, self.room.y - 1):
             response += "... north"
-        elif parser.tile_at(self.room.x, self.room.y + 1):
+        elif WorldCreator.tile_at(self.room.x, self.room.y + 1):
             response += "... south"
-        elif parser.tile_at(self.room.x + 1, self.room.y):
+        elif WorldCreator.tile_at(self.room.x + 1, self.room.y):
             response += "... east"
-        elif parser.tile_at(self.room.x - 1, self.room.y):
+        elif WorldCreator.tile_at(self.room.x - 1, self.room.y):
             response += "... west"
         else:
             return

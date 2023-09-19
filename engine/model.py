@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
-import world.parser as parser
+from world.parser import WorldCreator
 from .utils.commands import Commands
 from engine.utils.combat_system import Combat
 
@@ -68,7 +68,7 @@ class GameModel(QObject):
     
     def process_main_loop(self):
         """TODO:"""
-        self.room = parser.tile_at(self.player.x, self.player.y)
+        self.room = WorldCreator.tile_at(self.player.x, self.player.y)
         if self.room.enemy and self.room.enemy.is_alive():
             self.process_enemy_attack()
 

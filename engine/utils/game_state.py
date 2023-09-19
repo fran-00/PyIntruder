@@ -3,7 +3,7 @@ import pickle
 
 from world.map_tile import MapTile
 from world.tiles import ChestTile
-from world.parser import get_world_map
+from world.parser import WorldCreator
 
 
 
@@ -29,7 +29,7 @@ class Save:
 
     def create_room_list(self):
         rooms_list_with_nested_lists = []
-        tiles = get_world_map()
+        tiles = WorldCreator.get_world_map()
         for tile in tiles:
             rooms_list_with_nested_lists.extend(tile)
         return [

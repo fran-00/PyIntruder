@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from engine.utils.combat_system import Combat
 from entities.templates import Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon, Trader
 from entities.factory import ItemsFactory
-import world.parser as parser
+from world.parser import WorldCreator
 import world.tiles as world
 
 
@@ -114,7 +114,7 @@ class Inventory:
 
     def choose_item(self, *args):
         self.player = args[0]
-        self.room = parser.tile_at(self.player.x, self.player.y) # This must be set here: when commands calls choose_item a new instance of this class is created
+        self.room = WorldCreator.tile_at(self.player.x, self.player.y) # This must be set here: when commands calls choose_item a new instance of this class is created
         self.owner = args[1]
         self.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
         self.purpose = args[2]

@@ -1,6 +1,6 @@
 import re
 
-import world.parser as parser
+from world.parser import WorldCreator
 from engine.utils.combat_system import Combat
 from engine.utils.inventory import Inventory, Trading
 from engine.utils.get_drop import GetDrop
@@ -52,7 +52,7 @@ class Commands:
         string
             A description of the current room or enemy
         """
-        self.room = parser.tile_at(self.player.x, self.player.y)
+        self.room = WorldCreator.tile_at(self.player.x, self.player.y)
         if self.room.enemy is None:
             return (f"<h2>{self.room.name}</h2><p>{self.room.description}</p>")
         elif self.room.enemy.is_alive():
@@ -214,13 +214,13 @@ class Commands:
             message if the requested direction is not valid.
 
         """
-        if re.match(r'^(go\s)?n(o(rth)?)?$', action) and parser.tile_at(self.room.x, self.room.y - 1):
+        if re.match(r'^(go\s)?n(o(rth)?)?$', action) and WorldCreator.tile_at(self.room.x, self.room.y - 1):
             self.player.move_north()
-        elif re.match(r'^(go\s)?s(o(uth)?)?$', action) and parser.tile_at(self.room.x, self.room.y + 1):
+        elif re.match(r'^(go\s)?s(o(uth)?)?$', action) and WorldCreator.tile_at(self.room.x, self.room.y + 1):
             self.player.move_south()
-        elif re.match(r'^(go\s)?e(a(st)?)?$', action) and parser.tile_at(self.room.x + 1, self.room.y):
+        elif re.match(r'^(go\s)?e(a(st)?)?$', action) and WorldCreator.tile_at(self.room.x + 1, self.room.y):
             self.player.move_east()
-        elif re.match(r'^(go\s)?w(e(st)?)?$', action) and parser.tile_at(self.room.x - 1, self.room.y):
+        elif re.match(r'^(go\s)?w(e(st)?)?$', action) and WorldCreator.tile_at(self.room.x - 1, self.room.y):
             self.player.move_west()
         else:
             return "You can't go that way!"
