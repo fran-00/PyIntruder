@@ -124,7 +124,7 @@ class Inventory:
             case "drop":
                 Inventory.items_swapper(self.player, room, choice, self.purpose)
                 return f"{choice.name}: dropped."
-            case "Curse":
+            case "curse":
                 return Combat.check_enemy_hp(self.player, room.enemy, Combat.curse_command_handler(self.player, room.enemy, choice))
             case "heal":
                 return self.player.heal_command_handler(choice)
