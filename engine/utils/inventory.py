@@ -26,7 +26,7 @@ class Inventory:
 
     def show_inventory(self):
         if self.owner.inventory == []:
-            return "This inventory is empty", None
+            return self.handle_if_inventory_is_empty()
         response = ""
         index = 1
         for parent in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
@@ -58,7 +58,7 @@ class Inventory:
     def handle_if_inventory_is_empty(self):
         match self.purpose:
             case "player-inventory":
-                return f"Your inventory is empty! You have {self.player.gold} §.", None
+                return f"Your inventory is empty! You have {self.player.gold} §."
             case "pick-up":
                 return "There is nothing to pick up.", None
             case "drop":

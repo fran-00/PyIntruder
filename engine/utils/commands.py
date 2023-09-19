@@ -134,7 +134,7 @@ class Commands:
                     )
 
                 elif command == "INVENTORY":
-                    return Inventory().collect_request_data(self.player, self.player, None, None)
+                    return Inventory().collect_request_data(self.player, self.player, "player-inventory", None)
 
                 elif command == "LOOK AT":
                     target = re.match(regex, action)[2]
