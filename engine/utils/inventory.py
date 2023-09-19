@@ -1,8 +1,6 @@
 import re
-import random
-from dataclasses import dataclass
 
-from entities.factory import ItemsFactory
+from engine.utils.combat_system import Combat
 from entities.templates import Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon, Trader
 import world.parser as parser
 import world.tiles as world
