@@ -160,7 +160,10 @@ class Commands:
                 elif command == "RELOAD":
                     if Reload().check_if_file_exists():
                         Reload().load_state(self.player)
-                        return "Your game has been loaded."
+                        return (
+                            "Your game has been loaded."
+                            f"{self.get_room_description()}"
+                        )
                     return("File does not exists.")
 
                 elif command == "RUN":
