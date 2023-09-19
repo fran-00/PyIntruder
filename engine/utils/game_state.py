@@ -63,10 +63,9 @@ class Reload:
     def read_from_file(self):
         with open('saved_data.pkl', 'rb') as read:
             self.player_data = pickle.load(read)
-            self.rooms_list = pickle.load(read)
-            self.rooms_inventories = pickle.load(read)
-            self.world_enemies = pickle.load(read)
-            self.world_npcs = pickle.load(read)
+            self.world_copy = pickle.load(read)
+            self.list_with_all_rooms = pickle.load(read)
+            self.rooms_data = pickle.load(read)
 
     def load_state(self, player):
         self.read_from_file()
