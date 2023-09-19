@@ -81,4 +81,7 @@ class Reload(GameState):
             setattr(player, attr, value)
 
     def override_rooms_data(self):
-        pass
+        # FIXME: it doesn't work
+        for room, room_data in zip(self.list_with_all_rooms, self.rooms_data):
+            for attr, value in zip(vars(room), room_data):
+                setattr(room, attr, value)
