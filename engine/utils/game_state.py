@@ -6,14 +6,18 @@ from world.tiles import ChestTile
 from world.parser import WorldCreator
 
 
-
-class Save:
+class GameState:
     def __init__(self):
         self.player_data = []
         self.world_copy = []
         self.list_with_all_rooms = []
         self.rooms_data = []
-    
+
+
+class Save(GameState):
+    def __init__(self):
+        super().__init__()
+
     def save_state(self, player):
         self.delete_old_save()
         self.player_data = player.get_player_data()
@@ -53,12 +57,9 @@ class Save:
             pickle.dump(self.rooms_data, write)
 
 
-class Reload:
+class Reload(GameState):
     def __init__(self):
-        self.player_data = []
-        self.world_copy = []
-        self.list_with_all_rooms = []
-        self.rooms_data = []
+        super().__init__()
 
     def read_from_file(self):
         with open('saved_data.pkl', 'rb') as read:
