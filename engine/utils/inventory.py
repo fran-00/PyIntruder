@@ -22,6 +22,9 @@ class Inventory:
             player = args[1] # The first argument of collect_request_data is self!
             purpose = args[3]
             response = ""
+            # This won't work for pick up and trade commands if player is buying
+            if player.inventory == []:
+                return func(*args)
             match purpose:
                 case "player-inventory":
                     response = f"<p>Your wealth: {player.gold} §</p>"
