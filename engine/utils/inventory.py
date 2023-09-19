@@ -26,7 +26,7 @@ class Inventory:
 
     def show_inventory(self):
         if self.owner.inventory == []:
-            return "This inventory is empty"
+            return "This inventory is empty", None
         response = ""
         index = 1
         for parent in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
@@ -44,31 +44,33 @@ class Inventory:
 
     def show_inventory_subset(self):
         if self.category in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
-            response = ""
             category = globals()[self.category]
             items_subset = sorted([item for item in self.owner.inventory if isinstance(item, category)], key=lambda item: item.name.lower())
-            if items_subset != []:
-                index = 1
-                for _, item in enumerate(items_subset, index):
-                    response += f"<p><span style='color: #1296d3;'>{index},</span> <b>{item}</b></p>"
-                    index += 1
+            if items_subset == []:
+                return self.handle_if_inventory_is_empty()
+            response = ""
+            index = 1
+            for _, item in enumerate(items_subset, index):
+                response += f"<p><span style='color: #1296d3;'>{index},</span> <b>{item}</b></p>"
+                index += 1
         return response
 
     def handle_if_inventory_is_empty(self):
-        # FIXME: mostra sempre "invalid literal for int() with base 10: 'pick up'""
-        # perché viene eseguita choose_item immediatamente dopo anche quando non
-        # dovrebbe. In pratica il loop non viene interrotto correttamenre
         match self.purpose:
-            case "my-inventory":
+            case "player-inventory":
                 return f"Your inventory is empty! You have {self.player.gold} §.", None
-            case "trade-player":
-                return "You don't have anything to sell!", None
-            case "trade-trader":
-                return "Out of stock! Come back later!", None
             case "pick-up":
                 return "There is nothing to pick up.", None
             case "drop":
                 return "You don't have anything to drop.", None
+            case "heal":
+                return "You don't have anything to cure yourself with.", None
+            case "curse":
+                return "You don't have any curse.", None
+            # case "trade-player":
+            #     return "You don't have anything to sell!", None
+            # case "trade-trader":
+            #     return "Out of stock! Come back later!", None
             case _:
                 return "Error"
 
