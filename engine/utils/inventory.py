@@ -181,9 +181,7 @@ class Inventory:
         talker = args[1]
         if talker and isinstance(talker, Trader):
             Inventory.fill_trader_inventory(talker)
-            sentence = talker.get_random_opening_sentence(f"{talker.name}")
-            # FIXME: sentence is not shown
-            return f"<p>{sentence}<p><p>(B)uy, (S)ell or (Q)uit?</p>"
+            return "<p>(B)uy, (S)ell or (Q)uit?</p>"
         elif talker:
             return f"{talker.name} doesn't want to trade.", None
         else:
