@@ -200,11 +200,11 @@ class Trading:
             case "b":
                 trader.is_selling = True
                 player.is_selling = False
-                return Inventory().show_inventory_subset(trader, f"{trader.type_of_items.__name__}")
+                return Inventory().collect_request_data(player, trader, "trade", f"{trader.type_of_items.__name__}")
             case "s":
                 trader.is_selling = False
                 player.is_selling = True
-                return Inventory().show_inventory_subset(player, f"{trader.type_of_items.__name__}")
+                return Inventory().collect_request_data(player, player, "trade", f"{trader.type_of_items.__name__}")
             case "q":
                 return "Come back when you want to trade!", None
             case _:
