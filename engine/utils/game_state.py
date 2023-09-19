@@ -10,10 +10,9 @@ from world.parser import WorldCreator
 class Save:
     def __init__(self):
         self.player_data = []
-        self.rooms_list = []
-        self.rooms_inventories = []
-        self.rooms_enemies = []
-        self.rooms_npcs = []
+        self.world_copy = []
+        self.list_with_all_rooms = []
+        self.rooms_data = []
     
     def save_state(self, player):
         self.delete_old_save()
