@@ -16,12 +16,12 @@ class Inventory:
         self.purpose = None
         self.action = None
 
-    def collect_request_data(self, player, owner, purpose, category):
-        self.player = player
-        self.owner = owner
+    def collect_request_data(self, *args):
+        self.player = args[0]
+        self.owner = args[1]
         self.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
-        self.purpose = purpose
-        self.category = category
+        self.purpose = args[2]
+        self.category = args[3]
         if self.category is None:
             return self.show_inventory()
         return self.show_inventory_subset()
