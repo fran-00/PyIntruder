@@ -45,6 +45,9 @@ class Inventory:
                         "<p>What do you want to treat yourplayer with?</p>"
                     )
             response += "<p>Choose an item or press Q to quit.</p>"
+            # FIXME: handle_if_inventory_is_empty method causes the response to be a tuple
+            # cause "None" is needed by model to break the loop: when inventory is empty
+            # TyperError (can only concatenate tuple to tuple) is raised.
             return func(*args) + response
         return wrapper
 
