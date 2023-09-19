@@ -200,11 +200,11 @@ class Trading:
             case "b":
                 trader.is_selling = True
                 player.is_selling = False
-                return Inventory().show_inventory_subset(trader, f"{trader.type.__name__}")
+                return Inventory().show_inventory_subset(trader, f"{trader.type_of_items.__name__}")
             case "s":
                 trader.is_selling = False
                 player.is_selling = True
-                return Inventory().show_inventory_subset(player, f"{trader.type.__name__}")
+                return Inventory().show_inventory_subset(player, f"{trader.type_of_items.__name__}")
             case "q":
                 return "Come back when you want to trade!", None
             case _:
@@ -212,6 +212,6 @@ class Trading:
 
     @staticmethod
     def fill_trader_inventory(talker):
-        items_list = ItemsFactory().get_entities_list(talker.type)
+        items_list = ItemsFactory().get_entities_list(talker.type_of_items)
         if not talker.inventory:
             talker.inventory += random.sample(items_list, k=10)
