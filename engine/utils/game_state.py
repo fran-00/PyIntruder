@@ -56,10 +56,9 @@ class Save:
 class Reload:
     def __init__(self):
         self.player_data = []
-        self.rooms_list = []
-        self.rooms_inventories = []
-        self.world_enemies = []
-        self.world_npcs = []
+        self.world_copy = []
+        self.list_with_all_rooms = []
+        self.rooms_data = []
 
     def read_from_file(self):
         with open('saved_data.pkl', 'rb') as read:
