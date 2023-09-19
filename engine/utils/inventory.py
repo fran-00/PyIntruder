@@ -21,7 +21,6 @@ class Inventory:
         def wrapper(*args):
             player = args[1] # The first argument of collect_request_data is self!
             purpose = args[3]
-            print(purpose)
             response = ""
             match purpose:
                 case "player-inventory":
@@ -59,6 +58,9 @@ class Inventory:
         if self.category is None:
             return self.show_inventory()
         return self.show_inventory_subset(self.owner, self.category)
+    
+    def sort_items_by_category(self, inventory, category):
+        return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
 
     def show_inventory(self):
         if self.owner.inventory == []:
@@ -68,7 +70,7 @@ class Inventory:
         for parent in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
             words = re.findall('[A-Z][^A-Z]*', parent.__name__)
             parent_name = ' '.join(words) + "s" + ":"
-            items_subset = sorted([item for item in self.owner.inventory if isinstance(item, parent)], key=lambda item: item.name.lower())
+            items_subset = self.sort_items_by_category(self.owner.inventory, parent)
 
             if items_subset:
                 response += f"<p style='margin: 5px 0; color: #1296d3;'>{parent_name}</p>"
@@ -81,7 +83,7 @@ class Inventory:
     def show_inventory_subset(self, owner, category):
         if category in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
             category = globals()[category]
-            items_subset = sorted([item for item in owner.inventory if isinstance(item, category)], key=lambda item: item.name.lower())
+            items_subset = self.sort_items_by_category(owner.inventory, category)
             if items_subset == []:
                 return self.handle_if_inventory_is_empty()
             response = ""
@@ -134,7 +136,7 @@ class Inventory:
             inventory = self.room.inventory
         elif self.purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
             category = globals()[self.purpose]
-            inventory = sorted([item for item in self.owner.inventory if isinstance(item, category)], key=lambda item: item.name.lower())
+            inventory = self.sort_items_by_category(self.owner.inventory, category)
         else:
             inventory = self.player.inventory
         return inventory
