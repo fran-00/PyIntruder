@@ -1,5 +1,6 @@
 import re
 import random
+from dataclasses import dataclass
 
 from engine.utils.combat_system import Combat
 from entities.templates import Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon, Trader
@@ -57,7 +58,7 @@ class Inventory:
         self.category = args[3]
         if self.category is None:
             return self.show_inventory()
-        return self.show_inventory_subset()
+        return self.show_inventory_subset(self.owner, self.category)
 
     def show_inventory(self):
         if self.owner.inventory == []:
@@ -77,10 +78,10 @@ class Inventory:
                 index += 1
         return response
 
-    def show_inventory_subset(self):
-        if self.category in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
-            category = globals()[self.category]
-            items_subset = sorted([item for item in self.owner.inventory if isinstance(item, category)], key=lambda item: item.name.lower())
+    def show_inventory_subset(self, owner, category):
+        if category in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
+            category = globals()[category]
+            items_subset = sorted([item for item in owner.inventory if isinstance(item, category)], key=lambda item: item.name.lower())
             if items_subset == []:
                 return self.handle_if_inventory_is_empty()
             response = ""
@@ -115,7 +116,6 @@ class Inventory:
         self.owner = args[1]
         self.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
         self.purpose = args[2]
-        self.category = args[3]
         action = args[-1]
         inventory = self.choose_queued_inventory()
         if action in ('q', 'exit', 'no'):
@@ -174,11 +174,15 @@ class Inventory:
         giver.inventory.remove(item)
         receiver.inventory.append(item)
 
+
+@dataclass
+class Trading:
+
     @staticmethod
     def initialize_trade(*args):
         talker = args[1]
         if talker and isinstance(talker, Trader):
-            Inventory.fill_trader_inventory(talker)
+            Trading.fill_trader_inventory(talker)
             return "<p>(B)uy, (S)ell or (Q)uit?</p>"
         elif talker:
             return f"{talker.name} doesn't want to trade.", None
@@ -194,11 +198,11 @@ class Inventory:
             case "b":
                 trader.is_selling = True
                 player.is_selling = False
-                return Inventory.check_someone_inventory(trader, "trade-trader")
+                return Inventory().show_inventory_subset(trader, f"{trader.type.__name__}")
             case "s":
                 trader.is_selling = False
                 player.is_selling = True
-                return Inventory.check_someone_inventory(player, "trade-player")
+                return Inventory().show_inventory_subset(player, f"{trader.type.__name__}")
             case "q":
                 return "Come back when you want to trade!", None
             case _:

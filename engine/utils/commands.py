@@ -2,7 +2,7 @@ import re
 
 import world.parser as parser
 from engine.utils.combat_system import Combat
-from engine.utils.inventory import Inventory
+from engine.utils.inventory import Inventory, Trading
 from engine.utils.get_drop import GetDrop
 from engine.utils.game_state import Save, Reload
 
@@ -191,12 +191,11 @@ class Commands:
                     return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk."
 
                 elif command == "TRADE":
-                    # TODO
                     self.arguments_list = [self.player, self.room.talker, "trade"]
                     return (
-                        Inventory.initialize_trade,
-                        Inventory.trading_mode,
-                        Inventory.choose_item,
+                        Trading.initialize_trade,
+                        Trading.trading_mode,
+                        Inventory().choose_item,
                     )
         return ("I beg your pardon?")
 
