@@ -116,9 +116,7 @@ class GameModel(QObject):
                 if nested_response[1] is None:
                     break
                 elif nested_response[1] == "dialogue":
-                    self.commands.arguments_list.append(nested_response[2])
-                    self.commands.arguments_list.append(nested_response[3])
-                    self.event_loop.exec()
+                    self.process_dialogue(nested_response)
 
             else:
                 self.model_signal_to_controller.emit(nested_response)
@@ -126,6 +124,12 @@ class GameModel(QObject):
                     break
                 else:
                     self.event_loop.exec()
+
+    def process_dialogue(self, nested_response):
+        # TODO: Add a way to process dialogues with npcs
+        self.commands.arguments_list.append(nested_response[2])
+        self.commands.arguments_list.append(nested_response[3])
+        self.event_loop.exec()
 
     def process_enemy_attack(self):
         """Handle an enemy attack on the player.
