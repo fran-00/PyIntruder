@@ -37,74 +37,6 @@ class Inventory:
         return response
 
     @staticmethod
-    def trading_mode(*args):
-        player = args[0]
-        trader = args[1]
-        action = args[-1]
-        match action:
-            case "b":
-                trader.is_selling = True
-                player.is_selling = False
-                return Inventory.check_someone_inventory(trader, "trade-trader")
-            case "s":
-                trader.is_selling = False
-                player.is_selling = True
-                return Inventory.check_someone_inventory(player, "trade-player")
-            case "q":
-                return "Come back when you want to trade!", None
-            case _:
-                return "Invalid choice, try again.", None
-
-    @staticmethod
-    def initialize_trade(*args):
-        talker = args[1]
-        if talker and isinstance(talker, Trader):
-            Inventory.fill_trader_inventory(talker)
-            sentence = talker.get_random_opening_sentence(f"{talker.name}")
-            # FIXME: sentence is not shown
-            return f"<p>{sentence}<p><p>(B)uy, (S)ell or (Q)uit?</p>"
-        elif talker:
-            return f"{talker.name} doesn't want to trade.", None
-        else:
-            return "There is no one to trade with.", None
-
-    @staticmethod
-    def fill_trader_inventory(talker):
-        items_list = ItemsFactory().get_entities_list(talker.type)
-        if not talker.inventory:
-            talker.inventory += random.sample(items_list, k=10)
-
-    def show_instructions(func):
-        def wrapper(*args):
-            player = args[0]
-            purpose = args[2]
-            match purpose:
-                case "my-inventory":
-                    response = f"<p>Your wealth: {player.gold} §</p>"
-                    return func(*args) + response
-                case "trade-trader":
-                    response = f"What do you want to buy? You have {player.gold} §."
-                case "trade-player":
-                    response = "What do you want to sell?"
-                case "pick-up":
-                    response = "What do you want to pick up?"
-                case "drop":
-                    response = "What do you want to drop?"
-                case "Curse":
-                    response = (
-                        f"<p>Ok, what curse do you want to cast?</p>"
-                        f"<p>You have {player.mana} Mana.</p>"
-                    )
-                case "Healer":
-                    response = (
-                        f"<p>Your health is {player.hp}/{player.max_hp}.</p>"
-                        "<p>What do you want to treat yourplayer with?</p>"
-                    )
-            response += "<p>Choose an item or press Q to quit.</p>"
-            return func(*args) + response
-        return wrapper
-
-    @staticmethod
     def check_someone_inventory(*args):
         someone = args[0]
         purpose = args[1]
@@ -145,7 +77,6 @@ class Inventory:
             case _:
                 return "Error"
 
-    @show_instructions
     @staticmethod
     def show_inventory(someone, inventory, purpose):
         if purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
@@ -257,3 +188,71 @@ class Inventory:
             receiver.gold -= item.value
         giver.inventory.remove(item)
         receiver.inventory.append(item)
+
+    # @staticmethod
+    # def trading_mode(*args):
+    #     player = args[0]
+    #     trader = args[1]
+    #     action = args[-1]
+    #     match action:
+    #         case "b":
+    #             trader.is_selling = True
+    #             player.is_selling = False
+    #             return Inventory.check_someone_inventory(trader, "trade-trader")
+    #         case "s":
+    #             trader.is_selling = False
+    #             player.is_selling = True
+    #             return Inventory.check_someone_inventory(player, "trade-player")
+    #         case "q":
+    #             return "Come back when you want to trade!", None
+    #         case _:
+    #             return "Invalid choice, try again.", None
+
+    # @staticmethod
+    # def initialize_trade(*args):
+    #     talker = args[1]
+    #     if talker and isinstance(talker, Trader):
+    #         Inventory.fill_trader_inventory(talker)
+    #         sentence = talker.get_random_opening_sentence(f"{talker.name}")
+    #         # FIXME: sentence is not shown
+    #         return f"<p>{sentence}<p><p>(B)uy, (S)ell or (Q)uit?</p>"
+    #     elif talker:
+    #         return f"{talker.name} doesn't want to trade.", None
+    #     else:
+    #         return "There is no one to trade with.", None
+
+    # @staticmethod
+    # def fill_trader_inventory(talker):
+    #     items_list = ItemsFactory().get_entities_list(talker.type)
+    #     if not talker.inventory:
+    #         talker.inventory += random.sample(items_list, k=10)
+
+    # def show_instructions(func):
+    #     def wrapper(*args):
+    #         player = args[0]
+    #         purpose = args[2]
+    #         match purpose:
+    #             case "my-inventory":
+    #                 response = f"<p>Your wealth: {player.gold} §</p>"
+    #                 return func(*args) + response
+    #             case "trade-trader":
+    #                 response = f"What do you want to buy? You have {player.gold} §."
+    #             case "trade-player":
+    #                 response = "What do you want to sell?"
+    #             case "pick-up":
+    #                 response = "What do you want to pick up?"
+    #             case "drop":
+    #                 response = "What do you want to drop?"
+    #             case "Curse":
+    #                 response = (
+    #                     f"<p>Ok, what curse do you want to cast?</p>"
+    #                     f"<p>You have {player.mana} Mana.</p>"
+    #                 )
+    #             case "Healer":
+    #                 response = (
+    #                     f"<p>Your health is {player.hp}/{player.max_hp}.</p>"
+    #                     "<p>What do you want to treat yourplayer with?</p>"
+    #                 )
+    #         response += "<p>Choose an item or press Q to quit.</p>"
+    #         return func(*args) + response
+    #     return wrapper
