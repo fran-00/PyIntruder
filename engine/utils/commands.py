@@ -85,7 +85,7 @@ class Commands:
                         else "There is no one to attack here!"
                     )
                 elif command == "CURSE":
-                    self.arguments_list = [self.player, self.player, "Curse", "Curse"]
+                    self.arguments_list = [self.player, self.player, "curse", "Curse"]
                     return (
                         (Inventory().collect_request_data, Inventory().choose_item)
                         if self.room.enemy and self.room.enemy.is_alive()
