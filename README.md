@@ -5,7 +5,7 @@
 You can move around the map and interact with game world by entering commands into the text input line at the bottom of the interface or pressing buttons.
 To move to an adjacent room, simply enter one of the four cardinal points (**N**, **S**, **W**, **E**) or move by arrows.
 
-You can see the world map by typing the (**M**) command (it will be shown in the terminal *for now*) and change it in *world.parser.WorldCreator* file via the **DSL**.
+You can see the world map by typing the (**M**) command (it will be shown in the terminal *for now*).
 
 When player enters a room where there is a living enemy, they will automatically be attacked and can respond with a physical attack (**A**) by using a weapon or by casting a curse (**C**).
 Weapon attacks can miss, while curses cannot but each curse cast consumes a varying amount of Mana.
@@ -61,6 +61,32 @@ The recognized commands case insensitive:
 - [ ]: Improve algorithms used to calculate item stats so that gameplay is as balanced as possible.
 
 ## Notes
+
+**This game is not complete**. Many room types and enemies that I plan to include in the game world, game events and dialogues with NPCs have not been implemented yet, plus the current game map is tiny: I used it for development purposes only and is not intended to be the final map. The final game map could be something like this:
+
+    |  |  |  |  |  |  |  |RV|IN|  |  |  |  |  |  |
+    |  |  |  |  |  |  |  |RV|  |  |  |Lo|  |  |  |
+    |OK|.2|..|.2|..|.3|  |RV|  |.3|..|.3|..|.3|  |
+    |  |.2|  |.1|  |..|  |RV|  |..|  |  |  |.3|  |
+    |  |.1|  |..|  |.3|  |RV|  |.4|  |  |  |..|  |
+    |  |.2|  |..|  |.2|  |RV|  |..|  |  |  |.4|  |
+    |  |..|  |BS|  |..|  |RV|  |.3|  |  |  |..|  |
+    |  |.2|  |  |  |.3|.4|..|.3|.4|  |  |  |.3|  |
+    |  |..|  |  |  |  |  |RV|  |  |  |..|  |..|  |
+    |  |.1|  |  |  |  |  |RV|  |  |  |.4|  |.4|  |
+    |  |.2|  |  |.1|.1|  |RV|  |  |  |..|  |.4|  |
+    |  |.1|..|..|.1|.1|  |RV|  |.5|..|..|.5|.4|  |
+    |  |  |.2|Lo|  |..|  |RV|  |..|  |Lo|  |  |  |
+    |  |  |.1|  |  |.1|  |RV|  |.5|  |  |  |  |  |
+    |  |.1|.2|  |FT|..|  |RV|..|..|  |  |  |  |  |
+    |  |  |.1|  |  |.2|  |RV|  |.5|  |.5|  |  |  |
+    |SS|..|.1|..|..|.1|  |RV|  |..|..|..|.5|.5|WW|
+    |  |  |.1|  |  |.1|  |RV|  |  |  |  |  |  |  |
+
+I really like [that shape](https://en.wikipedia.org/wiki/Hilbert_curve). If you want to try it you can copy and paste it in place of the one defined in *world.parser* module as **world_dsl**. Furthermore, game is missing a lot of GUI features because I'm still developing them.
+This game does not require the installation of any other library besides PyQt6 and the code is currently compatible with Python 3.11.
+
+## Known Issues
 
 On Linux (in my case on Ubuntu 20.04.6 LTS) you will probably encounter this issue:
 
