@@ -97,6 +97,13 @@ class GameModel(QObject):
         if self.room.enemy and self.room.enemy.is_alive():
             self.process_enemy_attack()
 
+        self.handle_player_status_signal(
+            self.player.hp,
+            self.player.max_hp,
+            self.player.mana,
+            self.player.max_mana
+        )
+
         self.event_loop.exec()
         game_response = self.commands.choose_action(self.action)
 
@@ -139,12 +146,6 @@ class GameModel(QObject):
         GameController using the `model_signal_to_controller` signal.
         """
         enemy_attacks = Combat.modify_player(self.room, self.player)
-        self.handle_player_status_signal(
-            self.player.hp,
-            self.player.max_hp,
-            self.player.mana,
-            self.player.max_mana
-        )
         self.model_signal_to_controller.emit(enemy_attacks)
 
     @pyqtSlot(str)
