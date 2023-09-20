@@ -9,8 +9,6 @@ class GameState:
     def __init__(self):
         self.player_data = []
         self.world_copy = []
-        self.list_with_all_rooms = []
-        self.rooms_data = []
 
 
 class Save(GameState):
@@ -21,8 +19,6 @@ class Save(GameState):
         self.delete_old_save()
         self.player_data = player.get_player_data()
         self.world_copy = WorldCreator.world_map
-        self.list_with_all_rooms = self.create_room_list()
-        self.rooms_data = self.save_rooms_data()
         self.write_on_file()
 
     def delete_old_save(self):
@@ -34,8 +30,6 @@ class Save(GameState):
         with open('saved_data.pkl', 'wb') as write:
             pickle.dump(self.player_data, write)
             pickle.dump(self.world_copy, write)
-            pickle.dump(self.list_with_all_rooms, write)
-            pickle.dump(self.rooms_data, write)
 
 
 class Reload(GameState):
@@ -46,8 +40,6 @@ class Reload(GameState):
         with open('saved_data.pkl', 'rb') as read:
             self.player_data = pickle.load(read)
             self.world_copy = pickle.load(read)
-            self.list_with_all_rooms = pickle.load(read)
-            self.rooms_data = pickle.load(read)
 
     def load_state(self, player):
         self.read_from_file()
