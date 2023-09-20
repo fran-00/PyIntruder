@@ -217,9 +217,6 @@ class Commands:
         elif command == "NEW GAME":
             #TODO
             pass
-        elif command == "QUIT":
-            #TODO
-            pass
         else:
             return "You are dead!"
 
