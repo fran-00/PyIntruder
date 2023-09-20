@@ -30,24 +30,6 @@ class Save(GameState):
             os.remove("saved_data.pkl")
             print("> Deleting old saved data...")
 
-    def create_room_list(self):
-        rooms_list_with_nested_lists = []
-        tiles = WorldCreator.get_world_map()
-        for tile in tiles:
-            rooms_list_with_nested_lists.extend(tile)
-        return [
-            room
-            for room in rooms_list_with_nested_lists
-            if isinstance(room, MapTile)
-        ]
-
-    def save_rooms_data(self):
-        rooms_data = []
-        for room in self.list_with_all_rooms:
-            room_data = room.get_room_data()
-            rooms_data.append(room_data)
-        return rooms_data
-
     def write_on_file(self):
         with open('saved_data.pkl', 'wb') as write:
             pickle.dump(self.player_data, write)
