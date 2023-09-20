@@ -1,10 +1,7 @@
-from dataclasses import dataclass
-
 from world.tiles import *
 from world.enemies_tiles import *
 
 
-@dataclass
 class WorldCreator:
     world_map = []
     start_tile_location = None

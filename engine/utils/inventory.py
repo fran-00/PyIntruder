@@ -1,6 +1,5 @@
 import re
 import random
-from dataclasses import dataclass
 
 from engine.utils.combat_system import Combat
 from entities.templates import Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon, Trader
@@ -183,7 +182,6 @@ class Inventory:
         receiver.inventory.append(item)
 
 
-@dataclass
 class Trading:
 
     @staticmethod

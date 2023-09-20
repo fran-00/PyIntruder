@@ -1,11 +1,9 @@
 import re
-from dataclasses import dataclass
 
 from engine.utils.inventory import Inventory
 from world.parser import WorldCreator
 
 
-@dataclass
 class GetDrop:
 
     @staticmethod

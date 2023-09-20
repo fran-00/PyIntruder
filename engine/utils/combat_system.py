@@ -1,11 +1,9 @@
 import random
-from dataclasses import dataclass
 
 from entities.templates import Weapon
 from gui.styles.decorators import *
 
 
-@dataclass
 class Combat:
 
     @staticmethod
