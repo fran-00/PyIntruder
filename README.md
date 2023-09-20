@@ -15,8 +15,8 @@
 
 ## How to Play
 
-You can move around the map and interact with game world by entering commands into the text input line at the bottom of the interface or pressing buttons.
-To move to an adjacent room, simply enter one of the four cardinal points (**N**, **S**, **W**, **E**) or move by arrows.
+You can move around the map and interact with game world by entering commands into the text input line or pressing buttons.
+To move to an adjacent room, simply enter one of the four cardinal points (**N**, **S**, **W**, **E**) or move by GUI arrows.
 
 You can see the world map by typing the (**M**) command (it will be shown in the terminal *for now*).
 
@@ -24,13 +24,15 @@ When player enters a room where there is a living enemy, they will automatically
 Weapon attacks can miss, while curses cannot but each curse cast consumes a varying amount of Mana.
 
 You shall pay attention to your amount of **HP** (**Health Points**) and **MANA**: if **HP** parameter reaches 0, the game is over. If your **MANA** reaches zero, you will no longer be able to cast curses.
-With the appropriate command you can consume an item to heal (**HEAL**) yourself or to restore mana (not yet implemented) : while wandering around the map, you may find a lot of useful stuff around you if you take a good look around. You can pick up items from the environment and drop items from your inventory.
+With the appropriate command you can consume an item to heal (**HEAL**) yourself or to restore mana (not yet implemented): while wandering around the map, you may find a lot of useful stuff around you if you take a good look around. You can pick up items from the environment or drop them from your inventory.
 
 If there is an NPC in the room, their presence is signaled and it is possible to talk to them with talk command (**Talk**). If NPC is willing to trade, they announces it and you can choose to Buy, Sell or Quit.
 
+You can save the current game and reload from file entering commands or selecting voices from the menu bar.
+
 ## Game Commands
 
-The recognized commands case insensitive:
+The recognized commands are case insensitive:
 
 - **NORTH**, **SOUTH**, **WEST**, **EAST** - Move to one of the adjacent rooms, if any.
 - **ATTACK** - Attack an enemy with a weapon.
@@ -55,8 +57,6 @@ The recognized commands case insensitive:
 
 ## Changelog
 
-![Game Structure](game_structure.png)
-
 - [x]: Added MVC architecture to play via PyQt6 GUI instead of using CLI.
 - [x]: Added a system of signals and slots to connect model, view and controller.
 - [x]: Added a new way to handle game loop using QThread to process user input received from View without breaking it.
@@ -68,10 +68,17 @@ The recognized commands case insensitive:
 - [x]: Updated QWidgets style using [QSS](https://doc.qt.io/qtforpython-6/overviews/stylesheet-examples.html).
 - [x]: Now text has a color scheme to highlight character names and commands using inline CSS and decorators.
 - [x]: Add new utils module to improve composition: original Player class was way too large and now methods related to inventory manipulation, actions and combat system have been moved into separate modules.
-- [x]: Added save and reload functionalities. They were present in the original version of the game but the code needs to be adapted to all the changes made since then.
+- [x]: Added save and reload functionalities. They were also present in the original version of the game but the code needed to be adapted to all the changes made since then.
+- [ ]: Add the possibility to start a new game.
+- [ ]: Add Mana recharging functionality.
 - [ ]: Implement dialogues with NPCs.
+- [ ]: Add game events.
 - [ ]: Show the world map, which is probably too large to be contained in a signal as a string. Maybe I'll try creating a widget for it.
 - [ ]: Improve algorithms used to calculate item stats so that gameplay is as balanced as possible.
+
+Here's a scheme of the game structure so far:
+
+![Game Structure](game_structure.png)
 
 ## Notes
 
