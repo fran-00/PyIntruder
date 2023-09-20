@@ -54,12 +54,12 @@ class Inventory:
         return wrapper
 
     @show_instructions
-    def collect_request_data(self, *args):
-        self.player = args[0]
-        self.owner = args[1]
+    def collect_request_data(self, player, owner, purpose, category, *args):
+        self.player = player
+        self.owner = owner
         self.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
-        self.purpose = args[2]
-        self.category = args[3]
+        self.purpose = purpose
+        self.category = category
         if self.category is None:
             return self.show_inventory()
         return self.show_inventory_subset(self.owner, self.category)
