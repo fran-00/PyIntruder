@@ -2,10 +2,10 @@
 
 ## How to Play
 
-You can move around the map and interact with game world by entering commands into the text input line at the bottom of the interface.
-To move to an adjacent room, simply enter one of the four cardinal points (**N**, **S**, **W**, **E**).
+You can move around the map and interact with game world by entering commands into the text input line at the bottom of the interface or pressing buttons.
+To move to an adjacent room, simply enter one of the four cardinal points (**N**, **S**, **W**, **E**) or move by arrows.
 
-You can see the world map by typing the (**M**) command (it will be shown in the terminal *for now*) and change it in *world.pareser.py* file via the **DSL**.
+You can see the world map by typing the (**M**) command (it will be shown in the terminal *for now*) and change it in *world.parser.WorldCreator* file via the **DSL**.
 
 When player enters a room where there is a living enemy, they will automatically be attacked and can respond with a physical attack (**A**) by using a weapon or by casting a curse (**C**).
 Weapon attacks can miss, while curses cannot but each curse cast consumes a varying amount of Mana.
@@ -20,24 +20,27 @@ If there is an NPC in the room, their presence is signaled and it is possible to
 The recognized commands case insensitive:
 
 - **NORTH**, **SOUTH**, **WEST**, **EAST** - Move to one of the adjacent rooms, if any.
-- **DIAGNOSE** - Show informations about the game and the player.
-- **LOOK** - Show a description of the current room and tells what items, enemies, or NPCs are in it.
-- **LOOK AT** - Show a detailed description of a specified object.
-- **INVENTORY** - Show items in Player's inventory
 - **ATTACK** - Attack an enemy with a weapon.
 - **CURSE** - Cast a curse on an enemy.
-- **RUN** - Try to run away from a fight.
-- **TALK TO** - Talk with a NPC.
-- **TRADE** - Trade with a NPC.
+- **DIAGNOSE** - Show informations about the game and the player.
+- **DROP FROM LIST** - Show inventory to choose what to drop.
+- **DROP ITEM** - Drop an inventory item in the current room.
 - **GET ITEM** - Get the specified item from the current room.
 - **GET FROM LIST** - Display a list of items to collect from the room.
-- **DROP ITEM** - Drop an inventory item in the current room.
-- **DROP FROM LIST** - Show inventory to choose what to drop.
 - **HEAL** - Select an item from inventory to restore HP.
-- **OPEN OBJECT** - Open the indicated object if it is openable.
+- **INVENTORY** - Show items in Player's inventory
+- **LOOK** - Show a description of the current room and tells what items, enemies, or NPCs are in it.
+- **LOOK AT** - Show a detailed description of a specified object.
 - **MAP** - Show world map.
+- **OPEN OBJECT** - Open the indicated object if it is openable.
+- **QUIT** - Exit the game.
+- **RELOAD** - Reload saved game from a .pkl file.
+- **RUN** - Try to run away from a fight.
+- **SAVE** - Save current game state on a .pkl file.
+- **TALK TO** - Talk with a NPC.
+- **TRADE** - Trade with a NPC.
 
-## Changelog (2020 - 2023)
+## Changelog
 
 ![Game Structure](game_structure.png)
 
@@ -51,8 +54,9 @@ The recognized commands case insensitive:
 - [x]: Improved GUI with action buttons and a menu bar using OOP composition.
 - [x]: Updated QWidgets style using [QSS](https://doc.qt.io/qtforpython-6/overviews/stylesheet-examples.html).
 - [x]: Now text has a color scheme to highlight character names and commands using inline CSS and decorators.
-- [x]: Add new dataclass implementation to improve composition: layer class was way too large and now methods related to inventory manipulation, actions and combat system have been moved into dataclasses and made staticmethods.
-- [ ]: Add save, reload and restart functionalities. They were present in the original version of the game but the code needs to be adapted to all the changes made since then.
+- [x]: Add new utils module to improve composition: original Player class was way too large and now methods related to inventory manipulation, actions and combat system have been moved into separate modules.
+- [x]: Added save and reload functionalities. They were present in the original version of the game but the code needs to be adapted to all the changes made since then.
+- [ ]: Implement dialogues with NPCs.
 - [ ]: Show the world map, which is probably too large to be contained in a signal as a string. Maybe I'll try creating a widget for it.
 - [ ]: Improve algorithms used to calculate item stats so that gameplay is as balanced as possible.
 
@@ -64,6 +68,6 @@ On Linux (in my case on Ubuntu 20.04.6 LTS) you will probably encounter this iss
     This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
     Available platform plugins are: xcb, linuxfb, offscreen, eglfs, vkkhrdisplay, wayland, wayland-egl, minimal, vnc, minimalegl."
 
-To solve it, run this command:
+To solve it, try to run this command:
 
     sudo apt-get install '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
