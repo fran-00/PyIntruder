@@ -117,12 +117,12 @@ class Inventory:
             case _:
                 return "Error"
 
-    def choose_item(self, *args):
-        self.player = args[0]
+    def choose_item(self, player, owner, purpose, *args):
+        self.player = player
         self.room = WorldCreator.tile_at(self.player.x, self.player.y) # This must be set here: when commands calls choose_item a new instance of this class is created
-        self.owner = args[1]
+        self.owner = owner
         self.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
-        self.purpose = args[2]
+        self.purpose = purpose
         action = args[-1]
         inventory = self.choose_requested_inventory()
         if action in ('q', 'exit', 'no'):
