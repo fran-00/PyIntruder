@@ -1,5 +1,18 @@
 # PyIntruder
 
+## How to Install
+
+1. Create a virtual environment with Python 3.11.
+2. Install requirements (or just install PyQt6):
+
+        pip install -r requirements.txt
+        # or
+        pip install PyQt6
+
+3. Run the game:
+
+        python launcher.py
+
 ## How to Play
 
 You can move around the map and interact with game world by entering commands into the text input line at the bottom of the interface or pressing buttons.
