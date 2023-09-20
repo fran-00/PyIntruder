@@ -44,7 +44,7 @@ class GameView(QMainWindow):
 
     def handle_user_action(self, command):
         action = self.input_box.text().strip() if command == "none" else command
-        return self.process_action(action)
+        return self.close() if action.lower() == "quit" else self.process_action(action)
 
     def process_action(self, action):
         # Emits the signal that contains user input
