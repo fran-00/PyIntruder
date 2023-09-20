@@ -269,12 +269,14 @@ class Combat:
             return (
                 f"<p>{room.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
                 f"<p>You are dead...</p>"
+                f"<p style='color:white'>You can start a New Game, Reload from file (if any) or Quit.</p>"
             )
         elif player.hp <= 0:
             player.hp = 0
             return (
                 f"<p>{room.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
-                f"<p>Your armor reduce the damage by {damage_reduction or 0} but you died anyway...</p>"
+                f"<p>Your armor reduce the damage by {damage_reduction} but you died anyway...</p>"
+                f"<p style='color:white'>You can start a New Game, Reload from file (if any) or Quit.</p>"
             )
         if damage_reduction is not None:
             return (
