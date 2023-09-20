@@ -185,8 +185,7 @@ class Inventory:
 class Trading:
 
     @staticmethod
-    def initialize_trade(*args):
-        talker = args[1]
+    def initialize_trade(player, talker, *args):
         if talker and isinstance(talker, Trader):
             Trading.fill_trader_inventory(talker)
             return "<p>(B)uy, (S)ell or (Q)uit?</p>"
