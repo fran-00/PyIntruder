@@ -78,6 +78,9 @@ class Commands:
 
         for command, regex in self.commands_dict.items():
             if re.match(regex, action):
+                if not self.player.is_alive():
+                    return self.process_game_over(command)
+
                 if command == "ATTACK":
                     return (
                         Combat.attack_command_handler(self.player, self.room)
@@ -201,6 +204,24 @@ class Commands:
                         Inventory().choose_item,
                     )
         return ("I beg your pardon?")
+
+    def process_game_over(self, command):
+        if command == "RELOAD":
+            if Reload().check_if_file_exists():
+                Reload().load_state(self.player)
+                return (
+                    "Your game has been loaded."
+                    f"{self.get_room_description()}"
+                )
+            return("File does not exists.")
+        elif command == "NEW GAME":
+            #TODO
+            pass
+        elif command == "QUIT":
+            #TODO
+            pass
+        else:
+            return "You are dead!"
 
     def move(self, action):
         """Move the player in the specified direction if possible and return the room description.
