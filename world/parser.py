@@ -125,10 +125,6 @@ class WorldCreator:
             return None
 
     @staticmethod
-    def get_world_map():
-        return WorldCreator.world_map
-
-    @staticmethod
     def set_world_map(restored_map):
         WorldCreator.world_map = restored_map
         return
