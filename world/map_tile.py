@@ -30,9 +30,6 @@ class MapTile:
         self.water = False
         self.choose_random_items()
 
-    def get_room_data(self):
-        return list(self.__dict__.values())
-
     def handle_event(self, *args):
         pass
 
