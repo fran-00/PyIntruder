@@ -183,9 +183,9 @@ class GetDrop:
 
         """
         response = "".join(
-            f"{item.name}: taken."
+            f"<p><b>{item.name}</b>: taken.</p>"
             if purpose == "get"
-            else f"{item.name}: dropped."
+            else f"<p><b>{item.name}</b>: dropped.</p>"
             for item in giver.inventory
         )
         receiver.inventory.extend(giver.inventory)
