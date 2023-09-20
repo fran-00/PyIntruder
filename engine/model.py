@@ -135,8 +135,11 @@ class GameModel(QObject):
         attacks on the player. The resulting `enemy_attacks` are emitted to
         GameController using the `model_signal_to_controller` signal.
         """
-        enemy_attacks = Combat.modify_player(self.room, self.player)
-        self.model_signal_to_controller.emit(enemy_attacks)
+        if self.player.is_alive():
+            enemy_attacks = Combat.modify_player(self.room, self.player)
+            self.model_signal_to_controller.emit(enemy_attacks)
+        else:
+            self.model_signal_to_controller.emit("You can start a New Game, Reload from file (if any) or Quit.")
 
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):
