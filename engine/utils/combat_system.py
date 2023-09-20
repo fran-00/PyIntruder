@@ -263,8 +263,14 @@ class Combat:
 
         player.hp -= damage
 
-        if player.hp <= 0:
+        if player.hp <= 0 and not damage_reduction:
             # prevents HP from dropping below 0
+            player.hp = 0
+            return (
+                f"<p>{room.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
+                f"<p>You are dead...</p>"
+            )
+        elif player.hp <= 0:
             player.hp = 0
             return (
                 f"<p>{room.enemy.styled_name()} inflicts {damage} DMG to you.</p>"
