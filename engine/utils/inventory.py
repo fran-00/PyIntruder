@@ -196,9 +196,7 @@ class Trading:
             return "There is no one to trade with.", None
 
     @staticmethod
-    def trading_mode(*args):
-        player = args[0]
-        trader = args[1]
+    def trading_mode(player, trader, *args):
         action = args[-1]
         match action:
             case "b":
