@@ -1,7 +1,6 @@
 import os
 import pickle
 
-from world.map_tile import MapTile
 from world.parser import WorldCreator
 
 
