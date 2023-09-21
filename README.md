@@ -1,5 +1,7 @@
 # PyIntruder
 
+This is a **text-base role-playing game** (AKA [interactive fiction](https://en.wikipedia.org/wiki/Interactive_fiction)), mostly inspired by [Zork series](https://en.wikipedia.org/wiki/Zork) (you can play *Zork I: The Great Underground Empire* [here](https://textadventures.co.uk/games/view/5zyoqrsugeopel3ffhz_vq/zork)) and by [The Hitchhiker's Guide to the Galaxy](https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy_(video_game)) (you can play it [here](https://www.bbc.co.uk/programmes/articles/1g84m0sXpnNCv84GpN2PLZG/the-game-30th-anniversary-edition)).
+
 ## How to Install
 
 1. Create a virtual environment with Python 3.11.
