@@ -33,6 +33,8 @@ class GameView(QMainWindow):
         main_layout.addWidget(log_view)
         main_layout.addLayout(input_layout)
         main_layout.addLayout(buttons_layout)
+        # Set focus on input box
+        self.input_box.setFocus()
 
     def on_log_view(self):
         """Add widget for displaying inputs and outputs"""
