@@ -1,6 +1,7 @@
-import random
-
-from .templates import Armor, Curse, Enemy, Healer, ManaRecharger, MissionRelatedItem, NonPlayableCharacter, Surrounding, Trader, Weapon
+from .templates import (
+    Armor, Curse, Enemy, Healer, ManaRecharger, MissionRelatedItem,
+    NonPlayableCharacter, Surrounding, Trader, Weapon
+)
 
 
 class Factory:
