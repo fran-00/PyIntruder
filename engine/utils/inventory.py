@@ -173,7 +173,7 @@ class Inventory:
                 Inventory.items_swapper(Inventory.player, Inventory.room.talker, choice, Inventory.purpose)
                 return f"Bye {choice.name}!"
             case "trade" if not Inventory.player.is_selling:
-                Inventory.items_swapper(Inventory.room.talker, Inventory.player, choice, Inventory.purpose)
+                Inventory.items_swapper(Inventory.player.room.talker, Inventory.player, choice, Inventory.purpose)
                 return f"Good! Now {choice.name} is yours!"
             case "pick-up":
                 Inventory.items_swapper(Inventory.room, Inventory.player, choice, Inventory.purpose)
