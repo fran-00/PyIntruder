@@ -15,6 +15,7 @@ class Player(Entity):
         self.name = 'Your Name Here'
         self.x = WorldCreator.start_tile_location[0]
         self.y = WorldCreator.start_tile_location[1]
+        self.room = WorldCreator.tile_at(self.x, self.y)
 
         self.inventory = [items().stygian_blue,
                           items().wire,
