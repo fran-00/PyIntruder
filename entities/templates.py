@@ -1,7 +1,7 @@
 import json
 import random
 
-from gui.styles.decorators import *
+from gui.styles.decorators import bold_text, underline_text, white_text
 
 
 with open('entities/data/items_data.json') as f:

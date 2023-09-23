@@ -1,7 +1,7 @@
 import random
 
 from entities.templates import Weapon
-from gui.styles.decorators import *
+from gui.styles.decorators import green_text, red_text
 
 
 class Combat:
