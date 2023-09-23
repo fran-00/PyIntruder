@@ -6,6 +6,7 @@ from engine.utils.inventory import Inventory, Trading
 from engine.utils.get_drop import GetDrop
 from engine.utils.game_state import Save, Reload
 
+
 class Commands:
     def __init__(self, player, room):
         self.player = player
@@ -88,7 +89,8 @@ class Commands:
                         else "There is no one to attack here!"
                     )
                 elif command == "CURSE":
-                    self.arguments_list = [self.player, self.player, "curse", "Curse"]
+                    self.arguments_list = [self.player,
+                                           self.player, "curse", "Curse"]
                     return (
                         (Inventory.collect_request_data, Inventory.choose_item)
                         if self.room.enemy and self.room.enemy.is_alive()
@@ -106,7 +108,8 @@ class Commands:
                     )
 
                 elif command == "DROP FROM LIST":
-                    self.arguments_list = [self.player, self.player, "drop", None]
+                    self.arguments_list = [
+                        self.player, self.player, "drop", None]
                     return (
                         Inventory.collect_request_data,
                         Inventory.choose_item
@@ -114,10 +117,15 @@ class Commands:
 
                 elif command == "DROP ITEM":
                     target = re.match(regex, action)[2]
-                    return GetDrop.get_and_drop_command_handler(self.player, self.room, target, "drop")
+                    return GetDrop.get_and_drop_command_handler(
+                        self.player,
+                        self.room,
+                        target,
+                        "drop")
 
                 elif command == "GET FROM LIST":
-                    self.arguments_list = [self.player, self.room, "pick-up", None]
+                    self.arguments_list = [
+                        self.player, self.room, "pick-up", None]
                     return (
                         Inventory.collect_request_data,
                         Inventory.choose_item
@@ -125,23 +133,39 @@ class Commands:
 
                 elif command == "GET ITEM":
                     target = re.match(regex, action)[2]
-                    return GetDrop.get_and_drop_command_handler(self.room, self.player, target, "get")
+                    return GetDrop.get_and_drop_command_handler(
+                        self.room,
+                        self.player,
+                        target,
+                        "get"
+                    )
 
                 elif command == "HEAL":
                     if self.player.hp == self.player.max_hp:
                         return "You are already in good health."
-                    self.arguments_list = [self.player, self.player, "heal", "Healer"]
+                    self.arguments_list = [
+                        self.player, self.player,
+                        "heal", "Healer"
+                    ]
                     return (
                         Inventory.collect_request_data,
                         Inventory.choose_item
                     )
 
                 elif command == "INVENTORY":
-                    return Inventory.collect_request_data(self.player, self.player, "player-inventory", None)
+                    return Inventory.collect_request_data(
+                        self.player,
+                        self.player,
+                        "player-inventory",
+                        None
+                    )
 
                 elif command == "LOOK AT":
                     target = re.match(regex, action)[2]
-                    return self.room.look_at_command_handler(target, self.player)
+                    return self.room.look_at_command_handler(
+                        target,
+                        self.player
+                    )
 
                 elif command == "LOOK":
                     return self.room.look_command_handler()
@@ -167,7 +191,7 @@ class Commands:
                             "Your game has been loaded."
                             f"{self.get_room_description()}"
                         )
-                    return("File does not exists.")
+                    return ("File does not exists.")
 
                 elif command == "RUN":
                     if self.room.enemy and self.room.enemy.is_alive():
@@ -197,7 +221,8 @@ class Commands:
                     return "Hmmm ... A tree looks at you expectantly, as if you seemed to be about to talk."
 
                 elif command == "TRADE":
-                    self.arguments_list = [self.player, self.room.talker, "trade"]
+                    self.arguments_list = [
+                        self.player, self.room.talker, "trade"]
                     return (
                         Trading.initialize_trade,
                         Trading.trading_mode,
@@ -213,15 +238,16 @@ class Commands:
                     "Your game has been loaded."
                     f"{self.get_room_description()}"
                 )
-            return("File does not exists.")
+            return ("File does not exists.")
         elif command == "NEW GAME":
-            #TODO
+            # TODO
             pass
         else:
             return "You are dead!"
 
     def move(self, action):
-        """Move the player in the specified direction if possible and return the room description.
+        """Move the player in the specified direction if possible and return
+        the room description.
 
         Parameters
         ----------
@@ -235,13 +261,17 @@ class Commands:
             message if the requested direction is not valid.
 
         """
-        if re.match(r'^(go\s)?n(o(rth)?)?$', action) and WorldCreator.tile_at(self.room.x, self.room.y - 1):
+        if (re.match(r'^(go\s)?n(o(rth)?)?$', action) and
+                WorldCreator.tile_at(self.room.x, self.room.y - 1)):
             self.player.move_north()
-        elif re.match(r'^(go\s)?s(o(uth)?)?$', action) and WorldCreator.tile_at(self.room.x, self.room.y + 1):
+        elif (re.match(r'^(go\s)?s(o(uth)?)?$', action) and
+                WorldCreator.tile_at(self.room.x, self.room.y + 1)):
             self.player.move_south()
-        elif re.match(r'^(go\s)?e(a(st)?)?$', action) and WorldCreator.tile_at(self.room.x + 1, self.room.y):
+        elif (re.match(r'^(go\s)?e(a(st)?)?$', action) and
+                WorldCreator.tile_at(self.room.x + 1, self.room.y)):
             self.player.move_east()
-        elif re.match(r'^(go\s)?w(e(st)?)?$', action) and WorldCreator.tile_at(self.room.x - 1, self.room.y):
+        elif (re.match(r'^(go\s)?w(e(st)?)?$', action) and
+                WorldCreator.tile_at(self.room.x - 1, self.room.y)):
             self.player.move_west()
         else:
             return "You can't go that way!"
