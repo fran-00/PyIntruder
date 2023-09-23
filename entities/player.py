@@ -95,10 +95,9 @@ class Player(Entity):
         return f"You leveled up! You are now at {self.lvl} LVL."
 
     def flee_from_fight(self):
-        room = WorldCreator.tile_at(self.x, self.y)
         d20 = random.randint(1, 20)
         if d20 == 20:
-            room.enemy.alive = False
+            self.room.enemy.alive = False
             return "No need to do this. Enemy is dead!"
         if d20 <= 15 or d20 >= 20:
             return "You can't escape!"
@@ -132,7 +131,6 @@ class Player(Entity):
 
     def diagnose_command_handler(self):
         """Return a formatted string with the player's current status information."""
-        room = WorldCreator.tile_at(self.x, self.y)
         return (
             f"<b>Level</b> : {self.lvl}<br>"
             f"<b>HP</b> : {self.hp}/{self.max_hp}<br>"
@@ -141,7 +139,7 @@ class Player(Entity):
             f"<b>XP</b> : {self.xp}/{self.xp_modifier}<br>"
             f"<b>Weapon equipped</b> : {self.current_weapon}<br>"
             f"<b>Turn</b> : {self.turn}<br>"
-            f"<b>Location</b> : {self.x}.{self.y} - {room.name}"
+            f"<b>Location</b> : {self.x}.{self.y} - {self.room.name}"
         )
 
     def show_map(self):
