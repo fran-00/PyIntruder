@@ -74,9 +74,11 @@ The recognized commands are case insensitive:
 - [ ]: Add the possibility to start a new game.
 - [ ]: Add Mana recharging functionality.
 - [ ]: Implement dialogues with NPCs.
+- [ ]: Add new enemies and items.
 - [ ]: Add game events.
 - [ ]: Show the world map, which is probably too large to be contained in a signal as a string. Maybe I'll try creating a widget for it.
 - [ ]: Improve algorithms used to calculate item stats so that gameplay is as balanced as possible.
+- [ ]: Add the ability to navigate through command history using up and down arrow keys.
 
 Here's a scheme of the game structure so far:
 
