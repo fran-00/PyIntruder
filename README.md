@@ -78,7 +78,8 @@ The recognized commands are case insensitive:
 - [ ]: Add game events.
 - [ ]: Show the world map, which is probably too large to be contained in a signal as a string. Maybe I'll try creating a widget for it.
 - [ ]: Improve algorithms used to calculate item stats so that gameplay is as balanced as possible.
-- [ ]: Add the ability to navigate through command history using up and down arrow keys.
+- [ ]: Add the functionality to navigate through command history using up and down arrow keys.
+- [ ]: Add the functionality to export the entire game log to a txt file.
 
 Here's a scheme of the game structure so far:
 
