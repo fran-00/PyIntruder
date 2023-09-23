@@ -1,7 +1,6 @@
 import re
 
 from engine.utils.inventory import Inventory
-from world.parser import WorldCreator
 
 
 class GetDrop:
@@ -64,11 +63,10 @@ class GetDrop:
             handle_when_item_cannot_be_picked_up and handle_when_item_cannot_be_dropped
             methods.
         """
-        room = WorldCreator.tile_at(player.x, player.y)
         if purpose == "get":
-            return GetDrop.handle_when_item_cannot_be_picked_up(player, target, room)
+            return GetDrop.handle_when_item_cannot_be_picked_up(player, target, player.room)
         elif purpose == "drop":
-            return GetDrop.handle_when_item_cannot_be_dropped(target, room)
+            return GetDrop.handle_when_item_cannot_be_dropped(target, player.room)
 
     @staticmethod
     def handle_when_item_cannot_be_picked_up(player, target, room):
