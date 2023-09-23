@@ -38,6 +38,10 @@ class Player(Entity):
         self.base_defence = 0
         self.previous_x = None
         self.previous_y = None
+    
+    def update_player_room(self):
+        self.room = WorldCreator.tile_at(self.x, self.y)
+        return
 
     def get_player_data(self):
         return list(self.__dict__.values())
