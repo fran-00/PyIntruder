@@ -90,7 +90,7 @@ class Commands:
                 elif command == "CURSE":
                     self.arguments_list = [self.player, self.player, "curse", "Curse"]
                     return (
-                        (Inventory().collect_request_data, Inventory().choose_item)
+                        (Inventory.collect_request_data, Inventory.choose_item)
                         if self.room.enemy and self.room.enemy.is_alive()
                         else "There is no one to curse here!"
                     )
@@ -108,8 +108,8 @@ class Commands:
                 elif command == "DROP FROM LIST":
                     self.arguments_list = [self.player, self.player, "drop", None]
                     return (
-                        Inventory().collect_request_data,
-                        Inventory().choose_item
+                        Inventory.collect_request_data,
+                        Inventory.choose_item
                     )
 
                 elif command == "DROP ITEM":
@@ -119,8 +119,8 @@ class Commands:
                 elif command == "GET FROM LIST":
                     self.arguments_list = [self.player, self.room, "pick-up", None]
                     return (
-                        Inventory().collect_request_data,
-                        Inventory().choose_item
+                        Inventory.collect_request_data,
+                        Inventory.choose_item
                     )
 
                 elif command == "GET ITEM":
@@ -132,12 +132,12 @@ class Commands:
                         return "You are already in good health."
                     self.arguments_list = [self.player, self.player, "heal", "Healer"]
                     return (
-                        Inventory().collect_request_data,
-                        Inventory().choose_item
+                        Inventory.collect_request_data,
+                        Inventory.choose_item
                     )
 
                 elif command == "INVENTORY":
-                    return Inventory().collect_request_data(self.player, self.player, "player-inventory", None)
+                    return Inventory.collect_request_data(self.player, self.player, "player-inventory", None)
 
                 elif command == "LOOK AT":
                     target = re.match(regex, action)[2]
@@ -201,7 +201,7 @@ class Commands:
                     return (
                         Trading.initialize_trade,
                         Trading.trading_mode,
-                        Inventory().choose_item,
+                        Inventory.choose_item,
                     )
         return ("I beg your pardon?")
 

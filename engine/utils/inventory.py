@@ -8,12 +8,13 @@ import world.tiles as world
 
 
 class Inventory:
-    def __init__(self):
-        self.player = None
-        self.owner = None
-        self.room = None
-        self.purpose = None
-        self.action = None
+    player = None
+    room = None
+    owner = None
+    room = None
+    purpose = None
+    action = None
+    category = None
 
     def show_instructions(func):
         """Add a response string to decorated function, based on its argument.
@@ -23,10 +24,10 @@ class Inventory:
         appended to the result string of the called function.
         """
         def wrapper(*args):
-            player = args[1] # The first argument of collect_request_data is self!
-            owner = args[2]
-            purpose = args[3]
             response = ""
+            player = args[0] # The first argument of collect_request_data is self!
+            owner = args[1]
+            purpose = args[2]
             if owner.inventory == []:
                 return func(*args)
             match purpose:
@@ -56,31 +57,35 @@ class Inventory:
         return wrapper
 
     @show_instructions
-    def collect_request_data(self, player, owner, purpose, category, *args):
+    @staticmethod
+    def collect_request_data(player, owner, purpose, category, *args):
         """Collects and organizes data for an inventory request."""
-        self.player = player
-        self.owner = owner
-        self.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
-        self.purpose = purpose
-        self.category = category
-        if self.category is None:
-            return self.show_inventory()
-        return self.show_inventory_subset(self.owner, self.category)
+        Inventory.player = player
+        Inventory.room = player.room
+        Inventory.owner = owner
+        Inventory.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
+        Inventory.purpose = purpose
+        Inventory.category = category
+        if Inventory.category is None:
+            return Inventory.show_inventory()
+        return Inventory.show_inventory_subset(Inventory.owner, Inventory.category)
     
-    def sort_items_by_category(self, inventory, category):
+    @staticmethod
+    def sort_items_by_category(inventory, category):
         """Sorts items in the inventory by a specified category."""
         return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
 
-    def show_inventory(self):
+    @staticmethod
+    def show_inventory():
         """Generate a f-string of owner's inventory categorized by item types."""
-        if self.owner.inventory == []:
-            return self.handle_if_inventory_is_empty()
+        if Inventory.owner.inventory == []:
+            return Inventory.handle_if_inventory_is_empty()
         response = ""
         index = 1
         for parent in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
             words = re.findall('[A-Z][^A-Z]*', parent.__name__)
             parent_name = ' '.join(words) + "s" + ":"
-            items_subset = self.sort_items_by_category(self.owner.inventory, parent)
+            items_subset = Inventory.sort_items_by_category(Inventory.owner.inventory, parent)
 
             if items_subset:
                 response += f"<p style='margin: 5px 0; color: #1296d3;'>{parent_name}</p>"
@@ -90,13 +95,14 @@ class Inventory:
                 index += 1
         return response
 
-    def show_inventory_subset(self, owner, category):
+    @staticmethod
+    def show_inventory_subset(owner, category):
         """Generate a f-string with items of a specific category from the owner's inventory."""
         if category in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
             category = globals()[category]
-            items_subset = self.sort_items_by_category(owner.inventory, category)
+            items_subset = Inventory.sort_items_by_category(owner.inventory, category)
             if items_subset == []:
-                return self.handle_if_inventory_is_empty()
+                return Inventory.handle_if_inventory_is_empty()
             response = ""
             index = 1
             for _, item in enumerate(items_subset, index):
@@ -104,11 +110,12 @@ class Inventory:
                 index += 1
         return response
 
-    def handle_if_inventory_is_empty(self):
+    @staticmethod
+    def handle_if_inventory_is_empty():
         """Handle cases when the inventory is empty based on the purpose of its request."""
-        match self.purpose:
+        match Inventory.purpose:
             case "player-inventory":
-                return f"Your inventory is empty! You have {self.player.gold} §."
+                return f"Your inventory is empty! You have {Inventory.player.gold} §."
             case "pick-up":
                 return "There is nothing to pick up.", None
             case "drop":
@@ -117,67 +124,67 @@ class Inventory:
                 return "You don't have anything to cure yourself with.", None
             case "curse":
                 return "You don't have any curse.", None
-            case "trade" if self.player.is_selling:
+            case "trade" if Inventory.player.is_selling:
                 return "You don't have anything to sell!", None
-            case "trade" if not self.player.is_selling:
+            case "trade" if not Inventory.player.is_selling:
                 return "Out of stock! Come back later!", None
             case _:
                 return "Error"
 
-    def choose_item(self, player, owner, purpose, *args):
+    @staticmethod
+    def choose_item(*args):
+        player = args[0]
         """Select an item from the inventory based on the user's input."""
-        self.player = player
-        self.room = self.player.room
-        self.owner = owner
-        self.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
-        self.purpose = purpose
         action = args[-1]
-        inventory = self.choose_requested_inventory()
+        inventory = Inventory.choose_requested_inventory(player)
         if action in ('q', 'exit', 'no'):
             return "Ok. Action cancelled."
         try:
             item_index = int(action)
             choice = inventory[item_index - 1]
-            return self.show_appropriate_answer(choice)
+            return Inventory.show_appropriate_answer(choice)
         except Exception as e:
             return f"{e}"
 
-    def choose_requested_inventory(self):
+    @staticmethod
+    def choose_requested_inventory(player):
         """Select and return the appropriate inventory based on the purpose of request."""
-        if self.purpose == "trade" and not self.player.is_selling:
-            inventory = self.room.talker.inventory
-        elif self.purpose == "pick-up":
-            inventory = self.room.inventory
-        elif self.purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
-            category = globals()[self.purpose]
-            inventory = self.sort_items_by_category(self.owner.inventory, category)
+        player.update_player_room()
+        if Inventory.purpose == "trade" and not player.is_selling:
+            inventory = Inventory.player.room.talker.inventory
+        elif Inventory.purpose == "pick-up":
+            inventory = Inventory.room.inventory
+        elif Inventory.purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
+            category = globals()[Inventory.purpose]
+            inventory = Inventory.sort_items_by_category(Inventory.owner.inventory, category)
         else:
-            inventory = self.player.inventory
+            inventory = player.inventory
         return inventory
 
-    def show_appropriate_answer(self, choice):
+    @staticmethod
+    def show_appropriate_answer(choice):
         """Display the appropriate answer for the given choice and purpose."""
         if choice.marketable == False:
             return f"You can't sell {choice.name}!"
-        match self.purpose:
+        match Inventory.purpose:
             case "my-inventory":
                 return f"{choice}: {choice.description}"
-            case "trade" if self.player.is_selling:
-                Inventory.items_swapper(self.player, self.room.talker, choice, self.purpose)
+            case "trade" if Inventory.player.is_selling:
+                Inventory.items_swapper(Inventory.player, Inventory.room.talker, choice, Inventory.purpose)
                 return f"Bye {choice.name}!"
-            case "trade" if not self.player.is_selling:
-                Inventory.items_swapper(self.room.talker, self.player, choice, self.purpose)
+            case "trade" if not Inventory.player.is_selling:
+                Inventory.items_swapper(Inventory.room.talker, Inventory.player, choice, Inventory.purpose)
                 return f"Good! Now {choice.name} is yours!"
             case "pick-up":
-                Inventory.items_swapper(self.room, self.player, choice, self.purpose)
+                Inventory.items_swapper(Inventory.room, Inventory.player, choice, Inventory.purpose)
                 return f"{choice.name}: taken."
             case "drop":
-                Inventory.items_swapper(self.player, self.room, choice, self.purpose)
+                Inventory.items_swapper(Inventory.player, Inventory.room, choice, Inventory.purpose)
                 return f"{choice.name}: dropped."
             case "curse":
-                return Combat.check_enemy_hp(self.player, self.room.enemy, Combat.curse_command_handler(self.player, self.room.enemy, choice))
+                return Combat.check_enemy_hp(Inventory.player, Inventory.room.enemy, Combat.curse_command_handler(Inventory.player, Inventory.room.enemy, choice))
             case "heal":
-                return self.player.heal_command_handler(choice)
+                return Inventory.player.heal_command_handler(choice)
             case _:
                 return "Problems"
 
@@ -212,11 +219,11 @@ class Trading:
             case "b":
                 trader.is_selling = True
                 player.is_selling = False
-                return Inventory().collect_request_data(player, trader, "trade", f"{trader.type_of_items.__name__}")
+                return Inventory.collect_request_data(player, trader, "trade", f"{trader.type_of_items.__name__}")
             case "s":
                 trader.is_selling = False
                 player.is_selling = True
-                return Inventory().collect_request_data(player, player, "trade", f"{trader.type_of_items.__name__}")
+                return Inventory.collect_request_data(player, player, "trade", f"{trader.type_of_items.__name__}")
             case "q":
                 return "Come back when you want to trade!", None
             case _:
