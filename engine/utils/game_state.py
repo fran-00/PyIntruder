@@ -41,15 +41,15 @@ class Reload(GameState):
 
     def load_state(self, player):
         self.read_from_file()
-        self.override_player_data(player)
-        self.override_rooms_data()
+        self.overwrite_player_data(player)
+        self.overwrite_world_data()
 
     def check_if_file_exists(self):
         return bool(os.path.isfile('./saved_data.pkl'))
 
-    def override_player_data(self, player):
+    def overwrite_player_data(self, player):
         for attr, value in zip(vars(player), self.player_data):
             setattr(player, attr, value)
 
-    def override_rooms_data(self):
+    def overwrite_world_data(self):
         return WorldCreator.set_world_map(self.world_copy)
