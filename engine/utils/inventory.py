@@ -4,7 +4,6 @@ import random
 from engine.utils.combat_system import Combat
 from entities.templates import Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon, Trader
 from entities.factory import ItemsFactory
-from world.parser import WorldCreator
 import world.tiles as world
 
 
@@ -128,7 +127,7 @@ class Inventory:
     def choose_item(self, player, owner, purpose, *args):
         """Select an item from the inventory based on the user's input."""
         self.player = player
-        self.room = WorldCreator.tile_at(self.player.x, self.player.y) # This must be set here: when commands calls choose_item a new instance of this class is created
+        self.room = self.player.room
         self.owner = owner
         self.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
         self.purpose = purpose
