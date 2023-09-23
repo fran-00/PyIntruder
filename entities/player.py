@@ -1,5 +1,4 @@
 import random
-import re
 
 from .templates import Entity
 from .factory import ItemsFactory as items
