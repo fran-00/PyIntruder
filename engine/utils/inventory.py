@@ -25,7 +25,8 @@ class Inventory:
         """
         def wrapper(*args):
             response = ""
-            player = args[0] # The first argument of collect_request_data is self!
+            # The first argument of collect_request_data is self!
+            player = args[0]
             owner = args[1]
             purpose = args[2]
             if owner.inventory == []:
@@ -63,17 +64,25 @@ class Inventory:
         Inventory.player = player
         Inventory.room = player.room
         Inventory.owner = owner
-        Inventory.owner.inventory.sort(key=lambda x: (x.__class__.__name__, x.name.lower()))
+        Inventory.owner.inventory.sort(
+            key=lambda x: (
+                x.__class__.__name__,
+                x.name.lower()
+            )
+        )
         Inventory.purpose = purpose
         Inventory.category = category
         if Inventory.category is None:
             return Inventory.show_inventory()
         return Inventory.show_inventory_subset(Inventory.owner, Inventory.category)
-    
+
     @staticmethod
     def sort_items_by_category(inventory, category):
         """Sorts items in the inventory by a specified category."""
-        return sorted([item for item in inventory if isinstance(item, category)], key=lambda item: item.name.lower())
+        return sorted(
+            [item for item in inventory if isinstance(item, category)],
+            key=lambda item: item.name.lower()
+        )
 
     @staticmethod
     def show_inventory():
@@ -85,8 +94,10 @@ class Inventory:
         for parent in [Armor, Curse, Healer, ManaRecharger, MissionRelatedItem, Weapon]:
             words = re.findall('[A-Z][^A-Z]*', parent.__name__)
             parent_name = ' '.join(words) + "s" + ":"
-            items_subset = Inventory.sort_items_by_category(Inventory.owner.inventory, parent)
-
+            items_subset = Inventory.sort_items_by_category(
+                Inventory.owner.inventory,
+                parent
+            )
             if items_subset:
                 response += f"<p style='margin: 5px 0; color: #1296d3;'>{parent_name}</p>"
 
@@ -98,9 +109,14 @@ class Inventory:
     @staticmethod
     def show_inventory_subset(owner, category):
         """Generate a f-string with items of a specific category from the owner's inventory."""
-        if category in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
+        if category in [
+                Armor.__name__, Curse.__name__, Healer.__name__,
+                ManaRecharger.__name__, MissionRelatedItem.__name__,
+                Weapon.__name__
+        ]:
             category = globals()[category]
-            items_subset = Inventory.sort_items_by_category(owner.inventory, category)
+            items_subset = Inventory.sort_items_by_category(
+                owner.inventory, category)
             if items_subset == []:
                 return Inventory.handle_if_inventory_is_empty()
             response = ""
@@ -154,9 +170,13 @@ class Inventory:
             inventory = Inventory.player.room.talker.inventory
         elif Inventory.purpose == "pick-up":
             inventory = Inventory.room.inventory
-        elif Inventory.purpose in [Armor.__name__, Curse.__name__, Healer.__name__, ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__]:
+        elif Inventory.purpose in [
+            Armor.__name__, Curse.__name__, Healer.__name__,
+            ManaRecharger.__name__, MissionRelatedItem.__name__, Weapon.__name__
+        ]:
             category = globals()[Inventory.purpose]
-            inventory = Inventory.sort_items_by_category(Inventory.owner.inventory, category)
+            inventory = Inventory.sort_items_by_category(
+                Inventory.owner.inventory, category)
         else:
             inventory = player.inventory
         return inventory
@@ -170,19 +190,41 @@ class Inventory:
             case "my-inventory":
                 return f"{choice}: {choice.description}"
             case "trade" if Inventory.player.is_selling:
-                Inventory.items_swapper(Inventory.player, Inventory.room.talker, choice, Inventory.purpose)
+                Inventory.items_swapper(
+                    Inventory.player,
+                    Inventory.room.talker,
+                    choice,
+                    Inventory.purpose
+                )
                 return f"Bye {choice.name}!"
             case "trade" if not Inventory.player.is_selling:
-                Inventory.items_swapper(Inventory.player.room.talker, Inventory.player, choice, Inventory.purpose)
+                Inventory.items_swapper(
+                    Inventory.player.room.talker,
+                    Inventory.player,
+                    choice,
+                    Inventory.purpose
+                )
                 return f"Good! Now {choice.name} is yours!"
             case "pick-up":
-                Inventory.items_swapper(Inventory.room, Inventory.player, choice, Inventory.purpose)
+                Inventory.items_swapper(
+                    Inventory.room,
+                    Inventory.player,
+                    choice,
+                    Inventory.purpose)
                 return f"{choice.name}: taken."
             case "drop":
-                Inventory.items_swapper(Inventory.player, Inventory.room, choice, Inventory.purpose)
+                Inventory.items_swapper(
+                    Inventory.player, Inventory.room, choice, Inventory.purpose)
                 return f"{choice.name}: dropped."
             case "curse":
-                return Combat.check_enemy_hp(Inventory.player, Inventory.room.enemy, Combat.curse_command_handler(Inventory.player, Inventory.room.enemy, choice))
+                return Combat.check_enemy_hp(
+                    Inventory.player, Inventory.room.enemy,
+                    Combat.curse_command_handler(
+                        Inventory.player,
+                        Inventory.room.enemy,
+                        choice
+                    )
+                )
             case "heal":
                 return Inventory.player.heal_command_handler(choice)
             case _:
@@ -219,11 +261,21 @@ class Trading:
             case "b":
                 trader.is_selling = True
                 player.is_selling = False
-                return Inventory.collect_request_data(player, trader, "trade", f"{trader.type_of_items.__name__}")
+                return Inventory.collect_request_data(
+                    player,
+                    trader,
+                    "trade",
+                    f"{trader.type_of_items.__name__}"
+                )
             case "s":
                 trader.is_selling = False
                 player.is_selling = True
-                return Inventory.collect_request_data(player, player, "trade", f"{trader.type_of_items.__name__}")
+                return Inventory.collect_request_data(
+                    player,
+                    player,
+                    "trade",
+                    f"{trader.type_of_items.__name__}"
+                )
             case "q":
                 return "Come back when you want to trade!", None
             case _:
