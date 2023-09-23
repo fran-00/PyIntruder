@@ -4,7 +4,6 @@ import re
 
 from entities.templates import Healer, ManaRecharger, Trader
 from entities.factory import ItemsFactory as items
-from gui.styles.decorators import *
 
 
 with open('world/data/tiles_data.json') as f:

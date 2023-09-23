@@ -6,7 +6,6 @@ from .factory import ItemsFactory as items
 from world.parser import WorldCreator
 import world.tiles as world
 from engine.utils.combat_system import Combat
-from gui.styles.decorators import *
 
 
 class Player(Entity):
