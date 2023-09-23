@@ -20,7 +20,7 @@ class GameView(QMainWindow):
         """Create a vertical layout for the window"""
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)
-        
+
         log_view = self.on_log_view()
         input_layout = GameEntry(self).on_input_layout()
         buttons_layout = GameButtons(self).on_parent_buttons_layout()
@@ -52,13 +52,14 @@ class GameView(QMainWindow):
         # Emits the signal that contains user input
         self.view_signal_to_controller.emit(action)
         # Append user input to log view window
-        self.log_view.append(f"<p style='color:#ffdc7d; font-weight:600'>>>> {action}</p>")
+        self.log_view.append(
+            f"<p style='color:#ffdc7d; font-weight:600'>>>> {action}</p>")
         # Resets the input box
         self.input_box.clear()
         self.input_box.setFocus()
 
     def load_css_file(self):
-        with open("gui/styles/styles.css","r") as file:
+        with open("gui/styles/styles.css", "r") as file:
             return file.read()
 
     @pyqtSlot(str)

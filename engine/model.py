@@ -55,11 +55,11 @@ class GameModel(QObject):
 
         while True:
             self.process_main_loop()
-    
+
     def process_main_loop(self):
         """
         TODO: Update docstring after methods extraction.
-        
+
         Process a tuple of methods in a for loop.
 
         First add action to be processed to argument_list attribute of Commands
@@ -139,7 +139,8 @@ class GameModel(QObject):
             enemy_attacks = Combat.modify_player(self.room, self.player)
             self.model_signal_to_controller.emit(enemy_attacks)
         else:
-            self.model_signal_to_controller.emit("You can start a New Game, Reload from file (if any) or Quit.")
+            self.model_signal_to_controller.emit(
+                "You can start a New Game, Reload from file (if any) or Quit.")
 
     @pyqtSlot(str)
     def handle_inbound_signal(self, user_action):

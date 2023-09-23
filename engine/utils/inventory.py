@@ -3,7 +3,7 @@ import random
 
 from engine.utils.combat_system import Combat
 from entities.templates import (
-    Armor, Curse, Healer, ManaRecharger, 
+    Armor, Curse, Healer, ManaRecharger,
     MissionRelatedItem, Weapon, Trader
 )
 from entities.factory import ItemsFactory

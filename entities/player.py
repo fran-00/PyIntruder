@@ -36,7 +36,7 @@ class Player(Entity):
         self.base_defence = 0
         self.previous_x = None
         self.previous_y = None
-    
+
     def update_player_room(self):
         self.room = WorldCreator.tile_at(self.x, self.y)
         return
@@ -217,7 +217,6 @@ class Player(Entity):
             row.extend(tile_type_dict[dsl_cell] for dsl_cell in dsl_cells)
             print("".join(row))
         print(f'You are here: ({loc_x},{loc_y})')
-
 
     def parse_available_directions(self):
         if WorldCreator.tile_at(self.room.x, self.room.y - 1):

@@ -10,7 +10,7 @@ class GameButtons:
         buttons_parent_layout.addLayout(self.on_movements_buttons())
         buttons_parent_layout.addLayout(self.on_actions_buttons())
         return buttons_parent_layout
-    
+
     def on_movements_buttons(self):
         """Add buttons for cardinal directions to game GUI"""
         buttons = []
@@ -39,12 +39,11 @@ class GameButtons:
         self.assign_css_class(inactive_buttons, "inactive_buttons")
 
         return directions_layout
-    
+
     def on_actions_buttons(self):
         """Add buttons for actions to game GUI"""
         buttons = []
         actions_parent_layout = QVBoxLayout(objectName="actions_parent_layout")
-        
         left_container = QVBoxLayout()
         right_container = QVBoxLayout()
 
@@ -64,7 +63,8 @@ class GameButtons:
 
     def add_button(self, text, command, layout, buttons_list):
         button = QPushButton(text)
-        button.clicked.connect(lambda: self.game_view.handle_user_action(command))
+        button.clicked.connect(
+            lambda: self.game_view.handle_user_action(command))
         layout.addWidget(button)
         buttons_list.append(button)
 
@@ -77,6 +77,7 @@ class GameButtons:
         for element in gui_elements:
             element.setProperty("class", class_name)
 
+
 class GameEntry:
     def __init__(self, game_view):
         self.game_view = game_view
@@ -84,12 +85,14 @@ class GameEntry:
     def on_input_layout(self):
         """Add horizzontal input box and a send button to submit"""
         self.game_view.input_box = QLineEdit()
-        self.game_view.input_box.returnPressed.connect(lambda: self.game_view.handle_user_action("none"))
+        self.game_view.input_box.returnPressed.connect(
+            lambda: self.game_view.handle_user_action("none"))
 
         # Button to submit input
         send_button = QPushButton("Enter", objectName="enter_button")
         # send_button.setObjectName("enter_button")
-        send_button.clicked.connect(lambda: self.game_view.handle_user_action("none"))
+        send_button.clicked.connect(
+            lambda: self.game_view.handle_user_action("none"))
 
         # Horizontal layout for input box and button
         input_layout = QHBoxLayout(objectName="input_layout")
