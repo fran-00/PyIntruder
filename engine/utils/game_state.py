@@ -23,7 +23,6 @@ class Save(GameState):
     def delete_old_save(self):
         if os.path.isfile('saved_data.pkl'):
             os.remove("saved_data.pkl")
-            print("> Deleting old saved data...")
 
     def write_on_file(self):
         with open('saved_data.pkl', 'wb') as write:
