@@ -36,7 +36,7 @@ class GetDrop:
         """
         if target == "all":
             return GetDrop.get_or_drop_all(giver, receiver, purpose)
-        player = receiver if target == "get" else giver
+        player = receiver if purpose == "get" else giver
         for item in giver.inventory:
             if GetDrop.match_target_name(target, item):
                 Inventory.items_swapper(giver, receiver, item, "get-drop")
