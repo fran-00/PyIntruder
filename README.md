@@ -4,7 +4,7 @@ This is a **text-base role-playing game** (AKA [interactive fiction](https://en.
 
 ## How to Install
 
-1. Create a virtual environment with Python 3.11.
+1. Create a virtual environment with Python 3.12.
 2. Install requirements (or just install PyQt6):
 
         pip install -r requirements.txt
