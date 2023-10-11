@@ -7,7 +7,6 @@ from entities.templates import (
     MissionRelatedItem, Weapon, Trader
 )
 from entities.factory import ItemsFactory
-import world.tiles as world
 
 
 class Inventory:
