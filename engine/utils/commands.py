@@ -1,10 +1,10 @@
 import re
 
 from world.parser import WorldCreator
-from engine.utils.combat_system import Combat
-from engine.utils.inventory import Inventory, Trading
-from engine.utils.get_drop import GetDrop
-from engine.utils.game_state import Save, Reload
+from .combat_system import Combat
+from .inventory import Inventory, Trading
+from .get_drop import GetDrop
+from .game_state import Save, Reload
 
 
 class Commands:

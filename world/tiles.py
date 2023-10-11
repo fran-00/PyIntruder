@@ -1,7 +1,7 @@
 import random
 
 from entities.factory import EntitiesFactory as entities
-from world.map_tile import MapTile
+from .map_tile import MapTile
 
 
 class StartTile(MapTile):

@@ -1,6 +1,6 @@
 import re
 
-from engine.utils.inventory import Inventory
+from .inventory import Inventory
 
 
 class GetDrop:

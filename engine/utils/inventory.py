@@ -1,7 +1,7 @@
 import re
 import random
 
-from engine.utils.combat_system import Combat
+from .combat_system import Combat
 from entities.templates import (
     Armor, Curse, Healer, ManaRecharger,
     MissionRelatedItem, Weapon, Trader
