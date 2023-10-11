@@ -4,6 +4,7 @@ QWidget {
     color: #ffffff;
     font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
+    border-radius: 4px;
 }
 
 /* Menu Bar */
