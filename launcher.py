@@ -8,6 +8,7 @@ from engine.view import GameView
 from engine.controller import GameController
 from entities.player import Player
 
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     WorldCreator.parse_world_dsl()
