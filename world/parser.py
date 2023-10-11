@@ -1,5 +1,5 @@
-from world.tiles import *
-from world.enemies_tiles import *
+from world import tiles
+from world import enemies_tiles
 
 
 class WorldCreator:
@@ -13,23 +13,23 @@ class WorldCreator:
 |!!|!!|!!|!!|.1|.1|.1|.1|.1|
 |SS|BS|.1|.1|.1|.1|.1|.1|.1|
 """
-    tile_type_dict = {"BS": BlacksmithTile,
-                    "!!": ChestTile,
-                    ".1": EnemyTile_1,
-                    ".2": EnemyTile_2,
-                    ".3": EnemyTile_3,
-                    ".4": EnemyTile_4,
-                    ".5": EnemyTile_5,
-                    "FT": FernsTile,
-                    "IN": IntruderTile,
-                    "RV": RiverTile,
-                    "Lo": LittleoTile,
-                    "OK": OakTile,
-                    "..": PathTile,
-                    "SS": StartTile,
-                    "TM": TempleTile,
-                    "WW": VictoryTile,
-                    "  ": None}
+    tile_type_dict = {"SS": tiles.StartTile,
+                      "WW": tiles.VictoryTile,
+                      "BS": tiles.BlacksmithTile,
+                      "!!": tiles.ChestTile,
+                      "FT": tiles.FernsTile,
+                      "IN": tiles.IntruderTile,
+                      "RV": tiles.RiverTile,
+                      "Lo": tiles.LittleoTile,
+                      "OK": tiles.OakTile,
+                      "..": tiles.PathTile,
+                      "TM": tiles.TempleTile,
+                      ".1": enemies_tiles.EnemyTile_1,
+                      ".2": enemies_tiles.EnemyTile_2,
+                      ".3": enemies_tiles.EnemyTile_3,
+                      ".4": enemies_tiles.EnemyTile_4,
+                      ".5": enemies_tiles.EnemyTile_5,
+                      "  ": None}
 
     @staticmethod
     def parse_world_dsl():
@@ -60,7 +60,7 @@ class WorldCreator:
             dsl_cells = [c for c in dsl_cells if c]
             for x, dsl_cell in enumerate(dsl_cells):
                 tile_type = WorldCreator.tile_type_dict[dsl_cell]
-                if tile_type == StartTile:
+                if tile_type == tiles.StartTile:
                     WorldCreator.start_tile_location = x, y
                 row.append(tile_type(x, y) if tile_type else None)
             WorldCreator.world_map.append(row)
