@@ -14,6 +14,7 @@ QMenuBar {
     border: 2px solid #FFF;
     font-size: 16px;
     font-weight: 700;
+    border-radius: none;
 }
 
 QMenuBar::item {
