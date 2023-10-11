@@ -1,5 +1,4 @@
-from world import tiles
-from world import enemies_tiles
+from world import tiles, enemies_tiles
 
 
 class WorldCreator:
