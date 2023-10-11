@@ -2,7 +2,7 @@ from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
 from world.parser import WorldCreator
 from .utils.commands import Commands
-from engine.utils.combat_system import Combat
+from .utils.combat_system import Combat
 
 
 class GameThread(QThread):
