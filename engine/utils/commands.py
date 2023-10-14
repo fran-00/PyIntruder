@@ -30,6 +30,7 @@ class Commands:
             'INVENTORY': r'^(i(nv(entory)?)?)$',
             'LOOK': r'^(l(ook)?)$',
             'LOOK AT': r'^(look at|examine|watch)\s+(.+)$',
+            'MANA': r'^(mana)$',
             'MAP': r'^(m(ap)?)$',
             'OPEN': r'^(open)$',
             'OPEN OBJECT': r'^(open)\s+(.+)$',
