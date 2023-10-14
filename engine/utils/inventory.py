@@ -220,10 +220,10 @@ class Inventory:
                 return f"{choice.name}: dropped."
             case "curse":
                 return Combat.check_enemy_hp(
-                    Inventory.player, Inventory.room.enemy,
+                    Inventory.player, Inventory.player.room.enemy,
                     Combat.curse_command_handler(
                         Inventory.player,
-                        Inventory.room.enemy,
+                        Inventory.player.room.enemy,
                         choice
                     )
                 )
