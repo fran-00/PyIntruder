@@ -229,6 +229,8 @@ class Inventory:
                 )
             case "heal":
                 return Inventory.player.heal_command_handler(choice)
+            case "mana":
+                return Inventory.player.mana_recharge_command_handler(choice)
             case _:
                 return "Problems"
 
