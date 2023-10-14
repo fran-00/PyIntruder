@@ -172,6 +172,18 @@ class Commands:
                 elif command == "LOOK":
                     return self.room.look_command_handler()
 
+                elif command == "MANA":
+                    if self.player.mana == self.player.max_mana:
+                        return "Your mana is already full."
+                    self.arguments_list = [
+                        self.player, self.player,
+                        "mana", "ManaRecharger"
+                    ]
+                    return (
+                        Inventory.collect_request_data,
+                        Inventory.choose_item
+                    )
+
                 elif command == "MAP":
                     return self.player.show_map()
 
