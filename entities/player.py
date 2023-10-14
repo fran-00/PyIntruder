@@ -127,6 +127,16 @@ class Player(Entity):
         self.inventory.remove(choice)
         return f"You use {choice.name}. You now have {self.hp} HP remaining."
 
+    def mana_recharge_command_handler(self, choice):
+        """
+        """
+        if (choice.mr + self.mana) > self.max_mana:
+            self.mana = self.max_mana
+        else:
+            self.mana += choice.mr
+        self.inventory.remove(choice)
+        return f"You use {choice.name}. You now have {self.mana} HP remaining."
+
     def diagnose_command_handler(self):
         """Return a formatted string with the player's current status information."""
         return (
