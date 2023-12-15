@@ -59,27 +59,27 @@ The recognized commands are case insensitive:
 
 ## Changelog
 
-- [x]: Added MVC architecture to play via PyQt6 GUI instead of using CLI.
-- [x]: Added a system of signals and slots to connect model, view and controller.
-- [x]: Added a new way to handle game loop using QThread to process user input received from View without breaking it.
-- [x]: Updated the signal strings parsing system by implementing **regular expressions**, now commands are in a separate class.
-- [x]: Updated Entities creation organization with a better use of **OOP**.
-- [x]: A complete refactoring of player.py code was made, which had too long methods in the first version of the project.
-- [x]: Extracted large methods and added an utilities module to handle game mechanics.
-- [x]: Improved GUI with action buttons and a menu bar using OOP composition.
-- [x]: Updated QWidgets style using [QSS](https://doc.qt.io/qtforpython-6/overviews/stylesheet-examples.html).
-- [x]: Now text has a color scheme to highlight character names and commands using inline CSS and decorators.
-- [x]: Add new utils module to improve composition: original Player class was way too large and now methods related to inventory manipulation, actions and combat system have been moved into separate modules.
-- [x]: Added save and reload functionalities. They were also present in the original version of the game but the code needed to be adapted to all the changes made since then.
-- [ ]: Add the possibility to start a new game.
-- [ ]: Add Mana recharging functionality.
-- [ ]: Implement dialogues with NPCs.
-- [ ]: Add new enemies and items.
-- [ ]: Add game events.
-- [ ]: Show the world map, which is probably too large to be contained in a signal as a string. Maybe I'll try creating a widget for it.
-- [ ]: Improve algorithms used to calculate item stats so that gameplay is as balanced as possible.
-- [ ]: Add the functionality to navigate through command history using up and down arrow keys.
-- [ ]: Add the functionality to export the entire game log to a txt file.
+- [x] Added MVC architecture to play via PyQt6 GUI instead of using CLI.
+- [x] Added a system of signals and slots to connect model, view and controller.
+- [x] Added a new way to handle game loop using QThread to process user input received from View without breaking it.
+- [x] Updated the signal strings parsing system by implementing **regular expressions**, now commands are in a separate class.
+- [x] Updated Entities creation organization with a better use of **OOP**.
+- [x] A complete refactoring of player.py code was made, which had too long methods in the first version of the project.
+- [x] Extracted large methods and added an utilities module to handle game mechanics.
+- [x] Improved GUI with action buttons and a menu bar using OOP composition.
+- [x] Updated QWidgets style using [QSS](https://doc.qt.io/qtforpython-6/overviews/stylesheet-examples.html).
+- [x] Now text has a color scheme to highlight character names and commands using inline CSS and decorators.
+- [x] Add new utils module to improve composition: original Player class was way too large and now methods related to inventory manipulation, actions and combat system have been moved into separate modules.
+- [x] Added save and reload functionalities. They were also present in the original version of the game but the code needed to be adapted to all the changes made since then.
+- [ ] Add the possibility to start a new game.
+- [ ] Add Mana recharging functionality.
+- [ ] Implement dialogues with NPCs.
+- [ ] Add new enemies and items.
+- [ ] Add game events.
+- [ ] Show the world map, which is probably too large to be contained in a signal as a string. Maybe I'll try creating a widget for it.
+- [ ] Improve algorithms used to calculate item stats so that gameplay is as balanced as possible.
+- [ ] Add the functionality to navigate through command history using up and down arrow keys.
+- [ ] Add the functionality to export the entire game log to a txt file.
 
 Here's a scheme of the game structure so far:
 
