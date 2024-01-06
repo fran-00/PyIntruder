@@ -44,6 +44,9 @@ class GameView(QMainWindow):
 
         return self.log_view
 
+    def get_game_log(self):
+        return self.log_view.toPlainText()
+
     def handle_user_action(self, command):
         action = self.input_box.text().strip() if command == "none" else command
         return self.close() if action.lower() == "quit" else self.process_action(action)
