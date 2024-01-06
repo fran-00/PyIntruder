@@ -24,6 +24,7 @@ class Commands:
             'DIAGNOSE': r'^(diagnose)$',
             'DROP FROM LIST': r'^(d(rop)?)$',
             'DROP ITEM': r'^(drop)\s+(.+)$',
+            'EXPORT': r'^(ex(port)?)$',
             'GET FROM LIST': r'^(get|pick up)$',
             'GET ITEM': r'^(get|pick up)\s+(.+)$',
             'HEAL': r'^(h(eal)?)$',
@@ -124,6 +125,9 @@ class Commands:
                         self.room,
                         target,
                         "drop")
+
+                elif command == "EXPORT":
+                    return "Your game log has been exported."
 
                 elif command == "GET FROM LIST":
                     self.arguments_list = [
