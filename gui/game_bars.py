@@ -41,8 +41,8 @@ class GameMenu:
         pass
 
     def on_export_game_log(self):
-        self.game_view.handle_user_action("export")
         game_log = self.game_view.get_game_log()
         file_path = "game_log.txt"
         with open(file_path, 'w') as file:
             file.write(game_log)
+        self.game_view.handle_user_action("export")
