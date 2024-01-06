@@ -26,7 +26,7 @@ class GameMenu:
         self.add_menu_action(file_menu, lambda: self.game_view.handle_user_action("save"), "Save")
         self.add_menu_action(file_menu, self.on_save_as, "Save As...")
         self.add_menu_action(file_menu, lambda: self.game_view.handle_user_action("reload"), "Reload")
-        self.add_menu_action(file_menu, self.on_export_game, "Export Game")
+        self.add_menu_action(file_menu, self.on_export_game_log, "Export Game")
         self.add_menu_action(file_menu, self.game_view.close, "Exit")
 
     def add_menu_action(self, menu, action, text):
@@ -40,5 +40,9 @@ class GameMenu:
     def on_save_as(self):
         pass
 
-    def on_export_game(self):
-        pass
+    def on_export_game_log(self):
+        self.game_view.handle_user_action("export")
+        game_log = self.game_view.get_game_log()
+        file_path = "game_log.txt"
+        with open(file_path, 'w') as file:
+            file.write(game_log)
