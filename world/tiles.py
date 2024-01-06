@@ -45,45 +45,45 @@ class ChestTile(MapTile):
     
     def random_chest_event(self, player):
         ico = random.randint(1, 20)
-        response = "You roll the dice..."
+        response = "You roll the dice...<br>"
         gold = 0
         match ico:
             case 20:
                 gold += 1000
                 response += (
-                    f"Dice says 20! IT'S INCREDIBLE!!!"
-                    f"You found {gold} § inside of it!"
+                    f"Dice says 20! IT'S INCREDIBLE!!!<br>"
+                    f"You found {gold} § inside of it!<br>"
                     )
             case x if 15 < x < 20:
                 gold += random.randint(300, 499)
                 response += ( 
-                    f"Dice says {ico}! Not bad!"
-                    f"You found {gold} § inside of it!"
+                    f"Dice says {ico}! Not bad!<br>"
+                    f"You found {gold} § inside of it!<br>"
                     )
             case x if 11 < x < 16:
                 gold += random.randint(150, 299)
                 response += (
-                    f"Dice says {ico}! Good!"
-                    f"You found {gold} § inside of it!"
+                    f"Dice says {ico}! Good!<br>"
+                    f"You found {gold} § inside of it!<br>"
                     )
             case x if 7 < x < 12:
                 gold += random.randint(50, 149)
                 response += (
-                    f"> Dice says {ico}! Hmmm..."
-                    f"Only {gold} §..."
+                    f"Dice says {ico}! Hmmm...<br>"
+                    f"Only {gold} §...<br>"
                     )
             case x if 3 < x < 8:
                 gold += random.randint(0, 50)
                 response += (
-                    f"{ico}!"
+                    f"{ico}!<br>"
                     )
             case x if 4 < x < 0:
                 response += (
-                    f"{ico}!"
+                    f"{ico}!<br>"
                     )
             case 0:
                 response += (
-                    f"{ico}!"
+                    f"{ico}!<br>"
                 )
         player.gold += gold
         response += f"You now have {player.gold} §."
