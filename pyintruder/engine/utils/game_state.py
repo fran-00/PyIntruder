@@ -1,7 +1,7 @@
 import os
 import pickle
 
-from world.parser import WorldCreator
+from pyintruder.world.parser import WorldCreator
 
 
 class GameState:

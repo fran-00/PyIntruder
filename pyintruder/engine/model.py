@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QThread, QObject, pyqtSignal, pyqtSlot, QEventLoop
 
-from world.parser import WorldCreator
+from pyintruder.world.parser import WorldCreator
 from .utils.commands import Commands
 from .utils.combat_system import Combat
 

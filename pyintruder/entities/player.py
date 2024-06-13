@@ -3,8 +3,8 @@ import random
 from .templates import Entity
 from .factory import ItemsFactory as items
 
-from world.parser import WorldCreator
-from engine.utils.combat_system import Combat
+from pyintruder.world.parser import WorldCreator
+from pyintruder.engine.utils.combat_system import Combat
 
 
 class Player(Entity):

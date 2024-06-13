@@ -1,8 +1,8 @@
 from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QTextEdit
 from PyQt6.QtCore import pyqtSignal, pyqtSlot
 
-from gui.widgets import GameButtons, GameEntry
-from gui.game_bars import GameMenu, GameProgressBars
+from ..gui.widgets import GameButtons, GameEntry
+from ..gui.game_bars import GameMenu, GameProgressBars
 
 
 class GameView(QMainWindow):
@@ -62,7 +62,7 @@ class GameView(QMainWindow):
         self.input_box.setFocus()
 
     def load_css_file(self):
-        with open("gui/styles/styles.css", "r") as file:
+        with open("pyintruder/gui/styles/styles.css", "r") as file:
             return file.read()
 
     @pyqtSlot(str)

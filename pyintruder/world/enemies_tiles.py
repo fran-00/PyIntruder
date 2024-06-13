@@ -1,7 +1,7 @@
 import random
 
 from .map_tile import MapTile
-from entities.factory import EntitiesFactory as enemies
+from ..entities.factory import EntitiesFactory as enemies
 
 
 class EnemyTile_1(MapTile):

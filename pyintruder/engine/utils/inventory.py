@@ -2,11 +2,11 @@ import re
 import random
 
 from .combat_system import Combat
-from entities.templates import (
+from pyintruder.entities.templates import (
     Armor, Curse, Healer, ManaRecharger,
     MissionRelatedItem, Weapon, Trader
 )
-from entities.factory import ItemsFactory
+from pyintruder.entities.factory import ItemsFactory
 
 
 class Inventory:

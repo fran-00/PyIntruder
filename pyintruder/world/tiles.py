@@ -1,6 +1,6 @@
 import random
 
-from entities.factory import EntitiesFactory as entities
+from ..entities.factory import EntitiesFactory as entities
 from .map_tile import MapTile
 
 

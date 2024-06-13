@@ -1,6 +1,6 @@
 import re
 
-from world.parser import WorldCreator
+from pyintruder.world.parser import WorldCreator
 from .combat_system import Combat
 from .inventory import Inventory, Trading
 from .get_drop import GetDrop

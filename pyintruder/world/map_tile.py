@@ -2,17 +2,17 @@ import random
 import json
 import re
 
-from entities.templates import Healer, ManaRecharger, Trader
-from entities.factory import ItemsFactory as items
+from ..entities.templates import Healer, ManaRecharger, Trader
+from ..entities.factory import ItemsFactory as items
 
 
-with open('world/data/tiles_data.json') as f:
+with open('pyintruder/world/data/tiles_data.json') as f:
     tiles_data = json.load(f)
 
-with open('entities/data/npcs_data.json') as nf:
+with open('pyintruder/entities/data/npcs_data.json') as nf:
     npcs_data = json.load(nf)
 
-with open('entities/data/enemies_data.json') as ef:
+with open('pyintruder/entities/data/enemies_data.json') as ef:
     enemies_data = json.load(ef)
 
 
