@@ -2,14 +2,14 @@ import sys
 
 from PyQt6.QtWidgets import QApplication
 
-from world.parser import WorldCreator
-from engine.model import GameModel, GameThread
-from engine.view import GameView
-from engine.controller import GameController
-from entities.player import Player
+from pyintruder.world.parser import WorldCreator
+from pyintruder.engine.model import GameModel, GameThread
+from pyintruder.engine.view import GameView
+from pyintruder.engine.controller import GameController
+from pyintruder.entities.player import Player
 
 
-if __name__ == '__main__':
+def main():
     app = QApplication(sys.argv)
     WorldCreator.parse_world_dsl()
     player = Player()
@@ -20,3 +20,7 @@ if __name__ == '__main__':
     view.show()
 
     sys.exit(app.exec())
+
+
+if __name__ == "__main__":
+    main()
