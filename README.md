@@ -13,7 +13,7 @@ This is a **text-base role-playing game** (AKA [interactive fiction](https://en.
 
 3. Run the game:
 
-        python launcher.py
+        py -m pyintruder
 
 ## How to Play
 
